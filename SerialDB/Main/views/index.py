@@ -4,7 +4,7 @@ from django.db.models import Q
 
 def index(request):
     data={}
-    if request.is_authenticated:
+    if request.user.is_authenticated:
         profile=Profile.objects.get(user__username=request.user.username)
         data.update({"profile":profile})
         myfriends=Friendlist.objects.filter(Q(accepter=profile) | Q(sender=profile))
