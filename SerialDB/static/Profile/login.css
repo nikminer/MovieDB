@@ -1,0 +1,78 @@
+html{
+    background-color: #303952;
+}
+
+form{
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+    font-size: 18px;
+    margin-bottom: 40px;
+    margin-top: 7%;
+}
+
+.bigspan{
+    border-left-color: #303952;
+    margin-bottom: 2%;
+    font-size: 18px;
+}
+
+p{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-top: 7px;
+    margin-bottom: 15px;
+}
+P>label{
+    padding: 0 5px 5px 0;
+}
+p>span{
+    color: #7b8084;     
+}
+p>input{
+    padding: 5px;
+    font-size: 18px;
+    width: 100%;
+}
+
+button[type=submit]{
+    margin-top: 20px;
+    padding: 10px 0;
+    border: 0;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: rgb(241, 241, 241);
+    transition: all 0.5s ease;
+}
+button[type=submit]:hover{
+    border-left: 10px #303952 solid;
+    border-right: 10px #303952 solid;
+    cursor: pointer;
+    background-color: rgb(223, 219, 219);
+}
+.errorlist{
+    background-color: #e66767;
+    padding-top:10px;
+    padding-bottom:10px;
+    padding-left: 10px;
+    color: #fff;
+}
+form>a{
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    margin-top: 20px;
+    background-color: rgb(241, 241, 241);
+    transition: all 0.5s ease;
+}
+form>a:hover{
+    border-left: 10px #303952 solid;
+    border-right: 10px #303952 solid;
+    cursor: pointer;
+    background-color: rgb(223, 219, 219);
+}
+

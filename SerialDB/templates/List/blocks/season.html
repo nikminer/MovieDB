@@ -1,0 +1,30 @@
+
+<summary>
+    <div>
+        <span>
+            <a class=serialname href="{% url 'serial' i.serial.id %}" title="{{i.serial.name}}">{{i.serial.name}} ({{i.serial.year}})</a> 
+        </span>
+        <progress value="{{i.watched}}" title="Эпизоды: {{i.watched}}/{{i.episodes}}" max={{i.episodes}}></progress>
+        <div>
+            <a class="delbtn" href="{% url 'delserial' i.serial.id %}}" title="Удалить весь сериал"></a>
+        </div>
+    </div>
+</summary>
+
+{% for UserItem in i.seasons %}
+    <div class=season id="season:{{UserItem.id}}" ondragend="faststatus.style.opacity=0;" draggable="true" ondragstart="drag(event)">
+        <a href="{% url 'season' UserItem.season.id %}">{{UserItem.season.name}}</a>
+        
+        <div id="numchange">
+            <div class=numeric>
+                <span id="userepisodeview_{{UserItem.id}}">{{UserItem.userepisode}}</span>/<span>{{UserItem.season.episodecount}}</span>
+            </div>
+            <div class=numericinput>
+                <span onclick="decrement({{UserItem.id}})">-</span>
+                <input id=numerinput_{{UserItem.id}} type="number" min=0 max={{UserItem.season.episodecount}} onchange="setepisode({{UserItem.id}})" value="{{UserItem.userepisode}}">
+                <span onclick="increment({{UserItem.id}})">+</span>
+            </div>
+        </div>
+        {% include "List/blocks/stars.html" %}   
+    </div>
+{% endfor %}

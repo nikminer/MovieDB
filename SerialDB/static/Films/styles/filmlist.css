@@ -1,0 +1,99 @@
+html{
+ background-color: #e15f41;
+}
+
+
+.headBlock{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px;
+}
+.HeadName{
+    font-size: 25px;
+    font-weight: bold;
+}
+
+
+
+.addfilm{
+    padding: 5px;
+    width: 150px;
+    text-decoration: none;
+    color: white;
+    transition: all 0.5s ease;
+    text-align: center;
+    font-weight: bold;
+    background-color: #e15f41;
+}
+.addfilm:hover{
+    background-color: #e15f41;  
+}
+
+
+
+.pagedisc{
+    margin: 20px;
+    margin-bottom: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-top: #e15f41 solid 2px;
+    border-bottom: #e15f41 solid 2px;
+}
+
+
+
+
+
+
+.filmList{
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+
+
+
+
+
+
+
+
+.film {
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    height: 250px;
+    text-decoration: none;
+    color:black;
+    font-size: 14px;
+    transition: all 0.5s ease;
+}
+.film>span{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-left: 2px;
+}
+.film:hover{
+    cursor: pointer;
+    background-color:rgb(223, 219, 219)
+}
+.poster{
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.filmsmallinfo{
+    font-size: 13px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}

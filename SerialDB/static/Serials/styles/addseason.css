@@ -1,0 +1,156 @@
+.Serial{
+    margin: 20px;
+    display: grid;
+    grid-template-areas: "SerialName SerialName SerialName "
+    "poster SerialInfo ."
+    "actionpanel discription discription"
+    "actionpanel seasons seasons "
+    ". submit . ";
+    grid-template-columns: 210px 35% auto;
+    grid-row-gap: 10px;
+    grid-column-gap: 20px;
+    min-height: 350px;
+}
+.serialName{
+    font-size:25px;
+    font-weight: bold;
+    grid-area: SerialName;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.serialName>input{
+    font-size:20px;
+    font-weight: bold;
+    grid-area: SerialName;
+    margin-right: 10px;
+    transition: all 0.5s ease;
+    padding: 0 5px;
+}
+.serialName>input:focus{
+    padding: 0;
+    border-left: 5px #546de5 solid;
+    border-right: 5px #546de5 solid;
+}
+.serialName>a{
+    color: black;
+}
+.poster{
+    grid-area: poster;
+    width: 210px;
+}
+.poster>img{
+    width: 210px;
+}
+.poster>input{
+    width: 210px;
+    height: 30px;
+    overflow: hidden;
+    cursor: pointer;
+}
+.serialinfo{
+    display: flex;
+    flex-direction: column;
+}
+.serialinfo>div{
+    margin-top: 10px;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    grid-area: SerialInfo;
+}
+.serialinfo>div>span{
+    padding: 7px 0;
+    color: #7b8084;
+}
+
+.serialinfo>div>span>span{
+    color: black;
+}
+.status{
+    padding:  3px 5px;
+    border-radius: 2px;
+    color: white!important;
+}
+.actionpanel{
+    grid-area: actionpanel;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.actionpanel>a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    text-decoration: none;
+    width: 100%;
+    transition: all 0.5s ease;
+    font-weight: bold;
+    height: 30px;
+    background-color: rgb(241, 241, 241);
+}
+.actionpanel *:nth-child(1n){
+    margin-bottom:5px;
+}
+.actionpanel>a:hover{
+    border-left: 10px #546de5 solid;
+    border-right: 10px#546de5 solid;
+    cursor: pointer;
+    background-color: rgb(223, 219, 219);
+    width: 90%;
+}
+.discription{
+    grid-area: discription;
+    display: flex;
+    flex-direction: column;
+    color: black;
+}
+.discription>p{
+    font-size: 14px;
+    padding: 5px 10px;
+    margin: 0;
+    word-spacing: 2px;
+}
+.bigspan{
+    border-left: 10px #546de5 solid;
+}
+.submitbtn{
+    grid-area: submit;
+    border: 0;
+    font-size: 19px;
+    padding: 5px;
+    background-color: rgb(241, 241, 241);
+    transition: all 0.5s ease;
+}
+.submitbtn:hover{
+    border-left: 10px #546de5 solid;
+    border-right: 10px #546de5 solid;
+    cursor: pointer;
+    background-color: rgb(223, 219, 219);
+}
+
+
+#posterupload>label{
+    height: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #546de5;
+    color: white;
+    transition: all 0.5s ease;
+}
+#posterupload>label:hover{
+    background-color: #778beb;
+    cursor: pointer;
+}
+#posterupload span{
+    cursor: pointer;
+}
+#posterupload input[type="file"]{
+    display: none;
+}

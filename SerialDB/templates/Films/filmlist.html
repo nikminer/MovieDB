@@ -1,0 +1,32 @@
+{% load staticfiles %}
+{% include "../base.html" %}
+
+<link rel="stylesheet" href="{% static "Films/styles/filmlist.css" %}" />
+<title>Фильмы</title>
+
+
+<body>
+    <div class="headBlock"> 
+        <span class="HeadName">Фильмы</span>
+        <a href="{% url 'addmovie'%}" class="addfilm">Добавить фильм</a>
+    </div>
+    <p class="pagedisc">
+        Список фильмов отсортированный по дате выхода. Если вы вдруг не нашли ваш фильм, просто добавьте его, нажав на кнопку "Добавить фильм".
+    </p>
+    <div class="filmList" >
+    {% for film in FilmList %}
+        <a href="{% url 'film' film.id %}" class="film" title="{{film.name}} / {{film.originalname}} ({{film.year}})">
+            <div class="poster">
+                <img height="200px" src={{film.img}}>
+            </div>
+            <span >{{film.name}} / {{film.originalname}}</span>
+            <div class="filmsmallinfo">
+                <span>{{film.year}}</span>
+                {% if film.InMyList == "True" %}<span style="background-color: #e15f41;color: white;padding: 2px;">В списке</span>{% endif %}</span>
+            </div>
+        </a>
+        
+    {% endfor %}
+    </div>
+    
+</body>

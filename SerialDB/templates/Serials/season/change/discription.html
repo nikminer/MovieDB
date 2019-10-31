@@ -1,0 +1,25 @@
+{% load staticfiles %}
+{% include "../../../base.html" %}
+<link rel="stylesheet" href={% static 'Serials/styles/season/change/discription.css' %} type="text/css" />
+
+
+<title>Редактирование / {{season.name}} / {{season.serial.name}} / {{season.serial.originalname}} / Сериал</title>
+
+<body>
+    <div class="Season">
+        <a class="bckbtn" href="{% url 'seasonch' season.id %}">
+            <b>◄</b><span>К редактированию</span>
+        </a>
+        <span class="seasonname">Смена описания / {{season.name}} / {{season.serial.name}} / {{season.serial.originalname}}</span>
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="formobj">
+                {{form}}
+            </div>
+            <input type="submit" value="Сменить" />
+        </form>
+        
+    </div>
+
+</body>

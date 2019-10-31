@@ -1,0 +1,216 @@
+html{
+    background-color: #546de5;
+}
+
+
+.Serial{
+    margin: 20px;
+    display: grid;
+    grid-template-areas: "bckbtn . ."
+    "SerialName SerialName SerialName "
+    "poster SerialInfo userrate"
+    "poster SerialInfo ."
+    "actionpanel discription discription"
+    "actionpanel seasons seasons "
+    "actionpanel episodelist episodelist";
+    grid-template-columns: 200px auto 250px;
+    grid-row-gap: 10px;
+    grid-column-gap: 20px;
+    min-height: 350px;
+}
+
+.bckbtn{
+    grid-area: bckbtn;
+    font-weight: bold;
+    background-color: #546de5;
+    color: white;
+    display: flex;
+    flex-direction:row;
+    cursor: pointer;
+    align-items: center;
+    text-decoration: none;
+    margin-bottom: 10px;
+    height: 30px;
+}
+.bckbtn>span{
+    background-color: rgb(241, 241, 241);
+    color: black;
+    width: 100%;
+    transition: all 0.5s ease;
+    padding-left: 10px;
+}
+.bckbtn>*{
+    padding: 5px 0;
+}
+.bckbtn:hover>span{
+    background-color: #546de5;
+    color: white;
+}
+
+#stars{
+    width:150px;
+    height: 30px;
+    padding-left:10px;
+}
+#stars>img{
+    height: 30px;
+}
+.userrate{
+    grid-area:userrate;
+    display: flex;
+    flex-direction: column;
+}
+.userrate>div{
+    padding: 5px;
+    display:flex;
+    align-items:center;
+    justify-content: space-evenly;
+}
+.userrate>div>span{
+    font-size:25px;
+    font-weight: bold;
+}
+
+.serialName{
+    font-size:25px;
+    font-weight: bold;
+    grid-area: SerialName;
+    margin-bottom: 10px;
+    border-bottom: #546de5 2px solid;
+    padding-bottom: 10px;
+    display: grid;
+    grid-template-columns: auto 210px;
+}
+
+.poster{
+    grid-area: poster;
+    width: 200px;
+}
+
+.serialinfo{
+    grid-area: SerialInfo;
+    display: flex;
+    flex-direction: column;
+}
+.serialinfo>div{
+    margin-top: 10px;
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
+    grid-area: SerialInfo;
+}
+.serialinfo>div>span{
+    padding: 7px 0;
+    color: #7b8084;
+}
+
+.serialinfo>div>span>span{
+    color: black;
+}
+.status{
+    padding:  3px 5px;
+    border-radius: 2px;
+    color: white!important;
+}
+.actionpanel{
+    grid-area: actionpanel;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.actionpanel>a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    text-decoration: none;
+    width: 100%;
+    transition: all 0.5s ease;
+    font-weight: bold;
+    height: 30px;
+    background-color: rgb(241, 241, 241);
+}
+.actionpanel *:nth-child(1n){
+    margin-bottom:5px;
+}
+.actionpanel>a:hover{
+    border-left: 10px #546de5 solid;
+    border-right: 10px#546de5 solid;
+    cursor: pointer;
+    background-color: rgb(223, 219, 219);
+    width: 90%;
+}
+.discription{
+    grid-area: discription;
+    display: flex;
+    flex-direction: column;
+    color: black;
+}
+.discription>p{
+    font-size: 15px;
+    padding: 5px 10px;
+    margin: 0;
+    word-spacing: 2px;
+}
+
+.episodelist{
+    grid-area: episodelist;
+    display: flex;
+    flex-direction: column;
+    color: black;
+}
+.episodelist>div{
+    display: grid;
+    grid-template-areas: "counter name date";
+    grid-template-columns: 50px auto 100px;
+    padding: 5px 10px;
+    padding-left: 0;
+    transition: all 0.5s ease;
+}
+.episodelist>div:hover{
+    background-color: lightgray;
+}
+.episodecounter{
+    grid-area:counter;
+    border-right: #7b8084 2px solid;
+    margin-right: 10px;
+    text-align: center;
+}
+
+.bigspan{
+    border-left: 10px #546de5 solid;
+}
+.срbtn{
+    grid-area: changeseason;
+    border: 0;
+    font-size: 19px;
+    padding: 5px;
+    background-color: rgb(241, 241, 241);
+    transition: all 0.5s ease;
+    text-align: center;
+    color:black;
+}
+.срbtn:hover{
+    border-left: 10px #546de5 solid;
+    border-right: 10px #546de5 solid;
+    cursor: pointer;
+    background-color: rgb(223, 219, 219);
+}
+.delbtn{
+    grid-area: deleteseason;
+    border: 0;
+    font-size: 19px;
+    padding: 5px;
+    background-color: rgb(241, 241, 241);
+    transition: all 0.5s ease;
+    text-align: center;
+    color:black;
+}
+.delbtn:hover{
+    border-left: 10px #e66767 solid;
+    border-right: 10px #e66767 solid;
+    cursor: pointer;
+    background-color: rgb(223, 219, 219);
+}

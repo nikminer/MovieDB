@@ -1,0 +1,61 @@
+{% load staticfiles %}
+{% include "../base.html" %}
+<link rel="stylesheet" href={% static 'Main/styles/index.css' %} type="text/css" />
+
+<title>Serial DB</title>
+
+<body>
+    <div class="index">
+        <div class="header">
+            <img src={% static "images/favicon.ico" %}>
+            <span>SerialDB</span>
+        </div>
+        {% if user.is_authenticated %}
+            <div class="profile">
+                <div>
+                    <a href="{% url 'profile' user.username %}">
+                        <span class="sectionspan">{{user.first_name}} {{user.last_name}}</span>
+                        <img src="{{profile.photo.url}}" width="90px">
+                    </a>
+                </div>
+                <div>
+                    <span class="sectionspan">Друзья</span>
+                    <a href="{% url 'friends' user.username %}">Всего друзей: {{friends.friends}}</a>
+                    <a href="{% url 'friendreq' user.username %}">Заявки в друзья: {{friends.requests}}</a>
+                </div>
+            </div>
+        {% endif %}
+        <div class="serials block">
+            <a href="{% url 'seriallist' %}" class="sectionspan">Сериалы</a>
+            <h3>В процессе разработки</h3>
+        </div>
+        <div class="movies block">
+            <a href="{% url 'filmlist' %}" class="sectionspan">Фильмы</a>
+            <h3>В процессе разработки</h3>
+        </div>
+        {% if user.is_authenticated %}
+            <div class="list block">
+                <a href="{% url 'listserial' request.user.username %}" class="sectionspan">Мой список</a>
+                <h3>В процессе разработки</h3>
+            </div>
+        {% endif %}
+        <div class="footer">
+            <div style="width:100px">
+                <img src={% static "images/logo.png" %}>
+                <span style="text-align:center">Created by nikminer</span>
+            </div>
+            <div>
+                <h3>Данный сервис находится на стадии Альфа-теста, просьба сообщать о всех багах сюда:</h3>
+                <a href="mailto:thenikminer@yandex.ru">thenikminer@yandex.ru</a>
+            </div>
+            <div class="links">
+                <span>Ссылки:</span>
+                <div>
+                    <a href="https://github.com/nikminer/SerialDB">
+                        <img src={% static "images/github.png" %}>
+                    </a>
+                <div>
+            </div>
+        </div>
+    </div>
+</body>

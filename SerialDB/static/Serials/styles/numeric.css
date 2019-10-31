@@ -1,0 +1,54 @@
+#numchange{
+    grid-area:numeric;
+    display:grid;
+    grid-template-areas: "place";
+    margin: 0;  
+}
+.numeric{
+    grid-area: place;
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items: center;
+    font-size: 14px;
+    letter-spacing: 2px;
+    opacity: 1;
+    transition: all 0.5s ease;
+}
+.numericinput{
+    grid-area: place;
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    opacity: 0;
+    align-items: center;
+    font-size: 18px;
+    transition: all 0.5s ease;
+    z-index: 100;
+}
+.numericinput>span{
+    font-size: 22px
+}
+.numericinput>span:hover{
+    color: #e66767;
+}
+.numericinput>input{
+    width: 40px;
+    margin: 0 5px;
+    text-align: center;
+    -moz-appearance: textfield;
+}
+.numericinput>input::-webkit-outer-spin-button,
+.numericinput>input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+#numchange:hover>.numeric{
+    opacity: 0;
+}
+#numchange:hover>.numericinput{
+    opacity: 1;
+}
+.numericinput>span{
+    cursor: pointer;
+}

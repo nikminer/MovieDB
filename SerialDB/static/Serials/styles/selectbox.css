@@ -1,0 +1,27 @@
+#selectbox{
+    width:100%;
+    background-color: #546de5;
+    color: white;
+    transition: all 0.5s ease;
+}
+#selectbox>*{
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+#selectbox>summary{
+    margin-bottom: 0px;
+}
+#selectbox>summary:hover{
+    background-color: #546de5;
+}
+#selectbox>option:hover{
+    background-color: #546de5;
+}
+
+#selectbox:not([open]) { 
+    height: 28px; 
+}
+#selectbox[open] { 
+    height: 195px; 
+}

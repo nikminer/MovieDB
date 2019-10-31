@@ -1,0 +1,142 @@
+html{
+   }
+
+.index{
+    display: flex;
+    flex-direction: column;
+}
+.index{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.header{
+    background-color: #303952;
+    min-height: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.header>img{
+    width: 40px;
+    padding: 5px;
+}
+.header>span{
+    font-weight: bold;
+    font-size: 30px;
+    color: white;
+}
+
+.block{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    color: white;
+    padding: 10px;
+}
+.sectionspan{
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+.profile{
+    background-color: #c44569;
+    min-height: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+.profile>div{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    transition: all 0.5s ease;
+    height: 115px;
+}
+.profile>div>a{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+}
+.profile a,.block a{
+    color: white;
+    text-decoration: none;
+    transition: all 0.5s ease;
+    padding: 5px;
+}
+.profile a:hover,.block a:hover{
+    background-color: lightgrey;
+}
+
+
+
+
+
+
+.serials{
+    background-color: #546de5;
+    min-height: 250px;
+}
+
+.movies{
+    background-color: #e15f41;
+    min-height: 250px;
+}
+
+.list{
+    background-color: #3dc1d3;
+    min-height: 250px;
+}
+
+.footer{
+    background-color: #303952;
+    min-height: 150px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.footer>div{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.footer>div>img{
+    width: 100px;
+}
+.footer>div>span{
+    color: white;
+    font-size: 16px;
+    padding-top: 10px;
+}
+.footer>div>h3{
+    color: white;
+}
+.footer>div>a{
+    color: white;
+    font-size: 20px;
+}
+
+.links>div{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-evenly;
+
+}
+.links a>img{
+    width: 40px;
+}
+.links>span{
+    color: white;
+    font-size: 18px;
+}

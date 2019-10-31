@@ -1,0 +1,122 @@
+{% load staticfiles %}
+{% include "../base.html" %}
+<script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
+<link rel="stylesheet" href={% static 'Profile/settings.css' %} type="text/css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.4/croppie.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.4/croppie.css" />
+<title>Настройки {{user.username}}</title>
+
+<body>
+    <div class="settings">
+        <a href={% url 'profile' request.user.username %} class="bckbtn">
+            <b>◄</b><span>К профилю</span>
+        </a>
+        <div class="setting">
+            <div class="setbg">
+                <span class="bigspan">Задний фон профиля</span>
+                <input id="bgupload" type="file">
+                <div id="bg">
+                    <div id="setbg"></div>
+                    <form action="{% url 'setbackground' %}" method="POST" >
+                        {% csrf_token %}
+                        <input type="hidden" name="Photo" id="BGPhoto">
+                    </form>
+                    <div style="display:flex;justify-content: space-evenly;">
+                        <button id='bgsend'>Сохранить задний фон</button>
+                        {% if profile.photobg %}
+                            <button onclick="document.location.replace('{% url 'resetbackground' %}')" class='bgsend'>Вернуть случайный задний фон</button>
+                        {% endif %}
+                    </div>
+                </div>
+                <script>
+                    var el = document.getElementById('setbg');
+                    var vanillaBG = new Croppie(el, {
+                        viewport: { width: 900, height: 350 },
+                        boundary: { width: 1000, height: 350 },
+                        showZoomer: true,
+                        enableOrientation: true
+                    });
+                    {% if not profile.photobg %}
+                        bg.style.display="none"
+                    {% endif %}
+                    {% if profile.photobg %}
+                         vanillaBG.bind({
+                            url: '{{profile.photobg.url}}'
+                        });
+                    {% endif %}
+
+                    bgupload.onchange=function(){
+                        var reader = new FileReader();
+                        reader.onload = function(e){
+                            vanillaBG.bind({
+                                url: e.target.result,
+                            });
+                        }
+                        reader.readAsDataURL(this.files[0]);
+                        bg.style.display="flex"
+                    }
+                    bgsend.onclick=function(){
+                        vanillaBG.result({
+                            type: 'canvas',
+                            size: 'viewport'
+                        }).then(function (resp) {BGPhoto.value=resp; BGPhoto.parentNode.submit()})
+                    }
+                </script>
+            </div>
+            
+            <div class="setavatar">
+                <span class="bigspan">Смена аватара</span>
+                <input id="Avatarupload" type="file">
+                <div id="avatar">
+                    <div id="setavatar"></div>
+                    <form action="{% url 'setavatar' %}" method="POST" >
+                        {% csrf_token %}
+                        <input type="hidden" name="Photo" id="AvatarPhoto">
+                    </form>
+                    <button id='Avatarsend'>Сохранить аватар</button>
+                </div>
+                <script>
+                    var el = document.getElementById('setavatar');
+                    var vanilla = new Croppie(el, {
+                        viewport: { width: 250, height: 250 },
+                        boundary: { width: 450, height: 350 },
+                        showZoomer: true,
+                        enableOrientation: true
+                    });
+                    vanilla.bind({
+                        url: '../{{profile.photo.url}}',
+                    });
+
+                    
+
+                    Avatarupload.onchange=function(){
+                        var reader = new FileReader();
+                        reader.onload = function(e){
+                            vanilla.bind({
+                                url: e.target.result,
+                            });
+                            avatar.style.display="flex"
+                        }
+                        reader.readAsDataURL(this.files[0]);
+                    }
+                    Avatarsend.onclick=function(){
+                        vanilla.result({
+                            type: 'canvas',
+                            size: 'viewport'
+                        }).then(function (resp) {AvatarPhoto.value=resp; AvatarPhoto.parentNode.submit()})
+                    }
+                    
+                </script>
+            </div>
+
+            <div class="setinfo">
+                <span class="bigspan">Задний фон профиля</span>
+                <form method=POST>
+                {% csrf_token %}
+                    {{settings}}
+                    <input type="submit" value="Сохранить изменения">
+                </form>
+            </div>
+        </div>
+    </div>
+</body>

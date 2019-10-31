@@ -1,0 +1,15 @@
+{% load staticfiles %}
+<link rel="stylesheet" href={% static 'Serials/styles/selectbox.css' %} type="text/css" />
+<script src="{% static "Serials/scripts/selectbox.js" %}"></script>
+
+<details id="selectbox">
+    <summary id="selectName"></summary>
+    <option onclick="setstatus(this,{{UserItem.id}})" value="planned" {% if UserItem.userstatus == 1 %} selected {% endif %}>В планах</option>
+    <option onclick="setstatus(this,{{UserItem.id}})" value="watch" {% if UserItem.userstatus == 2 %} selected {% endif %}>Смотрю</option>
+    <option onclick="setstatus(this,{{UserItem.id}})" value="watched" {% if UserItem.userstatus == 3 %} selected {% endif %}>Просмотрено</option>
+    <option onclick="setstatus(this,{{UserItem.id}})" value="rewatch" {% if UserItem.userstatus == 4 %} selected {% endif %}>Пересматриваю</option>
+    <option onclick="setstatus(this,{{UserItem.id}})" value="drop" {% if UserItem.userstatus == 5 %} selected {% endif %}>Брошено</option>
+</details>
+
+
+

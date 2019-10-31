@@ -1,0 +1,19 @@
+{% include "../../base.html" %}
+<title>Регистрация</title>
+
+{% load static %}
+<link rel="stylesheet" href={% static 'Profile/registration.css' %} type="text/css" />
+
+<body>
+    {% if user.is_authenticated %}
+    <meta http-equiv="Refresh" content="0; URL=/">
+    {% endif %}
+    <form method="post">
+        <a href="{% url 'login' %}">Авторизация</a>
+        <span class=bigspan>Регистрация</span>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Отправить</button>
+    </form>
+                
+</body>

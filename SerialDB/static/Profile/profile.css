@@ -1,0 +1,234 @@
+html{
+    background-color: #c44569;
+   }
+a{
+    color: black;
+}
+.profile{
+    display: grid;
+    grid-template-areas: "bckbtn . ."
+    "profilehead profilehead profilehead"
+    "profileinfo profileinfo profileinfo"
+    "section0 section0 section0"
+    "section1 section1 section1";
+    grid-template-columns: 200px auto 250px;
+    grid-template-rows: 60px 325px 50px auto;
+    min-height: 550px;
+}
+
+.profilehead{
+    grid-area: profilehead;
+    display: grid;
+    grid-template-areas: "center";
+}
+
+.bgimg{
+    grid-area: center;
+    width: 100%;
+    height:300px;
+    margin-top: 10px;
+    border: none;
+    border-top: #c44569 2px solid;
+    border-bottom: 1px solid black;
+}
+
+.avatar{
+    grid-area: center;
+    width: 250px;
+    height: 250px;
+    margin: auto;
+    margin-bottom:-50px;
+}
+
+
+.profileinfo{
+    grid-area: profileinfo;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+}
+
+.userfl{
+    width: 100%;
+    display: grid;
+    grid-template-areas: "f . l";
+    grid-template-columns: 1fr 120px 1fr;
+}
+.userfl>span{
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.userSB{
+    width: 100%;
+    display: grid;
+    grid-template-areas: "s . b";
+    grid-template-columns: 1fr 210px 1fr;
+}
+
+.userSB>span{
+    font-size: 16px;
+}
+
+.section0{
+    grid-area: section0;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.section0>a{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    transition: all 0.5s ease;
+    transition: width 0.5s ease;
+    width: 30px;
+    height: 50px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+    margin: 0 5px;
+    color: black;
+}
+.section0>a>span{
+    text-align: center;
+    padding: 5px;
+    transition: all 0.5s ease;
+    white-space: nowrap;
+    display: none;
+}
+.section0>a:hover{
+    width: 230px;
+}
+.section0>a:hover>span{
+    margin-left: 5px;
+    display: block;
+}
+
+
+
+.section1{
+    grid-area: section1;
+    height: 350px;
+
+    display: grid;
+    grid-template-areas: 
+    "serials friends"
+    "films .";
+    grid-template-columns: auto 330px;
+    grid-template-rows: 170px 170px;
+}
+.section1>*{
+    margin: 10px;
+}
+.friends{
+    grid-area: friends;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+.friends>div{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.friends>div>img{
+    padding: 6px;
+    cursor: pointer;
+}
+
+
+.serials{
+    grid-area: serials;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.serials>div{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: stretch;
+    margin: 10px;
+    height: 150px;
+}
+
+.films{
+    grid-area: films;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+.films>div{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: stretch;
+    margin: 10px;
+    height: 150px;
+}
+
+
+.diagramm{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height:40px;
+}
+.diagramm>div{
+    height: 30px;
+}
+.legend{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height:30px;
+    font-weight: bold;
+}
+.legend>*{
+    border-left:10px gray solid;
+    padding-left: 5px;
+}
+
+
+
+
+
+
+
+.bckbtn{
+    grid-area: bckbtn;
+    font-weight: bold;
+    background-color: #c44569;
+    color: white;
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    margin: 20px;
+    height: 30px;
+}
+.bckbtn>span{
+    background-color: rgb(241, 241, 241);
+    color: black;
+    width: 100%;
+    transition: all 0.5s ease;
+    padding-left: 10px;
+}
+.bckbtn>*{
+    padding: 5px 0;
+}
+.bckbtn:hover>span{
+    background-color: #c44569;
+    color: white;
+}
+
+.bigspan{
+    border-left-color: #c44569;
+}

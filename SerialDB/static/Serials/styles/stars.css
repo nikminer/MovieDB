@@ -1,0 +1,40 @@
+.star{
+    background: url('../../images/Serials/star2_20px.png') no-repeat;
+}
+.star:nth-child(4n){
+    background: url('../../images/Serials/star1_20px.png') no-repeat;
+}
+#ratings {
+    overflow: hidden;
+    *zoom: 1;
+    display:flex;
+    flex-direction:row-reverse;
+    justify-content:flex-end;
+    align-items:center;
+    grid-area: "ratings";
+    width:200px;
+}
+#ratings>input {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    width: 0;
+    margin:0;
+    height: 40px;
+}
+#ratings>input:checked ~ label {
+    background-position: 0 -40px;
+    height: 40px;
+    width: 20px;
+}
+#ratings>label {
+    background-position: 0 0;
+    height: 40px;
+    width: 20px;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+#ratings>label:hover, #ratings>label:hover ~ label {
+    background-position: 0 -40px;
+    height: 40px;
+    width: 20px;
+}

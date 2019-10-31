@@ -1,0 +1,26 @@
+{% load staticfiles %}
+<link rel="stylesheet" href="{% static "Films/styles/stars.css" %}" />
+<script src="{% static "List/scripts/setRatingF.js" %}"></script>
+
+<div id="ratings">
+  <input id="star-9_{{UserItem.id}}" value=10 {% if UserItem.userrate == 10 %} checked {% endif %} type="radio" name="ratings_{{UserItem.id}}" onclick="setRating(this,{{UserItem.id}})"/>
+    <label title=10 class=star for="star-9_{{UserItem.id}}"></label>
+  <input id="star-8_{{UserItem.id}}" value=9 {% if UserItem.userrate == 9 %} checked {% endif %} type="radio" name="ratings_{{UserItem.id}}" onclick="setRating(this,{{UserItem.id}})"/>
+    <label title=9 class=star for="star-8_{{UserItem.id}}"></label>
+  <input id="star-7_{{UserItem.id}}" value=8 {% if UserItem.userrate == 8 %} checked {% endif %} type="radio" name="ratings_{{UserItem.id}}" onclick="setRating(this,{{UserItem.id}})"/>
+    <label title=8 class=star for="star-7_{{UserItem.id}}"></label>
+  <input id="star-6_{{UserItem.id}}" value=7 {% if UserItem.userrate == 7 %} checked {% endif %} type="radio" name="ratings_{{UserItem.id}}" onclick="setRating(this,{{UserItem.id}})"/>
+    <label title=7 class=star for="star-6_{{UserItem.id}}"></label>
+  <input id="star-5_{{UserItem.id}}" value=6 {% if UserItem.userrate == 6 %} checked {% endif %} type="radio" name="ratings_{{UserItem.id}}" onclick="setRating(this,{{UserItem.id}})"/>
+    <label title=6 class=star for="star-5_{{UserItem.id}}"></label>
+  <input id="star-4_{{UserItem.id}}" value=5 {% if UserItem.userrate == 5 %} checked {% endif %} type="radio" name="ratings_{{UserItem.id}}" onclick="setRating(this,{{UserItem.id}})"/>
+    <label title=5 class=star for="star-4_{{UserItem.id}}"></label>
+  <input id="star-3_{{UserItem.id}}" value=4 {% if UserItem.userrate == 4 %} checked {% endif %} type="radio" name="ratings_{{UserItem.id}}" onclick="setRating(this,{{UserItem.id}})"/>
+    <label title=4 class=star for="star-3_{{UserItem.id}}"></label>
+  <input id="star-2_{{UserItem.id}}" value=3 {% if UserItem.userrate == 3 %} checked {% endif %} type="radio" name="ratings_{{UserItem.id}}" onclick="setRating(this,{{UserItem.id}})"/>
+    <label title=3 class=star for="star-2_{{UserItem.id}}"></label>
+  <input id="star-1_{{UserItem.id}}" value=2 {% if UserItem.userrate == 2 %} checked {% endif %} type="radio" name="ratings_{{UserItem.id}}" onclick="setRating(this,{{UserItem.id}})"/>
+    <label title=2 class=star  for="star-1_{{UserItem.id}}"></label>
+  <input id="star-0_{{UserItem.id}}" value=1 {% if UserItem.userrate == 1 %} checked {% endif %} type="radio" name="ratings_{{UserItem.id}}" onclick="setRating(this,{{UserItem.id}})"/>
+    <label title=1 class=star for="star-0_{{UserItem.id}}"></label>
+</div>

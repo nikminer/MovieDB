@@ -1,0 +1,76 @@
+html{
+    background-color: #303952;
+   }
+
+body{
+    display: grid;
+    grid-template-areas:"headname" "discript" "Search" 
+    "results";
+    grid-template-rows: 50px 0.1fr 70px  1fr;
+}
+
+.HeadName{
+    grid-area: "headname";
+    font-size: 25px;
+    font-weight: bold;
+    margin: 30px;
+}
+.Search{
+    margin: 0 30px;
+    grid-area: Search;
+    display: flex;
+    align-items: center;
+    
+}
+.Search>input{
+    width: 100%;
+    font-size: 20px;
+    padding: 5px;
+}
+.discript{
+    border-top: #303952 solid 2px;
+    border-bottom: #303952 solid 2px;
+    grid-area: discript;
+    margin: 0 30px;
+    margin-top: 30px;
+    padding: 5px;
+}
+#result{
+    grid-area: results;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.poster{
+    width: 150px;
+    height: 210px;
+}
+.Movie{
+    width: 160px;
+    height:250px;
+    padding:5px;
+    margin: 5px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-evenly;
+    align-items: center;
+    transition: all 0.5s ease;
+}
+.Movie:hover{
+    background-color:lightgray;
+    cursor:pointer;
+}
+.Movie:hover>.postertitle{
+    text-decoration: black underline;
+}
+.postertitle{
+    text-overflow: ellipsis;
+    height: 20px;
+    width: 150px;
+    line-height: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-decoration: none;
+    text-align: center;
+}

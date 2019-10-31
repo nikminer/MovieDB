@@ -1,0 +1,100 @@
+{% load staticfiles %}
+{% include "../base.html" %}
+
+<link rel="stylesheet" href="{% static "List/styles/list.css" %}" />
+<link rel="stylesheet" href="{% static "List/styles/season.css" %}" />
+<script src="{% static "List/scripts/dragNdrop.js" %}"></script>
+<script src="{% static "List/scripts/search.js" %}"></script>
+
+<link rel="stylesheet" href="{% static "List/styles/numeric.css" %}" />
+<script src="{% static "List/scripts/episodeCounter.js" %}"></script>
+
+<title>Список сералов / {{request.user.username}}</title>
+
+<body>
+
+    <div class="headBlock">
+        <div>
+            <a class="btn selected" href="{% url 'listserial' request.user.username %}">Сериалы</a>
+            <a class="btn" href="{% url 'listfilm' request.user.username %}">Фильмы</a>
+        </div>
+        <span class="HeadName">Список сералов / {{request.user.username}}</span>
+        <input onkeyup="search(this)"  placeholder="Поиск сериала по названию" type="search">
+    </div>
+    
+    <div class="group" id="planned" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <span class="groupspan">В планах</span>
+        {% if planlist %}
+        <div class="legend"><span>Название</span><span>Эпизоды</span><span>Оценка</span></div>
+            {% for i in planlist %}
+            <details class="serial" id="planned_serial:{{i.serial.id}}">
+                {% include "List/blocks/season.html" %}  
+            </details>
+            {% endfor %}
+        {% else %}
+            <span class="simplespan">Пусто</span>
+        {% endif %}
+    </div>
+
+    <div class="group" id="watch" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <span class="groupspan">Смотрю</span>
+        {% if watchlist %}
+        <div class="legend"><span>Название</span><span>Эпизоды</span><span>Оценка</span></div>
+            {% for i in watchlist %}
+            <details open class="serial" id="watch_serial:{{i.serial.id}}" >
+                {% include "List/blocks/season.html" %}  
+            </details>
+            {% endfor %}
+        {% else %}
+            <span class="simplespan">Пусто</span>
+        {% endif %}
+    </div>
+
+    <div class="group" id="watched" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <span class="groupspan">Просмотрено</span>
+        {% if watchedlist %}
+        <div class="legend"><span>Название</span><span>Эпизоды</span><span>Оценка</span></div>
+            {% for i in watchedlist %}
+            <details class="serial" id="watched_serial:{{i.serial.id}}">
+                {% include "List/blocks/season.html" %}  
+            </details>
+            {% endfor %}
+        {% else %}
+            <span class="simplespan">Пусто</span>
+        {% endif %}
+    </div>
+    <div class="group" id="rewatch" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <span class="groupspan">Пересматриваю</span>
+        {% if reviewlist %}
+        <div class="legend"><span>Название</span><span>Эпизоды</span><span>Оценка</span></div>
+            {% for i in reviewlist %}
+            <details open class="serial" id="rewatch_serial:{{i.serial.id}}">
+                {% include "List/blocks/season.html" %}  
+            </details>
+            {% endfor %}
+        {% else %}
+            <span class="simplespan">Пусто</span>
+        {% endif %}
+    </div>
+    <div class="group" id="drop" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <span class="groupspan">Брошено</span>
+        {% if droplist %}
+        <div class="legend"><span>Название</span><span>Эпизоды</span><span>Оценка</span></div>
+            {% for i in droplist %}
+            <details class="serial" id="drop_serial:{{i.serial.id}}">
+                {% include "List/blocks/season.html" %}  
+            </details>
+            {% endfor %}
+        {% else %}
+            <span class="simplespan">Пусто</span>
+        {% endif %}
+    </div>
+</body>
+
+<div id="faststatus">
+    <span ondrop="droptoPlan(event)" ondragover="allowDrop(event)">В планах</span>
+    <span ondrop="droptoWatch(event)" ondragover="allowDrop(event)">Смотрю</span>
+    <span ondrop="droptoWatched(event)" ondragover="allowDrop(event)">Просмотрено</span>
+    <span ondrop="droptoRewatch(event)" ondragover="allowDrop(event)">Пересматриваю</span>
+    <span ondrop="droptoDrop(event)" ondragover="allowDrop(event)">Брошено</span>
+</div>

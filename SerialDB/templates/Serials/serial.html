@@ -1,0 +1,82 @@
+{% load staticfiles %}
+{% include "../base.html" %}
+
+<link rel="stylesheet" href={% static 'Serials/styles/serial.css' %} type="text/css" />
+
+<title>{{serial.name}} / {{serial.originalname}} / Сериал</title>
+
+<body>
+    <div class=Serial>
+        <a href={% url 'seriallist' %} class="bckbtn">
+            <b>◄</b><span>К списку сериалов</span>
+        </a>
+        <div class="serialName">
+            <span>{{serial.name}} / {{serial.originalname}}</span>            
+        </div>
+        
+        <img class="poster" src={{serial.img}}>
+        
+        <div class="serialinfo">
+            <span class="bigspan">
+                Информация
+            </span>
+            <div>
+                <span>
+                    Тип: <span>Сериал</span>
+                </span>    
+                <span>
+                    Жанр: 
+                    {% for i in genre%}
+                        <span>{{i.genre.name}}</span>
+                    {% endfor %}
+                </span>
+                <span>
+                    Дата выхода: 
+                    {% if fseason.date != "Нет данных" %}
+                    <span>{{fseason.date|date:"SHORT_DATE_FORMAT"}}</span>
+                    {% else %}
+                    <span>{{fseason.date}}</span>
+                    {% endif %}
+                </span>
+                <span>
+                    Длительность эпизода: <span>{{serial.episodelength}} минут</span>
+                </span>
+                <a href="https://www.kinopoisk.ru/film/{{serial.kinopoiskid}}">Страница на Кинопоиск</a>
+            </div>
+        </div>
+        
+        <div class="userrate">
+            <span class="bigspan">Пользовательская оценка</span>
+            <div>
+                <span>{{rating}}</span>
+                <div id="stars"></div>
+                <script>
+                var rat=Math.round({{rating}});
+                for (var i = 1; i<=rat;i++){
+                    var img=document.createElement("img");
+                    img.src="/static/images/Serials/star"+i%2+"_20px_2.png";
+                    stars.appendChild(img);
+                }
+                for (var i = rat+1; i<=10;i++){
+                    var img=document.createElement("img");
+                    img.src="/static/images/Serials/star"+i%2+"_20px_1.png";
+                    stars.appendChild(img);
+                }
+                </script>
+            </div>
+        </div>
+
+        {% if UserItem %}
+        <a class=actionpanel href="{% url 'delserial' serial.id %}">Убрать из списка</a>
+        {% else %}
+        <a class=actionpanel href="{% url 'addserial' serial.id %}">Добавить в список</a>
+        {% endif %}
+        <div class=discription>
+            <span class="bigspan">Описание</span>
+            <p>
+                {{fseason.disctiption}}
+            </p>
+        </div>
+        {% include "Serials/blocks/seasons.html" %}
+    </div>
+</body>

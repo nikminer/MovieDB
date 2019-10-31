@@ -1,0 +1,19 @@
+{% load staticfiles %}
+{% include "../base.html" %}
+
+<title>Добавление в SerialDB</title>
+<link rel="stylesheet" href={% static 'Main/styles/addmovie.css' %} type="text/css" />
+<script src="{% static "Main/scripts/searchkino.js" %}"></script>
+<body>
+    <span class="HeadName">Добавление в SerialDB</span>
+    <div class="Search">
+        <input onkeyup="search(this)" type="text" placeholder="Поиск фильмов и сериалов в базах данных">
+    </div>
+    <p class="discript">
+        Для сохранения целостности и актуальности базы данных данного сервиса, добавление фильмов и сериалов происходит после подтверждения существования фильма или сериала в базе данных Кинопоиска, т.е. прежде чем добавить сериал или фильм его нужно найти. Поэтому пожалуйста найдите его через поле поиска ниже, а после нажмите на сериал или фильм.
+    </p>
+    <div id="result">
+
+    </div>
+</body>
+

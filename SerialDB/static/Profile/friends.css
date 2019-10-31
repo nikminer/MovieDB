@@ -1,0 +1,150 @@
+html{
+    background-color: #c44569;
+   }
+
+.friends{
+    display: grid;
+    grid-template-areas: "bckbtn . reqf"
+    "friendlist friendlist friendlist";
+    grid-template-columns: 200px auto 350px;
+    grid-template-rows: 60px auto;
+    min-height: 550px;
+}
+
+.friendlist{
+    grid-area: friendlist;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-wrap: wrap;
+    padding: 15px;
+}
+.friendlist>span{
+    font-size: 18px;
+    font-weight: bold;
+    border-bottom: 1px black solid;
+    padding-bottom: 5px;
+}
+.friendlist>div{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-wrap: wrap;
+}
+.friend{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    height: 190px;
+    width: 150px;
+}
+.friend>a{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    transition: all 0.5s ease;
+    text-decoration: none;
+    color:black;
+    padding: 5px 0px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 190px;
+}
+.friend>a:hover{
+    background-color: lightgrey;
+}
+.friend>a>span{
+    width: 150px;
+    text-align: center;
+    height: 40px;
+}
+.friend>div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+}
+.friend>div>a{
+    color: black;
+    font-size: 14px;
+    padding: 5px 6.5px;
+    transition: all 0.5s ease;
+}
+.friend>div>a:hover{
+    background-color: #c44569;
+    color: white;
+}
+
+
+
+
+
+
+
+
+.requestf{
+    grid-area: reqf;
+    font-weight: bold;
+    background-color: #c44569;
+    color: white;
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    margin: 20px;
+    height: 20px;
+    padding: 5px 0px;
+}
+.requestf>b{
+    padding: 0 5px;
+    text-align: center;
+}
+.requestf>span{
+    background-color: rgb(241, 241, 241);
+    color: black;
+    width: 100%;
+    transition: all 0.5s ease;
+    padding: 5px 0;
+    padding-left: 10px;
+    word-break: break-all;
+}
+
+.bckbtn{
+    grid-area: bckbtn;
+    font-weight: bold;
+    background-color: #c44569;
+    color: white;
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    margin: 20px;
+    height: 30px;
+}
+.bckbtn>span{
+    background-color: rgb(241, 241, 241);
+    color: black;
+    width: 100%;
+    transition: all 0.5s ease;
+    padding-left: 10px;
+}
+.bckbtn>*{
+    padding: 5px 0;
+}
+.bckbtn:hover>span,.requestf>span:hover{
+    background-color: #c44569;
+    color: white;
+}
+
+.bigspan{
+    border-left-color: #c44569;
+}
