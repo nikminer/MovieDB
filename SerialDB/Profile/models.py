@@ -2,7 +2,6 @@
 from django.db import models
 from django.conf import settings
 from datetime import datetime
-from image_cropping import ImageRatioField
 
 class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
