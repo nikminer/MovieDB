@@ -5,6 +5,7 @@ function drag(ev){
         break;
     }
     faststatus.style.opacity=1
+    faststatus.style.zIndex=0;
 }
 
 function drop(ev) {

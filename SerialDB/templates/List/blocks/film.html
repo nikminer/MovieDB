@@ -1,5 +1,5 @@
 
-<div class="film" id="film:{{i.id}}" draggable="true" ondragstart="drag(event)" ondragend="faststatus.style.opacity=0;">
+<div class="film" id="film:{{i.id}}" draggable="true" ondragstart="drag(event)" ondragend="faststatus.style.opacity=0;faststatus.style.zIndex=-10">
     <a class="filmname" href="{% url 'film' i.film.id %}" title="{{i.film.name}}">{{i.film.name}} ({{i.film.year}})</a> 
     {% include "List/blocks/starsf.html" %}
     <div>

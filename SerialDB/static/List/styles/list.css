@@ -124,6 +124,7 @@ input[type=search]{
     justify-content: space-evenly;
     width: 250px;
     opacity: 0;
+    z-index: -10;
 }
 #faststatus>span{
     padding: 15px;

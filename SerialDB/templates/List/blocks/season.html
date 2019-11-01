@@ -6,13 +6,13 @@
         </span>
         <progress value="{{i.watched}}" title="Эпизоды: {{i.watched}}/{{i.episodes}}" max={{i.episodes}}></progress>
         <div>
-            <a class="delbtn" href="{% url 'delserial' i.serial.id %}}" title="Удалить весь сериал"></a>
+            <a class="delbtn" href="{% url 'delserial' i.serial.id %}" title="Удалить весь сериал"></a>
         </div>
     </div>
 </summary>
 
 {% for UserItem in i.seasons %}
-    <div class=season id="season:{{UserItem.id}}" ondragend="faststatus.style.opacity=0;" draggable="true" ondragstart="drag(event)">
+    <div class=season id="season:{{UserItem.id}}" ondragend="faststatus.style.opacity=0;faststatus.style.zIndex=-10;" draggable="true" ondragstart="drag(event)">
         <a href="{% url 'season' UserItem.season.id %}">{{UserItem.season.name}}</a>
         
         <div id="numchange">
