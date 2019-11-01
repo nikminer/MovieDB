@@ -3,3 +3,4 @@ __pycache__
 **.pyc
 SerialDB/SerialDB.sqlite3
 /media
+/SerialDB/SerialDB/settings.py
