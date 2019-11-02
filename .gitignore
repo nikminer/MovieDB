@@ -4,3 +4,4 @@ __pycache__
 SerialDB/SerialDB.sqlite3
 /media
 /SerialDB/SerialDB/settings.py
+secret_key
