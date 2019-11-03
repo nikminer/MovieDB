@@ -3,7 +3,7 @@ from Profile.forms import UserProfileSettings
 from Profile.models import Profile
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-
+from SerialDB.settings import STATICFILES_DIRS
 
 @login_required
 def Setbackground(request):
@@ -38,9 +38,9 @@ def Setavatar(request):
     profile.save()
 
     from PIL import Image
-
-    template=Image.open('./static/images/template.png').convert("RGBA")
-    template.paste(Image.open(profile.photo.path).convert("RGBA"),Image.open('./static/images/mask.png').convert("RGBA"))
+    import os
+    template=Image.open( os.path.join(STATICFILES_DIRS[0],'images','template.png')).convert("RGBA")
+    template.paste(Image.open(profile.photo.path).convert("RGBA"),Image.open(os.path.join(STATICFILES_DIRS[0],'images','mask.png')).convert("RGBA"))
     template.save(profile.photo.path)
 
     messages.success(request, 'Аватар установлен успешно')
