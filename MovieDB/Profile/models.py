@@ -17,7 +17,7 @@ class Profile(models.Model):
         return int((datetime.now().date() - self.date_of_birth).days / 365.25)
 
     def get_absolute_url(self):
-        return "/profile/%i/" % self.user.id
+        return "/profile/%i/" % self.user.username
 
 
 class Friendlist(models.Model):
