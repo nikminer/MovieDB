@@ -35,7 +35,7 @@ def userlist(request,username=None):
 
 def getSeriallist(userid,statusid):
     serialDict={}
-    userl=UserList.objects.filter(user_id=userid,userstatus=statusid)
+    userl=UserList.objects.filter(user_id=userid,userstatus=statusid).order_by("serial__name")
     for i in userl:
         if not serialDict.get(i.serial.id):
             item=SerialItem()

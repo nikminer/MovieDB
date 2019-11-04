@@ -26,4 +26,4 @@ def userlist(request,username):
     })
 
 def getFilmlist(userid,statusid):
-    return UserListF.objects.filter(user_id=userid,userstatus=statusid)
+    return UserListF.objects.filter(user_id=userid,userstatus=statusid).order_by("film__name")
