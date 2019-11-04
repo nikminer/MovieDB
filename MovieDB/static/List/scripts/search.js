@@ -1,6 +1,6 @@
 function search(elem){
     var groups=document.getElementsByClassName("group")
-    for (var indexgroup=1; indexgroup<groups.length;indexgroup++){
+    for (var indexgroup=0; indexgroup<groups.length;indexgroup++){
         var serials = groups[indexgroup].getElementsByClassName("serialname")
         for (var i=0; i<serials.length;i++){
             if (elem.value.length>0){
