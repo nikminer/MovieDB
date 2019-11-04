@@ -14,8 +14,19 @@ function getCookie(cname) {
     return "";
 }
 
-function search(elem){
-    
+SearchTimer=null
+
+function searchInput(){
+    if (SearchTimer == null)
+        SearchTimer = setTimeout(search, 100);
+    else{
+        clearTimeout(SearchTimer);
+        SearchTimer=null
+    }        
+}
+
+function search(){
+    elem=document.getElementById("searchbox")
     if (elem.value.length>2){
         var xhr = new XMLHttpRequest();
         xhr.open('POST','/add/kinopoisk/search/',true);
