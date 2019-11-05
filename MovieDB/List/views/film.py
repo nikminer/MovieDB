@@ -42,7 +42,7 @@ def userlist(request,username):
                 }
             })
             
-    return render(request,"List/nlist.html",{
+    return render(request,"List/list.html",{
         "groups":lists,
         "type":"films",
     })
