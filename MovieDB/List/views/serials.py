@@ -49,7 +49,7 @@ def userlist(request,username=None):
                 }
             })
     
-    return render(request,"List/nlist.html",{
+    return render(request,"List/list.html",{
         "groups":lists,
         "type":"series"
     })
