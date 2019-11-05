@@ -2,7 +2,7 @@
 <summary>
     <div>
         <span>
-            <a class=serialname href="{% url 'serial' i.serial.id %}" title="{{i.serial.name}}">{{i.serial.name}} ({{i.serial.year}})</a> 
+            <a class="serialname" href="{% url 'serial' i.serial.id %}" title="{{i.serial.name}}">{{i.serial.name}} ({{i.serial.year}})</a> 
         </span>
         <progress value="{{i.watched}}" title="Эпизоды: {{i.watched}}/{{i.episodes}}" max={{i.episodes}}></progress>
         <div>

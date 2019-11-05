@@ -101,9 +101,9 @@
                         </div>
                     </div>
                     <div class="legend">
-                        <a>В планах ({{serials.planned.count}})</a>
-                        <a style="border-left-color: #778beb;">Смотрю ({{serials.watch.count}})</a>
-                        <a style="border-left-color: #546de5;">Просмотрено ({{serials.watched.count}})</a>
+                        <a href="{% url 'listserial' profile.user.username %}?groups=planned">В планах ({{serials.planned.count}})</a>
+                        <a href="{% url 'listserial' profile.user.username %}?groups=watch+rewatch" style="border-left-color: #778beb;">Смотрю ({{serials.watch.count}})</a>
+                        <a href="{% url 'listserial' profile.user.username %}?groups=watched" style="border-left-color: #546de5;">Просмотрено ({{serials.watched.count}})</a>
                     </div>
                 </div>
             </div>
@@ -122,9 +122,9 @@
                         </div>
                     </div>
                     <div class="legend">
-                        <a >В планах ({{films.planned.count}})</a>
-                        <a style="border-left-color: #e77f67;">Смотрю ({{films.watch.count}})</a>
-                        <a style="border-left-color: #e15f41;">Просмотрено ({{films.watched.count}})</a>
+                        <a href="{% url 'listfilm' profile.user.username %}?groups=planned" >В планах ({{films.planned.count}})</a>
+                        <a href="{% url 'listfilm' profile.user.username %}?groups=watch+rewatch" style="border-left-color: #e77f67;">Смотрю ({{films.watch.count}})</a>
+                        <a href="{% url 'listfilm' profile.user.username %}?groups=watched" style="border-left-color: #e15f41;">Просмотрено ({{films.watched.count}})</a>
                     </div>
                 </div>
             </div>

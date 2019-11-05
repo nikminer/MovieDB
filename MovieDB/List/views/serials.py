@@ -3,6 +3,8 @@ from Main.models import UserList,Season
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User 
 
+from List.views.userstatus import UserStat
+
 @login_required
 def AddSerial(request,id):
     seasons=[]
@@ -25,13 +27,33 @@ def userlist(request,username=None):
         user=request.user
     else:
         user=User.objects.get(username=username)
-    return render(request,"List/list.html",{
-        "planlist":getSeriallist(user.id,1),
-        "watchlist":getSeriallist(user.id,2),
-        "watchedlist":getSeriallist(user.id,3),
-        "reviewlist":getSeriallist(user.id,4),
-        "droplist":getSeriallist(user.id,5),
+    
+    lists={}
+    
+    if request.GET.get('groups'):
+        for i in request.GET.get('groups').split(' '):
+            status=UserStat.get(i)
+            if status:
+                lists.update({
+                    i:{
+                        "name":status['name'],
+                        "list":getSeriallist(user.id,status['id']),
+                    }
+                })
+    else:
+        for i in UserStat.items():
+            lists.update({
+                i[0]:{
+                    "name":i[1]['name'],
+                    "list":getSeriallist(user.id,i[1]['id']),
+                }
+            })
+    
+    return render(request,"List/nlist.html",{
+        "groups":lists,
+        "type":"series"
     })
+
 
 def getSeriallist(userid,statusid):
     serialDict={}
