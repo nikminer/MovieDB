@@ -17,7 +17,7 @@ class Film(models.Model):
     disctiption= models.TextField(default="Нет данных")
 
     def get_absolute_url(self):
-        return "/film/%i/" % self.id
+        return "/film/%i" % self.id
 
 class Serial(models.Model):
     name= models.TextField()
@@ -28,7 +28,7 @@ class Serial(models.Model):
     img= models.URLField(default="https://dummyimage.com/210x300/546de5/fff.png&text=Poster%20Not%20Found")
 
     def get_absolute_url(self):
-        return "/serial/%i/" % self.id
+        return "/serial/%i" % self.id
     
 class Season(models.Model):
     name= models.TextField()
