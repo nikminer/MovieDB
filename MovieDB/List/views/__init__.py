@@ -1,1 +1,1 @@
-from . import serials,film,userstatus
+from . import serials,film,userstatus,setseason

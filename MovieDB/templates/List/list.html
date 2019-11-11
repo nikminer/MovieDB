@@ -77,17 +77,17 @@
             <div class="filters">
                 <span class="groupspan">Категории</span>
                 <div class="filter">
-                   <label><input class="category" type="checkbox" value="planned"><span>В планах</span></label>
-                   <label><input class="category" type="checkbox" value="watch"><span>Смотрю</span></label>
-                   <label><input class="category" type="checkbox" value="watched"><span>Просмотрено</span></label>
-                   <label><input class="category" type="checkbox" value="rewatch"><span>Пересматриваю</span></label>
-                   <label><input class="category" type="checkbox" value="drop"><span>Брошено</span></label>
+                   <label><input class="category" type="checkbox" value="planned"><span>В планах ({{groups.planned.list|length}})</span></label>
+                   <label><input class="category" type="checkbox" value="watch"><span>Смотрю ({{groups.watch.list|length}})</span></label>
+                   <label><input class="category" type="checkbox" value="watched"><span>Просмотрено ({{groups.watched.list|length}})</span></label>
+                   <label><input class="category" type="checkbox" value="rewatch"><span>Пересматриваю ({{groups.rewatch.list|length}})</span></label>
+                   <label><input class="category" type="checkbox" value="drop"><span>Брошено ({{groups.drop.list|length}})</span></label>
                 </div>
                 <button onclick="changeCategorys()">Применить</button>
                 <span class="groupspan">Жанры</span>
                 <div class="filter">
                     {% for key,value in genrelist.items %}
-                        <label><input class="genre" type="checkbox" value="{{value.tag}}"><span>{{key}} ({{value.count}})</span></label>
+                        <label><input class="genre" type="hidden" value="{{value.tagcd}}"><span>{{key}} ({{value.count}})</span></label>
                     {% endfor %}
                 </div>
                 <script>

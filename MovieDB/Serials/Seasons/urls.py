@@ -2,7 +2,7 @@ from django.urls import path
 from django.conf.urls import include
 
 import Serials.Seasons.src as src
-
+import List.views.setseason as listsrc
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -16,8 +16,8 @@ urlpatterns = [
     path('num/set',src.numeric.setepisode,name="setepi"),
     path("num/dec",src.numeric.decepisode,name="decepi"),
 
-    path("set/rating",src.setseason.setrating,name="setrating"),
-    path("set/status",src.setseason.setstatus,name="setstatus"),
+    path("set/rating",listsrc.setrating,name="setrating"),
+    path("set/status",listsrc.setstatus,name="setstatus"),
 ]
 
 '''
