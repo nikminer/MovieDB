@@ -84,7 +84,12 @@
                    <label><input class="category" type="checkbox" value="drop"><span>Брошено</span></label>
                 </div>
                 <button onclick="changeCategorys()">Применить</button>
-
+                <span class="groupspan">Жанры</span>
+                <div class="filter">
+                    {% for key,value in genrelist.items %}
+                        <label><input class="genre" type="checkbox" value="{{value.tag}}"><span>{{key}} ({{value.count}})</span></label>
+                    {% endfor %}
+                </div>
                 <script>
                     var categoryes=document.getElementsByClassName("category");
                     var urlParams = new URLSearchParams(window.location.search);
@@ -96,6 +101,17 @@
                         for (var i=0;i<categoryes.length;i++){
                             if (param.includes(categoryes[i].value))
                                 categoryes[i].checked=true
+                        }
+                    } 
+                    var genres=document.getElementsByClassName("genre");
+                    var param = urlParams.get('genres');
+                    if (param==null) 
+                        for (var i=0;i<genres.length;genres[i++].checked=true);
+                    else{
+                        var param=param.split(" ");
+                        for (var i=0;i<genres.length;i++){
+                            if (param.includes(genres[i].value))
+                                genres[i].checked=true
                         }
                     } 
                     delete urlParams

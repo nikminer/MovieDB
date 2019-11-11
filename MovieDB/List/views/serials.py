@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from Main.models import UserList,Season
+from Main.models import UserList,Season,Serial
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User 
 
@@ -48,10 +48,20 @@ def userlist(request,username=None):
                     "list":getSeriallist(user.id,i[1]['id']),
                 }
             })
-    
+
+    genrelist={}
+    for i in UserList.objects.filter(user_id=user.id).only('serial').values_list('serial', flat=True).distinct():
+        for genre in Serial.objects.get(id=i).genre:
+            if genrelist.get(genre.genre.name):
+                genrelist[genre.genre.name]['count'] += 1
+            else:
+                genrelist.update({genre.genre.name:{'count':1,'tag':genre.genre.tag}})
+                
+
     return render(request,"List/list.html",{
         "groups":lists,
-        "type":"series"
+        "type":"series",
+        "genrelist":genrelist,
     })
 
 
@@ -75,8 +85,8 @@ def getUserProgress(item,serialid,userid):
     item.episodes=0
     item.watched=0
     for i in userl:
-            item.episodes+=i.season.episodecount
-            item.watched+=i.userepisode
+        item.episodes+=i.season.episodecount
+        item.watched+=i.userepisode
 
 class SerialItem:
     serial=None

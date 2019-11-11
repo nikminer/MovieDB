@@ -26,7 +26,7 @@
                 </span>    
                 <span>
                     Жанр: 
-                    {% for i in genre%}
+                    {% for i in serial.genre%}
                         <span>{{i.genre.name}}</span>
                     {% endfor %}
                 </span>
@@ -48,10 +48,10 @@
         <div class="userrate">
             <span class="bigspan">Пользовательская оценка</span>
             <div>
-                <span>{{rating}}</span>
+                <span>{{serial.rating}}</span>
                 <div id="stars"></div>
                 <script>
-                var rat=Math.round({{rating}});
+                var rat=Math.round({{serial.rating}});
                 for (var i = 1; i<=rat;i++){
                     var img=document.createElement("img");
                     img.src="/static/images/Serials/star"+i%2+"_20px_2.png";

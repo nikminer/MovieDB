@@ -5,17 +5,12 @@ from django.contrib.auth.decorators import login_required
 
 def film(request,id):
     film=Film.objects.get(id=id)
-    
-    genres= GenreF.objects.filter(film_id=id)
         
-    
     data={
         "Film":film,
-        "genre":genres,
     }
     
     try:
-        print(UserListF.objects.filter(film_id=id,user=request.user.id)[0])
         data.update({"UserItem":UserListF.objects.get(film_id=id,user=request.user.id)})
     except IndexError :
         pass

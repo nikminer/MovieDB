@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models import Avg
 
 class StatusList(models.Model):
     name= models.TextField()
@@ -18,6 +19,10 @@ class Film(models.Model):
 
     def get_absolute_url(self):
         return "/film/%i" % self.id
+    
+    @property
+    def genre(self):
+        return GenreF.objects.filter(film_id=self.id)
 
 class Serial(models.Model):
     name= models.TextField()
@@ -29,6 +34,21 @@ class Serial(models.Model):
 
     def get_absolute_url(self):
         return "/serial/%i" % self.id
+
+    @property
+    def genre(self):
+        return Genre.objects.filter(serial_id=self.id)
+    
+    @property
+    def seasons(self):
+        return Season.objects.filter(serial_id=self.id)
+
+    @property
+    def rating(self):
+        rating=Season.objects.filter(serial_id=self.id).filter(rating__gt=0).aggregate(Avg('rating'))['rating__avg']
+        if not rating:
+            rating=0.00
+        return round(rating,2)
     
 class Season(models.Model):
     name= models.TextField()
@@ -46,6 +66,7 @@ class SeriesList(models.Model):
 
 class GenreList(models.Model):
     name= models.TextField()
+    tag= models.TextField()
 
 class Genre(models.Model):
     genre= models.ForeignKey(GenreList,on_delete=models.CASCADE)
