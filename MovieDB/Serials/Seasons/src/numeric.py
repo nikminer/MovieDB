@@ -1,7 +1,7 @@
 from django.http import JsonResponse
 from Main.models import UserList,Season
 from django.contrib.auth.decorators import login_required
-
+from List.views.feed import sendFeed,typeFeed
 
 UserStat={
     "planned":1,
@@ -17,15 +17,18 @@ def incepisode(request):
     item=UserList.objects.get(id=int(data['listid']),user=request.user.id)
     if item.userepisode+1<item.season.episodecount:
         item.userepisode+=1
-        if item.userstatus==UserStat['planned']:
+        '''if item.userstatus==UserStat['planned']:
             item.userstatus=UserStat['watch']
         elif item.userstatus==UserStat['watched']:
             item.userstatus=UserStat['rewatch']
+        '''
+        sendFeed(item,typeFeed['inc'])
         item.save()
         return JsonResponse({'status':'inc',"userepisode":item.userepisode})
     elif item.userepisode+1==item.season.episodecount:
         item.userepisode+=1
-        #item.userstatus=UserStat['watched']
+        item.userstatus=UserStat['watched']
+        sendFeed(item,typeFeed['status'])
         item.save()
         return JsonResponse({'status':'watched',"userepisode":item.userepisode})
     else:

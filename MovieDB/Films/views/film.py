@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from Main.models import Film,GenreF,UserListF
 from django.contrib.auth.decorators import login_required
+from List.views.feed import sendFeed,typeFeed
 
 def film(request,id):
     film=Film.objects.get(id=id)
@@ -41,6 +42,8 @@ def setrating(request):
     elif rating>10:
         item.userrate=10
     item.save()
+    
+    sendFeed(item,typeFeed['rating'])
 
     item.film.rating=round(UserListF.objects.filter(film_id=item.film_id).filter(userrate__gt=0).aggregate(Avg('userrate'))['userrate__avg'],2)
     item.film.save()
@@ -56,6 +59,9 @@ def setstatus(request):
             if UserStat.get(data['status']):
                 item.userstatus=UserStat[data['status']]
                 item.save()
+
+                sendFeed(item,typeFeed['status'])
+
                 return JsonResponse({'status':'changestatus','userstatus':data['status']})
         else:
             return JsonResponse({'status':'false'})

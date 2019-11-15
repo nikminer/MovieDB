@@ -1,9 +1,8 @@
 from django.http import JsonResponse
 from Main.models import UserList
-from List.models import UserFeed
 from django.contrib.auth.decorators import login_required
 from django.db.models import Avg
-
+from List.views.feed import sendFeed,typeFeed
 from List.views.userstatus import UserStat as UserStatus
 
 UserStat={
@@ -33,12 +32,7 @@ def setrating(request):
         item.season.rating=round(UserList.objects.filter(season_id=item.season_id).filter(userrate__gt=0).aggregate(Avg('userrate'))['userrate__avg'],2)
         item.season.save()
 
-        feeditem=UserFeed.objects.filter(userlist__user=item.user,typeAction="rating").order_by("created").last()
-        if feeditem and feeditem.userlist==item and feeditem.is_lasthour:
-            feeditem.action="Оценил на {}".format(item.userrate)
-            feeditem.save()
-        else:
-            UserFeed.objects.create(userlist=item,action="Оценил на {}".format(item.userrate),typeAction="rating")
+        sendFeed(item,typeFeed['rating'])
 
     return JsonResponse({'status':'voted',"userrating":item.userrate})
 
@@ -53,14 +47,11 @@ def setstatus(request):
             item.userstatus=UserStat[data['status']]
             item.save()
 
-            feeditem=UserFeed.objects.filter(userlist__user=item.user,typeAction="status").order_by("created").last()
-            action = "Изменил статус на {}".format(UserStatus.get(data['status'])['name'])
-            if feeditem and feeditem.userlist==item:
-                feeditem.action="Изменил статус на {}".format(UserStatus.get(data['status'])['name'])
-                feeditem.lastaction 
-                feeditem.save()
-            else:
-                UserFeed.objects.create(userlist=item,action="Изменил статус на {}".format(UserStatus.get(data['status'])['name']),typeAction="status")
+            sendFeed(item,typeFeed['status'])
 
             return JsonResponse({'status':'changestatus','userstatus':data['status']})
     return JsonResponse({'status':'false'})
+
+
+
+    
