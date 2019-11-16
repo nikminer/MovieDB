@@ -5,6 +5,7 @@ from Main.models import UserList,UserListF
 from datetime import datetime
 
 class UserFeed(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
     userlist=models.ForeignKey(UserList,on_delete=models.CASCADE,null=True)
     userlistF=models.ForeignKey(UserListF,on_delete=models.CASCADE,null=True)
     @property

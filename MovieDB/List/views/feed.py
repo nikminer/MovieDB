@@ -33,14 +33,18 @@ def sendFeed(item,typeFeedobj):
         UserFeed.objects.create(
             userlist=item,
             action=typeFeedobj['action'](item),
-            typeAction=typeFeedobj['type']
+            typeAction=typeFeedobj['type'],
+            user=item.user
         )
     elif type(item) is UserListF:
         UserFeed.objects.create(
             userlistF=item,
             action=typeFeedobj['action'](item),
-            typeAction=typeFeedobj['type']
+            typeAction=typeFeedobj['type'],
+            user=item.user
         )
     else:
         pass
 
+def getFeed(feedlist):
+    return UserFeed.objects.filter(user__in=feedlist).order_by("created")[:20]

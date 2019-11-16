@@ -25,4 +25,10 @@ class Friendlist(models.Model):
     accepter = models.ForeignKey(Profile,on_delete=models.CASCADE, related_name='link2')
     status= models.IntegerField(default=0)
 
-
+    def getnotMyprofile(self,myprofile):
+        if self.sender != myprofile and self.accepter==myprofile: 
+            return self.sender
+        elif self.accepter != myprofile and self.sender == myprofile:
+            return self.accepter
+        else:
+            return None
