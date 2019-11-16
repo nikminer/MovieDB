@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import Avg
+from django.urls import reverse
 
 class StatusList(models.Model):
     name= models.TextField()
@@ -85,9 +86,24 @@ class UserList(models.Model):
     userepisode= models.IntegerField(default=0)
     countreview= models.IntegerField(default=0)
 
+    @property
+    def obj(self):
+        return self.serial
+    @property
+    def get_absolute_url(self):
+        return reverse("serial", kwargs={"id": self.serial.id})
+
 class UserListF(models.Model):
     user= models.ForeignKey(User,on_delete=models.CASCADE)
     film= models.ForeignKey(Film,on_delete=models.CASCADE)
     userrate= models.IntegerField(default=0)
     userstatus= models.IntegerField(default=1)
     countreview= models.IntegerField(default=0)
+
+    @property
+    def obj(self):
+        return self.film
+    @property
+    def get_absolute_url(self):
+        return reverse("film", kwargs={"id": self.film.id})
+    

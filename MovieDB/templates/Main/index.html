@@ -37,7 +37,7 @@
         {% if user.is_authenticated %}
             <div class="list block">
                 <a href="{% url 'listserial' request.user.username %}" class="sectionspan">Мой список</a>
-                <h3>В процессе разработки</h3>
+                {% include './blocks/feed.html' %}
             </div>
         {% endif %}
         <div class="footer">

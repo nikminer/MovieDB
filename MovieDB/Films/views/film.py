@@ -13,7 +13,7 @@ def film(request,id):
     
     try:
         data.update({"UserItem":UserListF.objects.get(film_id=id,user=request.user.id)})
-    except IndexError :
+    except UserListF.DoesNotExist:
         pass
         
     return render(request,"Films/film.html",data)

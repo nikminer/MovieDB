@@ -2,10 +2,11 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import Avg
 from Main.models import UserList,UserListF
+from Profile.models import Profile
 from datetime import datetime
 
 class UserFeed(models.Model):
-    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    user=models.ForeignKey(Profile,on_delete=models.CASCADE)
     userlist=models.ForeignKey(UserList,on_delete=models.CASCADE,null=True)
     userlistF=models.ForeignKey(UserListF,on_delete=models.CASCADE,null=True)
     @property

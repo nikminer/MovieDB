@@ -16,11 +16,11 @@ def index(request):
             }
         })
 
-        feed=[profile.user]
+        feed=[profile]
         for freind in myfriends.filter(status=1):
             freindprofile=freind.getnotMyprofile(profile)
             if freindprofile:
-                feed.append(freindprofile.user)
+                feed.append(freindprofile)
 
         data.update({"feed":getFeed(feed)})
 

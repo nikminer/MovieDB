@@ -1,0 +1,30 @@
+
+.feeditem{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin-left: 10px;
+    border-left: 3px lightgray solid;
+    align-items: flex-start;
+}
+.feeduser{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+.feeduser>img{
+    margin-right: 10px;
+}
+
+.feedtimestamp{
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+.feedaction{
+    font-size: 18px;
+}
+.feedaction>a{
+    font-weight: bold;
+}
