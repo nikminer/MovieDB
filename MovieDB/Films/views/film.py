@@ -1,11 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from django.http import JsonResponse
 from Main.models import Film,GenreF,UserListF
 from django.contrib.auth.decorators import login_required
 from List.views.feed import sendFeed,typeFeed
 
 def film(request,id):
-    film=Film.objects.get(id=id)
+    film=get_object_or_404(Film,id=id)
         
     data={
         "Film":film,

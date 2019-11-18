@@ -3,14 +3,14 @@ from . import friends,auth,settings
 
 
 
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from Profile.models import Profile,Friendlist
 from django.contrib.auth.decorators import login_required
 from Main.models import UserList,UserListF
 from django.db.models import Q
 
 def profile(request,username):
-    profile=Profile.objects.get(user__username=username)
+    profile=get_object_or_404(Profile,user__username=username)
     friendlist=[]
     myfriends=Friendlist.objects.filter(Q(accepter=profile) | Q(sender=profile))
     for i in myfriends.filter(status=1).order_by("-id")[0:10]:

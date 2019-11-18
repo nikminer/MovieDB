@@ -1,10 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from Main.models import Serial,Genre,Season,UserList,SeriesList
 import os,re
 from django.contrib.auth.decorators import login_required
 
 def serial(request,id):
-    serial=Serial.objects.get(id=id)
+    serial=get_object_or_404(Serial,id=id)
         
     fseason=serial.seasons.first()
     if (fseason):
