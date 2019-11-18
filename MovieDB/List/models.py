@@ -14,7 +14,7 @@ class UserFeed(models.Model):
         if self.userlist:
             return self.userlist
         else:
-            return self.userlistF
+            return self.userlistF  
 
     @property
     def is_lasthour(self):

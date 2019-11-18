@@ -13,6 +13,10 @@ class Profile(models.Model):
         return 'Profile for user {}'.format(self.user.username)
 
     @property
+    def is_f(self):
+        return self.sex=="F"
+        
+    @property
     def age(self):
         return int((datetime.now().date() - self.date_of_birth).days / 365.25)
 

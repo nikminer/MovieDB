@@ -4,14 +4,25 @@ from List.views.userstatus import UserStatusDict as UserStatus
 from Profile.models import Profile
 
 def rating(item): 
-    return "Оценил на {} баллов".format(item.userrate)
-
+    return "Оцени{} {} на {} баллов".format(
+        'ла' if Profile.objects.get(user=item.user).is_f else 'л',
+        item.season.name if type(item) is UserList else '',
+        item.userrate
+    )
 
 def status(item):
-    return "Изменил статус на {}".format(UserStatus.get(item.userstatus))
+    return "Измени{} статус {} на {}".format(
+        'ла' if Profile.objects.get(user=item.user).is_f else 'л',
+        item.season.name if type(item) is UserList else '',
+        UserStatus.get(item.userstatus)
+    )
 
 def inc(item):
-    return "Посмотрен {} эпизод.".format(item.userepisode)
+    return "{}. Посмотре{} {} эпизод.".format(
+        'ла' if Profile.objects.get(user=item.user).is_f else 'л',
+        item.season.name if type(item) is UserList else '',
+        item.userepisode
+    )
 
 typeFeed={
     "rating":{
@@ -28,7 +39,6 @@ typeFeed={
     },
 }
 
-
 def sendFeed(item,typeFeedobj):
     if type(item) is UserList:
         UserFeed.objects.create(
@@ -44,8 +54,6 @@ def sendFeed(item,typeFeedobj):
             typeAction=typeFeedobj['type'],
             user=Profile.objects.get(user=item.user)
         )
-    else:
-        pass
 
 def getFeed(feedlist):
     return UserFeed.objects.filter(user__in=feedlist).order_by("-created")[:60]

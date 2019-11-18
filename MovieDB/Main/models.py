@@ -85,7 +85,7 @@ class UserList(models.Model):
     userstatus= models.IntegerField(default=1)
     userepisode= models.IntegerField(default=0)
     countreview= models.IntegerField(default=0)
-
+    
     @property
     def obj(self):
         return self.serial
