@@ -21,12 +21,8 @@ class UserFeed(models.Model):
         from django.utils.timezone import make_aware
         return (make_aware(datetime.now())-self.created).seconds < 3600
 
-    def save(self, *args, **kwargs):
-        self.created=datetime.now()
-        super(UserFeed, self).save(*args, **kwargs)
-
     created = models.DateTimeField(auto_now_add=True)
 
     action = models.TextField()
-    lastaction = models.TextField(blank=True)
+
     typeAction = models.TextField(null=True)
