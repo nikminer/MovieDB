@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from Main.models import UserListF
+from Main.models import UserListF,Film,GenreF
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User 
 
@@ -30,7 +30,7 @@ def userlist(request,username):
                 lists.update({
                     i:{
                         "name":status['name'],
-                        "list":getFilmlist(user.id,status['id']),
+                        "list":getFilmlist(user.id,status['id'],request),
                     }
                 })
     else:
@@ -38,14 +38,34 @@ def userlist(request,username):
             lists.update({
                 i[0]:{
                     "name":i[1]['name'],
-                    "list":getFilmlist(user.id,i[1]['id']),
+                    "list":getFilmlist(user.id,i[1]['id'],request),
                 }
             })
             
+    genrelist={}
+    for i in UserListF.objects.filter(user_id=user.id).only('film').values_list('film', flat=True).distinct():
+        for genre in Film.objects.get(id=i).genre:
+            if genrelist.get(genre.genre.name):
+                genrelist[genre.genre.name]['count'] += 1
+            else:
+                genrelist.update({genre.genre.name:{'count':1,'tag':genre.genre.tag}})
+    genrelist=dict(sorted(genrelist.items()))
+
     return render(request,"List/list.html",{
         "groups":lists,
         "type":"films",
+        "genrelist":genrelist,
     })
 
-def getFilmlist(userid,statusid):
-    return UserListF.objects.filter(user_id=userid,userstatus=statusid).order_by("film__name")
+def getFilmlist(userid,statusid,request):
+    userl=UserListF.objects.filter(user_id=userid,userstatus=statusid).order_by("film__name")
+
+    if request.GET.get('genres'):
+        userl= userl.filter(
+            film__in=GenreF.objects.filter(
+                genre__tag__in=request.GET.get('genres').split(' '),
+                film__in=userl.values('film')
+            ).values('film')
+        )
+
+    return userl

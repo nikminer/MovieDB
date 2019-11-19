@@ -87,9 +87,10 @@
                 <span class="groupspan">Жанры</span>
                 <div class="filter">
                     {% for key,value in genrelist.items %}
-                        <label><input class="genre" type="hidden" value="{{value.tagcd}}"><span>{{key}} ({{value.count}})</span></label>
+                        <label><input class="genre" type="checkbox" value="{{value.tag}}"><span>{{key}} ({{value.count}})</span></label>
                     {% endfor %}
                 </div>
+                <button onclick="changeGenres()">Применить</button>
                 <script>
                     var categoryes=document.getElementsByClassName("category");
                     var urlParams = new URLSearchParams(window.location.search);
@@ -103,11 +104,10 @@
                                 categoryes[i].checked=true
                         }
                     } 
+
                     var genres=document.getElementsByClassName("genre");
                     var param = urlParams.get('genres');
-                    if (param==null) 
-                        for (var i=0;i<genres.length;genres[i++].checked=true);
-                    else{
+                    if (param!=null){
                         var param=param.split(" ");
                         for (var i=0;i<genres.length;i++){
                             if (param.includes(genres[i].value))
@@ -128,6 +128,19 @@
                         }
                         param=param.trimEnd();
                         url.searchParams.set('groups', param)
+                        window.location.href=url['href']
+                    }
+
+                    function changeGenres(){
+                        var genres=document.getElementsByClassName("genre");
+                        var url=new URL(window.location['href'])
+                        var param="";
+                        for (var i=0;i<genres.length;i++){
+                            if (genres[i].checked)
+                                param+=genres[i].value+" "
+                        }
+                        param=param.trimEnd();
+                        url.searchParams.set('genres', param)
                         window.location.href=url['href']
                     }
                 </script>
