@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from Profile.models import Profile,Friendlist
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
@@ -6,7 +6,7 @@ from django.contrib import messages
 
 @login_required
 def Friends(request,username):
-    profile=Profile.objects.get(user__username=username)
+    profile=get_object_or_404(Profile,user__username=username)
     friendlist=[]
     myfriends=Friendlist.objects.filter(Q(accepter=profile) | Q(sender=profile))
 
@@ -28,7 +28,7 @@ def Friends(request,username):
 
 @login_required
 def Friendsreq(request,username):
-    profile=Profile.objects.get(user__username=username)
+    profile=get_object_or_404(Profile,user__username=username)
     if profile.user!=request.user:
         return redirect("friendreq",request.user.username)
     else:

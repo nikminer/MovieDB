@@ -1,0 +1,7 @@
+{
+    "api_version": 4,
+    "layout": {
+        "color":"#596275",
+        "logo":"/static/images/favicon.png"
+    }
+}

@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.http import HttpResponse,HttpResponseRedirect,JsonResponse
 from Main.models import UserList,Season,Genre,Serial,StatusList,SeriesList
 from django.contrib.auth.decorators import login_required,permission_required
@@ -21,7 +21,7 @@ UserStat={
 @login_required
 def seasonch(request,id):
     data={
-        "season":Season.objects.get(id=id),
+        "season":get_object_or_404(Season,id=id),
         "episodes":SeriesList.objects.filter(season_id=id).order_by('date')
     }
     return render(request,"Serials/season/seasonch.html",data)
@@ -29,7 +29,7 @@ def seasonch(request,id):
 
 @login_required
 def seasonchname(request,id):
-    season=Season.objects.get(id=id)
+    season=get_object_or_404(Season,id=id)
     if request.method == 'POST':
         form = changeforms.ChNameForm(request.POST)
         if form.is_valid():
@@ -47,7 +47,7 @@ def seasonchname(request,id):
 
 @login_required
 def seasonchposter(request,id):
-    season=Season.objects.get(id=id)
+    season=get_object_or_404(Season,id=id)
     if request.method == 'POST':
         form = changeforms.ChPosterForm(request.POST,request.FILES)
         if form.is_valid():
@@ -64,7 +64,7 @@ def seasonchposter(request,id):
 
 @login_required
 def seasonchdiscript(request,id):
-    season=Season.objects.get(id=id)
+    season=get_object_or_404(Season,id=id)
     if request.method == 'POST':
         form = changeforms.ChDiscriptForm(request.POST)
         if form.is_valid():
@@ -82,7 +82,7 @@ def seasonchdiscript(request,id):
 
 @login_required
 def seasonchstatus(request,id):
-    season=Season.objects.get(id=id)
+    season=get_object_or_404(Season,id=id)
     if request.method == 'POST':
         form = changeforms.ChStatusForm(request.POST)
         if form.is_valid():
@@ -101,8 +101,8 @@ def seasonchstatus(request,id):
 @login_required
 def seasonchepisode(request,id,epiid):
 
-    season=Season.objects.get(id=id)
-    episode=SeriesList.objects.get(id=epiid)
+    season=get_object_or_404(Season,id=id)
+    episode=get_object_or_404(SeriesList,id=epiid)
     if request.method == 'POST':
         form = changeforms.ChEpisodeForm(request.POST)
         if form.is_valid():
@@ -123,7 +123,7 @@ def seasonchepisode(request,id,epiid):
 
 @login_required
 def seasonchepisodeadd(request,id):
-    season=Season.objects.get(id=id)
+    season=get_object_or_404(Season,id=id)
     if request.method == 'POST':
         form = changeforms.ChEpisodeForm(request.POST)
         if form.is_valid():
@@ -143,9 +143,9 @@ def seasonchepisodeadd(request,id):
 
 @login_required
 def seasonchepisoderm(request,id,epiid):
-    episode=SeriesList.objects.get(id=epiid)
+    episode=get_object_or_404(SeriesList,id=epiid)
     episode.delete()
-    season=Season.objects.get(id=id)
+    season=get_object_or_404(Season,id=id)
     season.episodecount=len(SeriesList.objects.filter(season_id=id))
     season.save()
     return redirect('seasonch',id)
@@ -155,7 +155,7 @@ def seasonchdelete(request,id):
     for i in UserList.objects.filter(season_id=id):
         i.delete()
 
-    season=Season.objects.get(id=id)
+    season=get_object_or_404(Season,id=id)
     Serialid=season.serial.id
     season.delete()
     return redirect('serial',Serialid)

@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from Main.models import UserList,Season
+from Main.models import UserList,Season,Serial,Genre
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User 
 
@@ -37,7 +37,7 @@ def userlist(request,username=None):
                 lists.update({
                     i:{
                         "name":status['name'],
-                        "list":getSeriallist(user.id,status['id']),
+                        "list":getSeriallist(user.id,status['id'],request),
                     }
                 })
     else:
@@ -45,19 +45,39 @@ def userlist(request,username=None):
             lists.update({
                 i[0]:{
                     "name":i[1]['name'],
-                    "list":getSeriallist(user.id,i[1]['id']),
+                    "list":getSeriallist(user.id,i[1]['id'],request),
                 }
             })
-    
+
+
+    genrelist={}
+    for i in UserList.objects.filter(user_id=user.id).only('serial').values_list('serial', flat=True).distinct():
+        for genre in Serial.objects.get(id=i).genre:
+            if genrelist.get(genre.genre.name):
+                genrelist[genre.genre.name]['count'] += 1
+            else:
+                genrelist.update({genre.genre.name:{'count':1,'tag':genre.genre.tag}})
+    genrelist=dict(sorted(genrelist.items()))
+
     return render(request,"List/list.html",{
         "groups":lists,
-        "type":"series"
+        "type":"series",
+        "genrelist":genrelist,
     })
 
 
-def getSeriallist(userid,statusid):
+def getSeriallist(userid,statusid,request):
     serialDict={}
     userl=UserList.objects.filter(user_id=userid,userstatus=statusid).order_by("serial__name")
+
+    if request.GET.get('genres'):
+        userl= userl.filter(
+            serial__in=Genre.objects.filter(
+                genre__tag__in=request.GET.get('genres').split(' '),
+                serial__in=userl.values('serial')
+            ).values('serial')
+        )
+
     for i in userl:
         if not serialDict.get(i.serial.id):
             item=SerialItem()
@@ -75,8 +95,8 @@ def getUserProgress(item,serialid,userid):
     item.episodes=0
     item.watched=0
     for i in userl:
-            item.episodes+=i.season.episodecount
-            item.watched+=i.userepisode
+        item.episodes+=i.season.episodecount
+        item.watched+=i.userepisode
 
 class SerialItem:
     serial=None

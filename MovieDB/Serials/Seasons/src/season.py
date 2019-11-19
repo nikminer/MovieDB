@@ -1,9 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from Main.models import UserList,Season,Genre,SeriesList
 import os, re
 
 def season(request,id):
-    season=Season.objects.get(id=id)
+    season=get_object_or_404(Season,id=id)
     genre= Genre.objects.filter(serial=season.serial.id)
     try:
         season.date= SeriesList.objects.filter(season_id=id).order_by('date').first().date

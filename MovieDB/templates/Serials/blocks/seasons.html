@@ -3,7 +3,7 @@
 <div class="seasons">
     <span class="bigspan">Сезоны</span>
     <div class=seasonList>
-        {% for i in seasons %}
+        {% for i in serial.seasons %}
             <a href="{% url 'season' i.id %}" class=season >
                 <span style="background-color:{{i.status.color}}; color:#fff">{{i.status.name}}</span>
                 <img src={{ i.img.url }}>

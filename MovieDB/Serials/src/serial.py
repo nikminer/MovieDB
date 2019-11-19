@@ -1,21 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from Main.models import Serial,Genre,Season,UserList,SeriesList
 import os,re
 from django.contrib.auth.decorators import login_required
-from django.db.models import Avg
 
 def serial(request,id):
-    serial=Serial.objects.get(id=id)
-    
-    genre= Genre.objects.filter(serial=id)
-
-    seasons= Season.objects.filter(serial=id)
-
-    raring=Season.objects.filter(serial=id).filter(rating__gt=0).aggregate(Avg('rating'))['rating__avg']
-    if not raring:
-        raring=0.00
+    serial=get_object_or_404(Serial,id=id)
         
-    fseason=seasons.first()
+    fseason=serial.seasons.first()
     if (fseason):
         try:
             fseason.date=SeriesList.objects.filter(season_id=fseason.id).order_by('date').first().date
@@ -28,9 +19,6 @@ def serial(request,id):
     
     data={
         "serial":serial,
-        "genre":genre,
-        "seasons":seasons,
-        "rating":round(raring,2),
         "fseason":fseason
     }
     
@@ -40,7 +28,6 @@ def serial(request,id):
         pass
         
     return render(request,"Serials/serial.html",data)
-
 
 class Fseason():
     disctiption="Нет данных"

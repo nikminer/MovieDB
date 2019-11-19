@@ -13,6 +13,10 @@ class Profile(models.Model):
         return 'Profile for user {}'.format(self.user.username)
 
     @property
+    def is_f(self):
+        return self.sex=="F"
+        
+    @property
     def age(self):
         return int((datetime.now().date() - self.date_of_birth).days / 365.25)
 
@@ -25,4 +29,10 @@ class Friendlist(models.Model):
     accepter = models.ForeignKey(Profile,on_delete=models.CASCADE, related_name='link2')
     status= models.IntegerField(default=0)
 
-
+    def getnotMyprofile(self,myprofile):
+        if self.sender != myprofile and self.accepter==myprofile: 
+            return self.sender
+        elif self.accepter != myprofile and self.sender == myprofile:
+            return self.accepter
+        else:
+            return None

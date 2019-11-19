@@ -1,10 +1,10 @@
 {% load staticfiles %}
 {% include "../base.html" %}
 <link rel="stylesheet" href={% static 'Main/styles/index.css' %} type="text/css" />
+
+
 <title>Movie DB</title>
-<head>
-    <meta name="yandex-verification" content="b0b382da04b9aad4" />
-</head>
+
 <body>
     <div class="index">
         <div class="header">
@@ -37,7 +37,7 @@
         {% if user.is_authenticated %}
             <div class="list block">
                 <a href="{% url 'listserial' request.user.username %}" class="sectionspan">Мой список</a>
-                <h3>В процессе разработки</h3>
+                {% include './blocks/feed.html' %}
             </div>
         {% endif %}
         <div class="footer">

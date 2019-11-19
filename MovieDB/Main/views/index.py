@@ -2,6 +2,8 @@ from django.shortcuts import render,redirect
 from Profile.models import Profile,Friendlist
 from django.db.models import Q
 
+from List.views.feed import getFeed
+
 def index(request):
     data={}
     if request.user.is_authenticated:
@@ -10,7 +12,16 @@ def index(request):
         myfriends=Friendlist.objects.filter(Q(accepter=profile) | Q(sender=profile))
         data.update({"friends":{
                 "friends":myfriends.filter(status=1).count(),
-                "requests":myfriends.filter(status=0).count()  
+                "requests":myfriends.filter(status=0).count() 
             }
         })
+
+        feed=[profile]
+        for freind in myfriends.filter(status=1):
+            freindprofile=freind.getnotMyprofile(profile)
+            if freindprofile:
+                feed.append(freindprofile)
+
+        data.update({"feed":getFeed(feed)})
+
     return render(request,"Main/index.html",data)
