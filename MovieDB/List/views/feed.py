@@ -58,7 +58,11 @@ typeFeed={
 }
 
 def sendFeed(item,typeFeedobj):
-    itemfeed = UserFeed.objects.filter(userlist=item,typeAction=typeFeedobj['type'], user=Profile.objects.get(user=item.user)).order_by('-created').first()
+    if type(item) is UserList:
+        itemfeed = UserFeed.objects.filter(userlist=item,typeAction=typeFeedobj['type'], user=Profile.objects.get(user=item.user)).order_by('-created').first()
+    elif type(item) is UserListF: 
+            itemfeed = UserFeed.objects.filter(userlistF=item,typeAction=typeFeedobj['type'], user=Profile.objects.get(user=item.user)).order_by('-created').first()
+
     if itemfeed and itemfeed.is_lasthour and typeFeedobj.get('change'):
         itemfeed.action=typeFeedobj['change'](itemfeed)
         itemfeed.save()
