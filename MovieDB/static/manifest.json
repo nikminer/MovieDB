@@ -1,7 +1,8 @@
 {
     "api_version": 4,
     "layout": {
-        "color":"#596275",
-        "logo":"http://moviedb.servehttp.com/static/images/favicon.png"
+        
+        "logo":"http://moviedb.servehttp.com/static/images/favicon.png",
+        "color":"#596275"
     }
 }
