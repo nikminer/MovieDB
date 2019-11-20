@@ -80,15 +80,28 @@ input[type=search]{
     flex-direction: row;
     align-items: center;
     cursor: pointer;
+    transition: all 0.5s ease;
+    
+}
+.filter>label:hover{
+    background-color: #3dc1d3;
+    color: white;
 }
 .filter>label>span{
     font-size: 17px;
-    margin-top: 2px;
+    width: 100%;
+    padding: 3px;
+    padding-left: 10px;
 }
-.filter input[type=checkbox]{
+.filter>label>input[type=checkbox]{
+    width: 0;
     margin: 0;
-    margin-right: 5px;
 }
+.filter>label> input[type=checkbox]:checked+span  {
+    background-color: #3dc1d3;
+    color: white;
+}
+
 .filters>button{
     margin-top: 5px;
     background-color: white;
@@ -97,6 +110,7 @@ input[type=search]{
     transition: 0.5s all ease;
     padding: 5px;
     font-size: 17px;
+    margin-bottom: 5px;
 }
 .filters>button:hover{
     background-color: #3dc1d3;

@@ -95,9 +95,7 @@
                     var categoryes=document.getElementsByClassName("category");
                     var urlParams = new URLSearchParams(window.location.search);
                     var param = urlParams.get('groups');
-                    if (param==null) 
-                        for (var i=0;i<categoryes.length;categoryes[i++].checked=true);
-                    else{
+                    if (param!=null) {
                         var param=param.split(" ");
                         for (var i=0;i<categoryes.length;i++){
                             if (param.includes(categoryes[i].value))
