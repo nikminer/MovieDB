@@ -2,7 +2,7 @@ import django
 from django.shortcuts import render,redirect
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
-from Main.models import Serial,Season,GenreList,Genre,SeriesList,Film,GenreF
+from Main.models import Series,Season,GenreList,Genre,SeriesList,Film, Movie as dbMovie
 from kinopoisk.movie import Movie
 from django.db.models import Q
 from requests import get

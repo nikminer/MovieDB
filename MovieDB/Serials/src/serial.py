@@ -1,10 +1,10 @@
 from django.shortcuts import render,get_object_or_404
-from Main.models import Serial,Genre,Season,UserList,SeriesList
+from Main.models import Series,Genre,Season,UserListS,SeriesList
 import os,re
 from django.contrib.auth.decorators import login_required
 
 def serial(request,id):
-    serial=get_object_or_404(Serial,id=id)
+    serial=get_object_or_404(Serial,movie_id=id)
         
     fseason=serial.seasons.first()
     if (fseason):
@@ -23,7 +23,7 @@ def serial(request,id):
     }
     
     try:
-        data.update({"UserItem":UserList.objects.filter(serial=id,user=request.user.id)})
+        data.update({"UserItem":UserListS.objects.filter(movie=serial.movie,user=request.user.id)})
     except UserList.DoesNotExist:
         pass
         

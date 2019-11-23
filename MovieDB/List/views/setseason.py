@@ -1,5 +1,5 @@
 from django.http import JsonResponse
-from Main.models import UserList
+from Main.models import UserListS
 from django.contrib.auth.decorators import login_required
 from django.db.models import Avg
 from List.views.feed import sendFeed,typeFeed
@@ -18,7 +18,7 @@ UserStat={
 def setrating(request):
 
     data=request.POST
-    item=UserList.objects.get(id=int(data['listid']),user=request.user.id)
+    item=UserListS.objects.get(id=int(data['listid']),user=request.user)
     rating=int(data['rating'])
     if rating != item.userrate:
         if rating>=0 and rating<=10:
@@ -42,7 +42,7 @@ def setrating(request):
 def setstatus(request):
     data=request.POST
     if data['listid']!="undefined":
-        item=UserList.objects.get(id=int(data['listid']),user=request.user.id)
+        item=UserListS.objects.get(id=int(data['listid']),user=request.user.id)
         if UserStat.get(data['status']) and item.userstatus!=UserStat.get(data['status']):
             item.userstatus=UserStat[data['status']]
             item.save()

@@ -1,18 +1,18 @@
 from django.shortcuts import render,get_object_or_404
 from django.http import JsonResponse
-from Main.models import Film,GenreF,UserListF
+from Main.models import Film,Genre,UserListF
 from django.contrib.auth.decorators import login_required
 from List.views.feed import sendFeed,typeFeed
 
 def film(request,id):
-    film=get_object_or_404(Film,id=id)
+    film=get_object_or_404(Film,movie=id)
         
     data={
         "Film":film,
     }
     
     try:
-        data.update({"UserItem":UserListF.objects.get(film_id=id,user=request.user.id)})
+        data.update({"UserItem":UserListF.objects.get(movie=film.movie,user=request.user)})
     except UserListF.DoesNotExist:
         pass
         
@@ -33,7 +33,7 @@ UserStat={
 @login_required
 def setrating(request):
     data=request.POST
-    item=UserListF.objects.get(id=int(data['listid']),user=request.user.id)
+    item=UserListF.objects.get(id=int(data['listid']),user=request.user)
     rating=int(data['rating'])
     if rating>=0 and rating<=10:
         item.userrate=rating
@@ -44,9 +44,9 @@ def setrating(request):
     item.save()
     
     sendFeed(item,typeFeed['rating'])
-
-    item.film.rating=round(UserListF.objects.filter(film_id=item.film_id).filter(userrate__gt=0).aggregate(Avg('userrate'))['userrate__avg'],2)
-    item.film.save()
+    film= Film.objects.get(movie=item.movie)
+    film.rating=round(UserListF.objects.filter(movie=item.movie).filter(userrate__gt=0).aggregate(Avg('userrate'))['userrate__avg'],2)
+    film.save()
     
     return JsonResponse({'status':'voted',"userrating":item.userrate})
 
@@ -55,7 +55,7 @@ def setstatus(request):
     if request.POST:
         data=request.POST
         if data['listid']!="undefined":
-            item=UserListF.objects.get(id=int(data['listid']),user=request.user.id)
+            item=UserListF.objects.get(id=int(data['listid']),user=request.user)
             if UserStat.get(data['status']):
                 item.userstatus=UserStat[data['status']]
                 item.save()

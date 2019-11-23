@@ -1,5 +1,5 @@
 from List.models import UserFeed
-from Main.models import UserList,UserListF
+from Main.models import UserListS,UserListF
 from List.views.userstatus import UserStatusDict as UserStatus
 from Profile.models import Profile
 import re
@@ -7,20 +7,20 @@ import re
 def rating(item): 
     return "Оцени{} {} на {} баллов".format(
         'ла' if Profile.objects.get(user=item.user).is_f else 'л',
-        item.season.name if type(item) is UserList else '',
+        item.season.name if type(item) is UserListS else '',
         item.userrate
     )
 
 def status(item):
     return "Измени{} статус {} на {}".format(
         'ла' if Profile.objects.get(user=item.user).is_f else 'л',
-        item.season.name if type(item) is UserList else '',
+        item.season.name if type(item) is UserListS else '',
         UserStatus.get(item.userstatus)
     )
 
 def inc(item):
     return "{}. Посмотре{} {} эпизод.".format(
-        item.season.name if type(item) is UserList else '',
+        item.season.name if type(item) is UserListS else '',
         'ла' if Profile.objects.get(user=item.user).is_f else 'л',
         item.userepisode
     )
@@ -58,7 +58,7 @@ typeFeed={
 }
 
 def sendFeed(item,typeFeedobj):
-    if type(item) is UserList:
+    if type(item) is UserListS:
         itemfeed = UserFeed.objects.filter(userlist=item,typeAction=typeFeedobj['type'], user=Profile.objects.get(user=item.user)).order_by('-created').first()
     elif type(item) is UserListF: 
             itemfeed = UserFeed.objects.filter(userlistF=item,typeAction=typeFeedobj['type'], user=Profile.objects.get(user=item.user)).order_by('-created').first()
@@ -67,7 +67,7 @@ def sendFeed(item,typeFeedobj):
         itemfeed.action=typeFeedobj['change'](itemfeed)
         itemfeed.save()
     else:
-        if type(item) is UserList:
+        if type(item) is UserListS:
             UserFeed.objects.create(
                 userlist=item,
                 action=typeFeedobj['action'](item),
