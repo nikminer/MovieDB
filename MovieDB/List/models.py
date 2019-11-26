@@ -17,8 +17,8 @@ class UserFeed(models.Model):
     @property
     def is_lasthour(self):
         from django.utils.timezone import make_aware
-        return (make_aware(datetime.now())-self.created).seconds < 3600
-
+        return (make_aware(datetime.now())-self.created).seconds < 10800
+        
     created = models.DateTimeField(auto_now_add=True)
 
     action = models.TextField()

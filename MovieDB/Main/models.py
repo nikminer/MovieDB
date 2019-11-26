@@ -21,15 +21,13 @@ class Movie(models.Model):
 
     disctiption= models.TextField(default="Нет данных")
 
-    isSeries= models.BooleanField(default=False)
-
     @property
     def genre(self):
         return Genre.objects.filter(movie_id=self.id)
 
 class Posters(models.Model):
     img= models.ImageField(upload_to='Posters')
-    movie= models.ForeignKey(Movie,default=1,on_delete=models.SET_DEFAULT)
+    movie= models.ForeignKey(Movie,default=1,on_delete=models.SET_DEFAULT,null=True)
 
 class Film(models.Model):
     movie= models.ForeignKey(Movie,default=1,on_delete=models.SET_DEFAULT)
@@ -40,15 +38,12 @@ class Film(models.Model):
 
     def get_absolute_url(self):
         return "/film/%i" % self.id
+        
 
 class Series(models.Model):
     movie=models.ForeignKey(Movie,default=1,on_delete=models.SET_DEFAULT)
 
     poster= models.ForeignKey(Posters,default=1,on_delete=models.SET_DEFAULT)
-
-    @property
-    def seasons(self):
-        return Season.objects.filter(movie=self.movie)
 
     @property
     def rating(self):
@@ -60,12 +55,13 @@ class Series(models.Model):
     def get_absolute_url(self):
         return "/serial/%i" % self.id
 
-
-
-
+    @property
+    def seasons(self):
+        return Season.objects.filter(series_id=self.id).order_by("name")
 
 class Season(models.Model):
-    movie= models.ForeignKey(Movie,on_delete=models.CASCADE,default=1)
+    
+    series= models.ForeignKey(Series,on_delete=models.CASCADE,default=1)
 
     name= models.TextField()
 
@@ -78,6 +74,7 @@ class Season(models.Model):
     poster= models.ForeignKey(Posters,default=1,on_delete=models.SET_DEFAULT)
 
     rating= models.FloatField(default=0)
+
 
 class SeriesList(models.Model):
     season= models.ForeignKey(Season,on_delete=models.CASCADE)

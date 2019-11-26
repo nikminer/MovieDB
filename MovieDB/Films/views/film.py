@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from List.views.feed import sendFeed,typeFeed
 
 def film(request,id):
-    film=get_object_or_404(Film,movie=id)
+    film=get_object_or_404(Film,id=id)
         
     data={
         "Film":film,

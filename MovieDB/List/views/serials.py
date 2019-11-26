@@ -8,19 +8,19 @@ from List.views.userstatus import UserStat
 
 @login_required
 def AddSerial(request,id):
-    movie = get_object_or_404(Movie, id=id)
-    seasons=UserListS.objects.filter(movie=movie,user=request.user).values_list('season')
+    series = get_object_or_404(Series, id=id)
+    seasons=UserListS.objects.filter(movie=series.movie,user=request.user).values_list('season')
 
-    for season in Season.objects.filter(movie=movie):
+    for season in Season.objects.filter(series=series):
         if not season in seasons:
-            UserListS.objects.create(movie=movie,user=request.user,season=season)
+            UserListS.objects.create(movie=series.movie,user=request.user,season=season)
     
     return redirect('listserial',request.user.username)
     
 @login_required
 def DelSerial(request,id):
-    movie = get_object_or_404(Movie, id=id)
-    UserListS.objects.filter(movie=movie,user=request.user).delete()
+    series = get_object_or_404(Series, id=id)
+    UserListS.objects.filter(movie=series.movie,user=request.user).delete()
     return redirect('listserial',request.user.username)
 
 
