@@ -7,63 +7,80 @@ class StatusList(models.Model):
     name= models.TextField()
     color= models.TextField()
 
-class Film(models.Model):
+class Movie(models.Model):
+    kinopoiskid= models.IntegerField()
+
     name= models.TextField()
     originalname= models.TextField()
-    status=models.ForeignKey(StatusList,default=1,on_delete=models.SET_DEFAULT)
-    length= models.IntegerField()
+    
     year=models.IntegerField()
-    kinopoiskid= models.IntegerField()
-    img= models.URLField(default="https://dummyimage.com/210x300/546de5/fff.png&text=Poster%20Not%20Found")
-    rating= models.FloatField(default=0)
+
+    status=models.ForeignKey(StatusList,default=1,on_delete=models.SET_DEFAULT)
+    
+    length= models.IntegerField()
+
     disctiption= models.TextField(default="Нет данных")
+
+    @property
+    def genre(self):
+        return Genre.objects.filter(movie_id=self.id)
+
+class Posters(models.Model):
+    img= models.ImageField(upload_to='Posters')
+    movie= models.ForeignKey(Movie,default=1,on_delete=models.SET_DEFAULT,null=True)
+
+class Film(models.Model):
+    movie= models.ForeignKey(Movie,default=1,on_delete=models.SET_DEFAULT)
+
+    rating= models.FloatField(default=0)
+
+    poster= models.ForeignKey(Posters,default=1,on_delete=models.SET_DEFAULT)
 
     def get_absolute_url(self):
         return "/film/%i" % self.id
-    
-    @property
-    def genre(self):
-        return GenreF.objects.filter(film_id=self.id)
+        
 
-class Serial(models.Model):
-    name= models.TextField()
-    originalname= models.TextField()
-    episodelength= models.IntegerField()
-    year=models.IntegerField()
-    kinopoiskid= models.IntegerField()
-    img= models.URLField(default="https://dummyimage.com/210x300/546de5/fff.png&text=Poster%20Not%20Found")
+class Series(models.Model):
+    movie=models.ForeignKey(Movie,default=1,on_delete=models.SET_DEFAULT)
+
+    poster= models.ForeignKey(Posters,default=1,on_delete=models.SET_DEFAULT)
+
+    @property
+    def rating(self):
+        rating=self.seasons.filter(rating__gt=0).aggregate(Avg('rating'))['rating__avg']
+        if not rating:
+            rating=0.00
+        return round(rating,2)
 
     def get_absolute_url(self):
         return "/serial/%i" % self.id
 
     @property
-    def genre(self):
-        return Genre.objects.filter(serial_id=self.id)
-    
-    @property
     def seasons(self):
-        return Season.objects.filter(serial_id=self.id)
+        return Season.objects.filter(series_id=self.id).order_by("name")
 
-    @property
-    def rating(self):
-        rating=Season.objects.filter(serial_id=self.id).filter(rating__gt=0).aggregate(Avg('rating'))['rating__avg']
-        if not rating:
-            rating=0.00
-        return round(rating,2)
-    
 class Season(models.Model):
+    
+    series= models.ForeignKey(Series,on_delete=models.CASCADE,default=1)
+
     name= models.TextField()
+
     status=models.ForeignKey(StatusList,default=1,on_delete=models.SET_DEFAULT)
+
     episodecount= models.IntegerField()
-    serial= models.ForeignKey(Serial,on_delete=models.CASCADE)
+    
     disctiption= models.TextField(default="Нет данных")
-    img= models.ImageField(upload_to='Seasons', default="default.png")
+
+    poster= models.ForeignKey(Posters,default=1,on_delete=models.SET_DEFAULT)
+
     rating= models.FloatField(default=0)
+
 
 class SeriesList(models.Model):
     season= models.ForeignKey(Season,on_delete=models.CASCADE)
     name= models.TextField()
     date=models.DateField()
+
 
 class GenreList(models.Model):
     name= models.TextField()
@@ -71,39 +88,34 @@ class GenreList(models.Model):
 
 class Genre(models.Model):
     genre= models.ForeignKey(GenreList,on_delete=models.CASCADE)
-    serial= models.ForeignKey(Serial,on_delete=models.CASCADE)
+    movie= models.ForeignKey(Movie,on_delete=models.CASCADE,default=1)
 
-class GenreF(models.Model):
-    genre= models.ForeignKey(GenreList,on_delete=models.CASCADE)
-    film= models.ForeignKey(Film,on_delete=models.CASCADE)
 
-class UserList(models.Model):
-    user= models.ForeignKey(User,on_delete=models.CASCADE)
-    season= models.ForeignKey(Season,on_delete=models.CASCADE)
-    serial= models.ForeignKey(Serial,on_delete=models.CASCADE)
-    userrate= models.IntegerField(default=0)
-    userstatus= models.IntegerField(default=1)
-    userepisode= models.IntegerField(default=0)
-    countreview= models.IntegerField(default=0)
-    
-    @property
-    def obj(self):
-        return self.serial
-    @property
-    def get_absolute_url(self):
-        return reverse("serial", kwargs={"id": self.serial.id})
 
 class UserListF(models.Model):
     user= models.ForeignKey(User,on_delete=models.CASCADE)
-    film= models.ForeignKey(Film,on_delete=models.CASCADE)
+    movie= models.ForeignKey(Movie,on_delete=models.CASCADE,default=1)
+    
     userrate= models.IntegerField(default=0)
     userstatus= models.IntegerField(default=1)
     countreview= models.IntegerField(default=0)
 
     @property
-    def obj(self):
-        return self.film
+    def get_absolute_url(self):
+        return reverse("film", kwargs={"id": self.movie.id})
+
+class UserListS(models.Model):
+    user= models.ForeignKey(User,on_delete=models.CASCADE)
+    movie= models.ForeignKey(Movie,on_delete=models.CASCADE,default=1)
+    season= models.ForeignKey(Season,on_delete=models.CASCADE)
+
+    userrate= models.IntegerField(default=0)
+    userstatus= models.IntegerField(default=1)
+    countreview= models.IntegerField(default=0)
+
+    userepisode= models.IntegerField(default=0)
+
     @property
     def get_absolute_url(self):
-        return reverse("film", kwargs={"id": self.film.id})
-    
+        return reverse("serial", kwargs={"id": self.movie.id})
+

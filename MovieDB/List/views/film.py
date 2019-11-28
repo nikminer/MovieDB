@@ -1,5 +1,5 @@
-from django.shortcuts import render,redirect
-from Main.models import UserListF,Film,GenreF
+from django.shortcuts import render,redirect,get_object_or_404
+from Main.models import UserListF,Movie,Genre,Film
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User 
 
@@ -7,20 +7,23 @@ from List.views.userstatus import UserStat
 
 @login_required
 def AddFilm(request,id):
-    UserListF.objects.create(user_id=request.user.id,film_id=id,userstatus=1)
+    film = get_object_or_404(Film, id=id)    
+    UserListF.objects.create(user=request.user,movie=film.movie)
     return redirect('listfilm',request.user.username)
     
 @login_required
 def DelFilm(request,id):
-    UserListF.objects.filter(film_id=id,user=request.user.id).delete()
+    film = get_object_or_404(Film, id=id)    
+    UserListF.objects.filter(movie=film.movie,user=request.user).delete()
     return redirect('listfilm',request.user.username)
+
 
 @login_required
 def userlist(request,username):
     if not username:
         user=request.user
     else:
-        user=User.objects.get(username=username)
+        user=get_object_or_404(User,username=username)
     lists={}
     
     if request.GET.get('groups'):
@@ -43,8 +46,8 @@ def userlist(request,username):
             })
             
     genrelist={}
-    for i in UserListF.objects.filter(user_id=user.id).only('film').values_list('film', flat=True).distinct():
-        for genre in Film.objects.get(id=i).genre:
+    for i in UserListF.objects.filter(user=user).only('movie').values_list('movie', flat=True).distinct():
+        for genre in Movie.objects.get(id=i).genre:
             if genrelist.get(genre.genre.name):
                 genrelist[genre.genre.name]['count'] += 1
             else:
@@ -58,14 +61,14 @@ def userlist(request,username):
     })
 
 def getFilmlist(userid,statusid,request):
-    userl=UserListF.objects.filter(user_id=userid,userstatus=statusid).order_by("film__name")
+    userl=UserListF.objects.filter(user_id=userid,userstatus=statusid).order_by("movie__name")
 
     if request.GET.get('genres'):
         userl= userl.filter(
-            film__in=GenreF.objects.filter(
+            movie__in=GenreF.objects.filter(
                 genre__tag__in=request.GET.get('genres').split(' '),
-                film__in=userl.values('film')
-            ).values('film')
+                movie__in=userl.values('movie')
+            ).values('movie')
         )
 
     return userl

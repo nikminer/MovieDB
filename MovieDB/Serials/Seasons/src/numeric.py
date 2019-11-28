@@ -1,5 +1,5 @@
 from django.http import JsonResponse
-from Main.models import UserList,Season
+from Main.models import UserListS,Season
 from django.contrib.auth.decorators import login_required
 from List.views.feed import sendFeed,typeFeed
 
@@ -14,7 +14,7 @@ UserStat={
 @login_required
 def incepisode(request):
     data=request.POST
-    item=UserList.objects.get(id=int(data['listid']),user=request.user.id)
+    item=UserListS.objects.get(id=int(data['listid']),user=request.user)
     if item.userepisode+1<item.season.episodecount:
         item.userepisode+=1
         '''if item.userstatus==UserStat['planned']:
@@ -28,7 +28,7 @@ def incepisode(request):
     elif item.userepisode+1==item.season.episodecount:
         item.userepisode+=1
         item.userstatus=UserStat['watched']
-        sendFeed(item,typeFeed['status'])
+        sendFeed(item,typeFeed['inc'])
         item.save()
         return JsonResponse({'status':'watched',"userepisode":item.userepisode})
     else:
@@ -37,7 +37,7 @@ def incepisode(request):
 @login_required
 def decepisode(request):
     data=request.POST
-    item=UserList.objects.get(id=int(data['listid']),user=request.user.id)
+    item=UserListS.objects.get(id=int(data['listid']),user=request.user)
     
     if item.userepisode-1>=0:
         item.userepisode-=1
@@ -49,7 +49,7 @@ def decepisode(request):
 @login_required
 def setepisode(request):
     data=request.POST
-    item=UserList.objects.get(id=int(data['listid']),user=request.user.id)
+    item=UserListS.objects.get(id=int(data['listid']),user=request.user)
     ep=int(data['count'])
     if not ep < 0 and not ep > item.season.episodecount:
         item.userepisode=ep

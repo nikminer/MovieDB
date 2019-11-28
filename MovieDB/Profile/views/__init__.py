@@ -6,7 +6,7 @@ from . import friends,auth,settings
 from django.shortcuts import render,get_object_or_404
 from Profile.models import Profile,Friendlist
 from django.contrib.auth.decorators import login_required
-from Main.models import UserList,UserListF
+from Main.models import UserListS,UserListF
 from django.db.models import Q
 
 def profile(request,username):
@@ -21,7 +21,7 @@ def profile(request,username):
     
     data={
         "profile":profile,
-        "serials":Movie(UserList,profile.user.id),
+        "serials":Movie(UserListS,profile.user.id),
         "films":Movie(UserListF,profile.user.id),
         "friends":{
             "list":friendlist,
@@ -50,7 +50,7 @@ class Movie:
     watch=None
     def __init__(self,dbobj,id):
         planned=len(dbobj.objects.filter(Q(user_id=id) & Q(userstatus=1)))
-        watch=len(UserList.objects.filter(Q(user_id=id) & (Q(userstatus=2)|Q(userstatus=4))))
+        watch=len(dbobj.objects.filter(Q(user_id=id) & (Q(userstatus=2)|Q(userstatus=4))))
         watched=len(dbobj.objects.filter(Q(user_id=id) & Q(userstatus=3)))
         try:
             one=100/(planned+watch+watched)
