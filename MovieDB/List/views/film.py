@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect,get_object_or_404
-from Main.models import UserListF,Movie,Genre
+from Main.models import UserListF,Movie,Genre,Film
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User 
 
@@ -7,14 +7,14 @@ from List.views.userstatus import UserStat
 
 @login_required
 def AddFilm(request,id):
-    movie = get_object_or_404(Movie, id=id)    
-    UserListF.objects.create(user=request.user,movie=movie)
+    film = get_object_or_404(Film, id=id)    
+    UserListF.objects.create(user=request.user,movie=film.movie)
     return redirect('listfilm',request.user.username)
     
 @login_required
 def DelFilm(request,id):
-    movie = get_object_or_404(Movie, id=id)    
-    UserListF.objects.filter(mvoie=movie,user=request.user).delete()
+    film = get_object_or_404(Film, id=id)    
+    UserListF.objects.filter(movie=film.movie,user=request.user).delete()
     return redirect('listfilm',request.user.username)
 
 

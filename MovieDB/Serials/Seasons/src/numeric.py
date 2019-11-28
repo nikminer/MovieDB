@@ -28,7 +28,7 @@ def incepisode(request):
     elif item.userepisode+1==item.season.episodecount:
         item.userepisode+=1
         item.userstatus=UserStat['watched']
-        sendFeed(item,typeFeed['status'])
+        sendFeed(item,typeFeed['inc'])
         item.save()
         return JsonResponse({'status':'watched',"userepisode":item.userepisode})
     else:

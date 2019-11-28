@@ -91,9 +91,9 @@ def getSeriallist(userid,statusid,request):
             item.movie=i.movie
             getUserProgress(item,i.movie.id,userid)
 
-            serialDict.update({i.season.movie.id:item})
+            serialDict.update({i.season.series.id:item})
         else:
-            serialDict[i.season.movie.id].seasons.append(i)
+            serialDict[i.season.series.id].seasons.append(i)
     return serialDict.values()
 
 def getUserProgress(item,movieid,userid):

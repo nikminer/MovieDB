@@ -29,7 +29,7 @@ def setrating(request):
             item.userrate=10
         item.save()
         
-        item.season.rating=round(UserList.objects.filter(season_id=item.season_id).filter(userrate__gt=0).aggregate(Avg('userrate'))['userrate__avg'],2)
+        item.season.rating=round(UserListS.objects.filter(season_id=item.season_id).filter(userrate__gt=0).aggregate(Avg('userrate'))['userrate__avg'],2)
         item.season.save()
 
         sendFeed(item,typeFeed['rating'])
