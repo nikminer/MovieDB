@@ -55,7 +55,6 @@ def userlist(request,username=None):
 
     genrelist={}
 
-
     for i in UserListS.objects.filter(user=user).only('movie').values_list('movie', flat=True).distinct():
         for genre in Movie.objects.get(id=i).genre:
             if genrelist.get(genre.genre.name):
@@ -64,7 +63,6 @@ def userlist(request,username=None):
                 genrelist.update({genre.genre.name:{'count':1,'tag':genre.genre.tag}})
     
     genrelist=dict(sorted(genrelist.items()))
-
     return render(request,"List/list.html",{
         "groups":lists,
         "type":"series",
@@ -75,7 +73,6 @@ def userlist(request,username=None):
 def getSeriallist(userid,statusid,request):
     serialDict={}
     userl=UserListS.objects.filter(user_id=userid,userstatus=statusid).order_by("movie__name")
-
     if request.GET.get('genres'):
         userl= userl.filter(
             movie__in=Genre.objects.filter(
@@ -83,9 +80,8 @@ def getSeriallist(userid,statusid,request):
                 movie__in=userl.values('movie')
             ).values('movie')
         )
-
     for i in userl:
-        if not serialDict.get(i.movie.id):
+        if not serialDict.get(i.season.series.id):
             item=SerialItem()
             item.seasons.append(i)
             item.movie=i.movie
@@ -94,6 +90,7 @@ def getSeriallist(userid,statusid,request):
             serialDict.update({i.season.series.id:item})
         else:
             serialDict[i.season.series.id].seasons.append(i)
+    
     return serialDict.values()
 
 def getUserProgress(item,movieid,userid):
@@ -105,10 +102,10 @@ def getUserProgress(item,movieid,userid):
         item.watched+=i.userepisode
 
 class SerialItem:
-    serial=None
+    movie=None
     seasons=[]
     episodes=0
     watched=0
     def __init__(self):
-        self.serial=None
+        self.movie=None
         self.seasons=[]

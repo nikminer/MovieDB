@@ -7,7 +7,7 @@ import datetime
 def FilmList(request):
     
 
-    FilmList= Film.objects.all().order_by('movie__year') 
+    FilmList= Film.objects.all().order_by('movie__year').reverse()
     for film in FilmList:
         film.InMyList=str(len(UserListF.objects.filter(movie=film.movie,user=request.user.id))>0)
         

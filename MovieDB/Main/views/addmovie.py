@@ -55,16 +55,16 @@ def AddMovie(request,id):
         kinomovie.get_content("series")
     except UnboundLocalError:
         pass
-    kinomovie.get_content("posters")
+    #kinomovie.get_content("posters")
     
     movie= AddMovieFunc(kinomovie)
     AddGenres(kinomovie,movie)
-    AddPosters(kinomovie,movie)
+    #AddPosters(kinomovie,movie)
 
     if not kinomovie.series:
-        return redirect('film',AddFilm(movie).id)
+        return redirect('film',AddFilm(movie,kinomovie).id)
     else:
-        series=AddSerial(movie)
+        series=AddSerial(movie,kinomovie)
         AddSeasons(kinomovie,series)
         return redirect('serial',series.id)
         
@@ -111,12 +111,28 @@ def AddPosters(kinomovie,movie):
         poster.img.save(str(kinomovie.id)+"."+i.split('.')[-1],img_temp)
         poster.save()
 
+def AddPoster(kinomovie,movie,url):
+    poster=Posters.objects.create(movie=movie)
 
-def AddFilm(movie):
-    return Film.objects.create(movie=movie,poster=Posters.objects.filter(movie=movie).first())
+    img_temp = NamedTemporaryFile()
+    img_temp.write(get(url).content)
+    img_temp.flush()
 
-def AddSerial(movie):
-    return Series.objects.create(movie=movie,poster=Posters.objects.filter(movie=movie).first())
+    poster.img.save(str(kinomovie.id)+"."+url.split('.')[-1],img_temp)
+    poster.save()
+    return poster
+
+def AddFilm(movie,kinomovie):
+    return Film.objects.create(
+        movie=movie,
+        poster= AddPoster(kinomovie,movie,"https://st.kp.yandex.net/images/film/"+str(kinomovie.id)+".jpg")
+    )
+
+def AddSerial(movie,kinomovie):
+    return Series.objects.create(
+        movie=movie,
+        poster= AddPoster(kinomovie,movie,"https://st.kp.yandex.net/images/film/"+str(kinomovie.id)+".jpg")
+    )
     
 
 

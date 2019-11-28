@@ -4,7 +4,7 @@ import os,re
 from django.contrib.auth.decorators import login_required
 
 def serial(request,id):
-    series=get_object_or_404(Series,id=id)
+    series=get_object_or_404(Series,movie_id=id)
         
     fseason=series.seasons.first()
     if (fseason):
