@@ -15,7 +15,7 @@
     </p>
     <div class="serialList" >
     {% for series in SeriesList %}
-        <a href="{% url 'serial' series.id %}" class="serial" title="{{series.movie.name}} / {{series.movie.originalname}} ({{series.movie.year}})">
+        <a href="{% url 'serial' series.movie.id %}" class="serial" title="{{series.movie.name}} / {{series.movie.originalname}} ({{series.movie.year}})">
             <div class="poster">
                 <img height="200px" src={{series.poster.img.url}}>
             </div>
