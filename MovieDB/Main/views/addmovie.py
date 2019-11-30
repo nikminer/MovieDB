@@ -54,10 +54,12 @@ def AddMovie(request,id):
         serial=AddSerial(movie)
         AddSerialGenres(movie,serial.id)
         AddSeasons(movie,serial.id)
+        AddPoster(serial)
         return redirect('serial',serial.id)
     else:
         film=AddFilm(movie)
         AddFilmGenres(movie,film.id)
+        AddPoster(film)
         return redirect('film',film.id)
 
 def checkID(id):
@@ -65,7 +67,7 @@ def checkID(id):
         return redirect('serial',Serial.objects.get(kinopoiskid=id).id)
     except Serial.DoesNotExist:
         try:
-            return redirect('serial',Film.objects.get(kinopoiskid=id).id)
+            return redirect('film',Film.objects.get(kinopoiskid=id).id)
         except Film.DoesNotExist:
             return None
         
@@ -76,10 +78,19 @@ def AddFilm(movie):
     else:
         newfilm.originalname=movie.title_en
 
-    newfilm.img="https://st.kp.yandex.net/images/film/"+str(movie.id)+".jpg"
     newfilm.save()
 
     return newfilm
+
+def AddPoster(movie):
+    from django.core.files import File
+    from django.core.files.temp import NamedTemporaryFile
+    url="https://st.kp.yandex.net/images/film_big/"+str(movie.kinopoiskid)+".jpg"
+    img_temp = NamedTemporaryFile()
+    img_temp.write(get(url).content)
+    img_temp.flush()
+    movie.img.save(str(movie.id)+"."+url.split('.')[-1],img_temp)
+
 
 def AddSerial(movie):
     newserial=Serial.objects.create(name=movie.title,kinopoiskid=movie.id,year=movie.year,episodelength=movie.runtime)

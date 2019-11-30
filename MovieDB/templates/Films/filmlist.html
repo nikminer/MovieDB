@@ -17,7 +17,7 @@
     {% for film in FilmList %}
         <a href="{% url 'film' film.id %}" class="film" title="{{film.name}} / {{film.originalname}} ({{film.year}})">
             <div class="poster">
-                <img height="200px" src={{film.img}}>
+                <img height="200px" src={{film.img.url}}>
             </div>
             <span >{{film.name}} / {{film.originalname}}</span>
             <div class="filmsmallinfo">
