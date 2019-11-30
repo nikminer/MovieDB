@@ -1,15 +1,15 @@
 from django.shortcuts import render,get_object_or_404
-from Main.models import Series,Genre,Season,UserListS,SeriesList
+from Main.models import Serial,Genre,Season,UserList,SeriesList
 import os,re
 from django.contrib.auth.decorators import login_required
 
 def serial(request,id):
-    series=get_object_or_404(Series,movie_id=id)
+    serial=get_object_or_404(Serial,id=id)
         
-    fseason=series.seasons.first()
+    fseason=serial.seasons.first()
     if (fseason):
         try:
-            fseason.date=SeriesList.objects.filter(season=fseason).order_by('date').first().date
+            fseason.date=SeriesList.objects.filter(season_id=fseason.id).order_by('date').first().date
         except AttributeError:
             dsicript=fseason.disctiption
             fseason=Fseason()
@@ -18,12 +18,12 @@ def serial(request,id):
         fseason=Fseason()
     
     data={
-        "series":series,
+        "serial":serial,
         "fseason":fseason
     }
     
     try:
-        data.update({"UserItem":UserListS.objects.filter(movie=series.movie,user=request.user)})
+        data.update({"UserItem":UserList.objects.filter(serial=id,user=request.user.id)})
     except UserList.DoesNotExist:
         pass
         
