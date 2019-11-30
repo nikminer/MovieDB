@@ -30,7 +30,7 @@
                         {% if group.list %}
                         <div class="legend"><span>Название</span><span>Эпизоды</span><span>Оценка</span></div>
                             {% for i in group.list %}
-                            <details class="serial" id="{{groupname}}_serial:{{i.movie.id}}">
+                            <details class="serial" id="{{groupname}}_serial:{{i.serial.id}}">
                                 {% include "List/blocks/season.html" %}  
                             </details>
                             {% endfor %}

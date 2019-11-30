@@ -1,26 +1,23 @@
-from django.shortcuts import render,redirect,get_object_or_404
-from Main.models import UserListS,Season,Series,Genre,Movie
+from django.shortcuts import render,redirect
+from Main.models import UserList,Season,Serial,Genre
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User 
 
 from List.views.userstatus import UserStat
 
-
 @login_required
 def AddSerial(request,id):
-    series = get_object_or_404(Series, id=id)
-    seasons=UserListS.objects.filter(movie=series.movie,user=request.user).values_list('season')
-
-    for season in Season.objects.filter(series=series):
+    seasons=[]
+    for i in UserList.objects.filter(serial=id,user=request.user.id):
+        seasons.append(i.season)
+    for season in Season.objects.filter(serial=id):
         if not season in seasons:
-            UserListS.objects.create(movie=series.movie,user=request.user,season=season)
-    
+            UserList.objects.create(user_id=request.user.id,season_id=season.id,serial_id=id,userstatus=1)
     return redirect('listserial',request.user.username)
     
 @login_required
 def DelSerial(request,id):
-    series = get_object_or_404(Series, id=id)
-    UserListS.objects.filter(movie=series.movie,user=request.user).delete()
+    UserList.objects.filter(serial=id,user=request.user.id).delete()
     return redirect('listserial',request.user.username)
 
 
@@ -29,10 +26,10 @@ def userlist(request,username=None):
     if not username:
         user=request.user
     else:
-        user=get_object_or_404(User,username=username)
-
+        user=User.objects.get(username=username)
+    
     lists={}
-
+    
     if request.GET.get('groups'):
         for i in request.GET.get('groups').split(' '):
             status=UserStat.get(i)
@@ -54,15 +51,14 @@ def userlist(request,username=None):
 
 
     genrelist={}
-
-    for i in UserListS.objects.filter(user=user).only('movie').values_list('movie', flat=True).distinct():
-        for genre in Movie.objects.get(id=i).genre:
+    for i in UserList.objects.filter(user_id=user.id).only('serial').values_list('serial', flat=True).distinct():
+        for genre in Serial.objects.get(id=i).genre:
             if genrelist.get(genre.genre.name):
                 genrelist[genre.genre.name]['count'] += 1
             else:
                 genrelist.update({genre.genre.name:{'count':1,'tag':genre.genre.tag}})
-    
     genrelist=dict(sorted(genrelist.items()))
+
     return render(request,"List/list.html",{
         "groups":lists,
         "type":"series",
@@ -72,29 +68,30 @@ def userlist(request,username=None):
 
 def getSeriallist(userid,statusid,request):
     serialDict={}
-    userl=UserListS.objects.filter(user_id=userid,userstatus=statusid).order_by("movie__name")
+    userl=UserList.objects.filter(user_id=userid,userstatus=statusid).order_by("serial__name")
+
     if request.GET.get('genres'):
         userl= userl.filter(
-            movie__in=Genre.objects.filter(
+            serial__in=Genre.objects.filter(
                 genre__tag__in=request.GET.get('genres').split(' '),
-                movie__in=userl.values('movie')
-            ).values('movie')
+                serial__in=userl.values('serial')
+            ).values('serial')
         )
+
     for i in userl:
-        if not serialDict.get(i.season.series.id):
+        if not serialDict.get(i.serial.id):
             item=SerialItem()
             item.seasons.append(i)
-            item.movie=i.movie
-            getUserProgress(item,i.movie.id,userid)
+            item.serial=i.serial
+            getUserProgress(item,i.serial.id,userid)
 
-            serialDict.update({i.season.series.id:item})
+            serialDict.update({i.season.serial.id:item})
         else:
-            serialDict[i.season.series.id].seasons.append(i)
-    
+            serialDict[i.season.serial.id].seasons.append(i)
     return serialDict.values()
 
-def getUserProgress(item,movieid,userid):
-    userl=UserListS.objects.filter(user_id=userid,movie=movieid)
+def getUserProgress(item,serialid,userid):
+    userl=UserList.objects.filter(user_id=userid,serial=serialid)
     item.episodes=0
     item.watched=0
     for i in userl:
@@ -102,10 +99,10 @@ def getUserProgress(item,movieid,userid):
         item.watched+=i.userepisode
 
 class SerialItem:
-    movie=None
+    serial=None
     seasons=[]
     episodes=0
     watched=0
     def __init__(self):
-        self.movie=None
+        self.serial=None
         self.seasons=[]

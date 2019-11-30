@@ -3,12 +3,12 @@
 <div class="seasons">
     <span class="bigspan">Сезоны</span>
     <div class=seasonList>
-        {% for i in series.seasons %}
+        {% for i in serial.seasons %}
             <a href="{% url 'season' i.id %}" class=season >
                 <span style="background-color:{{i.status.color}}; color:#fff">{{i.status.name}}</span>
-                <img src={{ i.poster.img.url }}>
+                <img src={{ i.img.url }}>
                 <span style="font-weight: bold;">
-                    {{i.series.movie.name}}
+                    {{i.serial.name}}
                 </span>
                 <span>
                     {{i.name}}
@@ -16,7 +16,7 @@
             </a>
         {% endfor %}
         {% comment '' %}
-            <a href="{% url 'addserialpage' series.id %}" class=addseason>
+            <a href="{% url 'addserialpage' serial.id %}" class=addseason>
             <div>
                 <div class=addposter>
                 </div>                    

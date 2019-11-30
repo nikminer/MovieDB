@@ -3,17 +3,17 @@
 <link rel="stylesheet" href={% static 'Serials/styles/season.css' %} type="text/css" />
 
 
-<title>{{season.name}} {{season.series.movie.name}} / {{season.series.movie.originalname}} / Сериал</title>
+<title>{{season.name}} {{season.serial.name}} / {{season.serial.originalname}} / Сериал</title>
 
 <body>
     <div class="Serial">
-        <a class="bckbtn" href="{% url 'serial' season.series.movie.id %}">
+        <a class="bckbtn" href="{% url 'serial' season.serial.id %}">
             <b>◄</b><span>К сериалу</span>
         </a>
         <span class=serialName>
-            <span>{{season.name}} {{season.series.movie.name}} / {{season.series.movie.originalname}}</span>
+            <span>{{season.name}} {{season.serial.name}} / {{season.serial.originalname}}</span>
         </span>
-        <img class=poster src={{season.poster.img.url}}>
+        <img class=poster src={{season.img.url}}>
        
         <div class=serialinfo>
             <span class="bigspan">
@@ -35,10 +35,10 @@
                     {% endif %}
                 </span>
                 <span>
-                    Длительность эпизода: <span>{{season.series.movie.length}} минут.</span>
+                    Длительность эпизода: <span>{{season.serial.episodelength}} минут</span>
                 </span>
                 <span>
-                    Количество эпизодов: <span>{{season.episodecount}} эпизода.</span>
+                    Количество эпизодов: <span>{{season.episodecount}}</span>
                 </span>
             </div>
         </div>
@@ -89,7 +89,7 @@
         </div>
         {% else %}
         <div class="actionpanel">
-            <a href="{% url 'addserial' season.series.id %}">Добавить сериал</a>
+            <a href="{% url 'addserial' season.serial.id %}">Добавить сериал</a>
         </div>
         {% endif %}
         <div class="discription">
