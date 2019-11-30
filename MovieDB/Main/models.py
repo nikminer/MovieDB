@@ -14,7 +14,7 @@ class Film(models.Model):
     length= models.IntegerField()
     year=models.IntegerField()
     kinopoiskid= models.IntegerField()
-    img= models.URLField(default="https://dummyimage.com/210x300/546de5/fff.png&text=Poster%20Not%20Found")
+    img= models.ImageField(upload_to='Posters', default="default.png")
     rating= models.FloatField(default=0)
     disctiption= models.TextField(default="Нет данных")
 
@@ -31,7 +31,7 @@ class Serial(models.Model):
     episodelength= models.IntegerField()
     year=models.IntegerField()
     kinopoiskid= models.IntegerField()
-    img= models.URLField(default="https://dummyimage.com/210x300/546de5/fff.png&text=Poster%20Not%20Found")
+    img= models.ImageField(upload_to='Posters', default="default.png")
 
     def get_absolute_url(self):
         return "/serial/%i" % self.id
@@ -57,7 +57,7 @@ class Season(models.Model):
     episodecount= models.IntegerField()
     serial= models.ForeignKey(Serial,on_delete=models.CASCADE)
     disctiption= models.TextField(default="Нет данных")
-    img= models.ImageField(upload_to='Seasons', default="default.png")
+    img= models.ImageField(upload_to='Posters', default="default.png")
     rating= models.FloatField(default=0)
 
 class SeriesList(models.Model):

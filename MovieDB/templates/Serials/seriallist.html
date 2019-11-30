@@ -17,7 +17,7 @@
     {% for serial in SerialList %}
         <a href="{% url 'serial' serial.id %}" class="serial" title="{{serial.name}} / {{serial.originalname}} ({{serial.year}})">
             <div class="poster">
-                <img height="200px" src={{serial.img}}>
+                <img height="200px" src={{serial.img.url}}>
             </div>
             <span >{{serial.name}} / {{serial.originalname}}</span>
             <div class=serialsmallinfo>
