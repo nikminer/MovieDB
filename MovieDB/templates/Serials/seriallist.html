@@ -14,15 +14,15 @@
         Список сериалов отсортированный по дате выхода последнего сезона. Если вы вдруг не нашли ваш сериал, просто добавьте его, нажав на кнопку "Добавить сериал".
     </p>
     <div class="serialList" >
-    {% for serial in SerialList %}
-        <a href="{% url 'serial' serial.id %}" class="serial" title="{{serial.name}} / {{serial.originalname}} ({{serial.year}})">
+    {% for series in SeriesList %}
+        <a href="{% url 'serial' series.movie.id %}" class="serial" title="{{series.movie.name}} / {{series.movie.originalname}} ({{series.movie.year}})">
             <div class="poster">
-                <img height="200px" src={{serial.img}}>
+                <img height="200px" src={{series.poster.img.url}}>
             </div>
-            <span >{{serial.name}} / {{serial.originalname}}</span>
+            <span >{{series.movie.name}} / {{series.movie.originalname}}</span>
             <div class=serialsmallinfo>
-                <span>{{serial.year}}</span>
-                {% if serial.InMyList == "True" %}<span style="background-color: #546de5;color: white;padding: 2px;">В списке</span>{% endif %}</span>
+                <span>{{series.movie.year}}</span>
+                {% if series.InMyList == "True" %}<span style="background-color: #546de5;color: white;padding: 2px;">В списке</span>{% endif %}</span>
             </div>
         </a>
     {% endfor %}

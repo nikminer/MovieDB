@@ -2,11 +2,11 @@
 <summary>
     <div>
         <span>
-            <a class="serialname" href="{% url 'serial' i.serial.id %}" title="{{i.serial.name}}">{{i.serial.name}} ({{i.serial.year}})</a> 
+            <a class="serialname" href="{% url 'serial' i.movie.id %}" title="{{i.movie.name}}">{{i.movie.name}} ({{i.movie.year}})</a> 
         </span>
         <progress value="{{i.watched}}" title="Эпизоды: {{i.watched}}/{{i.episodes}}" max={{i.episodes}}></progress>
         <div>
-            <a class="delbtn" href="{% url 'delserial' i.serial.id %}" title="Удалить весь сериал"></a>
+            <a class="delbtn" href="{% url 'delserial' i.movie.id %}" title="Удалить весь сериал"></a>
         </div>
     </div>
 </summary>

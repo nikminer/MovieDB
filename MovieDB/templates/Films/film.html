@@ -3,7 +3,7 @@
 
 <link rel="stylesheet" href={% static 'Films/styles/film.css' %} type="text/css" />
 
-<title>{{Film.name}} / {{Film.originalname}} / Фильм</title>
+<title>{{Film.movie.name}} / {{Film.movie.originalname}} / Фильм</title>
 
 <body>
     <div class="Film">
@@ -11,10 +11,10 @@
             <b>◄</b><span>К списку фильмов</span>
         </a>
         <div class="FilmName">
-            <span>{{Film.name}} / {{Film.originalname}}</span>            
+            <span>{{Film.movie.name}} / {{Film.movie.originalname}}</span>            
         </div>
         
-        <img class="poster" src={{Film.img}}>
+        <img class="poster" src={{Film.poster.img.url}}>
         
         <div class="Filminfo">
             <span class="bigspan">
@@ -26,18 +26,18 @@
                 </span>    
                 <span>
                     Жанр: 
-                    {% for i in Film.genre%}
+                    {% for i in Film.movie.genre%}
                         <span>{{i.genre.name}}</span>
                     {% endfor %}
                 </span>
                 <span>
-                    Дата выхода: <span>{{Film.year}}</span>
+                    Дата выхода: <span>{{Film.movie.year}}</span>
                     
                 </span>
                 <span>
-                    Длительность эпизода: <span>{{Film.length}} минут</span>
+                    Длительность эпизода: <span>{{Film.movie.length}} минут</span>
                 </span>
-                <a href="https://www.kinopoisk.ru/film/{{Film.kinopoiskid}}">Страница на Кинопоиск</a>
+                <a href="https://www.kinopoisk.ru/film/{{Film.movie.kinopoiskid}}">Страница на Кинопоиск</a>
             </div>
         </div>
         
@@ -77,7 +77,7 @@
         <div class=discription>
             <span class="bigspan">Описание</span>
             <p>
-                {{Film.disctiption}}
+                {{Film.movie.disctiption}}
             </p>
         </div>
     </div>
