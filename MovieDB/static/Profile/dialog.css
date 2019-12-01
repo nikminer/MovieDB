@@ -1,0 +1,152 @@
+html{
+    background-color: #c44569;
+   }
+
+.dialog{
+    display: grid;
+    grid-template-areas: "bckbtn . toprofile"
+    "message message message"
+    "sendmessage sendmessage sendmessage";
+    grid-template-columns: 200px auto 350px;
+    grid-template-rows: 80px auto 80px;
+    height: 100%;
+}
+body{
+    height: 100%;
+}
+.dialogmessages{
+    grid-area: message;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-wrap: wrap;
+    padding: 15px;
+    overflow-y: scroll;
+    border-top: black solid 1px;
+}
+
+
+.dialogmessage{
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+.dialogmessage>div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 22px;
+}
+.dialogmessage>div>a{
+    color: black;
+}
+.dialogmessage>div>img{
+    height: 40px;
+    margin-right: 10px;
+}
+
+.dialogmessage>span{
+    padding:5px;
+    font-size: 18px;
+}
+.sended{
+    color: grey;
+    font-size: 14px!important;
+    margin-left: 45px;
+    margin-top: -7px;
+}
+
+.sendmessage{
+    grid-area: sendmessage;
+    border-top: black solid 1px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 10px;
+}
+.sendmessage>textarea{
+    width:90%;
+    height: 90%;
+    padding: 5px;
+    resize: none;
+    font-size: 16px;
+}
+.sendmessage>button{
+    background-color:  white;
+    border: none;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    padding: 5px;
+}
+.sendmessage>button:hover{
+    padding: 10px;
+    background-color: rgb(233, 233, 233);
+}
+.sendmessage>button>img{
+    height: 40px;
+}
+
+
+
+.toprofile{
+    grid-area: toprofile;
+    font-weight: bold;
+    background-color: #c44569;
+    color: white;
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    margin: 20px;
+    height: 30px;
+    padding: 5px 0px;
+}
+.toprofile>img{
+    padding: 0 5px;
+    text-align: center;
+    height:30px
+}
+.toprofile>span{
+    background-color: rgb(241, 241, 241);
+    color: black;
+    width: 100%;
+    transition: all 0.5s ease;
+    padding: 10px 0;
+    padding-left: 10px;
+    word-break: break-all;
+}
+
+.bckbtn{
+    grid-area: bckbtn;
+    font-weight: bold;
+    background-color: #c44569;
+    color: white;
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    margin: 20px;
+    height: 30px;
+}
+.bckbtn>span{
+    background-color: rgb(241, 241, 241);
+    color: black;
+    width: 100%;
+    transition: all 0.5s ease;
+    padding-left: 10px;
+}
+.bckbtn>*{
+    padding: 5px 0;
+}
+.bckbtn:hover>span,.toprofile>span:hover{
+    background-color: #c44569;
+    color: white;
+}
+
+.bigspan{
+    border-left-color: #c44569;
+}

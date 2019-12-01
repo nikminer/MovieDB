@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'Films',
     'Serials',
     'reset_migrations',
+    'precise_bbcode',
+    'background_task'
 ]
 
 

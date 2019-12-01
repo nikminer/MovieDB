@@ -10,7 +10,6 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('Main', '0002_genrelist_tag'),
-        ('Profile', '0001_initial'),
     ]
 
     operations = [

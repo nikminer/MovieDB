@@ -2,6 +2,9 @@
 from django.db import models
 from django.conf import settings
 from datetime import datetime
+from django.db.models import Q
+
+
 
 class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
@@ -11,6 +14,10 @@ class Profile(models.Model):
     photobg = models.ImageField(upload_to='users/bg',null=True, blank=True)
     def __str__(self):
         return 'Profile for user {}'.format(self.user.username)
+
+    @property
+    def name(self):
+        return " ".join((self.user.first_name,self.user.last_name)) 
 
     @property
     def is_f(self):
@@ -36,3 +43,15 @@ class Friendlist(models.Model):
             return self.accepter
         else:
             return None
+
+class MessageManager(models.Manager):
+    def get_dialog(self,sender,accepter):
+        return self.filter(Q(FromUser=accepter,ToUser=sender) | Q(FromUser=sender, ToUser=accepter)).order_by("-sended")
+
+class Messages(models.Model):
+    FromUser = models.ForeignKey(Profile,on_delete=models.CASCADE, related_name='From')
+    ToUser = models.ForeignKey(Profile,on_delete=models.CASCADE, related_name='To')
+    
+    sended = models.DateTimeField(auto_now_add=True)
+    message = models.TextField()
+    objects= MessageManager()

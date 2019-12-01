@@ -3,3 +3,5 @@ django-registration
 kinopoiskpy
 requests
 pillow
+django-background-tasks
+django-precise-bbcode

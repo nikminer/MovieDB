@@ -1,0 +1,52 @@
+{% load staticfiles %}
+{% include "../../base.html" %}
+
+<link rel="stylesheet" href={% static 'Profile/dialog.css' %} type="text/css" />
+
+<title>Диалог с {{Accepter.name}}</title>
+
+<body>
+    <div class="dialog">
+        <a href="" class="bckbtn">
+            <b>◄</b><span>К профилю</span>
+        </a>
+        <a href={% url 'profile'  Accepter.user.username %} class="toprofile">
+            <img src={{Accepter.photo.url}}>
+            <span>{{Accepter.name}}</span>
+        </a>
+        <div class="dialogmessages">
+            {% if Dialogmessages %}
+                {% for message in Dialogmessages %}
+                <div class="dialogmessage">
+                    <div>
+                        <img src={{message.FromUser.photo.url}}>
+                        <a href={% url 'profile'  message.FromUser.user.username %}>{{message.FromUser.name}}</a>
+                    </div>
+                    <span class="sended">{{message.sended}}</span>
+                    <span>{{message.message}}</span>
+                </div>
+                {% endfor %}
+            {% else %}
+                <h3>Сообщений не найдено</h3>
+            {% endif %}
+        </div>
+        <div class="sendmessage">
+            <textarea id="inputfield" placeholder="Ваше сообщение"></textarea>
+            <script>
+                function SendMessage(){
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('POST','/profile/{{Accepter.user.username}}/sendmessage',true);
+                        xhr.setRequestHeader("X-CSRFToken", document.getElementsByName("csrfmiddlewaretoken")[0].value);
+                        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                        xhr.send("message="+inputfield.value);
+                        inputfield.value="";
+                }
+            </script>
+            <button title="Отправить сообщение" onclick="SendMessage()">
+                <img src={% static 'images/sendmessage.png' %}>
+            </button>
+            {% csrf_token %}
+            
+        </div>
+    </div>
+</body>
