@@ -143,11 +143,21 @@ input[type=search]{
     width: 100%;
     display: grid;
     grid-template-areas: "Name progress delbtn ";
-    grid-template-columns: auto 400px 20px ;
+    grid-template-columns: auto 250px 20px ;
     
     grid-column-gap: 20px;
     align-items: center;
 }
+.progress{
+    grid-area: progress;
+    height: 18px;
+    background-color: white;
+}
+.progress>div{
+    background-color: #3dc1d3;
+    height: 18px;
+}
+
 .serial>summary>div>span>a{
     color: black;
 }
