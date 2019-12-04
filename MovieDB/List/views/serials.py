@@ -98,8 +98,6 @@ def getUserProgress(item,serialid,userid):
         item.episodes+=i.season.episodecount
         item.watched+=i.userepisode
     item.width= str(int(100/item.episodes*item.watched))+"%"
-    print(item.width)
-
 class SerialItem:
     serial=None
     seasons=[]
