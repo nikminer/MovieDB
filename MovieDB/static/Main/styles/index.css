@@ -9,6 +9,7 @@ html{
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    min-height: 100vh;
 }
 
 .header{
@@ -32,7 +33,6 @@ html{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: space-between;
     color: white;
     padding: 10px;
 }
@@ -40,7 +40,22 @@ html{
     color: white;
     font-size: 20px;
     font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
+.sectionspanandrefer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width:100%
+}
+
+.auth{
+    background-color: #303952;
+}
+
 .profile{
     background-color: #c44569;
     min-height: 50px;
@@ -77,7 +92,33 @@ html{
 }
 
 
-
+.movielist{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: flex-end;
+    height: 200px;
+    width: 100%;
+    margin-top: 20px;
+}
+.movielist>a{
+    width: 20%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+}
+.movielist>a>img{
+    height: 170px;
+    width: 120px;
+}
+.movielist>a>span{
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    height: 40px;
+}
 
 
 
@@ -98,13 +139,15 @@ html{
 
 .footer{
     background-color: #303952;
-    min-height: 150px;
     display: flex;
     flex-direction: row;
     align-items: center;
+    -webkit-flex-grow: 1; 
+    flex-grow: 1;
 }
 .footer>div{
     padding: 20px;
+    padding-bottom: 0 ;
     display: flex;
     flex-direction: column;
     align-items: center;

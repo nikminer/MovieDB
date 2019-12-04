@@ -49,20 +49,23 @@
         </div>
         <div class="section0">
             {% if profile.user.username == request.user.username %}
+            <!--
             <a href="{% url 'settings' %}">
                 <img width="30px" src={% static 'images/messages.png' %} >
                 <span>Мои сообщения</span>
-            </a>
+            </a>-->
             <a href="{% url 'settings' %}">
                 <img width="30px" src={% static 'images/settings.png' %} >
                 <span>Настройки профиля</span>
             </a>
             {% endif %}
             {% if profile.user.username != request.user.username %}
-                <a href="{% url 'dialog' profile.user.username %}">
-                    <img width="30px" src={% static 'images/messages.png' %} >
-                    <span style="font-size:17px">Отправить сообщение</span>
-                </a>
+                <!--
+                    <a href="{% url 'dialog' profile.user.username %}">
+                        <img width="30px" src={% static 'images/messages.png' %} >
+                        <span style="font-size:17px">Отправить сообщение</span>
+                    </a>
+                -->
                 {% if ismyfriend%}
                     <a href="{% url 'remfriend' profile.user.username %}">
                         <img width="30px" src={% static 'images/removefriend.png' %} >
@@ -136,6 +139,24 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="sectionFeed">
+                <span style="border-left-color: #3dc1d3;" class="bigspan">
+                    Активность 
+                </span>
+            {% for feeditem in feed %}
+            <a href="{{feeditem.list.get_absolute_url}}" class="feeditem">
+                <div class="feedaction">
+                    <img src="{{feeditem.list.obj.img.url}}">
+                    <div>
+                        <span>{{feeditem.list.obj.name}}</span>
+                        <span>{{feeditem.action}}</span>
+                        <span class="feedtimestamp">{{feeditem.created}}</span>
+                    </div>
+                </div>
+                
+            </a>
+            {% endfor %}
         </div>
     </div>
 </body>

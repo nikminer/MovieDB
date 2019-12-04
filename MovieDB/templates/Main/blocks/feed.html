@@ -6,12 +6,14 @@
     <a class="feeduser" href={%url 'profile' feeditem.user.user.username%}>
         <img src="{{feeditem.user.photo.url}}" width="38px"> 
         {{feeditem.user.user.first_name}} {{feeditem.user.user.last_name}}
+    </a>   
+    <a href="{{feeditem.list.get_absolute_url}}" class="feedaction">
+        <img src={{feeditem.list.obj.img.url}}>
+        <div>
+            <span>{{feeditem.list.obj.name}}</span>
+            <span>{{feeditem.action}}</span>
+            <span class="feedtimestamp">{{feeditem.created}}</span>
+        </div>
     </a>
-
-    <span class="feedtimestamp">{{feeditem.created}}</span>
-    <div class="feedaction">
-        <a href="{{feeditem.list.get_absolute_url}}">{{feeditem.list.obj.name}}</a>
-        <span>{{feeditem.action}}</span>
-    </div>
 </div>
 {% endfor %}
