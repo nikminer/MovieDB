@@ -58,7 +58,7 @@ html{
 
 .profile{
     background-color: #c44569;
-    min-height: 50px;
+    min-height: 70px;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -69,11 +69,10 @@ html{
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-evenly;
-
-    padding: 10px;
+    padding: 5px;
     text-decoration: none;
     transition: all 0.5s ease;
-    height: 115px;
+    min-height: 100px;
 }
 .profile>div>a{
     display: flex;
@@ -91,7 +90,21 @@ html{
     background-color: lightgrey;
     color: black;
 }
-
+.username{
+    width: 140px;
+}
+.username>span{
+    width: 100%;  
+    flex-wrap: wrap;
+    align-items: center;
+    flex-direction: row;
+}
+.username>span>span{
+    width: 100%; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+}
 
 .movielist{
     display: flex;

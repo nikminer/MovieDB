@@ -7,15 +7,37 @@
 
 <body>
     <div class="index">
-        <div class="header">
-            <img src={% static "images/favicon.ico" %}>
-            <span>MovieDB</span>
+        <div class="block auth">
+            <div class="sectionspanandrefer">                           
+                <div class="header">
+                    <img src={% static "images/favicon.ico" %}>
+                    <span>MovieDB</span>
+                </div>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'logout' %}" class="sectionspan">
+                        <img style="margin-right:10px" src={% static "images/navbar/exit.png" %}>
+                        <span>Выход</span>
+                    </a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="sectionspan">
+                        <img style="margin-right:10px" src={% static "images/navbar/login.png" %}>
+                        <span>Войти</span>
+                    </a>
+                {% endif %}
+            </div>
         </div>
         {% if user.is_authenticated %}
             <div class="profile">
                 <div>
-                    <a href="{% url 'profile' user.username %}">
-                        <span class="sectionspan">{{user.first_name}} {{user.last_name}}</span>
+                    <a title="{{user.first_name}} {{user.last_name}}" class="username" href="{% url 'profile' user.username %}">
+                        <span class="sectionspan">
+                            <span>
+                                {{user.first_name}} 
+                            </span>
+                            <span>
+                                {{user.last_name}}
+                            </span>
+                        </span>
                         <img src="{{profile.photo.url}}" width="90px">
                     </a>
                 </div>
@@ -23,16 +45,6 @@
                     <span class="sectionspan">Друзья</span>
                     <a href="{% url 'friends' user.username %}">Всего друзей: {{friends.friends}}</a>
                     <a href="{% url 'friendreq' user.username %}">Заявки в друзья: {{friends.requests}}</a>
-                </div>
-            </div>
-            {% else %}
-            <div class="auth block">
-                <div class="sectionspanandrefer">
-                    <span class="sectionspan">Чтобы получить больше возможностей, пожалуйста войтите в аккаунт!</span>
-                    <a href="{% url 'login' %}" class="sectionspan">
-                        <img style="margin-right:10px" src={% static "images/navbar/login.png" %}>
-                        <span>Войти</span>
-                    </a>
                 </div>
             </div>
         {% endif %}
