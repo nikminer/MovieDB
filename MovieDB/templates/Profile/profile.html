@@ -140,23 +140,26 @@
                 </div>
             </div>
         </div>
-        <div class="sectionFeed">
-                <span style="border-left-color: #3dc1d3;" class="bigspan">
-                    Активность 
-                </span>
-            {% for feeditem in feed %}
-            <a href="{{feeditem.list.get_absolute_url}}" class="feeditem">
-                <div class="feedaction">
-                    <img src="{{feeditem.list.obj.img.url}}">
-                    <div>
-                        <span>{{feeditem.list.obj.name}}</span>
-                        <span>{{feeditem.action}}</span>
-                        <span class="feedtimestamp">{{feeditem.created}}</span>
+        {% if feed %}
+            <div class="sectionFeed">
+                    <span style="border-left-color: #3dc1d3;" class="bigspan">
+                        Активность 
+                    </span>
+                {% for feeditem in feed %}
+                <a href="{{feeditem.list.get_absolute_url}}" class="feeditem">
+                    <div class="feedaction">
+                        <img src="{{feeditem.list.obj.img.url}}">
+                        <div>
+                            <span>{{feeditem.list.obj.name}}</span>
+                            <span>{{feeditem.action}}</span>
+                            <span class="feedtimestamp">{{feeditem.created}}</span>
+                        </div>
                     </div>
-                </div>
-                
-            </a>
-            {% endfor %}
-        </div>
+                    
+                </a>
+                {% endfor %}
+            </div>
+        {% endif %}
+        
     </div>
 </body>
