@@ -32,10 +32,7 @@
                     <a title="{{user.first_name}} {{user.last_name}}" class="username" href="{% url 'profile' user.username %}">
                         <span class="sectionspan">
                             <span>
-                                {{user.first_name}} 
-                            </span>
-                            <span>
-                                {{user.last_name}}
+                                {{user.first_name}} {{user.last_name}}
                             </span>
                         </span>
                         <img src="{{profile.photo.url}}" width="90px">

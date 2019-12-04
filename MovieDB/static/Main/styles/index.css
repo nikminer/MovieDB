@@ -100,7 +100,7 @@ html{
     flex-direction: row;
 }
 .username>span>span{
-    width: 100%; 
+    width: 100%;  
     overflow: hidden;
     text-overflow: ellipsis;
     text-align: center;

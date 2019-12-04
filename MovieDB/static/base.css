@@ -50,6 +50,11 @@ nav>div{
     cursor: pointer;
     text-decoration: none;
 }
+@-moz-document url-prefix() {
+    .navitem>img{
+        height:30px;
+    }
+}
 .navitem>img{
     padding: 5px;
     width: 30px;
