@@ -69,7 +69,7 @@ html{
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-evenly;
-    color: white;
+
     padding: 10px;
     text-decoration: none;
     transition: all 0.5s ease;
@@ -89,6 +89,7 @@ html{
 }
 .profile a:hover,.block a:hover{
     background-color: lightgrey;
+    color: black;
 }
 
 
