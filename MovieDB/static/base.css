@@ -39,6 +39,7 @@ nav>div{
     flex-direction: column;
     justify-content: center;
 }
+
 .navitem{
     display: flex;
     flex-direction: row;
@@ -71,6 +72,25 @@ nav>div{
 .navitem:hover>span{
     opacity: 1;
 }
+.navitem:hover>.counter{
+    margin-left: 144px;
+}
+.counter{
+    position: fixed;
+    opacity: 1;
+    left: 0;
+    background-color: #f5cd79;
+    color: black;
+    margin-left: 24px;
+    margin-top: -7px;
+    padding: 2px 6px;
+    border-radius: 20px;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+
+
 
 .messages{
     position: fixed;

@@ -24,12 +24,6 @@
         </a>
     </div>
     <div>
-        {% if user.is_authenticated %}
-        <a href="{% url 'profile' request.user.username %}" class="navitem" style="background-color:#c44569">
-            <img src={% static "images/navbar/profile.png" %}>
-            <span>Мой профиль</span>
-        </a>
-        {% endif %}
         <a href="{% url 'seriallist' %}" class="navitem" style="background-color:#546de5">
             <img src={% static "images/navbar/serials.png" %}>
             <span>Сериалы</span>
@@ -38,13 +32,33 @@
             <img src={% static "images/navbar/films.png" %}>
             <span>Фильмы</span>
         </a>
-        {% if user.is_authenticated %}
-            <a href="{% url 'listserial' request.user.username %}" class="navitem" style="background-color:#3dc1d3">
-                <img src={% static "images/navbar/list.png" %}>
-                <span>Мой список</span>
-            </a>
-        {% endif %}
     </div>
+    {% if user.is_authenticated %}
+    <div>
+        
+        <a href="{% url 'noties' %}" class="navitem" style="background-color:#c44569">
+            <img src="{% static "images/navbar/notifications.png" %}">
+            <span>Уведомления</span>
+            {% if request.user.profile.countNoties > 0 %}
+                <b class="counter">{{request.user.profile.countNoties}}</b>
+            {% endif %}
+            
+        </a>
+        <a href="{% url 'profile' request.user.username %}" class="navitem" style="background-color:#c44569">
+            <img src="{{request.user.profile.photo.url}}">
+            <span>Мой профиль</span>
+        </a>
+        
+        
+    </div>
+    
+    <div>
+        <a href="{% url 'listserial' request.user.username %}" class="navitem" style="background-color:#3dc1d3">
+            <img src={% static "images/navbar/list.png" %}>
+            <span>Мой список</span>
+        </a>
+    </div>
+    {% endif %}
     <div>
         {% if user.is_authenticated %}
             <a href="{% url 'logout' %}" style="background-color:#303952" class="navitem">
@@ -59,7 +73,6 @@
         {% endif %}
     </div>
 </nav>
-
 
     
 {% if messages  %}

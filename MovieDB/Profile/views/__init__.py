@@ -1,4 +1,4 @@
-from . import friends,auth,settings,messages
+from . import friends,auth,settings,messages,notifications
 
 
 from django.shortcuts import render,get_object_or_404
