@@ -1,9 +1,8 @@
 function drag(ev){
-    for (var i in ev.path)
-    if (ev.path[i].className=="film"){
-        ev.dataTransfer.setData("id", ev.path[i].id)
-        break;
-    }
+    ev.dataTransfer.setData('text/plain',null)
+    if (ev.currentTarget.className=="film")
+        ev.dataTransfer.setData("id", ev.currentTarget.id);
+
     faststatus.style.opacity=1
     faststatus.style.zIndex=0;
 }
@@ -12,11 +11,9 @@ function drop(ev) {
     ev.preventDefault()
     
     Group=null
-    for (var i in ev.path)
-        if (ev.path[i].className=="group"){
-            Group=ev.path[i]
-            break
-        }
+    if (ev.currentTarget.className=="group"){
+        Group=ev.currentTarget;
+    }
     
     if (Group!=null) 
         sendStatus(ev.dataTransfer.getData("id"),Group,Group.id)

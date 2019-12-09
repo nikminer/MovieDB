@@ -97,12 +97,13 @@ def getUserProgress(item,serialid,userid):
     for i in userl:
         item.episodes+=i.season.episodecount
         item.watched+=i.userepisode
-
+    item.width= str(int(100/item.episodes*item.watched))+"%"
 class SerialItem:
     serial=None
     seasons=[]
     episodes=0
     watched=0
+    width="0%"
     def __init__(self):
         self.serial=None
         self.seasons=[]

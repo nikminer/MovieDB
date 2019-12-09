@@ -6,26 +6,57 @@
     margin-left: 10px;
     border-left: 3px lightgray solid;
     align-items: flex-start;
+    width: 90%;
 }
+
 .feeduser{
     display: flex;
     flex-direction: row;
     align-items: center;
     font-size: 24px;
     font-weight: bold;
+    padding-right: 20px;
+    
 }
 .feeduser>img{
-    margin-right: 10px;
+    margin-right: 20px;
+    margin-left: 10px;
+    transition: ease all 0.5s;
 }
 
+
+.feedaction{
+    font-size: 18px;
+    display: flex;
+    flex-direction: row;
+    width: 70%;
+}
+.feedaction:hover>div{
+    color: black;
+    margin-left: 20px;
+}
+.feedaction>img{
+    height: 90px;
+}
+.feedaction>div{
+    font-size: 18px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-left: 10px;
+    align-items: flex-start;
+    transition: ease all 0.5s;
+}
+.feedaction>div>span:first-child{
+    font-weight: bold;
+    font-size: 19px;
+    padding-left: 0px;
+}
+.feedaction>div>a:hover{
+    background-color: none;
+}
 .feedtimestamp{
     font-size: 13px;
     margin-bottom: 10px;
-}
-.feedaction{
-    font-size: 18px;
-}
-.feedaction>a{
-    font-weight: bold;
-    text-align: center;
 }

@@ -10,7 +10,8 @@ a{
     "profilehead profilehead profilehead"
     "profileinfo profileinfo profileinfo"
     "section0 section0 section0"
-    "section1 section1 section1";
+    "section1 section1 section1"
+    "sectionFeed sectionFeed sectionFeed";
     grid-template-columns: 200px auto 250px;
     grid-template-rows: 60px 325px 50px auto;
     min-height: 550px;
@@ -196,8 +197,51 @@ a{
 }
 
 
+.sectionFeed{
+    grid-area: sectionFeed;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
 
 
+.feeditem{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    padding-left: 20px;
+    align-items: flex-start;
+    transition: all 0.5s ease;
+}
+.feeditem:hover{
+    background-color: lightgray;
+}
+.feeditem:hover>.feedaction>div{
+    margin-left: 20px;
+}
+.feedtimestamp{
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+.feedaction{
+    font-size: 18px;
+    display: flex;
+    flex-direction: row;
+}
+.feedaction>img{
+    height: 80px;
+}
+.feedaction>div{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 10px;
+    transition: all 0.5s ease;
+}
+.feedaction>div>a{
+    font-weight: bold;
+    font-size: 18px;
+}
 
 
 

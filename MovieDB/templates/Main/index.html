@@ -7,15 +7,34 @@
 
 <body>
     <div class="index">
-        <div class="header">
-            <img src={% static "images/favicon.ico" %}>
-            <span>MovieDB</span>
+        <div class="block auth">
+            <div class="sectionspanandrefer">                           
+                <div class="header">
+                    <img src={% static "images/favicon.ico" %}>
+                    <span>MovieDB</span>
+                </div>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'logout' %}" class="sectionspan">
+                        <img style="margin-right:10px" src={% static "images/navbar/exit.png" %}>
+                        <span>Выход</span>
+                    </a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="sectionspan">
+                        <img style="margin-right:10px" src={% static "images/navbar/login.png" %}>
+                        <span>Войти</span>
+                    </a>
+                {% endif %}
+            </div>
         </div>
         {% if user.is_authenticated %}
             <div class="profile">
                 <div>
-                    <a href="{% url 'profile' user.username %}">
-                        <span class="sectionspan">{{user.first_name}} {{user.last_name}}</span>
+                    <a title="{{user.first_name}} {{user.last_name}}" class="username" href="{% url 'profile' user.username %}">
+                        <span class="sectionspan">
+                            <span>
+                                {{user.first_name}} {{user.last_name}}
+                            </span>
+                        </span>
                         <img src="{{profile.photo.url}}" width="90px">
                     </a>
                 </div>
@@ -27,16 +46,43 @@
             </div>
         {% endif %}
         <div class="serials block">
-            <a href="{% url 'seriallist' %}" class="sectionspan">Сериалы</a>
-            <h3>В процессе разработки</h3>
+            <div class="sectionspanandrefer">
+                <span class="sectionspan">Последние добавленные сериалы</span><a href="{% url 'seriallist' %}" class="sectionspan">Больше</a>
+            </div>
+            
+            <div class="movielist">
+                {% for serial in series %}
+                    <a href="{% url 'serial' serial.id %}">
+                        <img src={{serial.img.url}}>
+                        <span>
+                            {{serial.name}} ({{serial.year}})
+                        </span>
+                    </a>
+                {% endfor %}
+            </div>
         </div>
         <div class="movies block">
-            <a href="{% url 'filmlist' %}" class="sectionspan">Фильмы</a>
-            <h3>В процессе разработки</h3>
+            <div class="sectionspanandrefer">
+                <span class="sectionspan">Последние добавленные фильмы</span><a href="{% url 'filmlist' %}" class="sectionspan">Больше</a>
+            </div>
+            <div class="movielist">
+                {% for film in films %}
+                    <a href="{% url 'film' film.id %}">
+                        <img src={{film.img.url}}>
+                        <span>
+                            {{film.name}} ({{film.year}})
+                        </span>
+                    </a>
+                {% endfor %}
+            </div>
         </div>
         {% if user.is_authenticated %}
             <div class="list block">
-                <a href="{% url 'listserial' request.user.username %}" class="sectionspan">Мой список</a>
+                <div class="sectionspanandrefer">
+                    <span class="sectionspan">Активности</span>
+                    <a href="{% url 'listserial' request.user.username %}" class="sectionspan">Мой список</a>
+                </div>
+                
                 {% include './blocks/feed.html' %}
             </div>
         {% endif %}

@@ -1,6 +1,4 @@
-from . import friends,auth,settings
-
-
+from . import friends,auth,settings,messages,notifications
 
 
 from django.shortcuts import render,get_object_or_404
@@ -8,6 +6,8 @@ from Profile.models import Profile,Friendlist
 from django.contrib.auth.decorators import login_required
 from Main.models import UserList,UserListF
 from django.db.models import Q
+
+from List.views.feed import getFeed
 
 def profile(request,username):
     profile=get_object_or_404(Profile,user__username=username)
@@ -28,6 +28,7 @@ def profile(request,username):
             "count":len(myfriends.filter(status=1)),
             "requestcount":myfriends.filter(accepter=profile,status=0).count()
         },
+        "feed":getFeed([profile]),
     }
 
     if profile.user != request.user and request.user.is_authenticated:

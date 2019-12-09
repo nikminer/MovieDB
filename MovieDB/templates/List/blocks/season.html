@@ -4,7 +4,9 @@
         <span>
             <a class="serialname" href="{% url 'serial' i.serial.id %}" title="{{i.serial.name}}">{{i.serial.name}} ({{i.serial.year}})</a> 
         </span>
-        <progress value="{{i.watched}}" title="Эпизоды: {{i.watched}}/{{i.episodes}}" max={{i.episodes}}></progress>
+        <div class="progress" title="Эпизоды: {{i.watched}}/{{i.episodes}}">
+            <div style="width:{{i.width}}"></div>
+        </div>
         <div>
             <a class="delbtn" href="{% url 'delserial' i.serial.id %}" title="Удалить весь сериал"></a>
         </div>
