@@ -5,3 +5,4 @@ requests
 pillow
 django-background-tasks
 django-precise-bbcode
+django-crontab
