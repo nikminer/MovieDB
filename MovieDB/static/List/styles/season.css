@@ -1,7 +1,7 @@
 .season{
     display:grid;
-    grid-template-areas: ". Name numeric ratings ";
-    grid-template-columns: 10px auto 80px 150px ;
+    grid-template-areas: ". status Name numeric ratings ";
+    grid-template-columns: 10px 60px auto 80px 110px ;
     grid-column-gap: 20px;
     background-color: #fff;
     padding:  7px 20px;
@@ -31,9 +31,21 @@
 }
 .legend{
     display:grid;
-    grid-template-areas: "Name numeric ratings ";
-    grid-template-columns: auto 80px 150px ;
+    grid-template-areas: "status Name numeric ratings ";
+    grid-template-columns: 60px auto 80px 110px ;
     grid-column-gap: 20px;
     padding:  7px 15px;
     font-size:13px;
+    margin-left: 30px;
+    margin-right: 10px;
+}
+.legend>span{
+    text-align: center;
+}
+
+.status{
+    grid-area: status;
+    padding: 4px;
+    color:white;
+    text-align: center;
 }
