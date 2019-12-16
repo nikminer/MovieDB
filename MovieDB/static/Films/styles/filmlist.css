@@ -30,8 +30,6 @@ html{
     background-color: #e15f41;  
 }
 
-
-
 .pagedisc{
     margin: 20px;
     margin-bottom: 10px;
@@ -41,10 +39,11 @@ html{
     border-bottom: #e15f41 solid 2px;
 }
 
-
-
-
-
+.films{
+    display: grid;
+    grid-template-areas: "filmlist filters";
+    grid-template-columns: auto 200px;
+}
 
 .filmList{
     padding: 20px;
@@ -53,13 +52,6 @@ html{
     flex-wrap: wrap;
     justify-content: space-around;
 }
-
-
-
-
-
-
-
 
 
 .film {
@@ -96,4 +88,72 @@ html{
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+}
+
+
+
+
+
+
+
+.filters{
+    grid-area: filters;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    margin-top: 5px;
+}
+
+.filter{
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+}
+
+.groupspan{
+    font-size: 18px;
+    font-weight: bold;
+    border-left: #e15f41 10px solid;
+    padding-left: 5px;
+}
+
+.filter>label{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    
+}
+.filter>label:hover{
+    background-color: #e15f41;
+    color: white;
+}
+.filter>label>span{
+    font-size: 17px;
+    width: 100%;
+    padding: 3px;
+    padding-left: 10px;
+}
+.filter>label>input[type=checkbox]{
+    display: none;
+}
+.filter>label> input[type=checkbox]:checked+span  {
+    background-color: #e15f41;
+    color: white;
+}
+
+.filters>button{
+    margin-top: 5px;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.5s all ease;
+    padding: 5px;
+    font-size: 17px;
+    margin-bottom: 5px;
+}
+.filters>button:hover{
+    background-color: #e15f41;
+    color: #fff;
 }
