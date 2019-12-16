@@ -139,8 +139,9 @@ def AddSeasons(movie,id):
             season.status_id=1
         season.save()
         
-        AddEpisodes(movie.seasons[i].episodes,season.id)
-def AddEpisodes(episodes,id):
+        AddEpisodes(movie.seasons[i].episodes,season)
+        
+def AddEpisodes(episodes,season):
     rdate=None
     for i in range(0,len(episodes)):
         if episodes[i].title:

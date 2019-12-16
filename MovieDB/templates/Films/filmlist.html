@@ -13,20 +13,31 @@
     <p class="pagedisc">
         Список фильмов отсортированный по дате выхода. Если вы вдруг не нашли ваш фильм, просто добавьте его, нажав на кнопку "Добавить фильм".
     </p>
-    <div class="filmList" >
-    {% for film in FilmList %}
-        <a href="{% url 'film' film.id %}" class="film" title="{{film.name}} / {{film.originalname}} ({{film.year}})">
-            <div class="poster">
-                <img height="200px" src={{film.img.url}}>
+    <div class="films">
+        <div class="filmList">
+        {% for film in FilmList %}
+            <a href="{% url 'film' film.id %}" class="film" title="{{film.name}} / {{film.originalname}} ({{film.year}})">
+                <div class="poster">
+                    <img height="200px" src={{film.img.url}}>
+                </div>
+                <span >{{film.name}} / {{film.originalname}}</span>
+                <div class="filmsmallinfo">
+                    <span>{{film.year}}</span>
+                    {% if film.InMyList == "True" %}<span style="background-color: #e15f41;color: white;padding: 2px;">В списке</span>{% endif %}</span>
+                </div>
+            </a>
+            
+        {% endfor %}
+        </div>
+
+        <div class="filters">
+            <span class="groupspan">Жанры</span>
+            <div class="filter">
+            {% for genre in Genrelist %}
+                <label><input class="category" type="checkbox" value="{{genre.tag}}"><span>{{genre.name}}</span></label>
+            {% endfor %}
             </div>
-            <span >{{film.name}} / {{film.originalname}}</span>
-            <div class="filmsmallinfo">
-                <span>{{film.year}}</span>
-                {% if film.InMyList == "True" %}<span style="background-color: #e15f41;color: white;padding: 2px;">В списке</span>{% endif %}</span>
-            </div>
-        </a>
-        
-    {% endfor %}
+            <button onclick="changeCategorys()">Применить</button>
+        </div>
     </div>
-    
 </body>
