@@ -29,14 +29,15 @@ def deletenotification(request):
 
 def addnotification(message,obj,profile):
     noti=Notifications.objects.create(profile=profile,message=message)
-    if obj is Serial:
+    if type(obj)is Serial:
         noti.serial = obj
         noti.save()
         return True
-    elif obj is Film:
+    elif type(obj) is Film:
         noti.film = obj
         noti.save()
         return True
     else:
+        print(type(obj))
         noti.delete()
     return False

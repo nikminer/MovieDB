@@ -36,9 +36,6 @@ def Search(request):
     })
 
 
-
-
-
 @login_required
 def AddMovie(request,id):
 
@@ -144,8 +141,20 @@ def AddSeasons(movie,id):
         
         AddEpisodes(movie.seasons[i].episodes,season.id)
 def AddEpisodes(episodes,id):
-    for episode in episodes:
-        try:
-            SeriesList.objects.create(name=str(episode.title),date=episode.release_date,season_id=id)
-        except django.core.exceptions.ValidationError:
-            break
+    rdate=None
+    for i in range(0,len(episodes)):
+        if episodes[i].title:
+            SeriesList.objects.create(
+                name=str(episodes[i].title),
+                date=episodes[i].release_date,
+                season=season
+            )
+            rdate=datetime.datetime.strptime(str(episodes[i].release_date),"%Y-%m-%d")
+        else:
+            if rdate:
+                rdate+=datetime.timedelta(days=7)
+                SeriesList.objects.create(
+                    name=str(i+1)+" серия",
+                    date=str(rdate.date()),
+                    season=season
+                )
