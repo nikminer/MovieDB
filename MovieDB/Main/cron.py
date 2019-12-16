@@ -1,7 +1,8 @@
-from Main.models import SeriesList,Serial
+from Main.models import SeriesList,Serial,Season
 from List.models import UserList
 from Profile.views.notifications import addnotification
 from kinopoisk.movie import Movie
+import datetime
 
 def checkSeries():
   for i in SeriesList.objects.filter(date=datetime.datetime.today() - datetime.timedelta(days=1)):
