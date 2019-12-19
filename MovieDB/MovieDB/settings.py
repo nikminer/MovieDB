@@ -138,5 +138,5 @@ MEDIA_URL='/media/'
 
 CRONJOBS = [
     ('0 6 * * *', 'Main.cron.check','>> /srv/checkSeries.log'),
-    ('30 6 * * *', 'Main.cron.checkStatus','>> /srv/checkStatus.log'),
+    ('5 6 * * *', 'Main.cron.checkStatus','>> /srv/checkStatus.log'),
 ]

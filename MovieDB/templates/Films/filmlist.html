@@ -34,10 +34,37 @@
             <span class="groupspan">Жанры</span>
             <div class="filter">
             {% for genre in Genrelist %}
-                <label><input class="category" type="checkbox" value="{{genre.tag}}"><span>{{genre.name}}</span></label>
+                <label><input class="genre" type="checkbox" value="{{genre.tag}}"><span>{{genre.name}}</span></label>
             {% endfor %}
             </div>
-            <button onclick="changeCategorys()">Применить</button>
+            <button onclick="changeGenres()">Применить</button>
+            <script>
+                var genres=document.getElementsByClassName("genre");
+                var urlParams = new URLSearchParams(window.location.search);
+                var param = urlParams.get('genres');
+                if (param!=null){
+                    var param=param.split(" ");
+                    for (var i=0;i<genres.length;i++){
+                        if (param.includes(genres[i].value))
+                            genres[i].checked=true
+                    }
+                } 
+                delete urlParams
+                delete param
+                delete genres
+                function changeGenres(){
+                    var genres=document.getElementsByClassName("genre");
+                    var url=new URL(window.location['href'])
+                    var param="";
+                    for (var i=0;i<genres.length;i++){
+                        if (genres[i].checked)
+                            param+=genres[i].value+" "
+                    }
+                    param=param.trimEnd();
+                    url.searchParams.set('genres', param)
+                    window.location.href=url['href']
+                }
+            </script>
         </div>
     </div>
 </body>
