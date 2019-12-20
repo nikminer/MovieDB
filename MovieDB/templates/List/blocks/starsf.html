@@ -1,5 +1,6 @@
 {% load staticfiles %}
 <link rel="stylesheet" href="{% static "List/styles/stars.css" %}" />
+{% if request.user == user %}
 <script src="{% static "List/scripts/setRatingF.js" %}"></script>
 
 <div id="ratings">
@@ -24,3 +25,17 @@
   <input id="star-0_{{i.id}}" value=1 {% if i.userrate == 1 %} checked {% endif %} type="radio" name="ratings_{{i.id}}" onclick="setRating(this,{{i.id}})"/>
     <label title=1 class=star for="star-0_{{i.id}}"></label>
 </div>
+{% else %}
+<div id="ratings">
+  <img src={% if i.userrate >= 10%}{% static "images/star0_20px_2.png" %}{% else %}{% static "images/star0_20px_1.png" %}{% endif %}>
+  <img src={% if i.userrate >= 9 %}{% static "images/star1_20px_2.png" %}{% else %}{% static "images/star1_20px_1.png" %}{% endif %}>
+  <img src={% if i.userrate >= 8 %}{% static "images/star0_20px_2.png" %}{% else %}{% static "images/star0_20px_1.png" %}{% endif %}>
+  <img src={% if i.userrate >= 7 %}{% static "images/star1_20px_2.png" %}{% else %}{% static "images/star1_20px_1.png" %}{% endif %}>
+  <img src={% if i.userrate >= 6 %}{% static "images/star0_20px_2.png" %}{% else %}{% static "images/star0_20px_1.png" %}{% endif %}>
+  <img src={% if i.userrate >= 5 %}{% static "images/star1_20px_2.png" %}{% else %}{% static "images/star1_20px_1.png" %}{% endif %}>
+  <img src={% if i.userrate >= 4 %}{% static "images/star0_20px_2.png" %}{% else %}{% static "images/star0_20px_1.png" %}{% endif %}>
+  <img src={% if i.userrate >= 3 %}{% static "images/star1_20px_2.png" %}{% else %}{% static "images/star1_20px_1.png" %}{% endif %}>
+  <img src={% if i.userrate >= 2 %}{% static "images/star0_20px_2.png" %}{% else %}{% static "images/star0_20px_1.png" %}{% endif %}>
+  <img src={% if i.userrate >= 1 %}{% static "images/star1_20px_2.png" %}{% else %}{% static "images/star1_20px_1.png" %}{% endif %}>
+</div>
+{% endif %}

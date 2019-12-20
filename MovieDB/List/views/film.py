@@ -55,6 +55,7 @@ def userlist(request,username):
         "groups":lists,
         "type":"films",
         "genrelist":genrelist,
+        "user":user
     })
 
 def getFilmlist(userid,statusid,request):

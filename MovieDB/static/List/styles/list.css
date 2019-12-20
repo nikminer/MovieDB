@@ -75,6 +75,11 @@ input[type=search]{
     flex-direction: column;
     margin-top: 5px;
 }
+.filter>img{
+    width: 160px;
+    margin: auto;
+    margin-bottom: 20px;
+}
 .filter>label{
     display: flex;
     flex-direction: row;

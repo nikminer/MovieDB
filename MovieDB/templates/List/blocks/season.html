@@ -8,7 +8,9 @@
             <div style="width:{{i.width}}"></div>
         </div>
         <div>
+        {% if request.user == user %}
             <a class="delbtn" href="{% url 'delserial' i.serial.id %}" title="Удалить весь сериал"></a>
+        {% endif %}
         </div>
     </div>
 </summary>
@@ -22,6 +24,7 @@
         <a href="{% url 'season' UserItem.season.id %}">{{UserItem.season.name}}</a>
         
         <div id="numchange">
+            {% if request.user == user %}
             <div class=numeric>
                 <span id="userepisodeview_{{UserItem.id}}">{{UserItem.userepisode}}</span>/<span>{{UserItem.season.episodecount}}</span>
             </div>
@@ -30,6 +33,11 @@
                 <input id=numerinput_{{UserItem.id}} type="number" min=0 max={{UserItem.season.episodecount}} onchange="setepisode({{UserItem.id}})" value="{{UserItem.userepisode}}">
                 <span onclick="increment({{UserItem.id}})">+</span>
             </div>
+            {% else %}
+            <div class=numericP>
+                <span id="userepisodeview_{{UserItem.id}}">{{UserItem.userepisode}}</span>/<span>{{UserItem.season.episodecount}}</span>
+            </div>
+            {% endif %}
         </div>
         {% include "List/blocks/stars.html" %}   
     </div>

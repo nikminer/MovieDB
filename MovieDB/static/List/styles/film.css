@@ -1,7 +1,7 @@
 .film{
     display:grid;
     grid-template-areas: ". Name ratings del";
-    grid-template-columns: 10px auto 150px 20px ;
+    grid-template-columns: 10px auto 100px 20px ;
     grid-column-gap: 20px;
     background-color: #fff;
     padding: 10px 20px;
@@ -31,8 +31,11 @@
 .legend{
     display:grid;
     grid-template-areas: "Name ratings del";
-    grid-template-columns: auto 150px 20px ;
+    grid-template-columns: auto 100px 20px ;
     grid-column-gap: 20px;
     padding:  7px 15px;
     font-size:13px;
+}
+.legend>span{
+    text-align: center;
 }

@@ -4,6 +4,9 @@
 .star:nth-child(4n){
     background: url('../images/star1_20px.png') no-repeat;
 }
+#ratings>img{
+    width: 10px;
+}
 #ratings {
     overflow: hidden;
     *zoom: 1;

@@ -63,6 +63,7 @@ def userlist(request,username=None):
         "groups":lists,
         "type":"series",
         "genrelist":genrelist,
+        "user":user
     })
 
 
