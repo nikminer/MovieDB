@@ -27,7 +27,7 @@
                 <span>
                     Жанр: 
                     {% for i in serial.genre%}
-                        <span>{{i.genre.name}}</span>
+                        <a class="genre" href="{% url 'seriallist' %}?genres={{i.genre.tag}}">{{i.genre.name}}</a>
                     {% endfor %}
                 </span>
                 <span>

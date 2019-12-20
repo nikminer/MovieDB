@@ -52,7 +52,7 @@
             
             <div class="movielist">
                 {% for serial in series %}
-                    <a href="{% url 'serial' serial.id %}">
+                    <a href="{% url 'serial' serial.id %}" title="{{serial.name}} ({{serial.year}})">
                         <img src={{serial.img.url}}>
                         <span>
                             {{serial.name}} ({{serial.year}})
@@ -67,7 +67,7 @@
             </div>
             <div class="movielist">
                 {% for film in films %}
-                    <a href="{% url 'film' film.id %}">
+                    <a href="{% url 'film' film.id %}" title="{{film.name}} ({{film.year}})">
                         <img src={{film.img.url}}>
                         <span>
                             {{film.name}} ({{film.year}})

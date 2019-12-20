@@ -132,6 +132,7 @@ html{
     font-weight: bold;
     text-align: center;
     height: 40px;
+    overflow: hidden;
 }
 
 
