@@ -161,3 +161,15 @@ html{
 .bigspan{
     border-left: 10px #e15f41 solid;
 }
+
+.genre{
+    color: black;
+    background-color: white;
+    padding: 2px 3px;
+    transition: all 0.5s ease;
+}
+.genre:hover{
+    text-decoration: none;
+    color: white;
+    background-color: #e15f41;
+}

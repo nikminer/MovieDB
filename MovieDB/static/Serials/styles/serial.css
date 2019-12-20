@@ -150,3 +150,15 @@ html{
 .bigspan{
     border-left-color: #546de5;
 }
+
+.genre{
+    color: black;
+    background-color: white;
+    padding: 2px 3px;
+    transition: all 0.5s ease;
+}
+.genre:hover{
+    text-decoration: none;
+    color: white;
+    background-color: #546de5;
+}

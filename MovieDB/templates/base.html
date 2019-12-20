@@ -54,8 +54,12 @@
     
     <div>
         <a href="{% url 'listserial' request.user.username %}" class="navitem" style="background-color:#3dc1d3">
-            <img src={% static "images/navbar/list.png" %}>
-            <span>Мой список</span>
+            <img src={% static "images/navbar/listserial.png" %}>
+            <span>Мои Сериалы</span>
+        </a>
+        <a href="{% url 'listfilm' request.user.username %}" class="navitem" style="background-color:#3dc1d3">
+            <img src={% static "images/navbar/listfilms.png" %}>
+            <span>Мои Фильмы</span>
         </a>
     </div>
     {% endif %}
