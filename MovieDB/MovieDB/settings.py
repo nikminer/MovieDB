@@ -137,6 +137,6 @@ MEDIA_ROOT=os.path.join(BASE_DIR, "../media/")
 MEDIA_URL='/media/'
 
 CRONJOBS = [
-    ('0 6 * * *', 'Main.cron.check','>> /srv/checkSeries.log'),
+    ('0 6 * * *', 'Main.cron.checkSeries','>> /srv/checkSeries.log'),
     ('5 6 * * *', 'Main.cron.checkStatus','>> /srv/checkStatus.log'),
 ]

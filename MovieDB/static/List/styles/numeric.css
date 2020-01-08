@@ -15,6 +15,15 @@
     opacity: 1;
     transition: all 0.5s ease;
 }
+.numericP{
+    grid-area: place;
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items: center;
+    font-size: 14px;
+    letter-spacing: 2px;
+}
 .numericinput{
     grid-area: place;
     display:flex;

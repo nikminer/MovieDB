@@ -3,6 +3,8 @@
     <a class="filmname" href="{% url 'film' i.film.id %}" title="{{i.film.name}}">{{i.film.name}} ({{i.film.year}})</a> 
     {% include "List/blocks/starsf.html" %}
     <div>
+    {% if request.user == user %}
         <a class="delbtn" href="{% url 'delfilm' i.film.id %}" title="Удалить фильм"></a>
+    {% endif %}
     </div>
 </div>
