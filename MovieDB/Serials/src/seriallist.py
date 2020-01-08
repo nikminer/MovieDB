@@ -11,8 +11,9 @@ def SerialList(request):
     if request.GET.get('genres'):
        Serials= Serials.filter(genre__genre__tag__in=request.GET.get('genres').split(' ')).distinct()
     
-    for serial in Serials:
-        serial.InMyList=str(len(UserList.objects.filter(serial=serial,user=request.user))>0)
+    if request.user.is_authenticated:
+        for serial in Serials:
+            serial.InMyList=str(len(UserList.objects.filter(serial=serial,user=request.user))>0)
 
     data={
         "SerialList":Serials,

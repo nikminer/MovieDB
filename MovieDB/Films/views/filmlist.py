@@ -11,9 +11,9 @@ def FilmList(request):
        FilmList= FilmList.filter(genref__genre__tag__in=request.GET.get('genres').split(' ')).distinct()
 
 
-
-    for film in FilmList:
-        film.InMyList=str(len(UserListF.objects.filter(film=film,user=request.user))>0)
+    if request.user.is_authenticated:
+        for film in FilmList:
+            film.InMyList=str(len(UserListF.objects.filter(film=film,user=request.user))>0)
     
     data={
         "FilmList":FilmList,
