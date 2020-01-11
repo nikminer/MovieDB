@@ -1,0 +1,60 @@
+{% load static %}
+{% include "../base.html" %}
+
+<link rel="stylesheet" href={% static 'Profile/friends.css' %} type="text/css" />
+
+<title>Список заявок в друзья {{profile.user.first_name}} {{profile.user.last_name}}</title>
+
+<body>
+    <div class="friends">
+        <a href={% url 'profile'  profile.user.username %} class="bckbtn">
+            <b>◄</b><span>К профилю</span>
+        </a>
+        <a href={% url 'friends'  profile.user.username %} class="requestf">
+            <span>Друзья</span><b>{{friends.fcount}}</b>
+        </a>
+        <div class="friendlist">
+            <span>Завявки в друзья ({{friends.count}})</span>
+            <div>
+            {% if friends.count >= 1 %}
+                {% for friend in friends.list  %}
+                <div class="friend">
+                    <a title="{{friend.user.first_name}} {{friend.user.last_name}}" href="{% url 'profile' friend.user.username %}">
+                        <img width="120px" src="{{friend.photo.url}}" >
+                        <span>{{friend.user.first_name}} {{friend.user.last_name}}</span>
+                    </a>
+                    <div>
+                        <a href="{% url 'acceptfriend' profile.user.username friend.idlink %}">Принять</a>
+                        <a href="">Отклонить</a>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="friend" style="width:100%;align-items:flex-start">
+                    <span style="width:300px">Заявок в друзья не обнаружено :(</span>
+                </div>
+            {% endif %}
+            </div>
+            <span>Отправленые заявки в друзья ({{friends.count2}})</span>
+            <div>
+            {% if friends.count2 >= 1 %}
+                {% for friend in friends.list2  %}
+                <div class="friend">
+                    <a title="{{friend.user.first_name}} {{friend.user.last_name}}" href="{% url 'profile' friend.user.username %}">
+                        <img width="120px" src="{{friend.photo.url}}" >
+                        <span>{{friend.user.first_name}} {{friend.user.last_name}}</span>
+                    </a>
+                    <div>
+                        <a style="width:100%;text-align:center" href="{% url 'declinefriend' profile.user.username friend.idlink %}">Отменить</a>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="friend" style="width:100%;align-items:flex-start">
+                    <span style="width:300px">Ваших заявок не найдено!</span>
+                </div>
+            {% endif %}
+            </div>
+        </div>
+    </div>
+</body>

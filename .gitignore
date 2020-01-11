@@ -1,8 +1,4 @@
-/.vscode
 __pycache__
 **.pyc
-SerialDB/SerialDB.sqlite3
-/media
-/SerialDB/SerialDB/settings.py
+db.sqlite3
 secret_key
-SerialDB.sqlite3
