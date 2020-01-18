@@ -8,7 +8,7 @@ from Serials.Seasons import urls as urlsSeasons
 urlpatterns = [
     path('', views.seriallist.SerialList, name='seriallist'),
     path('<int:page>', views.seriallist.SerialList, name='seriallist_page'),
-    path('<int:id>', views.serial.serial, name='serial'),
+    path('details/<int:id>', views.serial.serial, name='serial'),
 
     path('season/',include(urlsSeasons)),
 ]
