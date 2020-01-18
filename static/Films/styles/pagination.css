@@ -24,10 +24,9 @@
     color: black;
     padding: 5px 10px;
     transition: all 0.5s ease;
-    text-decoration: none;
-    font-size: 26px;
 }
 .step-links a:hover{
     color: white;
+    text-decoration: none;
     background-color: #e15f41;
 }

@@ -10,7 +10,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path("",views.filmlist.FilmList,name="filmlist"),
     path("<int:page>",views.filmlist.FilmList,name="filmlist_page"),
-    path("details/<int:id>",views.film.film ,name="film"),
+    path("<int:id>",views.film.film ,name="film"),
     path("set/status",views.film.setstatus),
     path("set/rating",views.film.setrating),
 ]
