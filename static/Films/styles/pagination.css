@@ -1,0 +1,32 @@
+.pagination{
+    text-align:center;
+    height:35px;
+    margin-top: 30px;
+    padding-bottom: 20px;
+
+    font-size: 20px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.pagination>.step-links{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.pagination>.step-links>span{
+    min-width: 110px;
+}
+.step-links a{
+    color: black;
+    padding: 5px 10px;
+    text-decoration: none;
+    transition: all 0.5s ease;
+}
+.step-links a:hover{
+    color: white;
+    background-color: #e15f41;
+}

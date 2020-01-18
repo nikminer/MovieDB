@@ -1,0 +1,41 @@
+{% load static %}
+<link rel="stylesheet" href="{% static "List/styles/stars.css" %}" />
+{% if request.user == user %}
+<script src="{% static "List/scripts/setRatingF.js" %}"></script>
+
+<div id="ratings">
+  <input id="star-9_{{i.id}}" value=10 {% if i.userrate == 10 %} checked {% endif %} type="radio" name="ratings_{{i.id}}" onclick="setRating(this,{{i.id}})"/>
+    <label title=10 class=star for="star-9_{{i.id}}"></label>
+  <input id="star-8_{{i.id}}" value=9 {% if i.userrate == 9 %} checked {% endif %} type="radio" name="ratings_{{i.id}}" onclick="setRating(this,{{i.id}})"/>
+    <label title=9 class=star for="star-8_{{i.id}}"></label>
+  <input id="star-7_{{i.id}}" value=8 {% if i.userrate == 8 %} checked {% endif %} type="radio" name="ratings_{{i.id}}" onclick="setRating(this,{{i.id}})"/>
+    <label title=8 class=star for="star-7_{{i.id}}"></label>
+  <input id="star-6_{{i.id}}" value=7 {% if i.userrate == 7 %} checked {% endif %} type="radio" name="ratings_{{i.id}}" onclick="setRating(this,{{i.id}})"/>
+    <label title=7 class=star for="star-6_{{i.id}}"></label>
+  <input id="star-5_{{i.id}}" value=6 {% if i.userrate == 6 %} checked {% endif %} type="radio" name="ratings_{{i.id}}" onclick="setRating(this,{{i.id}})"/>
+    <label title=6 class=star for="star-5_{{i.id}}"></label>
+  <input id="star-4_{{i.id}}" value=5 {% if i.userrate == 5 %} checked {% endif %} type="radio" name="ratings_{{i.id}}" onclick="setRating(this,{{i.id}})"/>
+    <label title=5 class=star for="star-4_{{i.id}}"></label>
+  <input id="star-3_{{i.id}}" value=4 {% if i.userrate == 4 %} checked {% endif %} type="radio" name="ratings_{{i.id}}" onclick="setRating(this,{{i.id}})"/>
+    <label title=4 class=star for="star-3_{{i.id}}"></label>
+  <input id="star-2_{{i.id}}" value=3 {% if i.userrate == 3 %} checked {% endif %} type="radio" name="ratings_{{i.id}}" onclick="setRating(this,{{i.id}})"/>
+    <label title=3 class=star for="star-2_{{i.id}}"></label>
+  <input id="star-1_{{i.id}}" value=2 {% if i.userrate == 2 %} checked {% endif %} type="radio" name="ratings_{{i.id}}" onclick="setRating(this,{{i.id}})"/>
+    <label title=2 class=star  for="star-1_{{i.id}}"></label>
+  <input id="star-0_{{i.id}}" value=1 {% if i.userrate == 1 %} checked {% endif %} type="radio" name="ratings_{{i.id}}" onclick="setRating(this,{{i.id}})"/>
+    <label title=1 class=star for="star-0_{{i.id}}"></label>
+</div>
+{% else %}
+<div id="ratings">
+  <img src={% if i.userrate >= 10%}{% static "images/star0_20px_2.png" %}{% else %}{% static "images/star0_20px_1.png" %}{% endif %}>
+  <img src={% if i.userrate >= 9 %}{% static "images/star1_20px_2.png" %}{% else %}{% static "images/star1_20px_1.png" %}{% endif %}>
+  <img src={% if i.userrate >= 8 %}{% static "images/star0_20px_2.png" %}{% else %}{% static "images/star0_20px_1.png" %}{% endif %}>
+  <img src={% if i.userrate >= 7 %}{% static "images/star1_20px_2.png" %}{% else %}{% static "images/star1_20px_1.png" %}{% endif %}>
+  <img src={% if i.userrate >= 6 %}{% static "images/star0_20px_2.png" %}{% else %}{% static "images/star0_20px_1.png" %}{% endif %}>
+  <img src={% if i.userrate >= 5 %}{% static "images/star1_20px_2.png" %}{% else %}{% static "images/star1_20px_1.png" %}{% endif %}>
+  <img src={% if i.userrate >= 4 %}{% static "images/star0_20px_2.png" %}{% else %}{% static "images/star0_20px_1.png" %}{% endif %}>
+  <img src={% if i.userrate >= 3 %}{% static "images/star1_20px_2.png" %}{% else %}{% static "images/star1_20px_1.png" %}{% endif %}>
+  <img src={% if i.userrate >= 2 %}{% static "images/star0_20px_2.png" %}{% else %}{% static "images/star0_20px_1.png" %}{% endif %}>
+  <img src={% if i.userrate >= 1 %}{% static "images/star1_20px_2.png" %}{% else %}{% static "images/star1_20px_1.png" %}{% endif %}>
+</div>
+{% endif %}

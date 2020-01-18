@@ -1,0 +1,21 @@
+{% load static %}
+{% if page.paginator.num_pages > 1 %}
+<link href="{% static "Films/styles/pagination.css" %}" rel="stylesheet">
+<div class="pagination">
+    <span class="step-links">
+        <span>
+        {% if page.has_previous %}
+            <a href="{% url 'filmlist_page' page.previous_page_number %}">←</a>
+        {% endif %}
+        </span>
+        <span class="current">
+            Page {{ page.number }} / {{ page.paginator.num_pages }}.
+        </span>
+        <span>
+            {% if page.has_next %}
+                <a href="{% url 'filmlist_page' page.next_page_number %}">→</a>
+            {% endif %}
+        </span>
+    </span>
+</div>
+{% endif %}
