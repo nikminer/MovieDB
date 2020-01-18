@@ -5,7 +5,7 @@
     <span class="step-links">
         <span>
         {% if page.has_previous %}
-            <a href="{% url 'filmlist_page' page.previous_page_number %}">Previous</a>
+            <a href="{% url 'filmlist_page' page.previous_page_number %}">←</a>
         {% endif %}
         </span>
         <span class="current">
@@ -13,7 +13,7 @@
         </span>
         <span>
             {% if page.has_next %}
-                <a href="{% url 'filmlist_page' page.next_page_number %}">Next</a>
+                <a href="{% url 'filmlist_page' page.next_page_number %}">→</a>
             {% endif %}
         </span>
     </span>
