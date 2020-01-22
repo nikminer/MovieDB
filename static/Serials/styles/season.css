@@ -9,7 +9,7 @@ html{
     grid-template-areas: "bckbtn . ."
     "SerialName SerialName SerialName "
     "poster SerialInfo userrate"
-    "poster SerialInfo ."
+    "poster SerialInfo friends"
     "actionpanel discription discription"
     "actionpanel seasons seasons "
     "actionpanel episodelist episodelist";
@@ -137,7 +137,7 @@ html{
 }
 .actionpanel>a:hover{
     border-left: 10px #546de5 solid;
-    border-right: 10px#546de5 solid;
+    border-right: 10px #546de5 solid;
     cursor: pointer;
     background-color: rgb(223, 219, 219);
     width: 90%;
@@ -213,4 +213,36 @@ html{
     border-right: 10px #e66767 solid;
     cursor: pointer;
     background-color: rgb(223, 219, 219);
+}
+
+.friends{
+    grid-area: friends;
+    height: 170px;
+    display: flex;
+    flex-direction: column;
+}
+.friends>div{
+    margin-top: 5px;
+    height: 140px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    overflow-y: auto;
+}
+.friends>div>a{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: black;
+    padding: 5px;
+    transition: all 0.5s ease;
+}
+.friends>div>a:hover{
+    text-decoration: none;
+    color: white;
+    background-color: #546de5;
+}
+.friends>div>a>img{
+    height:35px;
+    margin-right: 10px;
 }

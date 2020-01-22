@@ -60,7 +60,15 @@
                 }
                 </script>
             </div>
+            {% if user.is_authenticated %}
+
+
+        {% endif %}
         </div>
+
+        {% load FilmTags %}
+        {% friendListF user.profile Film %}
+
         {% if UserItem %}
         <div class='actionpanel'>
             {% include "Films/blocks/selectBox.html" %}

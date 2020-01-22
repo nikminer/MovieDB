@@ -1,0 +1,13 @@
+<div class="friends">
+    {% if friends|length > 0 %}
+        <span class="bigspan">У ваших друзей</span>
+        <div>
+        {% for friend in friends %}
+            <a href="{% url "listserial" friend.user.username %}?groups={{ friend.get_statusTag }}" title="{{ friend.user.profile.name }}">
+                <img src="{{friend.user.profile.photo.url}}">
+                {{ friend.get_status }} - {{ friend.userrate }} из 10
+            </a>
+        {% endfor %}
+    {% endif %}
+    </div>
+</div>

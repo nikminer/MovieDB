@@ -35,14 +35,11 @@
                                 {{user.first_name}} {{user.last_name}}
                             </span>
                         </span>
-                        <img src="{{profile.photo.url}}" width="90px">
+                        <img src="{{user.profile.photo.url}}" width="90px">
                     </a>
                 </div>
-                <div>
-                    <span class="sectionspan">Друзья</span>
-                    <a href="{% url 'friends' user.username %}">Всего друзей: {{friends.friends}}</a>
-                    <a href="{% url 'friendreq' user.username %}">Заявки в друзья: {{friends.requests}}</a>
-                </div>
+                {% load index_tags %}
+                {% friends user.profile %}
             </div>
         {% endif %}
         <div class="serials block">

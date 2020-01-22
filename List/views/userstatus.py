@@ -29,3 +29,10 @@ UserStatusDict={
     3:"Просмотрено",
     5:"Брошено"
 }
+UserTagsStatusDict={
+    1:"planned",
+    2:"watch",
+    4:"rewatch",
+    3:"watched",
+    5:"drop"
+}

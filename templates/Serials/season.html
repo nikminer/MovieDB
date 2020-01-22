@@ -63,6 +63,10 @@
                 </script>
             </div>
         </div>
+
+        {% load SeasonTags %}
+        {% friendListS user.profile season %}
+
         {% if UserItem %}
         
         <link rel="stylesheet" href={% static 'Serials/styles/numeric.css' %} type="text/css" />

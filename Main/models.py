@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.db.models import Avg
 from django.urls import reverse
 
+
 class StatusList(models.Model):
     name= models.TextField()
     color= models.TextField()
@@ -118,6 +119,16 @@ class UserList(models.Model):
     def get_absolute_url(self):
         return reverse("serial", kwargs={"id": self.serial.id})
 
+    @property
+    def get_status(self):
+        from List.views.userstatus import UserStatusDict
+        return UserStatusDict.get(self.userstatus)
+
+    @property
+    def get_statusTag(self):
+        from List.views.userstatus import UserTagsStatusDict
+        return UserTagsStatusDict.get(self.userstatus)
+
 class UserListF(models.Model):
     user= models.ForeignKey(User,on_delete=models.CASCADE)
     film= models.ForeignKey(Film,on_delete=models.CASCADE)
@@ -131,4 +142,13 @@ class UserListF(models.Model):
     @property
     def get_absolute_url(self):
         return reverse("film", kwargs={"id": self.film.id})
-    
+
+    @property
+    def get_status(self):
+        from List.views.userstatus import UserStatusDict
+        return UserStatusDict.get(self.userstatus)
+
+    @property
+    def get_statusTag(self):
+        from List.views.userstatus import UserTagsStatusDict
+        return UserTagsStatusDict.get(self.userstatus)
