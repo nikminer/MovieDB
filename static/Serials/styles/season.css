@@ -214,6 +214,17 @@ html{
     cursor: pointer;
     background-color: rgb(223, 219, 219);
 }
+.genre{
+    color: black;
+    background-color: white;
+    padding: 2px 3px;
+    transition: all 0.5s ease;
+}
+.genre:hover{
+    text-decoration: none;
+    color: white;
+    background-color: #546de5;
+}
 
 .friends{
     grid-area: friends;

@@ -25,7 +25,13 @@
                 </span>
                 <span>
                     Статус: <span class="status" style="background-color: {{season.status.color}}">{{season.status.name}}</span>
-                </span>  
+                </span>
+                <span>
+                    Жанр:
+                    {% for i in season.serial.genre%}
+                        <a class="genre" href="{% url 'seriallist' %}?genres={{i.genre.tag}}">{{i.genre.name}}</a>
+                    {% endfor %}
+                </span>
                 <span>
                     Дата выхода: 
                     {% if season.date != "Нет данных" %}
@@ -101,12 +107,12 @@
             <p>{{season.disctiption}}</p>
         </div>
         
-        <div class="episodelist">
-            <span class="bigspan">Список серий</span>
+        <details class="episodelist">
+            <summary class="bigspan">Список серий</summary>
             {% for episode in episodes  %}
                 <div><span class="episodecounter">{{forloop.counter}}</span><b>{{episode.name}}</b><center>{{episode.date|date:"SHORT_DATE_FORMAT"}}</center></div>
             {% endfor %}
-        </div>
+        </details>
 
         
     </div>

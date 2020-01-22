@@ -101,7 +101,7 @@ html{
 .serialinfo>div>a{
     padding:5px;
     color: black;
-    text-decoration: none;
+
     transition: all 0.5s ease;
     width: 180px;
     text-align: center;
@@ -110,6 +110,7 @@ html{
 .serialinfo>div>a:hover{
     background-color: #546de5;
     color:white;
+    text-decoration: none;
 }
 
 .serialinfo>div>span>span{
