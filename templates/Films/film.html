@@ -25,9 +25,9 @@
                     Тип: <span>Фильм</span>
                 </span>    
                 <span>
-                    Жанр: 
-                    {% for i in Film.genre%}
-                        <a class="genre" href="{% url 'filmlist' %}?genres={{i.genre.tag}}">{{i.genre.name}}</a>
+                    Жанр:
+                    {% for i in Film.tags.all %}
+                        <a class="genre" href="{% url 'filmlist' %}?genres={{i.slug}}">{{i.name}}</a>
                     {% endfor %}
                 </span>
                 <span>
@@ -88,5 +88,7 @@
                 {{Film.disctiption}}
             </p>
         </div>
+
+        {% include 'Films/blocks/similar_films.html' %}
     </div>
 </body>

@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import Avg
 from django.urls import reverse
-
+from taggit.managers import TaggableManager
 
 class StatusList(models.Model):
     name= models.TextField()
@@ -31,9 +31,9 @@ class Film(models.Model):
     def get_absolute_url(self):
         return "/film/%i" % self.id
     
-    @property
-    def genre(self):
-        return GenreF.objects.filter(film_id=self.id)
+    tags = TaggableManager()
+
+
 
 class Serial(models.Model):
     name= models.TextField()
@@ -51,9 +51,7 @@ class Serial(models.Model):
     class Meta:
         ordering = ('name',)
 
-    @property
-    def genre(self):
-        return Genre.objects.filter(serial_id=self.id)
+    tags = TaggableManager()
     
     @property
     def seasons(self):

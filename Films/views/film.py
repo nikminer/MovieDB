@@ -4,15 +4,24 @@ from Main.models import Film,UserListF
 from django.contrib.auth.decorators import login_required
 from List.views.feed import sendFeed,typeFeed
 
+
 def film(request,id):
-    film=get_object_or_404(Film,id=id)
-        
-    data={
-        "Film":film,
+    film = get_object_or_404(Film,id=id)
+
+    from django.db.models import Count
+    tags_ids = film.tags.values_list('id', flat=True)
+    similar_films = Film.objects.filter(tags__in=tags_ids)\
+        .exclude(id=film.id)
+    similar_films = similar_films.annotate(same_tags=Count('tags'))\
+        .order_by('-same_tags', '-rating')[:5]
+
+    data = {
+        "Film": film,
+        'similar_films': similar_films
     }
     
     try:
-        data.update({"UserItem":UserListF.objects.get(film_id=id,user=request.user.id)})
+        data.update({"UserItem": UserListF.objects.get(film_id=id, user=request.user.id)})
     except UserListF.DoesNotExist:
         pass
         

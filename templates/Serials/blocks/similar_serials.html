@@ -1,0 +1,15 @@
+{% load static %}
+<link rel="stylesheet" href={% static 'Serials/styles/similarserials.css' %} type="text/css" />
+
+ <div class="similar">
+     <span class="bigspan">Похожие сериалы</span>
+    <div>
+        {% for i in similar_serials %}
+         <a href="{% url 'serial' i.id %}" class=similarserial >
+             <img src={{ i.img.url }}>
+             <span style="font-weight: bold;">{{i.name}}</span>
+         </a>
+     {% endfor %}
+    </div>
+
+ </div>

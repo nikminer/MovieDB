@@ -22,6 +22,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.sitemaps',
     'django_crontab',
+    'taggit',
     'List',
     'Main',
     'Profile',

@@ -10,7 +10,8 @@ html{
     "poster SerialInfo userrate"
     "poster SerialInfo ."
     "actionpanel discription discription"
-    "actionpanel seasons seasons ";
+    "actionpanel seasons seasons "
+    ". simeralserials simeralserials";
     grid-template-columns: 200px auto 250px;
     grid-row-gap: 10px;
     grid-column-gap: 20px;
