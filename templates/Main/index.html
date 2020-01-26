@@ -45,6 +45,8 @@
         {% if user.is_authenticated %}
             {% MyLastSeries user.profile %}
             {% MyLastFilms user.profile %}
+        {% else %}
+            {% include 'Main/infopage.html' %}
         {% endif %}
 
         {% if user.is_authenticated %}
