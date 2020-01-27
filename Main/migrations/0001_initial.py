@@ -91,7 +91,7 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-            name='SeriesList.html',
+            name='SeriesList',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.TextField()),

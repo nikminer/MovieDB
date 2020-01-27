@@ -1,6 +1,6 @@
 <div class="movies block">
     <div class="sectionspanandrefer">
-        <span class="sectionspan">Ваши последние добавленные фильмы</span><a href="{% url 'listfilm' username %}" class="sectionspan">Мои фильмы</a>
+        <span class="sectionspan">Ваши последние фильмы</span><a href="{% url 'listfilm' username %}" class="sectionspan">Мои фильмы</a>
     </div>
      <div class="movielist">
          {% for film in films %}

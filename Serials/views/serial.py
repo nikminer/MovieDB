@@ -16,7 +16,7 @@ def serial(request,id):
     else:
         fseason=Fseason()
 
-    from django.db.models import Count
+
     tags_ids = serial.tags.values_list('id', flat=True)
     similar_serials = Serial.objects.filter(tags__in=tags_ids) \
         .exclude(id=serial.id)
