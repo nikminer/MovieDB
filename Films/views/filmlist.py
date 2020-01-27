@@ -6,7 +6,7 @@ def FilmList(request,page=1):
     FilmList=Film.objects.all().order_by('-year') 
 
     if request.GET.get('genres'):
-       FilmList= FilmList.filter(genref__genre__tag__in=request.GET.get('genres').split(' ')).distinct()
+       FilmList= FilmList.filter(tags__slug__in=request.GET.get('genres').split(' ')).distinct()
 
     paginator = Paginator(FilmList, 24)
 

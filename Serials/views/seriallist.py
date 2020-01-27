@@ -7,7 +7,7 @@ def SerialList(request,page=1):
     Serials=Serial.objects.all().order_by("-year", "name")
 
     if request.GET.get('genres'):
-       Serials= Serials.filter(genre__genre__tag__in=request.GET.get('genres').split(' ')).distinct()
+       Serials= Serials.filter(tags__slug__in =request.GET.get('genres').split(' ')).distinct()
 
     paginator = Paginator(Serials, 24)
 

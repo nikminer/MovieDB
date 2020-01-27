@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from django.db.models import Avg
 from django.urls import reverse
 from taggit.managers import TaggableManager
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.contenttypes.fields import GenericForeignKey
 
 class StatusList(models.Model):
     name= models.TextField()
@@ -63,6 +65,7 @@ class Serial(models.Model):
         if not rating:
             rating=0.00
         return round(rating,2)
+
     
 class Season(models.Model):
     name= models.TextField()
@@ -83,23 +86,7 @@ class SeriesList(models.Model):
     name= models.TextField()
     date=models.DateField()
 
-class GenreList(models.Model):
-    name= models.TextField()
-    tag= models.TextField()
 
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        ordering = ('name',)
-
-class Genre(models.Model):
-    genre= models.ForeignKey(GenreList,on_delete=models.CASCADE)
-    serial= models.ForeignKey(Serial,on_delete=models.CASCADE)
-
-class GenreF(models.Model):
-    genre= models.ForeignKey(GenreList,on_delete=models.CASCADE)
-    film= models.ForeignKey(Film,on_delete=models.CASCADE)
 
 class UserList(models.Model):
     user= models.ForeignKey(User,on_delete=models.CASCADE)
@@ -150,3 +137,17 @@ class UserListF(models.Model):
     def get_statusTag(self):
         from List.views.userstatus import UserTagsStatusDict
         return UserTagsStatusDict.get(self.userstatus)
+
+class Comment(models.Model):
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    item = GenericForeignKey('content_type', 'object_id')
+
+    user = models.ForeignKey(User, on_delete=models.SET_DEFAULT, default=0)
+    text = models.TextField()
+
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    spoiler = models.BooleanField(default=False)
+    active = models.BooleanField(default=True)

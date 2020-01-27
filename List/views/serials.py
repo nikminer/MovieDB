@@ -1,8 +1,8 @@
 from django.shortcuts import render,redirect
-from Main.models import UserList,Season,Serial,Genre
+from Main.models import UserList,Season,Serial
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User 
-
+from django.db.models import Count
 from List.views.userstatus import UserStat
 
 @login_required
@@ -29,7 +29,7 @@ def userlist(request,username=None):
         user=User.objects.get(username=username)
     
     lists={}
-    
+
     if request.GET.get('groups'):
         for i in request.GET.get('groups').split(' '):
             status=UserStat.get(i)
@@ -52,18 +52,20 @@ def userlist(request,username=None):
 
     genrelist={}
     for i in UserList.objects.filter(user_id=user.id).only('serial').values_list('serial', flat=True).distinct():
-        for genre in Serial.objects.get(id=i).genre:
-            if genrelist.get(genre.genre.name):
-                genrelist[genre.genre.name]['count'] += 1
+        for tag in Serial.objects.get(id=i).tags.all():
+            if genrelist.get(tag.name):
+                genrelist[tag.name]['count'] += 1
             else:
-                genrelist.update({genre.genre.name:{'count':1,'tag':genre.genre.tag}})
-    genrelist=dict(sorted(genrelist.items()))
+                genrelist.update({tag.name: {'count': 1, 'tag': tag.slug}})
+
+    genrelist = dict(sorted(genrelist.items()))
+
 
     return render(request,"List/list.html",{
         "groups":lists,
         "type":"series",
-        "genrelist":genrelist,
-        "user":user
+        "user":user,
+        "genrelist": genrelist,
     })
 
 
@@ -72,12 +74,7 @@ def getSeriallist(userid,statusid,request):
     userl=UserList.objects.filter(user_id=userid,userstatus=statusid).order_by("serial__name")
 
     if request.GET.get('genres'):
-        userl= userl.filter(
-            serial__in=Genre.objects.filter(
-                genre__tag__in=request.GET.get('genres').split(' '),
-                serial__in=userl.values('serial')
-            ).values('serial')
-        )
+        userl= userl.filter(serial__tags__slug__in=request.GET.get('genres').split(' '))
 
     for i in userl:
         if not serialDict.get(i.serial.id):

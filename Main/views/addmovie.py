@@ -2,7 +2,8 @@ import django
 from django.shortcuts import render,redirect
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
-from Main.models import Serial,Season,GenreList,Genre,SeriesList,Film,GenreF
+from Main.models import Serial,Season,SeriesList,Film
+from taggit.models import Tag
 from kinopoisk.movie import Movie
 from django.db.models import Q
 from requests import get
@@ -49,13 +50,13 @@ def AddMovie(request,id):
 
     if movie.series:
         serial=AddSerial(movie)
-        AddSerialGenres(movie,serial.id)
+        AddGenres(movie,serial)
         AddSeasons(movie,serial.id)
         AddPoster(serial)
         return redirect('serial',serial.id)
     else:
         film=AddFilm(movie)
-        AddFilmGenres(movie,film.id)
+        AddGenres(movie,film)
         AddPoster(film)
         return redirect('film',film.id)
 
@@ -103,19 +104,11 @@ def AddSerial(movie):
 
     return newserial
 
-def AddSerialGenres(movie,id):
-    for i in movie.genres:
-        try:
-            Genre.objects.create(genre_id=GenreList.objects.get(name=i).id,serial_id=id)
-        except GenreList.DoesNotExist:
-            pass
+def AddGenres(movie,obj):
+    print(movie.genres,Tag.objects.filter(name__in= movie.genres))
+    for i in Tag.objects.filter(name__in= movie.genres):
+        obj.tags.add(i)
 
-def AddFilmGenres(movie,id):
-    for i in movie.genres:
-        try:
-            GenreF.objects.create(genre_id=GenreList.objects.get(name=i).id,film_id=id)
-        except GenreList.DoesNotExist:
-            pass
 
 def AddSeasons(movie,id):
     for i in range(0,len(movie.seasons)):

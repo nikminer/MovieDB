@@ -1,5 +1,5 @@
 from django.shortcuts import render,get_object_or_404
-from Main.models import Serial,Genre,Season,UserList,SeriesList
+from Main.models import Serial,Season,UserList,SeriesList
 from django.db.models import Count
 
 def serial(request,id):
