@@ -26,8 +26,8 @@
                 </span>    
                 <span>
                     Жанр: 
-                    {% for i in serial.genre%}
-                        <a class="genre" href="{% url 'seriallist' %}?genres={{i.genre.tag}}">{{i.genre.name}}</a>
+                    {% for i in serial.tags.all%}
+                        <a class="genre" href="{% url 'seriallist' %}?genres={{i.slug}}">{{i.name}}</a>
                     {% endfor %}
                 </span>
                 <span>
@@ -78,5 +78,6 @@
             </p>
         </div>
         {% include "Serials/blocks/seasons.html" %}
+        {% include "Serials/blocks/similar_serials.html" %}
     </div>
 </body>

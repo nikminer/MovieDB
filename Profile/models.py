@@ -35,10 +35,19 @@ class Profile(models.Model):
         return "/profile/%s/" % self.user.username
 
 
+class FriendsManager(models.Manager):
+    def get_friends(self,profile):
+        friends=[]
+        for i in self.filter(Q(accepter=profile) | Q(sender=profile)).filter(status=1):
+            friends.append(i.getnotMyprofile(profile).user)
+        return friends
+
 class Friendlist(models.Model):
     sender = models.ForeignKey(Profile,on_delete=models.CASCADE, related_name='link1')
     accepter = models.ForeignKey(Profile,on_delete=models.CASCADE, related_name='link2')
     status= models.IntegerField(default=0)
+    friends= FriendsManager()
+    objects = models.Manager()
 
     def getnotMyprofile(self,myprofile):
         if self.sender != myprofile and self.accepter==myprofile: 

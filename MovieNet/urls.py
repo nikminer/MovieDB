@@ -17,6 +17,10 @@ from Profile.sitemaps import ProfileSitemap
 from Films.sitemaps import FilmsSitemap
 from Serials.sitemaps import SerialsSitemap
 
+from django.conf.urls import handler404
+from Main.views import ErrorsHandler
+handler404= ErrorsHandler.error_404
+
 sitemaps = {
     'profiles': ProfileSitemap,
     'films':FilmsSitemap,

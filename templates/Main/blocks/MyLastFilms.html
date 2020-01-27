@@ -1,0 +1,13 @@
+<div class="movies block">
+    <div class="sectionspanandrefer">
+        <span class="sectionspan">Ваши последние добавленные фильмы</span><a href="{% url 'listfilm' username %}" class="sectionspan">Мои фильмы</a>
+    </div>
+     <div class="movielist">
+         {% for film in films %}
+         <a href="{% url 'film' film.id %}" title="{{film.name}} ({{film.year}})">
+             <img src={{film.img.url}}>
+             <span>{{film.name}} ({{film.year}})</span>
+         </a>
+         {% endfor %}
+     </div>
+</div>

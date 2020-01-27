@@ -1,0 +1,6 @@
+<details class="episodelist">
+    <summary class="bigspan">Список серий</summary>
+    {% for episode in episodes  %}
+        <div><span class="episodecounter">{{forloop.counter}}</span><b>{{episode.name}}</b><center>{{episode.date|date:"SHORT_DATE_FORMAT"}}</center></div>
+    {% endfor %}
+</details>

@@ -1,4 +1,5 @@
 {% load static %}
+{% load SeasonTags %}
 {% include "../base.html" %}
 <link rel="stylesheet" href={% static 'Serials/styles/season.css' %} type="text/css" />
 
@@ -25,7 +26,13 @@
                 </span>
                 <span>
                     Статус: <span class="status" style="background-color: {{season.status.color}}">{{season.status.name}}</span>
-                </span>  
+                </span>
+                <span>
+                    Жанр:
+                    {% for i in season.serial.tags.all%}
+                        <a class="genre" href="{% url 'seriallist' %}?genres={{i.slug}}">{{i.name}}</a>
+                    {% endfor %}
+                </span>
                 <span>
                     Дата выхода: 
                     {% if season.date != "Нет данных" %}
@@ -63,6 +70,9 @@
                 </script>
             </div>
         </div>
+
+        {% friendListS user.profile season %}
+
         {% if UserItem %}
         
         <link rel="stylesheet" href={% static 'Serials/styles/numeric.css' %} type="text/css" />
@@ -97,12 +107,8 @@
             <p>{{season.disctiption}}</p>
         </div>
         
-        <div class="episodelist">
-            <span class="bigspan">Список серий</span>
-            {% for episode in episodes  %}
-                <div><span class="episodecounter">{{forloop.counter}}</span><b>{{episode.name}}</b><center>{{episode.date|date:"SHORT_DATE_FORMAT"}}</center></div>
-            {% endfor %}
-        </div>
+
+        {% Serieslist season %}
 
         
     </div>

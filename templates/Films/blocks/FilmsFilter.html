@@ -2,8 +2,8 @@
         <span class="groupspan">Жанры</span>
         <div class="filter">
 
-            {% for genre in tags %}
-                <label><input class="genre" type="checkbox" value="{{genre.tag}}"><span>{{genre.name}}</span></label>
+            {% for tag in tags %}
+                <label><input class="genre" type="checkbox" value="{{tag.slug}}"><span>{{tag.name}}</span></label>
             {% endfor %}
             </div>
             <button onclick="changeGenres()">Применить</button>

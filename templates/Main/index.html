@@ -1,4 +1,5 @@
 {% load static %}
+{% load index_tags %}
 {% include "../base.html" %}
 <link rel="stylesheet" href={% static 'Main/styles/index.css' %} type="text/css" />
 
@@ -35,47 +36,19 @@
                                 {{user.first_name}} {{user.last_name}}
                             </span>
                         </span>
-                        <img src="{{profile.photo.url}}" width="90px">
+                        <img src="{{user.profile.photo.url}}" width="90px">
                     </a>
                 </div>
-                <div>
-                    <span class="sectionspan">Друзья</span>
-                    <a href="{% url 'friends' user.username %}">Всего друзей: {{friends.friends}}</a>
-                    <a href="{% url 'friendreq' user.username %}">Заявки в друзья: {{friends.requests}}</a>
-                </div>
+                {% friends user.profile %}
             </div>
         {% endif %}
-        <div class="serials block">
-            <div class="sectionspanandrefer">
-                <span class="sectionspan">Последние добавленные сериалы</span><a href="{% url 'seriallist' %}" class="sectionspan">Больше</a>
-            </div>
-            
-            <div class="movielist">
-                {% for serial in series %}
-                    <a href="{% url 'serial' serial.id %}" title="{{serial.name}} ({{serial.year}})">
-                        <img src={{serial.img.url}}>
-                        <span>
-                            {{serial.name}} ({{serial.year}})
-                        </span>
-                    </a>
-                {% endfor %}
-            </div>
-        </div>
-        <div class="movies block">
-            <div class="sectionspanandrefer">
-                <span class="sectionspan">Последние добавленные фильмы</span><a href="{% url 'filmlist' %}" class="sectionspan">Больше</a>
-            </div>
-            <div class="movielist">
-                {% for film in films %}
-                    <a href="{% url 'film' film.id %}" title="{{film.name}} ({{film.year}})">
-                        <img src={{film.img.url}}>
-                        <span>
-                            {{film.name}} ({{film.year}})
-                        </span>
-                    </a>
-                {% endfor %}
-            </div>
-        </div>
+        {% if user.is_authenticated %}
+            {% MyLastSeries user.profile %}
+            {% MyLastFilms user.profile %}
+        {% else %}
+            {% include 'Main/infopage.html' %}
+        {% endif %}
+
         {% if user.is_authenticated %}
             <div class="list block">
                 <div class="sectionspanandrefer">
@@ -86,6 +59,7 @@
                 {% include './blocks/feed.html' %}
             </div>
         {% endif %}
+
         <div class="footer">
             <div style="width:100px">
                 <img src={% static "images/logo.png" %}>
