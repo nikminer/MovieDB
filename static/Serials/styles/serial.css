@@ -11,7 +11,8 @@ html{
     "poster SerialInfo ."
     "actionpanel discription discription"
     "actionpanel seasons seasons "
-    ". simeralserials simeralserials";
+    ". simeralserials simeralserials"
+    "comments comments comments";
     grid-template-columns: 200px auto 250px;
     grid-row-gap: 10px;
     grid-column-gap: 20px;
@@ -163,4 +164,13 @@ html{
     text-decoration: none;
     color: white;
     background-color: #546de5;
+}
+
+.comments{
+    grid-area: comments;
+    min-height: 100px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }

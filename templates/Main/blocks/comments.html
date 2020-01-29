@@ -1,0 +1,16 @@
+{% load static %}
+<link rel="stylesheet" href={% static 'Main/styles/comments.css' %} type="text/css" />
+
+{% for comment in comments %}
+    <div class="comment">
+        <img src="{{ comment.user.profile.photo.url }}">
+        <a class="profile" href="{{ comment.user.profile.get_absolute_url }}">{{ comment.user.profile.name }}</a>
+        {% if comment.spoiler %}
+            <span class="spoilerAlert">Spoiler alert! Чтобы увидеть комментарий кликните по серой зоне.</span>
+        {% endif %}
+        <p {% if comment.spoiler %}class="spoiler" onclick="this.classList.remove('spoiler')" {% endif %}>
+            {{ comment.text }}
+        </p>
+        <span class="time">{{ comment.created|timesince }} назад</span>
+    </div>
+{% endfor %}

@@ -90,5 +90,12 @@
         </div>
 
         {% include 'Films/blocks/similar_films.html' %}
+
+        <div class="comments">
+            <span class="bigspan">Комментарии</span>
+            {% load comments %}
+            {% commentslist Film %}
+        </div>
+
     </div>
 </body>

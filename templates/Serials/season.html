@@ -110,6 +110,12 @@
 
         {% Serieslist season %}
 
+        <div class="comments">
+            <span class="bigspan">Комментарии</span>
+            {% load comments %}
+            {% commentslist season %}
+        </div>
+
         
     </div>
 </body>

@@ -143,10 +143,17 @@ class UserListF(models.Model):
         from List.views.userstatus import UserTagsStatusDict
         return UserTagsStatusDict.get(self.userstatus)
 
+class CommentManager(models.Manager):
+    def get_comments(self,item):
+        return self.filter(content_type=ContentType.objects.get_for_model(item),object_id=item.id)
+
 class Comment(models.Model):
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
     item = GenericForeignKey('content_type', 'object_id')
+
+    comments = CommentManager()
+    objects = models.Manager()
 
     user = models.ForeignKey(User, on_delete=models.SET_DEFAULT, default=0)
     text = models.TextField()

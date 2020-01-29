@@ -79,5 +79,12 @@
         </div>
         {% include "Serials/blocks/seasons.html" %}
         {% include "Serials/blocks/similar_serials.html" %}
+
+        <div class="comments">
+            <span class="bigspan">Комментарии</span>
+            {% load comments %}
+            {% commentslist serial %}
+        </div>
+
     </div>
 </body>

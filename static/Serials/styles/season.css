@@ -12,7 +12,8 @@ html{
     "poster SerialInfo friends"
     "actionpanel discription discription"
     "actionpanel seasons seasons "
-    "actionpanel episodelist episodelist";
+    "actionpanel episodelist episodelist"
+    "comments comments comments";
     grid-template-columns: 200px auto 250px;
     grid-row-gap: 10px;
     grid-column-gap: 20px;
@@ -256,4 +257,12 @@ html{
 .friends>div>a>img{
     height:35px;
     margin-right: 10px;
+}
+.comments{
+    grid-area: comments;
+    min-height: 100px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }

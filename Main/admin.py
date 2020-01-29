@@ -34,3 +34,10 @@ class SeasonAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Season,SeasonAdmin)
+
+from django.contrib import admin
+from .models import Comment
+@admin.register(Comment)
+class ActionAdmin(admin.ModelAdmin):
+ list_display = ('user', 'text', 'item', 'created','spoiler','active')
+ list_filter = ('created',)
