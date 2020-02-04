@@ -33,9 +33,9 @@
             <span>Фильмы</span>
         </a>
     </div>
-    {% if user.is_authenticated %}
+
     <div>
-        
+        {% if user.is_authenticated %}
         <a href="{% url 'noties' %}" class="navitem" style="background-color:#c44569">
             <img src="{% static "images/navbar/notifications.png" %}">
             <span>Уведомления</span>
@@ -46,6 +46,10 @@
         </a>
         <a href="{% url 'profile' request.user.username %}" class="navitem" style="background-color:#c44569">
             <img src="{{request.user.profile.photo.url}}">
+        {% else %}
+         <a href="{% url 'login' %}" class="navitem" style="background-color:#c44569">
+            <img src="{% static "images/navbar/profile.png" %}">
+        {% endif %}
             <span>Мой профиль</span>
         </a>
         
@@ -53,16 +57,24 @@
     </div>
     
     <div>
+        {% if user.is_authenticated %}
         <a href="{% url 'listserial' request.user.username %}" class="navitem" style="background-color:#3dc1d3">
+        {% else %}
+        <a href="{% url 'login' %}" class="navitem" style="background-color:#3dc1d3">
+        {% endif %}
             <img src={% static "images/navbar/listserial.png" %}>
             <span>Мои Сериалы</span>
         </a>
+        {% if user.is_authenticated %}
         <a href="{% url 'listfilm' request.user.username %}" class="navitem" style="background-color:#3dc1d3">
+        {% else %}
+        <a href="{% url 'login' %}" class="navitem" style="background-color:#3dc1d3">
+        {% endif %}
             <img src={% static "images/navbar/listfilms.png" %}>
             <span>Мои Фильмы</span>
         </a>
     </div>
-    {% endif %}
+
     <div>
         {% if user.is_authenticated %}
             <a href="{% url 'logout' %}" style="background-color:#303952" class="navitem">

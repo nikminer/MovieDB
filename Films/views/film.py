@@ -15,9 +15,24 @@ def film(request,id):
     similar_films = similar_films.annotate(same_tags=Count('tags'))\
         .order_by('-same_tags', '-rating')[:5]
 
+    if request.method == 'POST':
+        from Main.forms import CommentForm
+        comment_form = CommentForm(data=request.POST)
+        if comment_form.is_valid():
+            new_comment = comment_form.save(commit=False)
+            new_comment.item = film
+            new_comment.user= request.user
+            new_comment.save()
+            from django.shortcuts import redirect
+            return redirect('film',film.id)
+    else:
+        from Main.forms import CommentForm
+        comment_form = CommentForm()
+
     data = {
         "Film": film,
-        'similar_films': similar_films
+        'similar_films': similar_films,
+        "commentform": comment_form,
     }
     
     try:

@@ -161,6 +161,7 @@ html{
     display: flex;
     flex-direction: column;
     color: black;
+    cursor: pointer;
 }
 .episodelist>div{
     display: grid;

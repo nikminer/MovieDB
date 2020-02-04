@@ -80,9 +80,12 @@
         {% include "Serials/blocks/seasons.html" %}
         {% include "Serials/blocks/similar_serials.html" %}
 
-        <div class="comments">
+        <div class="comments" name="commentsblock">
             <span class="bigspan">Комментарии</span>
             {% load comments %}
+
+            {% include 'Main/blocks/AddComment.html' %}
+
             {% commentslist serial %}
         </div>
 

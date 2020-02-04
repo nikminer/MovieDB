@@ -23,10 +23,26 @@ def serial(request,id):
     similar_serials = similar_serials.annotate(same_tags=Count('tags')) \
                         .order_by('-same_tags')[:5]
 
+
+    if request.method == 'POST':
+        from Main.forms import CommentForm
+        comment_form = CommentForm(data=request.POST)
+        if comment_form.is_valid():
+            new_comment = comment_form.save(commit=False)
+            new_comment.item = serial
+            new_comment.user= request.user
+            new_comment.save()
+            from django.shortcuts import redirect
+            return redirect('serial',serial.id)
+    else:
+        from Main.forms import CommentForm
+        comment_form = CommentForm()
+
     data={
         "serial":serial,
         "fseason":fseason,
-        'similar_serials': similar_serials
+        'similar_serials': similar_serials,
+        "commentform": comment_form,
     }
 
 

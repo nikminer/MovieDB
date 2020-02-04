@@ -121,7 +121,6 @@ html{
 
 .actionpanel{
     grid-area: actionpanel;
-    background-color: rgb(223, 219, 219);
     height: 30px;
     display: flex;
     justify-content: center;
