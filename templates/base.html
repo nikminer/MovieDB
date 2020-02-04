@@ -101,3 +101,21 @@
         {% endfor %}
     </div>
 {% endif %}
+
+
+<a id="TopBtn" onclick="window.scrollTo(0,0)">
+    <img src={% static "images/navbar/up.png" %}>
+    <span>Вверх</span>
+</a>
+
+<script>
+    document.onscroll=function() {
+        if(window.pageYOffset>=200){
+            TopBtn.style.display='flex';
+        }else{
+            TopBtn.style.display='none';
+        }
+    }
+    TopBtn.style.display='none';
+
+</script>
