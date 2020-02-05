@@ -43,6 +43,7 @@ html{
     display: grid;
     grid-template-areas: "filmlist filters";
     grid-template-columns: auto 200px;
+    animation: fade-in 1s ease;
 }
 
 .filmList{

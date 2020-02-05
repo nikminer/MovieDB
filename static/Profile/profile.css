@@ -21,6 +21,7 @@ a{
     grid-area: profilehead;
     display: grid;
     grid-template-areas: "center";
+    animation: fade-in 1s ease;
 }
 
 .bgimg{
@@ -77,6 +78,7 @@ a{
     display: flex;
     justify-content: center;
     align-items: center;
+    animation: fade-in 1s ease;
 }
 .section0>a{
     display: flex;
@@ -120,6 +122,7 @@ a{
     "films .";
     grid-template-columns: auto 330px;
     grid-template-rows: 170px 170px;
+    animation: fade-in 1s ease;
 }
 .section1>*{
     margin: 10px;
@@ -202,6 +205,7 @@ a{
     padding: 10px;
     display: flex;
     flex-direction: column;
+    animation: fade-in 1s ease;
 }
 
 

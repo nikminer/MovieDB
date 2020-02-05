@@ -18,6 +18,7 @@ html{
     grid-template-areas: "setbg setbg"
     "setinfo setavatar";
     grid-template-columns: auto 500px;
+    animation: fade-in 1s ease;
 }
 
 .setting>div{

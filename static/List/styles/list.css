@@ -43,6 +43,7 @@ input[type=search]{
     display: grid;
     grid-template-areas: "groups filters";
     grid-template-columns: 1fr 200px;
+    animation: fade-in 1s ease;
 }
 
 .groups{

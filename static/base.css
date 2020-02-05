@@ -1,8 +1,9 @@
 html{
     display: grid;
     grid-template-areas: "left body right";
-    grid-template-columns: 160px 80% auto;
+    grid-template-columns: 160px auto 100px;
     min-height:100%;
+    scroll-behavior: smooth;
 }
 body{
     grid-area: body;
@@ -12,8 +13,16 @@ body{
     min-height: 80%;
     background-color: #fff;
     font-family: Arial, Helvetica, sans-serif;
+    scroll-behavior: smooth;
 }
-
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
 .bigspan{
     font-size: 16px;
     padding: 5px 10px;

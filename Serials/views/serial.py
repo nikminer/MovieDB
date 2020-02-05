@@ -27,6 +27,7 @@ def serial(request,id):
     tags_ids = serial.tags.values_list('id', flat=True)
     similar_serials = Serial.objects.filter(tags__in=tags_ids) \
         .exclude(id=serial.id)
+
     similar_serials = similar_serials.annotate(same_tags=Count('tags')) \
                         .order_by('-same_tags')[:5]
 

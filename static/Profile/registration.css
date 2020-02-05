@@ -12,6 +12,7 @@ form{
     font-size: 18px;
     margin-bottom: 40px;
     margin-top: 3%;
+    animation: fade-in 1s ease;
 }
 p{
     display: flex;

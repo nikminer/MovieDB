@@ -20,6 +20,7 @@ body{
     justify-content: flex-start;
     padding: 15px;
     border-top: black solid 1px;
+    animation: fade-in 1s ease;
 }
 
 
