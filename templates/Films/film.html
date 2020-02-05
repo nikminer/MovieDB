@@ -60,14 +60,12 @@
                 }
                 </script>
             </div>
-            {% if user.is_authenticated %}
-
-
-        {% endif %}
         </div>
 
-        {% load FilmTags %}
-        {% friendListF user.profile Film %}
+        {% if user.is_authenticated %}
+            {% load FilmTags %}
+            {% friendListF user.profile Film %}
+        {% endif %}
 
         {% if UserItem %}
         <div class='actionpanel'>
@@ -90,5 +88,13 @@
         </div>
 
         {% include 'Films/blocks/similar_films.html' %}
+
+        <div class="comments">
+            <span class="bigspan">Комментарии</span>
+            {% load comments %}
+            {% include 'Main/blocks/AddComment.html' %}
+            {% commentslist Film %}
+        </div>
+
     </div>
 </body>

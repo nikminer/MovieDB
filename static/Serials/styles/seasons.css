@@ -4,6 +4,7 @@
     display: flex;
     flex-direction: column;
     color: black;
+    animation: fade-in 1s ease;
 }
 .seasonList{
     display: flex;
@@ -35,6 +36,17 @@
     padding: 3px 0;
     font-size: 16px;
     width: 125px;
+}
+.seasonInfoBlock{
+    width: 125px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+.seasonInfoBlock>span:first-child{
+    padding: 3px 0;
 }
 
 .addseason{

@@ -63,6 +63,7 @@ html{
     flex-direction: row;
     align-items: flex-start;
     justify-content: flex-start;
+
 }
 .profile>div{
     display: flex;
@@ -114,6 +115,7 @@ html{
     height: 200px;
     width: 100%;
     margin-top: 20px;
+     animation: fade-in 1s ease;
 }
 .movielist>a{
     width: 20%;
@@ -150,6 +152,7 @@ html{
 .list{
     background-color: #3dc1d3;
     min-height: 250px;
+
 }
 .profileinfo{
     background-color: #c44569;

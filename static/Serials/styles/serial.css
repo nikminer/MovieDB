@@ -11,7 +11,8 @@ html{
     "poster SerialInfo ."
     "actionpanel discription discription"
     "actionpanel seasons seasons "
-    ". simeralserials simeralserials";
+    ". simeralserials simeralserials"
+    "comments comments comments";
     grid-template-columns: 200px auto 250px;
     grid-row-gap: 10px;
     grid-column-gap: 20px;
@@ -58,6 +59,7 @@ html{
     grid-area:userrate;
     display: flex;
     flex-direction: column;
+    animation: fade-in 1s ease;
 }
 .userrate>div{
     padding: 5px;
@@ -81,11 +83,13 @@ html{
 .poster{
     grid-area: poster;
     width: 200px;
+    animation: fade-in 1s ease;
 }
 .serialinfo{
     display: flex;
     flex-direction: column;
-    grid-area:SerialInfo
+    grid-area:SerialInfo;
+    animation: fade-in 1s ease;
 }
 .serialinfo>div{
     margin-top: 10px;
@@ -120,7 +124,6 @@ html{
 
 .actionpanel{
     grid-area: actionpanel;
-    background-color: rgb(223, 219, 219);
     height: 30px;
     display: flex;
     justify-content: center;
@@ -130,6 +133,7 @@ html{
     background-color: rgb(241, 241, 241);
     transition: all 0.5s ease;
     font-weight: bold;
+    animation: fade-in 1s ease;
 }
 .actionpanel:hover{
     border-left: 10px #546de5 solid;
@@ -142,6 +146,7 @@ html{
     display: flex;
     flex-direction: column;
     color: black;
+    animation: fade-in 1s ease;
 }
 .discription>p{
     font-size: 15px;
@@ -163,4 +168,14 @@ html{
     text-decoration: none;
     color: white;
     background-color: #546de5;
+}
+
+.comments{
+    grid-area: comments;
+    min-height: 100px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    animation: fade-in 1s ease;
 }

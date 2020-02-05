@@ -23,7 +23,7 @@
                     <span >{{serial.name}} / {{serial.originalname}}</span>
                     <div class=serialsmallinfo>
                         <span>{{serial.year}}</span>
-                        {% if serial.InMyList == "True" %}<span style="background-color: #546de5;color: white;padding: 2px;">В списке</span>{% endif %}</span>
+                        {% if serial.InMyList %}<span style="background-color: #546de5;color: white;padding: 2px;">В списке</span>{% endif %}
                     </div>
                 </a>
             {% endfor %}

@@ -76,8 +76,11 @@ class Season(models.Model):
     img= models.ImageField(upload_to='Posters', default="default.png")
     rating= models.FloatField(default=0,editable=False)
 
+    position = models.PositiveSmallIntegerField(default=0)
+
     class Meta:
-        ordering = ('serial__name','name')
+        ordering = ('serial__name','position','name')
+
     def __str__(self):
         return str(self.name +" "+self.serial.name)
 
@@ -96,7 +99,8 @@ class UserList(models.Model):
     userstatus= models.IntegerField(default=1)
     userepisode= models.IntegerField(default=0)
     countreview= models.IntegerField(default=0)
-    
+    updated = models.DateTimeField(auto_now=True)
+
     @property
     def obj(self):
         return self.serial
@@ -120,6 +124,7 @@ class UserListF(models.Model):
     userrate= models.IntegerField(default=0)
     userstatus= models.IntegerField(default=1)
     countreview= models.IntegerField(default=0)
+    updated = models.DateTimeField(auto_now=True)
 
     @property
     def obj(self):
@@ -138,10 +143,17 @@ class UserListF(models.Model):
         from List.views.userstatus import UserTagsStatusDict
         return UserTagsStatusDict.get(self.userstatus)
 
+class CommentManager(models.Manager):
+    def get_comments(self,item):
+        return self.filter(content_type=ContentType.objects.get_for_model(item),object_id=item.id)
+
 class Comment(models.Model):
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
     item = GenericForeignKey('content_type', 'object_id')
+
+    comments = CommentManager()
+    objects = models.Manager()
 
     user = models.ForeignKey(User, on_delete=models.SET_DEFAULT, default=0)
     text = models.TextField()

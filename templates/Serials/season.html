@@ -71,7 +71,10 @@
             </div>
         </div>
 
-        {% friendListS user.profile season %}
+
+        {% if user.is_authenticated %}
+            {% friendListS user.profile season %}
+        {% endif %}
 
         {% if UserItem %}
         
@@ -109,6 +112,13 @@
         
 
         {% Serieslist season %}
+
+        <div class="comments">
+            <span class="bigspan">Комментарии</span>
+            {% load comments %}
+            {% include 'Main/blocks/AddComment.html' %}
+            {% commentslist season %}
+        </div>
 
         
     </div>

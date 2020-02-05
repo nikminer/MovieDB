@@ -19,6 +19,7 @@ html{
     align-items: stretch;
     flex-wrap: wrap;
     padding: 15px;
+    animation: fade-in 1s ease;
 }
 .friendlist>span{
     font-size: 18px;

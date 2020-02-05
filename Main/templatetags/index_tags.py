@@ -21,14 +21,14 @@ def friends(profile):
 def MyLastFilms(profile):
 
     return {
-        "films":Film.objects.filter(id__in=UserListF.objects.filter(user=profile.user).order_by('-id').values_list("film",flat=True)[:5]),
+        "films":Film.objects.filter(id__in=UserListF.objects.filter(user=profile.user).order_by('-updated').values_list("film",flat=True)[:5]),
         "username":profile.user.username
     }
 
 @register.inclusion_tag("Main/blocks/MyLastSerials.html")
 def MyLastSeries(profile):
     serials=[]
-    for i in UserList.objects.filter(user=profile.user).order_by('-id').values_list("serial",flat=True):
+    for i in UserList.objects.filter(user=profile.user).order_by('-updated').values_list("serial",flat=True):
         if i not in serials:
             serials.append(i)
             if len(serials)>=5:
