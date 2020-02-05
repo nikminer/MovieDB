@@ -3,16 +3,19 @@
 <div class="seasons">
     <span class="bigspan">Сезоны</span>
     <div class=seasonList>
-        {% for i in serial.seasons %}
+        {% for i in serial.seasonsl %}
             <a href="{% url 'season' i.id %}" class=season >
                 <span style="background-color:{{i.status.color}}; color:#fff">{{i.status.name}}</span>
                 <img src={{ i.img.url }}>
-                <span style="font-weight: bold;">
+                <div class="seasonInfoBlock">
+                    <span style="font-weight: bold;">
                     {{i.serial.name}}
-                </span>
-                <span>
-                    {{i.name}}
-                </span>
+                    </span>
+                    <span>
+                        {{i.name}}
+                    </span>
+                    <span style="background-color: #546de5;color: white;margin-top: 5px;padding: 2px;">{% if i.InMyList %}В списке{% endif %}</span>
+                </div>
             </a>
         {% endfor %}
         {% comment '' %}

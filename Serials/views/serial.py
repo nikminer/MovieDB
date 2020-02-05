@@ -1,21 +1,28 @@
 from django.shortcuts import render,get_object_or_404
-from Main.models import Serial,Season,UserList,SeriesList
+from Main.models import Serial,UserList,SeriesList
 from django.db.models import Count
 
 def serial(request,id):
-    serial=get_object_or_404(Serial,id=id)
-        
-    fseason=serial.seasons.first()
+    serial = get_object_or_404(Serial,id=id)
+
+    seasons = serial.seasons
+    fseason = seasons.first()
     if (fseason):
         try:
             fseason.date=SeriesList.objects.filter(season_id=fseason.id).order_by('date').first().date
         except AttributeError:
-            dsicript=fseason.disctiption
-            fseason=Fseason()
-            fseason.disctiption=dsicript
+            dsicript = fseason.disctiption
+            fseason = Fseason()
+            fseason.disctiption = dsicript
     else:
-        fseason=Fseason()
+        fseason = Fseason()
 
+
+    if request.user.is_authenticated:
+        for season in seasons:
+            season.InMyList = UserList.objects.filter(user=request.user,season=season).exists()
+
+    serial.seasonsl=seasons
 
     tags_ids = serial.tags.values_list('id', flat=True)
     similar_serials = Serial.objects.filter(tags__in=tags_ids) \
