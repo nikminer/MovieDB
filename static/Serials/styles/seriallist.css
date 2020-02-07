@@ -154,3 +154,32 @@ html{
     background-color: #1738db;
     color: #fff;
 }
+
+.bckbtn{
+    grid-area: bckbtn;
+    font-weight: bold;
+    background-color: #546de5;
+    color: white;
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    margin-bottom: 20px;
+    height: 30px;
+}
+.bckbtn>span{
+    background-color: rgb(241, 241, 241);
+    color: black;
+    width: 100%;
+    transition: all 0.5s ease;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.bckbtn>*{
+    padding: 5px 0;
+}
+.bckbtn:hover>span{
+    background-color: #546de5;
+    color: white;
+}

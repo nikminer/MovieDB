@@ -50,12 +50,13 @@ def SimilarSerials(request,id,page=1):
         Serials = paginator.page(paginator.num_pages)
 
     if request.user.is_authenticated:
-        for serial in Serials:
-            serial.InMyList=UserList.objects.filter(serial=serial,user=request.user).exists()
+        for i in Serials:
+            i.InMyList=UserList.objects.filter(serial=serial,user=request.user).exists()
 
     data={
+        "serial":serial,
         "SerialList":Serials,
     }
 
 
-    return render(request,"Serials/seriallist.html",data)
+    return render(request,"Serials/seriallistSimilars.html",data)

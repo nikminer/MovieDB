@@ -2,16 +2,17 @@
 {% include "../base.html" %}
 
 <link rel="stylesheet" href="{% static "Films/styles/filmlist.css" %}" />
-<title>Фильмы</title>
+<title>Фильмы похожие на {{ film.name }}</title>
 
 
 <body>
-    <div class="headBlock"> 
-        <span class="HeadName">Фильмы</span>
-        <a href="{% url 'addmovie'%}" class="addfilm">Добавить фильм</a>
+    <div class="headBlock">
+        <a href={% url 'film' film.id %} class="bckbtn">
+            <b>◄</b><span>К фильму {{ film.name }}</span>
+        </a>
     </div>
-    <p class="pagedisc">
-        Список фильмов отсортированный по дате выхода. Если вы вдруг не нашли ваш фильм, просто добавьте его, нажав на кнопку "Добавить фильм".
+    <p class="pagedisc HeadName">
+        Фильмы похожие на {{ film.name }}
     </p>
     <div class="films">
         <div class="filmList">
@@ -29,7 +30,7 @@
             
         {% endfor %}
         </div>
-        {% include "Films/blocks/pagination.html" with page=FilmList urlname='filmlist_page' %}
+        {% include "Films/blocks/pagination.html" with page=FilmList urlname='filmsimilar_page' %}
         {% load TagsFilterF %}
         {% show_avalible_filtersF %}
     </div>

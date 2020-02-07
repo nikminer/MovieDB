@@ -2,16 +2,17 @@
 {% include "../base.html" %}
 
 <link rel="stylesheet" href="{% static "Serials/styles/seriallist.css" %}" />
-<title>Сериалы</title>
+<title>Сериалы похожие на {{ serial.name }}</title>
 
 
 <body>
-    <div class="headBlock"> 
-        <span class="HeadName">Сериалы</span>
-        <a href="{% url 'addmovie'%}" class="addserial">Добавить сериал</a>
+    <div class="headBlock">
+        <a href={% url 'serial' serial.id %} class="bckbtn">
+            <b>◄</b><span>К сериалу {{ serial.name }}</span>
+        </a>
     </div>
-    <p class="pagedisc">
-        Список сериалов отсортированный по году выхода и по названию последнего сезона. Если вы вдруг не нашли ваш сериал, просто добавьте его, нажав на кнопку "Добавить сериал".
+    <p class="pagedisc HeadName">
+       Сериалы похожие на {{ serial.name }}
     </p>
     <div class="serials">
         <div class="serialList" >
@@ -28,7 +29,7 @@
                 </a>
             {% endfor %}
         </div>
-        {% include "Serials/blocks/pagination.html" with page=SerialList urlname='seriallist_page'%}
+        {% include "Serials/blocks/pagination.html" with page=SerialList urlname='filmlist_page' %}
 
         {% load TagsFilter %}
         {% show_avalible_filters %}

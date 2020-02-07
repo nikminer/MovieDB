@@ -2,7 +2,7 @@
 <link rel="stylesheet" href={% static 'Serials/styles/similarserials.css' %} type="text/css" />
 
  <div class="similar">
-     <span class="bigspan">Похожие сериалы</span>
+     <a href="{% url 'Similarserial' serial.id %}" class="bigspan">Похожие сериалы</a>
     <div>
         {% for i in similar_serials %}
          <a href="{% url 'serial' i.id %}" class=similarserial >
