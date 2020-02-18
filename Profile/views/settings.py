@@ -5,15 +5,16 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from MovieNet.settings import STATICFILES_DIRS
 
+
 @login_required
 def Setbackground(request):
     from django.core.files.base import ContentFile
     import base64
     
     profile=Profile.objects.get(user=request.user)
-    avatar=request.POST['Photo'].split(';base64,', 1 )
-    ext = avatar[0].split('/')[-1]
-    profile.photobg=ContentFile(base64.b64decode(avatar[1]), name=profile.user.username+'.' + ext)
+    avatar=request.POST['Photo'].split(';base64,', 1)
+
+    profile.photobg=ContentFile(base64.b64decode(avatar[1]), name=str(profile.user.id)+'.' + avatar[0].split('/')[-1])
     profile.save()
     messages.success(request, 'Задний фон установлен успешно')
 
@@ -33,8 +34,8 @@ def Setavatar(request):
     import base64
     profile=Profile.objects.get(user=request.user)
     avatar=request.POST['Photo'].split(';base64,', 1 )
-    ext = avatar[0].split('/')[-1]
-    profile.photo=ContentFile(base64.b64decode(avatar[1]), name=profile.user.username+'.' + ext)
+
+    profile.photo=ContentFile(base64.b64decode(avatar[1]), name=str(profile.user.id)+'.' + avatar[0].split('/')[-1])
     profile.save()
 
     from PIL import Image
