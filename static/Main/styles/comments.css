@@ -97,3 +97,64 @@
 .addcomment>span>a{
     color: black;
 }
+
+@media (max-device-width: 425px) {
+
+    .addcomment {
+        grid-template-columns: auto 400px;
+        padding: 20px 10px;
+        font-size: 25px;
+        border-width: 3px;
+    }
+    .addcomment > .commentsubmit {
+        height: 50px;
+        font-size: 25px;
+    }
+    .addcomment > .commentsubmit:hover {
+        border-left: 15px #303952 solid;
+        border-right: 15px #303952 solid;
+    }
+    .commentspoiler>input {
+        -ms-transform: scale(2); /* IE */
+        -moz-transform: scale(2); /* FF */
+        -webkit-transform: scale(2); /* Safari and Chrome */
+        -o-transform: scale(2); /* Opera */
+        transform: scale(2);
+        margin-left: 10px;
+        font-size: 25px;
+    }
+    .addcomment > .text {
+        height: 190px;
+        width: 100%;
+        margin-bottom: 20px;
+        padding: 10px;
+        font-size: 25px;
+        border-width: 4px;
+    }
+
+
+
+     .comment {
+        grid-template-columns: 140px auto;
+        padding: 10px;
+    }
+    .comment > img {
+        width: 120px;
+    }
+    .comment > p {
+        font-size: 30px;
+    }
+    .comment > .profile {
+        font-size: 32px;
+    }
+    .comment > .time {
+        font-size: 23px;
+    }
+    .comment > .spoilerAlert {
+        grid-area: spoiler;
+        padding: 10px;
+        margin-top: 5px;
+        font-size: 26px;
+    }
+
+}

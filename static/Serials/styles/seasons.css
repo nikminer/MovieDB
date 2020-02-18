@@ -49,6 +49,49 @@
     padding: 3px 0;
 }
 
+
+@media (max-device-width: 425px) {
+
+    .season {
+        padding: 15px 0;
+        padding-left: 0;
+        width: 225px;
+    }
+    .season > img {
+        height: 275px;
+        width: 200px;
+    }
+    .season > span {
+        padding: 5px 0;
+        font-size: 25px;
+        width: 200px;
+    }
+
+    .seasonInfoBlock {
+        width:  200px;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: space-between;
+        flex-grow: 1;
+        font-size: 25px;
+    }
+
+    .seasonInfoBlock > span:first-child {
+        padding: 10px 0;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
 .addseason{
     padding: 2px 0;
     padding-left: 0;

@@ -23,8 +23,8 @@
 .step-links a{
     color: black;
     padding: 5px 10px;
-    text-decoration: none;
     transition: all 0.5s ease;
+    text-decoration: none;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -32,7 +32,7 @@
 }
 .step-links a:hover{
     fill: white;
-    background-color: #e15f41;
+    background-color: #c44569;
 }
 
 @media (max-device-width: 425px) {

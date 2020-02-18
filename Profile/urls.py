@@ -1,7 +1,7 @@
 from django.urls import path
 from django.conf.urls import url
 from Profile import views
-
+from List import views as listview
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -22,8 +22,13 @@ urlpatterns = [
     path('noties/del',views.notifications.deletenotification ,name="delnoties"),
 
 
+
+
     path('<str:username>/dialog',views.messages.Dialog ,name="dialog"),
     path('<str:username>/sendmessage',views.messages.SendMessage ,name="sendmessage"),
+
+    path('<str:username>/activity/', listview.feed.Useractivity, name='ProfileActivity'),
+    path('<str:username>/activity/<int:page>', listview.feed.Useractivity, name='ProfileActivity_page'),
 
     path('<str:username>/friends',views.friends.Friends ,name="friends"),
     path('<str:username>/requests',views.friends.Friendsreq ,name="friendreq"),

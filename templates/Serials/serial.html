@@ -6,10 +6,12 @@
 <title>{{serial.name}} / {{serial.originalname}} / Сериал</title>
 
 <body>
-    <div class=Serial>
-        <a href={% url 'seriallist' %} class="bckbtn">
-            <b>◄</b><span>К списку сериалов</span>
-        </a>
+        <div class="headBlock">
+            <a href={% url 'seriallist' %} class="bckbtn">
+                <b>◄</b><span>К списку сериалов</span>
+            </a>
+        </div>
+
         <div class="serialName">
             <span>{{serial.name}} / {{serial.originalname}}</span>            
         </div>
@@ -71,12 +73,14 @@
         {% else %}
         <a class=actionpanel href="{% url 'addserial' serial.id %}">Добавить в список</a>
         {% endif %}
-        <div class=discription>
-            <span class="bigspan">Описание</span>
-            <p>
-                {{fseason.disctiption}}
-            </p>
-        </div>
+        <details class="discription" id="serialdiscription">
+            <summary class="bigspan">Описание</summary>
+            <p>{{fseason.disctiption}}</p>
+        </details>
+        <script>
+            AdaptiveOpenDetails(window,serialdiscription);
+        </script>
+
         {% include "Serials/blocks/seasons.html" %}
         {% include "Serials/blocks/similar_serials.html" %}
 
@@ -88,6 +92,4 @@
 
             {% commentslist serial %}
         </div>
-
-    </div>
 </body>

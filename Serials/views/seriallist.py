@@ -10,7 +10,7 @@ def SerialList(request,page=1):
     if request.GET.get('genres'):
        Serials= Serials.filter(tags__slug__in =request.GET.get('genres').split(' ')).distinct()
 
-    paginator = Paginator(Serials, 24)
+    paginator = Paginator(Serials, 25)
 
     try:
         Serials = paginator.page(page)
@@ -42,7 +42,7 @@ def SimilarSerials(request,id,page=1):
     if request.GET.get('genres'):
        Serials= Serials.filter(tags__slug__in =request.GET.get('genres').split(' ')).distinct()
 
-    paginator = Paginator(Serials, 24)
+    paginator = Paginator(Serials, 25)
 
     try:
         Serials = paginator.page(page)

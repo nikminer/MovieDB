@@ -1,34 +1,61 @@
 html{
     background-color: #c44569;
-   }
+    max-width: 100%;
+}
 
-.settings{
-    display: grid;
-    grid-template-areas: "bckbtn . ."
-    "setting setting setting";
-    grid-template-columns: 200px auto 250px;
-    grid-template-rows: 70px auto;
-    min-height: 450px;
-    margin-bottom: 20px;
+.headBlock{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+.bckbtn{
+    font-weight: bold;
+    background-color: #c44569;
+    color: white;
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    padding: 2px;
+}
+.bckbtn>span{
+    background-color: rgb(241, 241, 241);
+    color: black;
+    width: 100%;
+    transition: all 0.5s ease;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 2px;
+}
+.bckbtn>*{
+    padding: 5px 0;
+}
+.bckbtn:hover>span{
+    background-color: #c44569;
+    color: white;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .setting{
-    grid-area: setting;
     display: grid;
     grid-template-areas: "setbg setbg"
     "setinfo setavatar";
     grid-template-columns: auto 500px;
     animation: fade-in 1s ease;
 }
-
-.setting>div{
+.setting>div {
     padding: 10px;
 }
 
-
 .setinfo{
     grid-area: setinfo;
-   
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -41,7 +68,6 @@ html{
     min-height: 400px;
 }
 .setinfo input[type=submit]{
-    padding: 10px;
     border: 0;
     font-size: 18px;
     height: 40px;
@@ -51,7 +77,7 @@ html{
     margin: 0;
     background-color: rgb(241, 241, 241);
 }
-.setinfo input[type=submit]:hover{ 
+.setinfo input[type=submit]:hover{
     padding: 0;
     border-left: 10px #c44569 solid;
     border-right: 10px #c44569 solid;
@@ -63,6 +89,48 @@ html{
     padding: 5px;
     font-size: 18px;
     width: 100%;
+}
+
+.setavatar{
+    grid-area: setavatar;
+    min-height: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-evenly;
+}
+#avatar{
+    flex-direction: column;
+    align-items: stretch;
+    padding-top: 10px;
+    display: none;
+}
+#setavatar{
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+}
+#Avatarsend{
+    border: 0;
+    font-size: 18px;
+    height: 40px;
+    transition: all 0.5s ease;
+    cursor: pointer;
+    padding: 0 10px;
+    margin: 0;
+    background-color: rgb(241, 241, 241);
+}
+#Avatarsend:hover{
+    padding: 0;
+    border-left: 10px #c44569 solid;
+    border-right: 10px #c44569 solid;
+    margin: 0 5px;
+    cursor: pointer;
+    background-color: rgb(223, 219, 219);
+}
+#Avatarupload{
+    padding: 10px;
+    margin: auto;
 }
 
 .setbg{
@@ -82,6 +150,7 @@ html{
 #setbg{
     display: flex;
     flex-direction: column;
+    height: 500px;
 }
 
 #bgsend,.bgsend{
@@ -96,7 +165,7 @@ html{
     background-color: rgb(241, 241, 241);
     width:45%;
 }
-#bgsend:hover,.bgsend:hover{ 
+#bgsend:hover,.bgsend:hover{
     padding: 0;
     border-left: 10px #c44569 solid;
     border-right: 10px #c44569 solid;
@@ -109,80 +178,99 @@ html{
     margin: auto;
 }
 
-
-
-.setavatar{
-    grid-area: setavatar;
-    min-height: 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    justify-content: space-evenly;
-}
-#avatar{
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    padding-top: 10px;
-    display: none;
-}
-#setavatar{
-    display: flex;
-    flex-direction: column;
-}
-#Avatarsend{
-    padding: 10px;
-    border: 0;
-    font-size: 18px;
-    height: 40px;
-    transition: all 0.5s ease;
-    cursor: pointer;
-    padding: 0 10px;
-    margin: 0;
-    background-color: rgb(241, 241, 241);
-}
-#Avatarsend:hover{ 
-    padding: 0;
-    border-left: 10px #c44569 solid;
-    border-right: 10px #c44569 solid;
-    margin: 0 5px;
-    cursor: pointer;
-    background-color: rgb(223, 219, 219);
-}
-#Avatarupload{
-    padding: 10px;
-    margin: auto;
-}
-
-.bckbtn{
-    grid-area: bckbtn;
-    font-weight: bold;
-    background-color: #c44569;
-    color: white;
-    display: flex;
-    flex-direction:row;
-    align-items: center;
-    cursor: pointer;
-    text-decoration: none;
-    margin: 20px;
-    height: 30px;
-}
-.bckbtn>span{
-    background-color: rgb(241, 241, 241);
-    color: black;
-    width: 100%;
-    transition: all 0.5s ease;
-    padding-left: 10px;
-}
-.bckbtn>*{
-    padding: 5px 0;
-}
-.bckbtn:hover>span{
-    background-color: #c44569;
-    color: white;
-}
-
 .bigspan{
     border-left-color: #c44569;
     margin: 10px 0;
 }
+
+@media (max-device-width: 425px) {
+    .bckbtn {
+        padding: 3px;
+    }
+    .bckbtn > span {
+        font-size: 26px;
+    }
+
+    .setting{
+        grid-template-areas:
+        "setinfo"
+        "setavatar"
+        "setbg";
+        grid-template-columns: auto;
+    }
+    .setting>div{
+        padding: 20px;
+        font-size: 24px;
+    }
+    .setinfo input[type=submit]{
+        font-size: 24px;
+        height: 60px;
+        margin-top: 30px;
+    }
+    .setinfo input{
+        padding: 10px;
+        font-size: 24px;
+        border: 3px grey solid;
+    }
+
+    .setavatar{
+        min-height: 100px;
+    }
+    #setavatar{
+        height: 500px;
+    }
+    #avatar{
+        padding-top: 10px;
+    }
+    #Avatarsend{
+        height: 60px;
+        padding: 0 15px;
+        font-size: 28px;
+    }
+    #Avatarupload{
+        padding: 10px;
+        margin: auto;
+        margin-top: 20px;
+        font-size: 24px;
+    }
+
+    .cr-slider::-webkit-slider-thumb{
+
+    }
+
+    #bg{
+        padding-top: 15px;
+    }
+    #setbg{
+        height: 600px;
+    }
+    #bgsend,.bgsend{
+        padding: 10px;
+        margin: auto;
+        margin-top: 20px;
+        font-size: 24px;
+    }
+    #bgupload{
+        padding:15px;
+        font-size: 24px;
+    }
+
+
+    .bigspan{
+        border-left-color: #c44569;
+        border-left-width: 15px;
+        margin: 10px 0;
+        font-size: 28px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+

@@ -4,29 +4,22 @@ html{
 
 body{
     display: grid;
-    grid-template-areas:"headname" "discript" "Search" 
+    grid-template-areas:"headname" "discript" "Search"
     "results";
-    grid-template-rows: 50px 0.1fr 70px  1fr;
+    grid-template-rows: 45px 0.1fr 100px  1fr;
+}
+
+a{
+    color: black;
 }
 
 .HeadName{
-    grid-area: "headname";
+    grid-area: headname;
     font-size: 25px;
     font-weight: bold;
     margin: 30px;
 }
-.Search{
-    margin: 0 30px;
-    grid-area: Search;
-    display: flex;
-    align-items: center;
-    
-}
-.Search>input{
-    width: 100%;
-    font-size: 20px;
-    padding: 5px;
-}
+
 .discript{
     border-top: #303952 solid 2px;
     border-bottom: #303952 solid 2px;
@@ -35,6 +28,20 @@ body{
     margin-top: 30px;
     padding: 5px;
 }
+
+.Search{
+    margin: 0 30px;
+    grid-area: Search;
+    display: flex;
+    align-items: center;
+}
+.Search>input{
+    width: 100%;
+    font-size: 20px;
+    padding: 5px;
+    border: 3px solid lightgrey;
+}
+
 #result{
     grid-area: results;
     display: flex;
@@ -42,6 +49,7 @@ body{
     flex-wrap: wrap;
     justify-content: center;
 }
+
 .poster{
     width: 150px;
     height: 210px;
@@ -75,3 +83,52 @@ body{
     text-decoration: none;
     text-align: center;
 }
+
+
+@media (max-device-width: 425px) {
+    body{
+        grid-template-rows: 70px 0.1fr 140px  1fr;
+    }
+
+    .Search{
+        margin-top:20px;
+    }
+    .Search>input{
+        padding: 15px;
+        border: 5px solid lightgrey;
+        font-size: 30px;
+    }
+
+    .discript{
+        font-size: 11px;
+    }
+
+    .poster{
+        width: 200px;
+        height: 280px;
+        margin: 10px 5px;
+    }
+    .postertitle{
+        height: 50px;
+        width: 200px;
+        line-height: 50px;
+        font-size: 25px;
+    }
+    .Movie{
+        width: 220px;
+        height:330px;
+        padding:5px;
+        margin: 5px;
+    }
+    .Movie>span{
+        font-size: 25px;
+    }
+}
+
+
+
+
+
+
+
+

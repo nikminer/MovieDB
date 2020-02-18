@@ -52,3 +52,26 @@
 .numericinput>span{
     cursor: pointer;
 }
+
+@media (max-device-width: 425px) {
+    .numeric{
+        opacity: 0;
+    }
+    .numericinput{
+        opacity: 1;
+    }
+    .numericinput>span{
+        font-size: 52px;
+        margin: 0 20px;
+    }
+    .numericinput>input{
+        width: 80px;
+        font-size: 25px;
+    }
+    #numchange:hover>.numeric{
+        opacity: 0;
+    }
+    #numchange:hover>.numericinput{
+        opacity: 1;
+    }
+}

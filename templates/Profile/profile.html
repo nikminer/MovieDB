@@ -6,10 +6,12 @@
 <title>Профиль {{profile.user.first_name}} {{profile.user.last_name}}</title>
 
 <body>
-    <div class="profile">
-        <a href={% url 'index' %} class="bckbtn">
-            <b>◄</b><span>На главную</span>
-        </a>
+        <div class="headBlock">
+            <a href={% url 'index' %} class="bckbtn">
+                <b>◄</b><span>На главную</span>
+            </a>
+        </div>
+
 
         <div class="profilehead">
             <div class="bgimg">
@@ -55,7 +57,7 @@
                 <span>Мои сообщения</span>
             </a>-->
             <a href="{% url 'settings' %}">
-                <img width="30px" src={% static 'images/settings.png' %} >
+                <img src={% static 'images/settings.png' %} >
                 <span>Настройки профиля</span>
             </a>
             {% endif %}
@@ -68,12 +70,12 @@
                 -->
                 {% if ismyfriend%}
                     <a href="{% url 'remfriend' profile.user.username %}">
-                        <img width="30px" src={% static 'images/removefriend.png' %} >
+                        <img src={% static 'images/removefriend.png' %} >
                         <span>Убрать из Друзей</span>
                     </a>
                 {% else %}
                     <a href="{% url 'addfriend' profile.user.username %}">
-                        <img width="30px" src={% static 'images/addtofriend.png' %} >
+                        <img src={% static 'images/addtofriend.png' %} >
                         <span>Добавить в Друзья</span>
                     </a>
                 {% endif %}
@@ -88,7 +90,7 @@
                 <div>
                 {% if friends.count > 0 %}
                     {% for i in friends.list %}
-                    <a href="{% url 'profile' i.user.username %}" style="margin:6px;width:50px;height:50px;background-image:url('{{i.photo.url}}');background-size:contain" title="{{i.user.first_name}} {{i.user.last_name}}"></a>
+                    <a href="{% url 'profile' i.user.username %}" style="background-image:url('{{i.photo.url}}');background-size:contain" title="{{i.user.first_name}} {{i.user.last_name}}"></a>
                     {% endfor %}
                 {% else %}
                     <span style="padding:5px">У вас пока нет друзей</span>
@@ -142,9 +144,9 @@
         </div>
         {% if feed %}
             <div class="sectionFeed">
-                    <span style="border-left-color: #3dc1d3;" class="bigspan">
-                        Активность 
-                    </span>
+                <a href={% url 'ProfileActivity' profile.user.username %} style="border-left-color: #3dc1d3;" class="bigspan">
+                    Активность
+                </a>
                 {% for feeditem in feed %}
                 <a href="{{feeditem.list.get_absolute_url}}" class="feeditem">
                     <div class="feedaction">
@@ -155,11 +157,8 @@
                             <span class="feedtimestamp">{{feeditem.created|timesince}} назад</span>
                         </div>
                     </div>
-                    
                 </a>
                 {% endfor %}
             </div>
         {% endif %}
-        
-    </div>
 </body>

@@ -117,5 +117,12 @@
         }
     }
     TopBtn.style.display='none';
+    function AdaptiveOpenDetails(target,details) {
+            if (target.outerWidth>425)
+                details.open=true;
+            else
+                details.open=false;
+
+    }
 
 </script>

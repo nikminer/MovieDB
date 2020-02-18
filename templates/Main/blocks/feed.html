@@ -2,9 +2,9 @@
 <link rel="stylesheet" href={% static 'Main/styles/feed.css' %} type="text/css" />
 
 {% for feeditem in feed %}
-<div class="feeditem" {% if request.user == feeditem.user.user %}style="border-left: 3px solid #c44569;"{% endif %} >
+<div class="feeditem" {% if request.user == feeditem.user.user %}style="border-left-color:#c44569;"{% endif %} >
     <a class="feeduser" href={%url 'profile' feeditem.user.user.username%}>
-        <img src="{{feeditem.user.photo.url}}" width="38px"> 
+        <img src="{{feeditem.user.photo.url}}">
         {{feeditem.user.user.first_name}} {{feeditem.user.user.last_name}}
     </a>   
     <a href="{{feeditem.list.get_absolute_url}}" class="feedaction">

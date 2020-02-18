@@ -8,7 +8,7 @@ def FilmList(request,page=1):
     if request.GET.get('genres'):
        FilmList= FilmList.filter(tags__slug__in=request.GET.get('genres').split(' ')).distinct()
 
-    paginator = Paginator(FilmList, 24)
+    paginator = Paginator(FilmList, 25)
 
     try:
         FilmList = paginator.page(page)
@@ -40,7 +40,7 @@ def FilmListSimilar(request,id, page=1):
     if request.GET.get('genres'):
         FilmList = FilmList.filter(tags__slug__in=request.GET.get('genres').split(' ')).distinct()
 
-    paginator = Paginator(FilmList, 24)
+    paginator = Paginator(FilmList, 25)
 
     try:
         FilmList = paginator.page(page)

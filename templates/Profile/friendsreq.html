@@ -6,13 +6,15 @@
 <title>Список заявок в друзья {{profile.user.first_name}} {{profile.user.last_name}}</title>
 
 <body>
-    <div class="friends">
+    <div class="headBlock">
         <a href={% url 'profile'  profile.user.username %} class="bckbtn">
             <b>◄</b><span>К профилю</span>
         </a>
         <a href={% url 'friends'  profile.user.username %} class="requestf">
             <span>Друзья</span><b>{{friends.fcount}}</b>
         </a>
+    </div>
+
         <div class="friendlist">
             <span>Завявки в друзья ({{friends.count}})</span>
             <div>
@@ -31,7 +33,7 @@
                 {% endfor %}
             {% else %}
                 <div class="friend" style="width:100%;align-items:flex-start">
-                    <span style="width:300px">Заявок в друзья не обнаружено :(</span>
+                    <span>Заявок в друзья не обнаружено :(</span>
                 </div>
             {% endif %}
             </div>
@@ -51,10 +53,9 @@
                 {% endfor %}
             {% else %}
                 <div class="friend" style="width:100%;align-items:flex-start">
-                    <span style="width:300px">Ваших заявок не найдено!</span>
+                    <span >Ваших заявок не найдено!</span>
                 </div>
             {% endif %}
             </div>
         </div>
-    </div>
 </body>

@@ -6,12 +6,18 @@ body{
     flex-direction: column;
     height: 100%;
 }
+a{
+    color: black;
+}
 
 .headBlock{
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin: 20px;
+    margin-bottom: 0px;
+    padding-bottom: 20px;
+    border-bottom: black solid 1px;
 }
 .bckbtn{
     font-weight: bold;
@@ -41,50 +47,57 @@ body{
     color: white;
 }
 
-.notifications{
+.pagedisc{
+    margin: 20px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.activity{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     padding: 15px;
-    border-top: black solid 1px;
     animation: fade-in 1s ease;
 }
 
-.notification{
-    display: grid;
-    grid-template-areas: "poster message del";
-    grid-template-columns: 80px auto 30px;
-    padding: 5px;
-}
-.notification>div{
+.feeditem{
     display: flex;
     flex-direction: column;
+    padding: 10px;
+    padding-left: 20px;
     align-items: flex-start;
-    justify-content: space-evenly;
-    font-size: 20px;
-}
-.notification>div>a{
-    color: black;
-}
-.notification>img{
-    height: 80px;
-    margin-right: 10px;
-}
-.sended{
-    color: grey;
-    font-size: 14px!important;
-}
-
-.delbtn{
-    display: block;
-    width: 20px;
-    height: 20px;
-    background: url('./images/cross_20px.png') no-repeat;
     transition: all 0.5s ease;
-    cursor: pointer;
 }
-.delbtn:hover{
-    background-position: 0 -20px;
+.feeditem:hover{
+    background-color: lightgray;
+}
+.feeditem:hover>.feedaction>div{
+    margin-left: 20px;
+}
+.feedtimestamp{
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+.feedaction{
+    font-size: 18px;
+    display: flex;
+    flex-direction: row;
+}
+.feedaction>img{
+    height: 80px;
+}
+.feedaction>div{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 10px;
+    transition: all 0.5s ease;
+}
+.feedaction>div>a{
+    font-weight: bold;
+    font-size: 18px;
 }
 
 @media (max-device-width: 425px) {
@@ -95,36 +108,32 @@ body{
         font-size: 26px;
     }
 
-    .notifications{
+    .activity{
         padding: 15px;
         border-top-width: 3px;
     }
 
-    .notification{
-        grid-template-columns: 120px auto 30px;
-        padding: 10px;
+    .pagedisc{
+        font-size: 25px;
     }
-    .notification>div{
-        font-size: 26px;
-    }
-    .notifications>h3{
-        font-size: 26px;
-    }
-    .notification>img{
-        height: 120px;
-        margin-right: 5px;
-    }
-    .sended{
+
+    .feedtimestamp{
+        font-size: 18px;
+        margin-bottom: 10px;
         color: grey;
-        font-size: 18px!important;
     }
-    .delbtn{
-        background: url('./images/cross_40px.png') no-repeat;
-        width: 40px;
-        height: 40px;
+    .feedaction{
+        font-size: 25px;
     }
-    .delbtn:hover{
-        background-position: 0 -40px;
+    .feedaction>img{
+        height: 120px;
+    }
+    .feedaction>div{
+        margin-left: 10px;
+    }
+    .feedaction>div>a{
+        font-weight: bold;
+        font-size: 24px;
     }
 }
 

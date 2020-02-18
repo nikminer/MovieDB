@@ -1,11 +1,11 @@
 {% load static %}
 {% if page.paginator.num_pages > 1 %}
-<link href="{% static "Serials/styles/pagination.css" %}" rel="stylesheet">
+<link href="{% static "Profile/pagination.css" %}" rel="stylesheet">
 <div class="pagination">
     <span class="step-links">
         <span>
         {% if page.has_previous %}
-            <a href="{% url urlname page.previous_page_number %}">
+            <a href="{% url urlname username page.previous_page_number %}">
                 <svg width="40" height="30">
                     <polygon transform="rotate(180 20,15)" points="0,13 30,13 25,5 40,15 25,25 30,17 0,17"></polygon>
                 </svg>
@@ -17,7 +17,7 @@
         </span>
         <span>
             {% if page.has_next %}
-                <a href="{% url urlname page.next_page_number %}">
+                <a href="{% url urlname username page.next_page_number %}">
                     <svg width="40" height="30">
                          <polygon points="0,13 30,13 25,5 40,15 25,25 30,17 0,17"></polygon>
                     </svg>

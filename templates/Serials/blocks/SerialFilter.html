@@ -1,5 +1,5 @@
-    <div class="filters">
-        <span class="groupspan">Жанры</span>
+    <details class="filters" id="GenreFilters">
+        <summary class="groupspan">Жанры</summary>
         <div class="filter">
 
             {% for tag in tags %}
@@ -34,5 +34,13 @@
                     url.searchParams.set('genres', param)
                     window.location.href=url['href']
                 }
+
+
+
+                AdaptiveOpenDetails(window,GenreFilters);
+                window.addEventListener("resize", function(e){
+                    AdaptiveOpenDetails(e.target,GenreFilters);
+                })
+
             </script>
-    </div>
+    </details>

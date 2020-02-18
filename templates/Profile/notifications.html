@@ -7,13 +7,15 @@
 <title>Уведомления / {{request.user.profile.name}}</title>
 
 <body>
-    <div class="dialog">
+    <div class="headBlock">
         <a href="{% url 'profile' request.user.username %}" class="bckbtn">
             <b>◄</b><span>К профилю</span>
         </a>
-        <div class="notifications">
-            {% if notifications %}
-                {% for notification in notifications %}
+    </div>
+
+    <div class="notifications">
+        {% if notifications %}
+            {% for notification in notifications %}
                 <div id={{notification.id}} class="notification">
                     <img src={{notification.obj.img.url}}>
                     <div>
@@ -25,10 +27,9 @@
                         <span class="delbtn" onclick=deleteNoti(this.parentElement.parentElement) href="" title="Удалить уведомление"></span>
                     </div>
                 </div>
-                {% endfor %}
-            {% else %}
-                <h3>Уведомлений нет</h3>
-            {% endif %}
-        </div>
+            {% endfor %}
+        {% else %}
+            <h3>Уведомлений нет</h3>
+        {% endif %}
     </div>
 </body>

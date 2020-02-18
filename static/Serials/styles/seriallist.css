@@ -2,7 +2,6 @@ html{
  background-color: #546de5;
 }
 
-
 .headBlock{
     display: flex;
     align-items: center;
@@ -13,7 +12,6 @@ html{
     font-size: 25px;
     font-weight: bold;
 }
-
 .addserial{
     padding: 5px;
     width: 150px;
@@ -25,9 +23,8 @@ html{
     background-color: #546de5;
 }
 .addserial:hover{
-    background-color: #1738db;  
+    background-color: #1738db;
 }
-
 .pagedisc{
     margin: 20px;
     margin-bottom: 10px;
@@ -36,9 +33,6 @@ html{
     border-top: #546de5 solid 2px;
     border-bottom: #546de5 solid 2px;
 }
-
-
-
 
 .serials{
     display: grid;
@@ -82,6 +76,9 @@ html{
     justify-content: center;
     align-items: center;
 }
+.poster>img{
+    height: inherit;
+}
 .serialsmallinfo{
     font-size: 13px;
     display: flex;
@@ -90,6 +87,36 @@ html{
     align-items: center;
 }
 
+
+.bckbtn{
+    grid-area: bckbtn;
+    font-weight: bold;
+    background-color: #1738db;
+    color: white;
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    padding: 2px;
+}
+
+.bckbtn>span{
+    background-color: rgb(241, 241, 241);
+    color: black;
+    width: 100%;
+    transition: all 0.5s ease;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 2px;
+}
+.bckbtn>*{
+    padding: 5px 0;
+}
+.bckbtn:hover>span{
+    background-color: #1738db;
+    color: white;
+}
 
 
 
@@ -106,7 +133,6 @@ html{
     flex-direction: column;
     margin-top: 5px;
 }
-
 .groupspan{
     font-size: 18px;
     font-weight: bold;
@@ -120,7 +146,6 @@ html{
     align-items: center;
     cursor: pointer;
     transition: all 0.5s ease;
-    
 }
 .filter>label:hover{
     background-color: #1738db;
@@ -149,37 +174,81 @@ html{
     padding: 5px;
     font-size: 17px;
     margin-bottom: 5px;
+    width: 100%;
 }
 .filters>button:hover{
     background-color: #1738db;
     color: #fff;
 }
 
-.bckbtn{
-    grid-area: bckbtn;
-    font-weight: bold;
-    background-color: #546de5;
-    color: white;
-    display: flex;
-    flex-direction:row;
-    align-items: center;
-    cursor: pointer;
-    text-decoration: none;
-    margin-bottom: 20px;
-    height: 30px;
+@media (max-device-width: 425px) {
+    .HeadName{
+        font-size: 30px;
+    }
+    .addserial{
+        padding: 8px 10px;
+        width: 230px;
+        font-size: 23px;
+    }
+    .pagedisc{
+        border-width: 4px;
+        font-size: 23px;
+    }
+
+    .serials{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .serial {
+        width: 250px;
+        padding: 30px;
+        height: 370px;
+        font-size: 23px;
+    }
+    .poster{
+        height: 300px;
+    }
+    .serialsmallinfo{
+        font-size: 23px;
+    }
+
+    .bckbtn{
+        margin-bottom: 20px;
+        padding: 3px;
+    }
+    .bckbtn>span{
+        font-size: 26px;
+    }
+
+    .groupspan {
+        font-size: 24px;
+        padding-left: 15px;
+    }
+    .filters{
+        margin: 15px;
+    }
+    .filter>label>span{
+        font-size: 24px;
+        padding: 6px;
+        padding-left: 15px;
+    }
+    .filters>button{
+        margin-top: 10px;
+        padding: 10px;
+        font-size: 25px;
+        margin-bottom: 5px;
+
+    }
+    .filter>label:hover{
+        background-color: white;
+        color: black;
+    }
 }
-.bckbtn>span{
-    background-color: rgb(241, 241, 241);
-    color: black;
-    width: 100%;
-    transition: all 0.5s ease;
-    padding-left: 10px;
-    padding-right: 10px;
-}
-.bckbtn>*{
-    padding: 5px 0;
-}
-.bckbtn:hover>span{
-    background-color: #546de5;
-    color: white;
-}
+
+
+
+
+
+
+

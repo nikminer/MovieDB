@@ -2,7 +2,6 @@ html{
  background-color: #e15f41;
 }
 
-
 .headBlock{
     display: flex;
     align-items: center;
@@ -13,8 +12,6 @@ html{
     font-size: 25px;
     font-weight: bold;
 }
-
-
 
 .addfilm{
     padding: 5px;
@@ -27,9 +24,8 @@ html{
     background-color: #e15f41;
 }
 .addfilm:hover{
-    background-color: #e15f41;  
+    background-color: #e15f41;
 }
-
 .pagedisc{
     margin: 20px;
     margin-bottom: 10px;
@@ -38,14 +34,12 @@ html{
     border-top: #e15f41 solid 2px;
     border-bottom: #e15f41 solid 2px;
 }
-
 .films{
     display: grid;
     grid-template-areas: "filmlist filters";
     grid-template-columns: auto 200px;
     animation: fade-in 1s ease;
 }
-
 .filmList{
     padding: 20px;
     display: flex;
@@ -83,6 +77,9 @@ html{
     justify-content: center;
     align-items: center;
 }
+.poster>img{
+    height: inherit;
+}
 .filmsmallinfo{
     font-size: 13px;
     display: flex;
@@ -91,10 +88,35 @@ html{
     align-items: center;
 }
 
-
-
-
-
+.bckbtn{
+    grid-area: bckbtn;
+    font-weight: bold;
+    background-color: #e15f41;
+    color: white;
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    margin-bottom: 20px;
+    padding: 2px;
+}
+.bckbtn>span{
+    background-color: rgb(241, 241, 241);
+    color: black;
+    width: 100%;
+    transition: all 0.5s ease;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 2px;
+}
+.bckbtn>*{
+    padding: 5px 0;
+}
+.bckbtn:hover>span{
+    background-color: #e15f41;
+    color: white;
+}
 
 
 .filters{
@@ -124,7 +146,7 @@ html{
     align-items: center;
     cursor: pointer;
     transition: all 0.5s ease;
-    
+
 }
 .filter>label:hover{
     background-color: #e15f41;
@@ -153,38 +175,79 @@ html{
     padding: 5px;
     font-size: 17px;
     margin-bottom: 5px;
+    width: 100%;
 }
 .filters>button:hover{
     background-color: #e15f41;
     color: #fff;
 }
 
+@media (max-device-width: 425px) {
+    .HeadName{
+        font-size: 30px;
+    }
+    .addfilm{
+        padding: 8px 10px;
+        width: 230px;
+        font-size: 23px;
+    }
+    .pagedisc{
+        border-width: 4px;
+        font-size: 23px;
+    }
 
-.bckbtn{
-    grid-area: bckbtn;
-    font-weight: bold;
-    background-color: #e15f41;
-    color: white;
-    display: flex;
-    flex-direction:row;
-    align-items: center;
-    cursor: pointer;
-    text-decoration: none;
-    margin-bottom: 20px;
-    height: 30px;
+    .films{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .film {
+        width: 250px;
+        padding: 30px;
+        height: 370px;
+        font-size: 23px;
+    }
+    .poster{
+        height: 300px;
+    }
+    .filmsmallinfo{
+        font-size: 23px;
+    }
+
+    .bckbtn{
+        margin-bottom: 20px;
+        padding: 3px;
+    }
+    .bckbtn>span{
+        font-size: 26px;
+    }
+
+
+    .groupspan{
+        font-size: 24px;
+        padding-left: 15px;
+    }
+    .filters{
+        margin: 15px;
+    }
+    .filter>label>span{
+        font-size: 24px;
+        padding: 6px;
+        padding-left: 15px;
+    }
+    .filters>button{
+        margin-top: 10px;
+        padding: 10px;
+        font-size: 25px;
+        margin-bottom: 5px;
+    }
+    .filter>label:hover{
+        background-color: white;
+        color: black;
+    }
 }
-.bckbtn>span{
-    background-color: rgb(241, 241, 241);
-    color: black;
-    width: 100%;
-    transition: all 0.5s ease;
-    padding-left: 10px;
-    padding-right: 10px;
-}
-.bckbtn>*{
-    padding: 5px 0;
-}
-.bckbtn:hover>span{
-    background-color: #e15f41;
-    color: white;
-}
+
+
+
+
+

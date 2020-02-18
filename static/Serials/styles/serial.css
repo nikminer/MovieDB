@@ -2,8 +2,8 @@ html{
     background-color: #546de5;
    }
 
-.Serial{
-    margin: 20px;
+body{
+    padding: 20px;
     display: grid;
     grid-template-areas: "bckbtn . ."
     "SerialName SerialName SerialName "
@@ -19,18 +19,22 @@ html{
     min-height: 350px;
 }
 
-.bckbtn{
+.headBlock{
     grid-area: bckbtn;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.bckbtn{
     font-weight: bold;
-    background-color: #546de5;
+    background-color: #1738db;
     color: white;
     display: flex;
     flex-direction:row;
     align-items: center;
     cursor: pointer;
     text-decoration: none;
-    margin-bottom: 20px;
-    height: 30px;
+    padding: 2px;
 }
 .bckbtn>span{
     background-color: rgb(241, 241, 241);
@@ -38,12 +42,14 @@ html{
     width: 100%;
     transition: all 0.5s ease;
     padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 2px;
 }
 .bckbtn>*{
     padding: 5px 0;
 }
 .bckbtn:hover>span{
-    background-color: #546de5;
+    background-color: #1738db;
     color: white;
 }
 
@@ -106,7 +112,6 @@ html{
 .serialinfo>div>a{
     padding:5px;
     color: black;
-
     transition: all 0.5s ease;
     width: 180px;
     text-align: center;
@@ -141,6 +146,7 @@ html{
     cursor: pointer;
     background-color: rgb(223, 219, 219);
 }
+
 .discription{
     grid-area: discription;
     display: flex;
@@ -154,6 +160,7 @@ html{
     margin: 0;
     word-spacing: 2px;
 }
+
 .bigspan{
     border-left-color: #546de5;
 }
@@ -179,3 +186,102 @@ html{
     justify-content: flex-start;
     animation: fade-in 1s ease;
 }
+
+@media (max-device-width: 425px) {
+
+    body {
+        padding: 20px;
+        grid-template-areas: "bckbtn ."
+        "SerialName SerialName "
+        "SerialInfo userrate"
+        "SerialInfo poster"
+        ". actionpanel"
+        "discription discription"
+        "seasons seasons "
+        "simeralserials simeralserials"
+        "comments comments";
+        grid-template-columns: auto 270px;
+    }
+
+    .bckbtn{
+        margin-bottom: 20px;
+        padding: 3px;
+    }
+    .bckbtn>span{
+        font-size: 26px;
+    }
+
+    .serialName{
+        font-size:30px;
+        margin-bottom: 15px;
+        border-bottom: #546de5 4px solid;
+        padding-bottom: 15px;
+    }
+
+    .bigspan{
+        height: 40px;
+        border-left-color: #1738db;
+    }
+
+    .poster{
+        width: 270px;
+    }
+
+    #stars{
+        width:270px;
+        height: 40px;
+    }
+    #stars>img{
+        height: 35px;
+    }
+    .userrate>div>span{
+        font-size:35px;
+    }
+    .userrate>.bigspan{
+        display: none;
+    }
+
+    .serialinfo{
+        grid-area: SerialInfo;
+        display: flex;
+        flex-direction: column;
+        animation: fade-in 1s ease;
+    }
+    .serialinfo>div{
+        margin-top: 15px;
+        font-size: 28px;
+        display: flex;
+        flex-direction: column;
+        grid-area: SerialInfo;
+    }
+    .serialinfo>div>span{
+        padding: 15px 0;
+    }
+    .serialinfo>div>a{
+        width: 100%;
+    }
+    .genre{
+        padding: 6px 8px;
+    }
+
+    .actionpanel{
+        font-size: 25px;
+        height: 40px;
+    }
+
+    .discription{
+        margin-top: 20px;
+    }
+
+    .comments{
+        margin-top: 20px;
+    }
+}
+
+
+
+
+
+
+
+
