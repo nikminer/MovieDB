@@ -341,7 +341,9 @@ body{
         height:60px;
         margin-right: 20px;
     }
-
+    .discription>p{
+        font-size: 22px;
+    }
     .episodelist{
        font-size: 12px;
         margin-top: 20px;

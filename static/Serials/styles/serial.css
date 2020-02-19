@@ -222,6 +222,9 @@ body{
         height: 40px;
         border-left-color: #1738db;
     }
+    .discription>p{
+        font-size: 22px;
+    }
 
     .poster{
         width: 270px;
