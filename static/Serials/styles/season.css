@@ -131,7 +131,6 @@ body{
 
 .friends{
     grid-area: friends;
-    max-height: 170px;
     display: flex;
     flex-direction: column;
     animation: fade-in 1s ease;
@@ -301,38 +300,28 @@ body{
         display: none;
     }
 
-    .serialinfo{
-        grid-area: SerialInfo;
-        display: flex;
-        flex-direction: column;
-        animation: fade-in 1s ease;
-    }
+
     .serialinfo>div{
         margin-top: 15px;
         font-size: 28px;
-        display: flex;
-        flex-direction: column;
-        grid-area: SerialInfo;
     }
     .serialinfo>div>span{
         padding: 15px 0;
     }
-
     .status{
         padding: 7px 10px;
     }
     .genre{
-        padding: 6px 8px;
+        margin: 6px 8px;
     }
 
     .friends{
-        max-height: 170px;
         font-size: 28px;
         margin-top: 20px;
     }
     .friends>div{
         margin-top: 15px;
-        max-height: 140px;
+        max-height: 320px;
     }
     .friends>div>a{
         padding: 10px;
@@ -341,6 +330,7 @@ body{
         height:60px;
         margin-right: 20px;
     }
+
     .discription>p{
         font-size: 22px;
     }

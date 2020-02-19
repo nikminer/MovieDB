@@ -30,7 +30,7 @@
             
         {% endfor %}
         </div>
-        {% include "Films/blocks/pagination.html" with page=FilmList urlname='filmsimilar_page' %}
+        {% include "Films/blocks/pagination.html" with page=FilmList filmid=film.id urlname='filmsimilar_page' %}
         {% load TagsFilterF %}
         {% show_avalible_filtersF %}
     </div>

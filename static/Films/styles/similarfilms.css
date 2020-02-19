@@ -5,10 +5,12 @@
     flex-direction: column;
     color: black;
     animation: fade-in 1s ease;
+
 }
 .similar>div{
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
 }
 .similarfilm{
     padding: 10px 0;
@@ -40,3 +42,24 @@
 }
 
 
+@media (max-device-width: 425px) {
+    .similar>div{
+        justify-content: center;
+    }
+    .similarfilm{
+        padding: 15px 0;
+        padding-left: 0;
+        width:225px;
+    }
+
+    .similarfilm>img{
+        height: 275px;
+        width: 200px;
+    }
+    .similarfilm>span{
+        padding: 5px 0;
+        font-size: 25px;
+        width: 200px;
+    }
+
+}

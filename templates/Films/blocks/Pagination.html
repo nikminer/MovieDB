@@ -5,11 +5,19 @@
     <span class="step-links">
         <span>
         {% if page.has_previous %}
-            <a href="{% url urlname page.previous_page_number %}">
-                <svg width="40" height="30">
-                    <polygon transform="rotate(180 20,15)" points="0,13 30,13 25,5 40,15 25,25 30,17 0,17"></polygon>
-                </svg>
-            </a>
+            {% if filmid %}
+                <a href="{% url urlname filmid page.previous_page_number %}">
+                    <svg width="40" height="30">
+                        <polygon transform="rotate(180 20,15)" points="0,13 30,13 25,5 40,15 25,25 30,17 0,17"></polygon>
+                    </svg>
+                </a>
+            {% else %}
+                <a href="{% url urlname page.previous_page_number %}">
+                    <svg width="40" height="30">
+                        <polygon transform="rotate(180 20,15)" points="0,13 30,13 25,5 40,15 25,25 30,17 0,17"></polygon>
+                    </svg>
+                </a>
+            {% endif %}
         {% endif %}
         </span>
         <span class="current">
@@ -17,11 +25,19 @@
         </span>
         <span>
             {% if page.has_next %}
-                <a href="{% url urlname page.next_page_number %}">
-                    <svg width="40" height="30">
-                         <polygon points="0,13 30,13 25,5 40,15 25,25 30,17 0,17"></polygon>
-                    </svg>
-                </a>
+                {% if filmid %}
+                    <a href="{% url urlname filmid page.next_page_number %}">
+                        <svg width="40" height="30">
+                             <polygon points="0,13 30,13 25,5 40,15 25,25 30,17 0,17"></polygon>
+                        </svg>
+                    </a>
+                {% else %}
+                     <a href="{% url urlname page.next_page_number %}">
+                        <svg width="40" height="30">
+                             <polygon points="0,13 30,13 25,5 40,15 25,25 30,17 0,17"></polygon>
+                        </svg>
+                     </a>
+                {% endif %}
             {% endif %}
         </span>
     </span>

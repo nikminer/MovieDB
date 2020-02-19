@@ -29,7 +29,7 @@
                 </a>
             {% endfor %}
         </div>
-        {% include "Serials/blocks/pagination.html" with page=SerialList urlname='filmlist_page' %}
+        {% include "Serials/blocks/pagination.html" with page=SerialList serialid=serial.id urlname='filmlist_page' %}
 
         {% load TagsFilter %}
         {% show_avalible_filters %}

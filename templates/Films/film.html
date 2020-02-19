@@ -6,10 +6,12 @@
 <title>{{Film.name}} / {{Film.originalname}} / Фильм</title>
 
 <body>
-    <div class="Film">
+    <div class="headBlock">
         <a href={% url 'filmlist' %} class="bckbtn">
             <b>◄</b><span>К списку фильмов</span>
         </a>
+    </div>
+
         <div class="FilmName">
             <span>{{Film.name}} / {{Film.originalname}}</span>            
         </div>
@@ -80,12 +82,15 @@
         </div>
         {% endif %}
        
-        <div class=discription>
-            <span class="bigspan">Описание</span>
+        <details class=discription id="filmdiscription">
+            <summary class="bigspan">Описание</summary>
             <p>
                 {{Film.disctiption}}
             </p>
-        </div>
+        </details>
+        <script>
+            AdaptiveOpenDetails(window,filmdiscription);
+        </script>
 
         {% include 'Films/blocks/similar_films.html' %}
 

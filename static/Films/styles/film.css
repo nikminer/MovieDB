@@ -2,10 +2,10 @@ html{
     background-color: #e15f41;
    }
 
-.Film{
-    margin: 20px;
+body{
+    padding: 20px;
     display: grid;
-    grid-template-areas: "bckbtn . ."
+    grid-template-areas: "headBlock headBlock headBlock"
     "FilmName FilmName FilmName "
     "poster FilmInfo userrate"
     "poster FilmInfo friends"
@@ -18,8 +18,13 @@ html{
     min-height: 350px;
 }
 
+.headBlock{
+    grid-area: headBlock;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 .bckbtn{
-    grid-area: bckbtn;
     font-weight: bold;
     background-color: #e15f41;
     color: white;
@@ -28,8 +33,7 @@ html{
     align-items: center;
     cursor: pointer;
     text-decoration: none;
-    margin-bottom: 20px;
-    height: 30px;
+    padding: 2px;
 }
 .bckbtn>span{
     background-color: rgb(241, 241, 241);
@@ -37,6 +41,8 @@ html{
     width: 100%;
     transition: all 0.5s ease;
     padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 2px;
 }
 .bckbtn>*{
     padding: 5px 0;
@@ -79,11 +85,13 @@ html{
     border-bottom: #e15f41 2px solid;
     padding-bottom: 10px;
 }
+
 .poster{
     grid-area: poster;
     width: 200px;
     animation: fade-in 1s ease;
 }
+
 .Filminfo{
     display: flex;
     flex-direction: column;
@@ -101,7 +109,6 @@ html{
     padding: 7px 0;
     color: #7b8084;
 }
-
 .Filminfo>div>a{
     padding:5px;
     color: black;
@@ -116,9 +123,70 @@ html{
     color:white;
     text-decoration: none;
 }
-
 .Filminfo>div>span>span{
     color: black;
+}
+
+.genre{
+    color: black;
+    background-color: white;
+    padding: 2px 3px;
+    transition: all 0.5s ease;
+}
+.genre:hover{
+    text-decoration: none;
+    color: white;
+    background-color: #e15f41;
+}
+
+.bigspan{
+    border-left: 10px #e15f41 solid;
+}
+
+.discription{
+    grid-area: discription;
+    display: flex;
+    flex-direction: column;
+    color: black;
+    animation: fade-in 1s ease;
+}
+.discription>p{
+    font-size: 15px;
+    padding: 5px 10px;
+    margin: 0;
+    word-spacing: 2px;
+}
+
+.friends{
+    grid-area: friends;
+    display: flex;
+    flex-direction: column;
+    animation: fade-in 1s ease;
+}
+.friends>div{
+    margin-top: 5px;
+    max-height: 140px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    overflow-y: auto;
+}
+.friends>div>a{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: black;
+    padding: 5px;
+    transition: all 0.5s ease;
+}
+.friends>div>a:hover{
+    text-decoration: none;
+    color: white;
+    background-color: #e15f41;
+}
+.friends>div>a>img{
+    height:35px;
+    margin-right: 10px;
 }
 
 .actionpanel{
@@ -129,7 +197,6 @@ html{
     align-items: center;
     animation: fade-in 1s ease;
 }
-
 .actionpanel>a{
     background-color: rgb(223, 219, 219);
     height: 30px;
@@ -153,66 +220,8 @@ html{
 .actionpanel *:nth-child(1n){
     margin-bottom:5px;
 }
-.discription{
-    grid-area: discription;
-    display: flex;
-    flex-direction: column;
-    color: black;
-    animation: fade-in 1s ease;
-}
-.discription>p{
-    font-size: 15px;
-    padding: 5px 10px;
-    margin: 0;
-    word-spacing: 2px;
-}
-.bigspan{
-    border-left: 10px #e15f41 solid;
-}
 
-.genre{
-    color: black;
-    background-color: white;
-    padding: 2px 3px;
-    transition: all 0.5s ease;
-}
-.genre:hover{
-    text-decoration: none;
-    color: white;
-    background-color: #e15f41;
-}
-.friends{
-    grid-area: friends;
-    height: 170px;
-    display: flex;
-    flex-direction: column;
-    animation: fade-in 1s ease;
-}
-.friends>div{
-    margin-top: 5px;
-    height: 140px;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    overflow-y: auto;
-}
-.friends>div>a{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    color: black;
-    padding: 5px;
-    transition: all 0.5s ease;
-}
-.friends>div>a:hover{
-    text-decoration: none;
-    color: white;
-    background-color: #e15f41;
-}
-.friends>div>a>img{
-    height:35px;
-    margin-right: 10px;
-}
+
 .comments{
     grid-area: comments;
     min-height: 100px;
@@ -222,3 +231,106 @@ html{
     justify-content: flex-start;
     animation: fade-in 1s ease;
 }
+
+@media (max-device-width: 425px) {
+    body{
+        grid-template-areas: "headBlock headBlock "
+        "FilmName FilmName"
+        "FilmInfo userrate"
+        "FilmInfo poster"
+        ". actionpanel"
+        "discription discription"
+        "similarfilms similarfilms"
+        "friends friends"
+        "comments comments";
+        grid-template-columns: auto 270px;
+        grid-row-gap: 10px;
+        grid-column-gap: 20px;
+        min-height: 350px;
+    }
+    .bigspan{
+        border-left-width: 15px;
+    }
+    .bckbtn{
+        margin-bottom: 20px;
+        padding: 3px;
+    }
+    .bckbtn>span{
+        font-size: 26px;
+    }
+
+     #stars{
+        width:270px;
+        height: 40px;
+    }
+    #stars>img{
+        height: 35px;
+    }
+    .userrate>div>span{
+        font-size:35px;
+    }
+    .userrate>.bigspan{
+        display: none;
+    }
+
+    .FilmName{
+        font-size:30px;
+        margin-bottom: 15px;
+        border-bottom-width: 4px;
+        padding-bottom: 15px;
+    }
+
+    .poster{
+        width: 270px;
+    }
+
+    .Filminfo>div{
+       margin-top: 15px;
+       font-size: 28px;
+    }
+    .Filminfo>div>span{
+        padding: 9px 0;
+    }
+    .Filminfo>div>a{
+        padding:10px;
+        width: 90%;
+    }
+    .genre{
+        margin: 6px 8px;
+    }
+
+    .discription>p{
+        font-size: 22px;
+        padding: 5px 10px;
+    }
+
+    .friends{
+        font-size: 28px;
+        margin-top: 20px;
+    }
+    .friends>div{
+        margin-top: 15px;
+        max-height: 320px;
+    }
+    .friends>div>a{
+        padding: 10px;
+    }
+    .friends>div>a>img{
+        height:60px;
+        margin-right: 20px;
+    }
+
+    .actionpanel{
+        font-size: 25px;
+    }
+    .actionpanel>a{
+        height: 40px;
+        margin: 10px 0;
+    }
+
+    .comments{
+        margin-top: 20px;
+    }
+}
+
+
