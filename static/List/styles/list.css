@@ -20,13 +20,11 @@ html{
     background-color: #3dc1d3;
 }
 
-
 .headBlock{
     display: flex;
     flex-direction: column;
     margin: 20px;
 }
-
 .HeadName{
     font-size: 20px;
     padding:10px 0;
@@ -38,7 +36,6 @@ input[type=search]{
     margin: 10px 0;
 }
 
-
 .content{
     display: grid;
     grid-template-areas: "groups filters";
@@ -46,16 +43,6 @@ input[type=search]{
     animation: fade-in 1s ease;
 }
 
-.groups{
-    grid-area: groups;
-    display: flex;
-    flex-direction: column;
-}
-.group{
-    margin: 20px 20px;
-    display: flex;
-    flex-direction: column;
-}
 .groupspan{
     font-size: 18px;
     font-weight: bold;
@@ -74,7 +61,7 @@ input[type=search]{
 .filter{
     display: flex;
     flex-direction: column;
-    margin-top: 5px;
+
 }
 .filter>img{
     width: 160px;
@@ -87,7 +74,7 @@ input[type=search]{
     align-items: center;
     cursor: pointer;
     transition: all 0.5s ease;
-    
+
 }
 .filter>label:hover{
     background-color: #3dc1d3;
@@ -107,7 +94,15 @@ input[type=search]{
     color: white;
 }
 
-.filters>button{
+.filters>details{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin-top: 5px;
+    cursor: pointer;
+}
+.filters>details>button{
+    width: 100%;
     margin-top: 5px;
     background-color: white;
     border: none;
@@ -117,10 +112,92 @@ input[type=search]{
     font-size: 17px;
     margin-bottom: 5px;
 }
-.filters>button:hover{
+.filters>details>button:hover{
     background-color: #3dc1d3;
     color: #fff;
 }
+
+
+@media (max-device-width: 425px) {
+    .btn{
+        padding: 10px;
+        margin: 5px;
+        font-size: 26px;
+        font-weight: bold;
+    }
+
+    .HeadName{
+        font-size: 32px;
+        padding:15px 0;
+        font-weight: bold;
+    }
+
+    input[type=search]{
+        padding:  10px 15px;
+        font-size: 26px;
+        border: grey solid 2px;
+    }
+
+    .content{
+        grid-template-areas: "filters"
+            "groups";
+        grid-template-columns: auto;
+    }
+
+    .groupspan{
+        font-size: 30px;
+        padding-left: 10px;
+        border-width: 15px;
+    }
+
+    .filters{
+        padding: 15px;
+    }
+    .filters>a{
+        display: none;
+    }
+    .filters>details{
+        margin-bottom: 15px;
+    }
+    .filters>details>button{
+        margin: 10px 0px;
+        padding: 10px;
+        font-size: 30px;
+    }
+    .filter>label:hover{
+        background-color: white;
+        color: black;
+    }
+    .filter>label>span{
+        font-size: 26px;
+        padding: 8px;
+        padding-left: 15px;
+    }
+
+
+
+}
+
+
+
+
+
+
+
+
+.groups{
+    grid-area: groups;
+    display: flex;
+    flex-direction: column;
+}
+.group{
+    margin: 20px 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
 
 .serial{
     border-left: 0;
