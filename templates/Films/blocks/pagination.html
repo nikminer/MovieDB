@@ -1,12 +1,12 @@
 {% load static %}
 {% if page.paginator.num_pages > 1 %}
-<link href="{% static "Serials/styles/pagination.css" %}" rel="stylesheet">
+<link href="{% static "Films/styles/pagination.css" %}" rel="stylesheet">
 <div class="pagination">
     <span class="step-links">
         <span>
         {% if page.has_previous %}
-            {% if serialid %}
-                <a href="{% url urlname serialid page.previous_page_number %}">
+            {% if filmid %}
+                <a href="{% url urlname filmid page.previous_page_number %}">
                     <svg width="40" height="30">
                         <polygon transform="rotate(180 20,15)" points="0,13 30,13 25,5 40,15 25,25 30,17 0,17"></polygon>
                     </svg>
@@ -25,18 +25,18 @@
         </span>
         <span>
             {% if page.has_next %}
-                {% if serialid %}
-                    <a href="{% url urlname serialid page.next_page_number %}">
+                {% if filmid %}
+                    <a href="{% url urlname filmid page.next_page_number %}">
                         <svg width="40" height="30">
                              <polygon points="0,13 30,13 25,5 40,15 25,25 30,17 0,17"></polygon>
                         </svg>
                     </a>
                 {% else %}
-                    <a href="{% url urlname page.next_page_number %}">
+                     <a href="{% url urlname page.next_page_number %}">
                         <svg width="40" height="30">
                              <polygon points="0,13 30,13 25,5 40,15 25,25 30,17 0,17"></polygon>
                         </svg>
-                    </a>
+                     </a>
                 {% endif %}
             {% endif %}
         </span>
