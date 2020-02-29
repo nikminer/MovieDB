@@ -4,6 +4,7 @@
 .star:nth-child(4n){
     background: url('../../images/Serials/star1_20px.png') no-repeat;
 }
+
 #ratings {
     overflow: hidden;
     *zoom: 1;
@@ -11,7 +12,7 @@
     flex-direction:row-reverse;
     justify-content:flex-end;
     align-items:center;
-    grid-area: "ratings";
+    grid-area: ratings;
     width:200px;
 }
 #ratings>input {
@@ -37,4 +38,36 @@
     background-position: 0 -40px;
     height: 40px;
     width: 20px;
+}
+
+@media (max-device-width: 425px) {
+    .star{
+        background: url('../../images/Serials/star2_25px.png') no-repeat;
+    }
+    .star:nth-child(4n){
+        background: url('../../images/Serials/star1_25px.png') no-repeat;
+    }
+
+    #ratings {
+
+        width:250px;
+    }
+    #ratings>input {
+
+        height: 50px;
+    }
+    #ratings>input:checked ~ label {
+        background-position: 0 -50px;
+        height: 50px;
+        width: 25px;
+    }
+    #ratings>label {
+        height: 50px;
+        width: 25px;
+    }
+    #ratings>label:hover, #ratings>label:hover ~ label {
+        background-position: 0 -50px;
+        height: 50px;
+        width: 25px;
+    }
 }

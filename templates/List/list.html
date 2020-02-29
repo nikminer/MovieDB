@@ -31,7 +31,6 @@
                     <div class="group" id="{{groupname}}" ondrop="drop(event)" ondragover="allowDrop(event)">
                         <span class="groupspan">{{group.name}}</span>
                         {% if group.list %}
-                        <div class="legend"><span>Статус</span><span>Название</span><span>Эпизоды</span><span>Оценка</span></div>
                             {% for i in group.list %}
                             <details class="serial" id="{{groupname}}_serial:{{i.serial.id}}">
                                 {% include "List/blocks/season.html" %}  
@@ -68,10 +67,9 @@
                 <div class="group" id="{{groupname}}" ondrop="drop(event)" ondragover="allowDrop(event)">
                     <span class="groupspan">{{group.name}}</span>
                     {% if group.list %}
-                    <div class="legend"><span>Название</span><span>Оценка</span></div>
-                        {% for i in group.list %}
+
                             {% include "List/blocks/film.html" %}
-                        {% endfor %}
+
                     {% else %}
                         <span class="simplespan">Пусто</span>
                     {% endif %}
@@ -83,16 +81,21 @@
                 <a title="{{user.profile.name}}" href="{% url 'profile' user.username %}" class="filter">
                     <img src={{user.profile.photo.url}}>
                 </a>
-                <span class="groupspan">Категории</span>
-                <div class="filter">
-                   <label><input class="category" type="checkbox" value="planned"><span>В планах ({{groups.planned.list|length}})</span></label>
-                   <label><input class="category" type="checkbox" value="watch"><span>Смотрю ({{groups.watch.list|length}})</span></label>
-                   <label><input class="category" type="checkbox" value="rewatch"><span>Пересматриваю ({{groups.rewatch.list|length}})</span></label>
-                   <label><input class="category" type="checkbox" value="watched"><span>Просмотрено ({{groups.watched.list|length}})</span></label>
-                   <label><input class="category" type="checkbox" value="drop"><span>Брошено ({{groups.drop.list|length}})</span></label>
-                </div>
-                <button onclick="changeCategorys()">Применить</button>
+                <details id="listcategoryfilter">
+                    <summary class="groupspan">Категории</summary>
+                    <div class="filter">
+                       <label><input class="category" type="checkbox" value="planned"><span>В планах ({{groups.planned.list|length}})</span></label>
+                       <label><input class="category" type="checkbox" value="watch"><span>Смотрю ({{groups.watch.list|length}})</span></label>
+                       <label><input class="category" type="checkbox" value="rewatch"><span>Пересматриваю ({{groups.rewatch.list|length}})</span></label>
+                       <label><input class="category" type="checkbox" value="watched"><span>Просмотрено ({{groups.watched.list|length}})</span></label>
+                       <label><input class="category" type="checkbox" value="drop"><span>Брошено ({{groups.drop.list|length}})</span></label>
+                    </div>
+                    <button onclick="changeCategorys()">Применить</button>
+                </details>
+
+
                 <script>
+                    AdaptiveOpenDetails(window,listcategoryfilter)
                     var categoryes=document.getElementsByClassName("category");
                     var urlParams = new URLSearchParams(window.location.search);
                     var param = urlParams.get('groups');
@@ -123,14 +126,19 @@
                 </script>
 
                 {% if genrelist.items|length > 0 %}
-                <span class="groupspan">Жанры</span>
-                <div class="filter">
-                    {% for key,value in genrelist.items %}
-                        <label><input class="genre" type="checkbox" value="{{value.tag}}"><span>{{key}} ({{value.count}})</span></label>
-                    {% endfor %}
-                </div>
-                <button onclick="changeGenres()">Применить</button>
+                    <details id="listgenrefilter">
+                        <summary class="groupspan">Жанры</summary>
+                        <div class="filter">
+                            {% for key,value in genrelist.items %}
+                                <label><input class="genre" type="checkbox" value="{{value.tag}}"><span>{{key}} ({{value.count}})</span></label>
+                            {% endfor %}
+                        </div>
+                        <button onclick="changeGenres()">Применить</button>
+                    </details>
+
+
                 <script>
+                    AdaptiveOpenDetails(window,listgenrefilter)
                     var urlParams = new URLSearchParams(window.location.search);
                     var genres=document.getElementsByClassName("genre");
                     var param = urlParams.get('genres');

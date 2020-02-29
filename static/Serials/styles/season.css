@@ -2,16 +2,14 @@ html{
     background-color: #546de5;
 }
 
-
-.Serial{
-    margin: 20px;
+body{
+    padding: 20px;
     display: grid;
     grid-template-areas: "bckbtn . ."
     "SerialName SerialName SerialName "
     "poster SerialInfo userrate"
     "poster SerialInfo friends"
     "actionpanel discription discription"
-    "actionpanel seasons seasons "
     "actionpanel episodelist episodelist"
     "comments comments comments";
     grid-template-columns: 200px auto 250px;
@@ -20,18 +18,22 @@ html{
     min-height: 350px;
 }
 
-.bckbtn{
+.headBlock{
     grid-area: bckbtn;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.bckbtn{
     font-weight: bold;
-    background-color: #546de5;
+    background-color: #1738db;
     color: white;
     display: flex;
     flex-direction:row;
-    cursor: pointer;
     align-items: center;
+    cursor: pointer;
     text-decoration: none;
-    margin-bottom: 10px;
-    height: 30px;
+    padding: 2px;
 }
 .bckbtn>span{
     background-color: rgb(241, 241, 241);
@@ -39,13 +41,30 @@ html{
     width: 100%;
     transition: all 0.5s ease;
     padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 2px;
 }
 .bckbtn>*{
     padding: 5px 0;
 }
 .bckbtn:hover>span{
-    background-color: #546de5;
+    background-color: #1738db;
     color: white;
+}
+
+.serialName{
+    font-size:25px;
+    font-weight: bold;
+    grid-area: SerialName;
+    margin-bottom: 10px;
+    border-bottom: #546de5 2px solid;
+    padding-bottom: 10px;
+}
+
+.poster{
+    grid-area: poster;
+    width: 200px;
+    animation: fade-in 1s ease;
 }
 
 #stars{
@@ -73,23 +92,6 @@ html{
     font-weight: bold;
 }
 
-.serialName{
-    font-size:25px;
-    font-weight: bold;
-    grid-area: SerialName;
-    margin-bottom: 10px;
-    border-bottom: #546de5 2px solid;
-    padding-bottom: 10px;
-    display: grid;
-    grid-template-columns: auto 210px;
-}
-
-.poster{
-    grid-area: poster;
-    width: 200px;
-    animation: fade-in 1s ease;
-}
-
 .serialinfo{
     grid-area: SerialInfo;
     display: flex;
@@ -107,7 +109,6 @@ html{
     padding: 7px 0;
     color: #7b8084;
 }
-
 .serialinfo>div>span>span{
     color: black;
 }
@@ -116,37 +117,50 @@ html{
     border-radius: 2px;
     color: white!important;
 }
-.actionpanel{
-    grid-area: actionpanel;
-    
+.genre{
+    color: black;
+    background-color: white;
+    padding: 2px 3px;
+    transition: all 0.5s ease;
+}
+.genre:hover{
+    text-decoration: none;
+    color: white;
+    background-color: #546de5;
+}
+
+.friends{
+    grid-area: friends;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
     animation: fade-in 1s ease;
 }
-.actionpanel>a{
+.friends>div{
+    margin-top: 5px;
+    max-height: 140px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: stretch;
+    overflow-y: auto;
+}
+.friends>div>a{
+    display: flex;
+    flex-direction: row;
     align-items: center;
     color: black;
-    text-decoration: none;
-    width: 100%;
+    padding: 5px;
     transition: all 0.5s ease;
-    font-weight: bold;
-    height: 30px;
-    background-color: rgb(241, 241, 241);
 }
-.actionpanel *:nth-child(1n){
-    margin-bottom:5px;
+.friends>div>a:hover{
+    text-decoration: none;
+    color: white;
+    background-color: #546de5;
 }
-.actionpanel>a:hover{
-    border-left: 10px #546de5 solid;
-    border-right: 10px #546de5 solid;
-    cursor: pointer;
-    background-color: rgb(223, 219, 219);
-    width: 90%;
+.friends>div>a>img{
+    height:35px;
+    margin-right: 10px;
 }
+
 .discription{
     grid-area: discription;
     display: flex;
@@ -181,15 +195,167 @@ html{
     background-color: lightgray;
 }
 .episodecounter{
-    grid-area:counter;
+    grid-area: counter;
     border-right: #7b8084 2px solid;
     margin-right: 10px;
     text-align: center;
 }
-
 .bigspan{
-    border-left: 10px #546de5 solid;
+    border-left-color: #1738db;
 }
+
+
+.actionpanel{
+    grid-area: actionpanel;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    animation: fade-in 1s ease;
+}
+.actionpanel>a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    text-decoration: none;
+    width: 100%;
+    transition: all 0.5s ease;
+    font-weight: bold;
+    height: 30px;
+    background-color: rgb(241, 241, 241);
+}
+.actionpanel *:nth-child(1n){
+    margin-bottom:5px;
+}
+.actionpanel>a:hover{
+    border-left: 10px #546de5 solid;
+    border-right: 10px #546de5 solid;
+    cursor: pointer;
+    background-color: rgb(223, 219, 219);
+    width: 90%;
+}
+
+.comments{
+    grid-area: comments;
+    min-height: 100px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    animation: fade-in 1s ease;
+}
+
+@media (max-device-width: 425px) {
+
+    body{
+        padding: 20px;
+        grid-template-areas: "bckbtn ."
+        "SerialName SerialName"
+        "SerialInfo userrate"
+        "SerialInfo poster"
+        ". actionpanel"
+        "discription discription"
+        "episodelist episodelist"
+        "friends friends"
+        "comments comments ";
+        grid-template-columns: auto 270px ;
+    }
+
+    .bckbtn{
+        margin-bottom: 20px;
+        padding: 3px;
+    }
+    .bckbtn>span{
+        font-size: 26px;
+    }
+
+    .serialName{
+        font-size:30px;
+        margin-bottom: 15px;
+        border-bottom: #546de5 4px solid;
+        padding-bottom: 15px;
+    }
+
+    .bigspan{
+        height: 40px;
+        border-left-color: #1738db;
+    }
+
+    .poster{
+        width: 270px;
+    }
+
+    #stars{
+        width:270px;
+        height: 40px;
+    }
+    #stars>img{
+        height: 35px;
+    }
+    .userrate>div>span{
+        font-size:35px;
+    }
+    .userrate>.bigspan{
+        display: none;
+    }
+
+
+    .serialinfo>div{
+        margin-top: 15px;
+        font-size: 28px;
+    }
+    .serialinfo>div>span{
+        padding: 15px 0;
+    }
+    .status{
+        padding: 7px 10px;
+    }
+    .genre{
+        margin: 6px 8px;
+    }
+
+    .friends{
+        font-size: 28px;
+        margin-top: 20px;
+    }
+    .friends>div{
+        margin-top: 15px;
+        max-height: 320px;
+    }
+    .friends>div>a{
+        padding: 10px;
+    }
+    .friends>div>a>img{
+        height:60px;
+        margin-right: 20px;
+    }
+
+    .discription>p{
+        font-size: 22px;
+    }
+    .episodelist{
+       font-size: 12px;
+        margin-top: 20px;
+    }
+    .episodelist>div{
+        grid-template-columns: 75px auto 150px;
+    }
+
+    .discription{
+        margin-top: 20px;
+    }
+
+    .actionpanel{
+        font-size: 25px;
+    }
+
+    .comments{
+        margin-top: 20px;
+    }
+}
+
+
 .срbtn{
     grid-area: changeseason;
     border: 0;
@@ -222,56 +388,8 @@ html{
     cursor: pointer;
     background-color: rgb(223, 219, 219);
 }
-.genre{
-    color: black;
-    background-color: white;
-    padding: 2px 3px;
-    transition: all 0.5s ease;
-}
-.genre:hover{
-    text-decoration: none;
-    color: white;
-    background-color: #546de5;
-}
 
-.friends{
-    grid-area: friends;
-    height: 170px;
-    display: flex;
-    flex-direction: column;
-    animation: fade-in 1s ease;
-}
-.friends>div{
-    margin-top: 5px;
-    height: 140px;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    overflow-y: auto;
-}
-.friends>div>a{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    color: black;
-    padding: 5px;
-    transition: all 0.5s ease;
-}
-.friends>div>a:hover{
-    text-decoration: none;
-    color: white;
-    background-color: #546de5;
-}
-.friends>div>a>img{
-    height:35px;
-    margin-right: 10px;
-}
-.comments{
-    grid-area: comments;
-    min-height: 100px;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    animation: fade-in 1s ease;
-}
+
+
+

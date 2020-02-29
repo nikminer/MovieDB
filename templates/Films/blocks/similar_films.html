@@ -2,7 +2,7 @@
 <link rel="stylesheet" href={% static 'Films/styles/similarfilms.css' %} type="text/css" />
 
  <div class="similar">
-     <span class="bigspan">Похожие фильмы</span>
+     <a href="{% url 'filmsimilar' Film.id %}" class="bigspan">Похожие фильмы</a>
     <div>
         {% for i in similar_films %}
          <a href="{% url 'film' i.id %}" class=similarfilm>

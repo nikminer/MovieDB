@@ -1,6 +1,6 @@
 
 function setepisode(id){
-    var xhr = new XMLHttpRequest();
+    let xhr = new XMLHttpRequest();
     xhr.open('POST','/serial/season/num/set',true);
     xhr.setRequestHeader("X-CSRFToken", getCookie("csrftoken"));
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -14,7 +14,7 @@ function setepisode(id){
     }
 }
 function increment(id){
-    var xhr = new XMLHttpRequest();
+    let xhr = new XMLHttpRequest();
     xhr.open('POST','/serial/season/num/inc',true);
     xhr.setRequestHeader("X-CSRFToken", getCookie("csrftoken"));
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -28,7 +28,7 @@ function increment(id){
     }
 }
 function decrement(id){
-    var xhr = new XMLHttpRequest();
+    let xhr = new XMLHttpRequest();
     xhr.open('POST','/serial/season/num/dec',true);
     xhr.setRequestHeader("X-CSRFToken", getCookie("csrftoken"));
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');

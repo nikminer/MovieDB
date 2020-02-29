@@ -1,0 +1,42 @@
+.pagination{
+    text-align:center;
+    height:35px;
+    margin-top: 30px;
+    padding-bottom: 20px;
+
+    font-size: 20px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.pagination>.step-links{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.pagination>.step-links>span{
+    min-width: 110px;
+}
+.step-links a{
+    color: black;
+    padding: 5px 10px;
+    transition: all 0.5s ease;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 15px;
+}
+.step-links a:hover{
+    fill: white;
+    background-color: #c44569;
+}
+
+@media (max-device-width: 425px) {
+    .step-links{
+        font-size: 26px;
+    }
+}

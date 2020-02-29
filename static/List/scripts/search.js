@@ -1,8 +1,8 @@
 function search(elem){
-    var groups=document.getElementsByClassName("group")
-    for (var indexgroup=0; indexgroup<groups.length;indexgroup++){
-        var serials = groups[indexgroup].getElementsByClassName("serialname")
-        for (var i=0; i<serials.length;i++){
+    let groups=document.getElementsByClassName("group")
+    for (let indexgroup=0; indexgroup<groups.length;indexgroup++){
+        let serials = groups[indexgroup].getElementsByClassName("serialname")
+        for (let i=0; i<serials.length;i++){
             if (elem.value.length>0){
                 parrent=findAncestor(serials[i],"serial")
                 parrent.style.display ="none";

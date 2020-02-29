@@ -31,7 +31,7 @@ class Film(models.Model):
         ordering = ('name',)
 
     def get_absolute_url(self):
-        return "/film/%i" % self.id
+        return "/film/details/%i" % self.id
     
     tags = TaggableManager()
 
@@ -46,7 +46,7 @@ class Serial(models.Model):
     img= models.ImageField(upload_to='Posters', default="default.png")
 
     def get_absolute_url(self):
-        return "/serial/%i" % self.id
+        return "/serial/details/%i" % self.id
 
     def __str__(self):
         return self.name

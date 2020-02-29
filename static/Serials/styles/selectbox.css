@@ -25,3 +25,14 @@
 #selectbox[open] { 
     height: 195px; 
 }
+
+@media (max-device-width: 425px) {
+
+    #selectbox:not([open]) {
+        height: 40px;
+    }
+
+    #selectbox[open] {
+        min-height: 265px;
+    }
+}

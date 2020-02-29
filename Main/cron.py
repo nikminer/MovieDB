@@ -7,7 +7,7 @@ import datetime
 def checkSeries():
   for i in SeriesList.objects.filter(date=datetime.datetime.today() - datetime.timedelta(days=1)):
     for profile in UserList.objects.filter(season=i.season):
-      addnotification("Сегодня выйдет серия {}".format(i.name),i.season.serial,profile.user.profile)
+      addnotification("Вышла новая серия {}".format(i.name),i.season.serial,profile.user.profile)
 
 def checkStatus():
   for season in Season.objects.filter(status=2):

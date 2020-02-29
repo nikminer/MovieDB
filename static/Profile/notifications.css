@@ -1,20 +1,47 @@
 html{
     background-color: #c44569;
    }
-
-.dialog{
-    display: grid;
-    grid-template-areas: "bckbtn . ."
-    "noti noti noti";
-    grid-template-columns: 200px auto 350px;
-    grid-template-rows: 80px auto;
-    height: 100%;
-}
 body{
+    display: flex;
+    flex-direction: column;
     height: 100%;
 }
+
+.headBlock{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px;
+}
+.bckbtn{
+    font-weight: bold;
+    background-color: #c44569;
+    color: white;
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    padding: 2px;
+}
+.bckbtn>span{
+    background-color: rgb(241, 241, 241);
+    color: black;
+    width: 100%;
+    transition: all 0.5s ease;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 2px;
+}
+.bckbtn>*{
+    padding: 5px 0;
+}
+.bckbtn:hover>span{
+    background-color: #c44569;
+    color: white;
+}
+
 .notifications{
-    grid-area: noti;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -22,7 +49,6 @@ body{
     border-top: black solid 1px;
     animation: fade-in 1s ease;
 }
-
 
 .notification{
     display: grid;
@@ -44,7 +70,6 @@ body{
     height: 80px;
     margin-right: 10px;
 }
-
 .sended{
     color: grey;
     font-size: 14px!important;
@@ -62,36 +87,56 @@ body{
     background-position: 0 -20px;
 }
 
+@media (max-device-width: 425px) {
+    .bckbtn{
+        padding: 3px;
+    }
+    .bckbtn>span{
+        font-size: 26px;
+    }
+
+    .notifications{
+        padding: 15px;
+        border-top-width: 3px;
+    }
+
+    .notification{
+        grid-template-columns: 120px auto 30px;
+        padding: 10px;
+    }
+    .notification>div{
+        font-size: 26px;
+    }
+    .notifications>h3{
+        font-size: 26px;
+    }
+    .notification>img{
+        height: 120px;
+        margin-right: 5px;
+    }
+    .sended{
+        color: grey;
+        font-size: 18px!important;
+    }
+    .delbtn{
+        background: url('./images/cross_40px.png') no-repeat;
+        width: 40px;
+        height: 40px;
+    }
+    .delbtn:hover{
+        background-position: 0 -40px;
+    }
+}
 
 
-.bckbtn{
-    grid-area: bckbtn;
-    font-weight: bold;
-    background-color: #c44569;
-    color: white;
-    display: flex;
-    flex-direction:row;
-    align-items: center;
-    cursor: pointer;
-    text-decoration: none;
-    margin: 20px;
-    height: 30px;
-}
-.bckbtn>span{
-    background-color: rgb(241, 241, 241);
-    color: black;
-    width: 100%;
-    transition: all 0.5s ease;
-    padding-left: 10px;
-}
-.bckbtn>*{
-    padding: 5px 0;
-}
-.bckbtn:hover>span,.toprofile>span:hover{
-    background-color: #c44569;
-    color: white;
-}
 
-.bigspan{
-    border-left-color: #c44569;
-}
+
+
+
+
+
+
+
+
+
+

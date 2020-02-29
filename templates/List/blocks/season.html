@@ -4,9 +4,6 @@
         <span>
             <a class="serialname" href="{% url 'serial' i.serial.id %}" title="{{i.serial.name}}">{{i.serial.name}} ({{i.serial.year}})</a> 
         </span>
-        <div class="progress" title="Эпизоды: {{i.watched}}/{{i.episodes}}">
-            <div style="width:{{i.width}}"></div>
-        </div>
         <div>
         {% if request.user == user %}
             <a class="delbtn" href="{% url 'delserial' i.serial.id %}" title="Удалить весь сериал"></a>
@@ -22,23 +19,50 @@
         </div>
         
         <a href="{% url 'season' UserItem.season.id %}">{{UserItem.season.name}}</a>
-        
-        <div id="numchange">
-            {% if request.user == user %}
-            <div class=numeric>
-                <span id="userepisodeview_{{UserItem.id}}">{{UserItem.userepisode}}</span>/<span>{{UserItem.season.episodecount}}</span>
+        <label class="chkbtn" >
+            <input style="display: none"
+                   type="checkbox"
+                   onclick="document.getElementById('actionpanel:{{ UserItem.id }}').style.display=this.checked?'flex':'none'"
+            >
+            <svg width="30px" height="26px">
+                <polyline points="5,18 15,8 25,18"></polyline>
+            </svg>
+        </label>
+        <div class="actionpanel" id="actionpanel:{{ UserItem.id }}">
+            <div>
+                <span>Статус</span>
+                {% include "List/blocks/selectbox.html" with  type="season" %}
             </div>
-            <div class=numericinput>
-                <span onclick="decrement({{UserItem.id}})">-</span>
-                <input id=numerinput_{{UserItem.id}} type="number" min=0 max={{UserItem.season.episodecount}} onchange="setepisode({{UserItem.id}})" value="{{UserItem.userepisode}}">
-                <span onclick="increment({{UserItem.id}})">+</span>
+
+            <div>
+                <span>Оценка</span>
+                {% include "List/blocks/stars.html" %}
             </div>
-            {% else %}
-            <div class=numericP>
-                <span id="userepisodeview_{{UserItem.id}}">{{UserItem.userepisode}}</span>/<span>{{UserItem.season.episodecount}}</span>
+
+            <div>
+                <span>Эпизоды</span>
+                <div id="numchange">
+                    {% if request.user == user %}
+                        <div class=numeric>
+                            <span id="userepisodeview_{{UserItem.id}}">{{UserItem.userepisode}}</span>/<span>{{UserItem.season.episodecount}}</span>
+                        </div>
+                        <div class=numericinput>
+                            <span onclick="decrement({{UserItem.id}})">-</span>
+                            <input id=numerinput_{{UserItem.id}} type="number" min=0 max={{UserItem.season.episodecount}} onchange="setepisode({{UserItem.id}})" value="{{UserItem.userepisode}}">
+                            <span onclick="increment({{UserItem.id}})">+</span>
+                        </div>
+                    {% else %}
+                        <div class=numericP>
+                            <span id="userepisodeview_{{UserItem.id}}">{{UserItem.userepisode}}</span>/<span>{{UserItem.season.episodecount}}</span>
+                        </div>
+                    {% endif %}
+                </div>
             </div>
-            {% endif %}
+
         </div>
-        {% include "List/blocks/stars.html" %}   
     </div>
+
 {% endfor %}
+    <div class="allseason" id="all:{{ groupname }}_serial:{{i.serial.id}}" ondragend="faststatus.style.opacity=0;faststatus.style.zIndex=-10;" draggable="true" ondragstart="drag(event)">
+        <a>Переместить все сезоны</a>
+    </div>

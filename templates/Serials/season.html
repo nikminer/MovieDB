@@ -7,13 +7,16 @@
 <title>{{season.name}} {{season.serial.name}} / {{season.serial.originalname}} / Сериал</title>
 
 <body>
-    <div class="Serial">
-        <a class="bckbtn" href="{% url 'serial' season.serial.id %}">
-            <b>◄</b><span>К сериалу</span>
-        </a>
+        <div class="headBlock">
+            <a class="bckbtn" href="{% url 'serial' season.serial.id %}">
+                <b>◄</b><span>К сериалу</span>
+            </a>
+        </div>
+
         <span class=serialName>
             <span>{{season.name}} {{season.serial.name}} / {{season.serial.originalname}}</span>
         </span>
+
         <img class=poster src={{season.img.url}}>
        
         <div class=serialinfo>
@@ -105,11 +108,13 @@
             <a href="{% url 'addserial' season.serial.id %}">Добавить сериал</a>
         </div>
         {% endif %}
-        <div class="discription">
-            <span class="bigspan">Описание</span>
+        <details class="discription" id="serialdiscription">
+            <summary class="bigspan">Описание</summary>
             <p>{{season.disctiption}}</p>
-        </div>
-        
+        </details>
+        <script>
+            AdaptiveOpenDetails(window,serialdiscription);
+        </script>
 
         {% Serieslist season %}
 
@@ -120,6 +125,4 @@
             {% commentslist season %}
         </div>
 
-        
-    </div>
 </body>

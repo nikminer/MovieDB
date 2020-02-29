@@ -40,3 +40,25 @@
     font-size: 16px;
     width: 125px;
 }
+
+@media (max-device-width: 425px) {
+    .similar>div{
+        justify-content: center;
+    }
+    .similarserial{
+        padding: 15px 0;
+        padding-left: 0;
+        width:225px;
+    }
+
+    .similarserial>img{
+        height: 275px;
+        width: 200px;
+    }
+    .similarserial>span{
+        padding: 5px 0;
+        font-size: 25px;
+        width: 200px;
+    }
+
+}

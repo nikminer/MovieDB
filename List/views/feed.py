@@ -1,8 +1,10 @@
 from List.models import UserFeed
+from django.shortcuts import render,get_object_or_404
 from Main.models import UserList,UserListF
 from List.views.userstatus import UserStatusDict as UserStatus
 from Profile.models import Profile
 import re
+from django.core.paginator import Paginator, EmptyPage
 
 def rating(item): 
     return "Оцени{} {} на {} баллов".format(
@@ -83,4 +85,23 @@ def sendFeed(item,typeFeedobj):
             )
 
 def getFeed(feedlist):
-    return UserFeed.objects.filter(user__in=feedlist).order_by("-created")[:60]
+    return UserFeed.objects.filter(user__in=feedlist).order_by("-created")[:20]
+
+def Useractivity(request,username,page=1):
+    from Profile.models import Profile
+    profile = get_object_or_404(Profile, user__username=username)
+
+    paginator = Paginator(UserFeed.objects.filter(user=profile).order_by("-created"), 20)
+
+    try:
+        activity = paginator.page(page)
+    except EmptyPage:
+        activity = paginator.page(paginator.num_pages)
+
+
+    data={
+        "profile":profile,
+        "activity":activity,
+    }
+
+    return render(request, "Profile/activity.html", data)

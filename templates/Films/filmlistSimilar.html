@@ -1,0 +1,37 @@
+{% load static %}
+{% include "../base.html" %}
+
+<link rel="stylesheet" href="{% static "Films/styles/filmlist.css" %}" />
+<title>Фильмы похожие на {{ film.name }}</title>
+
+
+<body>
+    <div class="headBlock">
+        <a href={% url 'film' film.id %} class="bckbtn">
+            <b>◄</b><span>К фильму {{ film.name }}</span>
+        </a>
+    </div>
+    <p class="pagedisc HeadName">
+        Фильмы похожие на {{ film.name }}
+    </p>
+    <div class="films">
+        <div class="filmList">
+        {% for film in FilmList %}
+            <a href="{% url 'film' film.id %}" class="film" title="{{film.name}} / {{film.originalname}} ({{film.year}})">
+                <div class="poster">
+                    <img height="200px" src={{film.img.url}}>
+                </div>
+                <span >{{film.name}} / {{film.originalname}}</span>
+                <div class="filmsmallinfo">
+                    <span>{{film.year}}</span>
+                    {% if film.InMyList == "True" %}<span style="background-color: #e15f41;color: white;padding: 2px;">В списке</span>{% endif %}
+                </div>
+            </a>
+            
+        {% endfor %}
+        </div>
+        {% include "Films/blocks/pagination.html" with page=FilmList filmid=film.id urlname='filmsimilar_page' %}
+        {% load TagsFilterF %}
+        {% show_avalible_filtersF %}
+    </div>
+</body>

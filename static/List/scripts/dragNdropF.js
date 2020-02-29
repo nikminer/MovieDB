@@ -10,7 +10,7 @@ function drag(ev){
 function drop(ev) {
     ev.preventDefault()
     
-    Group=null
+    let Group=null
     if (ev.currentTarget.className=="group"){
         Group=ev.currentTarget;
     }
@@ -21,35 +21,35 @@ function drop(ev) {
 
 function droptoPlan(ev){
     ev.preventDefault()
-    sendStatus(ev.dataTransfer.getData("id"),document.getElementById("planned"),"planned")
+    sendStatus(ev.dataTransfer.getData("id"),document.getElementById("planned"),)
 }
 
 function droptoWatch(ev){
     ev.preventDefault()
-    sendStatus(ev.dataTransfer.getData("id"),document.getElementById("watch"),"watch")
+    sendStatus(ev.dataTransfer.getData("id"),document.getElementById("watch"),)
 }
 
 function droptoWatched(ev){
     ev.preventDefault()
-    sendStatus(ev.dataTransfer.getData("id"),document.getElementById("watched"),"watched")
+    sendStatus(ev.dataTransfer.getData("id"),document.getElementById("watched"),)
 }
 
 function droptoRewatch(ev){
     ev.preventDefault()
-    sendStatus(ev.dataTransfer.getData("id"),document.getElementById("rewatch"),"rewatch")
+    sendStatus(ev.dataTransfer.getData("id"),document.getElementById("rewatch"),)
 }
 
 function droptoDrop(ev){
     ev.preventDefault()
-    sendStatus(ev.dataTransfer.getData("id"),document.getElementById("drop"),"drop")
+    sendStatus(ev.dataTransfer.getData("id"),document.getElementById("drop"),)
 }
 
 function sendStatus(id,Group,status){
-    var xhr = new XMLHttpRequest()
+    let xhr = new XMLHttpRequest()
     xhr.open('POST','/film/set/status',true);
     xhr.setRequestHeader("X-CSRFToken", getCookie("csrftoken"))
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
-    xhr.send("listid="+encodeURIComponent(id.split(':')[1])+";status="+encodeURIComponent(status))
+    xhr.send("listid="+encodeURIComponent(id.split(':')[1])+";status="+encodeURIComponent(Group.id))
     xhr.onreadystatechange=function(){
         if(xhr.status==200 && xhr.readyState==4)
             if (JSON.parse(xhr.response)['status']=="changestatus")
@@ -59,15 +59,12 @@ function sendStatus(id,Group,status){
 
 function moveitem(id,Group){
 
-    if (Group.children[1].className!="legend")
-        Group.innerHTML+="<div class='legend'><span>Название</span><span>Оценка</span></div>"
-    
     Group.appendChild(document.getElementById(id))
 
     if (Group.children[1].className=="simplespan")
         Group.removeChild(Group.children[1])
 
-    Groups=document.getElementsByClassName("group")
+    let Groups=document.getElementsByClassName("group")
     for (var i=0 ;i< Groups.length;i++)
         if (Groups[i].children.length==2 && Groups[i].children[1].className=="legend"){
             Groups[i].children[1].remove()
