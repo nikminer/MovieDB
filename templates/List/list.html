@@ -31,7 +31,6 @@
                     <div class="group" id="{{groupname}}" ondrop="drop(event)" ondragover="allowDrop(event)">
                         <span class="groupspan">{{group.name}}</span>
                         {% if group.list %}
-                        <div class="legend"><span>Статус</span><span>Название</span><span>Эпизоды</span><span>Оценка</span></div>
                             {% for i in group.list %}
                             <details class="serial" id="{{groupname}}_serial:{{i.serial.id}}">
                                 {% include "List/blocks/season.html" %}  
@@ -68,10 +67,9 @@
                 <div class="group" id="{{groupname}}" ondrop="drop(event)" ondragover="allowDrop(event)">
                     <span class="groupspan">{{group.name}}</span>
                     {% if group.list %}
-                    <div class="legend"><span>Название</span><span>Оценка</span></div>
-                        {% for i in group.list %}
+
                             {% include "List/blocks/film.html" %}
-                        {% endfor %}
+
                     {% else %}
                         <span class="simplespan">Пусто</span>
                     {% endif %}

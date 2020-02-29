@@ -40,18 +40,21 @@ def setrating(request):
 
 @login_required
 def setstatus(request):
-    data=request.POST
+    data = request.POST
+    Datarequest = {'status':'false'}
+
     if data['listid']!="undefined":
-        item=UserList.objects.get(id=int(data['listid']),user=request.user.id)
-        if UserStat.get(data['status']) and item.userstatus!=UserStat.get(data['status']):
-            item.userstatus=UserStat[data['status']]
-            item.save()
 
-            sendFeed(item,typeFeed['status'])
+        for itemid in str(data['listid']).split(";"):
+            item=UserList.objects.get(id=int(itemid),user=request.user.id)
 
-            return JsonResponse({'status':'changestatus','userstatus':data['status']})
-    return JsonResponse({'status':'false'})
+            if UserStat.get(data['status']) and item.userstatus!=UserStat.get(data['status']):
+                item.userstatus=UserStat[data['status']]
+                item.save()
 
+                sendFeed(item,typeFeed['status'])
+                Datarequest={'status':'changestatus','userstatus':data['status']}
 
+        return JsonResponse(Datarequest)
 
-    
+    return JsonResponse(Datarequest)

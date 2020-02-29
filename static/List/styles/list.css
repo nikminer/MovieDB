@@ -117,6 +117,37 @@ input[type=search]{
     color: #fff;
 }
 
+.groups{
+    grid-area: groups;
+    display: flex;
+    flex-direction: column;
+}
+
+.group{
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+#faststatus{
+    position: fixed;
+    background-color:rgba(241, 241, 241,0.8);
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 250px;
+    opacity: 0;
+    z-index: -10;
+}
+#faststatus>span{
+    padding: 15px;
+    text-align: center;
+    border: gray dashed 2px;
+    margin: 2px;
+    font-weight: bold;
+}
 
 @media (max-device-width: 425px) {
     .btn{
@@ -125,7 +156,6 @@ input[type=search]{
         font-size: 26px;
         font-weight: bold;
     }
-
     .HeadName{
         font-size: 32px;
         padding:15px 0;
@@ -142,11 +172,12 @@ input[type=search]{
         grid-template-areas: "filters"
             "groups";
         grid-template-columns: auto;
+        padding-bottom: 80px;
     }
 
-    .groupspan{
+    .groupspan {
         font-size: 30px;
-        padding-left: 10px;
+        padding: 10px;
         border-width: 15px;
     }
 
@@ -174,27 +205,12 @@ input[type=search]{
         padding-left: 15px;
     }
 
-
-
+    #faststatus{
+        display: none;
+    }
 }
 
 
-
-
-
-
-
-
-.groups{
-    grid-area: groups;
-    display: flex;
-    flex-direction: column;
-}
-.group{
-    margin: 20px 20px;
-    display: flex;
-    flex-direction: column;
-}
 
 
 
@@ -202,14 +218,12 @@ input[type=search]{
 .serial{
     border-left: 0;
 }
-
 .serial[open]{
     background-color: rgb(241, 241, 241);
 }
 .serial[open]>summary{
     border-left: 10px #3dc1d3 solid;
     border-right: 10px #3dc1d3 solid;
-    background-color: rgb(223, 219, 219)
 }
 .serial>summary{
     cursor: pointer;
@@ -220,38 +234,27 @@ input[type=search]{
     align-items: center;
     border-left: 0px #3dc1d3 solid;
     border-right: 0px #3dc1d3 solid;
-    background-color: rgb(241, 241, 241);
-}
-.serial>summary>div{
-    width: 100%;
-    display: grid;
-    grid-template-areas: "Name progress delbtn ";
-    grid-template-columns: auto 250px 20px ;
-    
-    grid-column-gap: 20px;
-    align-items: center;
-}
-.progress{
-    grid-area: progress;
-    height: 18px;
-    background-color: white;
-}
-.progress>div{
-    background-color: #3dc1d3;
-    height: 18px;
-}
 
-.serial>summary>div>span>a{
-    color: black;
 }
 .serial>summary:hover{
     border-left: 10px #3dc1d3 solid;
     border-right: 10px #3dc1d3 solid;
-    background-color: rgb(223, 219, 219)
 }
 .serial>summary>a{
     color: #3dc1d3;
 }
+.serial>summary>div{
+    width: 100%;
+    display: grid;
+    grid-template-areas: "Name  delbtn ";
+    grid-template-columns: auto 30px ;
+    grid-column-gap: 20px;
+    align-items: center;
+}
+.serial>summary>div>span>a{
+    color: black;
+}
+
 .delbtn{
     display: block;
     width: 20px;
@@ -265,26 +268,68 @@ input[type=search]{
 
 .simplespan{
     padding:  5px 10px;
-    background-color: rgb(241, 241, 241);
+}
+
+.selectbox{
+    width:100%;
+    background-color: #3dc1d3;
+    color: white;
+    transition: all 0.5s ease;
+}
+.selectbox>*{
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+.selectbox>summary{
+    margin-bottom: 0px;
+}
+.selectbox>summary:hover{
+    background-color: #3dc1d3;
+}
+.selectbox>option:hover{
+    background-color: white;
+    color: black;
+}
+.selectbox:not([open]) {
+    height: 28px;
+}
+.selectbox[open] {
+    height: 160px;
 }
 
 
-#faststatus{
-    position: fixed;
-    background-color:rgba(241, 241, 241,0.8);
-    right: 0;
-    bottom: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    width: 250px;
-    opacity: 0;
-    z-index: -10;
-}
-#faststatus>span{
-    padding: 15px;
-    text-align: center;
-    border: gray dashed 2px;
-    margin: 2px;
-    font-weight: bold;
+
+@media (max-device-width: 425px) {
+    .serial[open]>summary{
+        border-width: 15px;
+    }
+    .serial>summary{
+        padding: 15px;
+        font-size: 26px;
+    }
+    .serial>summary:hover{
+        border-width: 15px;
+    }
+    .serial>summary>div{
+        grid-template-columns: auto 80px 30px ;
+    }
+
+    .delbtn{
+        display: none;
+    }
+
+    .simplespan{
+        padding:  10px 15px;
+        font-size: 26px;
+    }
+
+    .selectbox:not([open]) {
+        height: 40px;
+    }
+    .selectbox[open] {
+        min-height: 250px;
+    }
+
+
 }

@@ -1,9 +1,9 @@
 #numchange{
-    grid-area:numeric;
     display:grid;
     grid-template-areas: "place";
-    margin: 0;  
+    margin: 0;
 }
+
 .numeric{
     grid-area: place;
     display:flex;
@@ -24,6 +24,7 @@
     font-size: 14px;
     letter-spacing: 2px;
 }
+
 .numericinput{
     grid-area: place;
     display:flex;
@@ -42,12 +43,47 @@
 .numericinput>span:hover{
     color: #e66767;
 }
+
 .numericinput>input{
-    width: 40px;
+    min-width: 40px;
     margin: 0 5px;
     text-align: center;
     -moz-appearance: textfield;
 }
+
+@media (max-device-width: 425px) {
+    #numchange{
+        display:grid;
+        grid-template-areas: "place";
+        margin: 0;
+    }
+
+    .numeric{
+        font-size: 26px;
+        opacity: 0;
+    }
+
+    .numericinput{
+        opacity: 1;
+        background-color: inherit;
+    }
+    .numericinput>span{
+        font-size: 42px
+    }
+
+    .numericinput>input{
+        min-width: 80px;
+        margin: 0 25px;
+        font-size: 26px;
+        border: 3px lightgrey solid;
+    }
+
+}
+
+
+
+
+
 .numericinput>input::-webkit-outer-spin-button,
 .numericinput>input::-webkit-inner-spin-button {
     -webkit-appearance: none;

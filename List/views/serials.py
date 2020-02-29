@@ -81,7 +81,6 @@ def getSeriallist(userid,statusid,request):
             item=SerialItem()
             item.seasons.append(i)
             item.serial=i.serial
-            getUserProgress(item,i.serial.id,userid)
 
             serialDict.update({i.season.serial.id:item})
         else:

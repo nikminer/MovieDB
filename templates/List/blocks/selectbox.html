@@ -1,0 +1,38 @@
+{% if request.user == user %}
+    <details class="selectbox">
+        <summary class="selectName">
+            {% if UserItem.userstatus == 1 %}
+                В планах
+            {% elif UserItem.userstatus == 2 %}
+                Смотрю
+            {% elif UserItem.userstatus == 3 %}
+                Просмотрено
+            {% elif UserItem.userstatus == 4 %}
+                Пересматриваю
+            {% elif UserItem.userstatus == 5 %}
+                Брошено
+            {% endif %}
+        </summary>
+        <option onclick="sendStatus('{{type}}:{{UserItem.id}}',document.getElementById(this.value),this.value)" value="planned" {% if UserItem.userstatus == 1 %} selected {% endif %}>В планах</option>
+        <option onclick="sendStatus('{{type}}:{{UserItem.id}}',document.getElementById(this.value),this.value)" value="watch" {% if UserItem.userstatus == 2 %} selected {% endif %}>Смотрю</option>
+        <option onclick="sendStatus('{{type}}:{{UserItem.id}}',document.getElementById(this.value),this.value)" value="rewatch" {% if UserItem.userstatus == 4 %} selected {% endif %}>Пересматриваю</option>
+        <option onclick="sendStatus('{{type}}:{{UserItem.id}}',document.getElementById(this.value),this.value)" value="watched" {% if UserItem.userstatus == 3 %} selected {% endif %}>Просмотрено</option>
+        <option onclick="sendStatus('{{type}}:{{UserItem.id}}',document.getElementById(this.value),this.value)" value="drop" {% if UserItem.userstatus == 5 %} selected {% endif %}>Брошено</option>
+    </details>
+{% else %}
+    <div class="selectbox">
+        <span class="selectName">
+            {% if UserItem.userstatus == 1 %}
+                В планах
+            {% elif UserItem.userstatus == 2 %}
+                Смотрю
+            {% elif UserItem.userstatus == 3 %}
+                Просмотрено
+            {% elif UserItem.userstatus == 4 %}
+                Пересматриваю
+            {% elif UserItem.userstatus == 5 %}
+                Брошено
+            {% endif %}
+        </span>
+    </div>
+{% endif %}
