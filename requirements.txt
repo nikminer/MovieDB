@@ -7,4 +7,3 @@ django-precise-bbcode
 django-crontab
 social-auth-app-django
 django-taggit
-social-auth-app-django
