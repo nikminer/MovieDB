@@ -1,14 +1,31 @@
 from django.urls import path
-from django.conf.urls import url
 from Profile import views
 from List import views as listview
-from django.conf import settings
-from django.conf.urls.static import static
 
-
+from django.contrib.auth import views as Authviews
 
 urlpatterns = [
-    path('logout-then-login/',views.auth.logoutthenlogin, name='logout'),
+    path('logout/',views.auth.logoutthenlogin, name='logout'),
+    path('login/',views.auth.loginView, name='login'),
+
+    path('password_reset/',
+     Authviews.PasswordResetView.as_view(
+         template_name="Profile/auth/reset.html",
+         email_template_name="Profile/auth/password_reset_form.html"),
+     name='password_reset'),
+
+    path('password_reset/done/',
+         Authviews.PasswordResetDoneView.as_view(
+            template_name="Profile/auth/password_reset_done.html",),
+         name='password_reset_done'),
+    path('reset/<uidb64>/<token>/',
+         Authviews.PasswordResetConfirmView.as_view(
+             template_name="Profile/auth/password_reset_confirm.html"
+         ),
+         name='password_reset_confirm'),
+    path('reset/done/', views.auth.resetpasswordDone, name='password_reset_complete'),
+
+
     path('register/',views.auth.register, name='register'),
 
     path('settings/',views.settings.Prosettings ,name="settings"),
@@ -20,9 +37,6 @@ urlpatterns = [
 
     path('noties',views.notifications.notifications ,name="noties"),
     path('noties/del',views.notifications.deletenotification ,name="delnoties"),
-
-
-
 
     path('<str:username>/dialog',views.messages.Dialog ,name="dialog"),
     path('<str:username>/sendmessage',views.messages.SendMessage ,name="sendmessage"),

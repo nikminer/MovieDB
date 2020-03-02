@@ -46,7 +46,8 @@ body{
 .setting{
     display: grid;
     grid-template-areas: "setbg setbg"
-    "setinfo setavatar";
+    "setinfo setavatar"
+    "chpass .";
     grid-template-columns: auto 500px;
     animation: fade-in 1s ease;
 }
@@ -54,18 +55,34 @@ body{
     padding: 10px;
 }
 
-.setinfo{
+.userinfo{
     grid-area: setinfo;
+}
+
+.chpass{
+    grid-area: chpass;
+}
+
+.errorlist{
+    background-color:#e66767 ;
+    color: white;
+    padding: 10px;
+    margin: 5px 0;
+}
+
+.setinfo{
     display: flex;
     flex-direction: column;
     align-items: stretch;
+
 }
 .setinfo>form{
     display: flex;
     flex-direction: column;
     align-items: stretch;
     justify-content: space-evenly;
-    min-height: 400px;
+    min-height: 300px;
+    margin-left: 20px;
 }
 .setinfo input[type=submit]{
     border: 0;

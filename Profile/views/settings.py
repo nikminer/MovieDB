@@ -1,9 +1,11 @@
 from django.shortcuts import render,redirect
-from Profile.forms import UserProfileSettings
+from Profile.forms import UserProfileSettings,UserChangePass
 from Profile.models import Profile
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from MovieNet.settings import STATICFILES_DIRS
+from django.contrib.auth import authenticate,login
+
 
 
 @login_required
@@ -48,31 +50,61 @@ def Setavatar(request):
 
     return redirect('settings')
 
+
+
 @login_required
 def Prosettings(request):
-    if request.method == 'POST':
+
+    profile = request.user.profile
+
+    data ={
+        "profile": profile
+    }
+
+
+
+    if request.method == 'POST' and request.POST['type'] == 'userinfo':
         form = UserProfileSettings(request.POST)
         if form.is_valid():
-            profile=Profile.objects.get(user=request.user)
-            profile.user.first_name=form.cleaned_data['first_name']
-            profile.user.last_name=form.cleaned_data['last_name']
-            profile.date_of_birth=form.cleaned_data['date_of_birth']
+            profile.user.first_name = form.cleaned_data['first_name']
+            profile.user.last_name = form.cleaned_data['last_name']
+            profile.date_of_birth = form.cleaned_data['date_of_birth']
             profile.user.save()
             profile.save()
-            
-            messages.success(request, 'Данные пользователя именены успешно')
 
-            return redirect('profile',request.user.username)
+            messages.success(request, 'Данные пользователя именены успешно')
+        else:
+            data.update({"settings": form})
     else:
-        profile=Profile.objects.get(user=request.user)
-        form=UserProfileSettings()
-        form.initial['first_name']=profile.user.first_name
-        form.fields['first_name'].required=True
-        form.initial['last_name']=profile.user.last_name
-        form.fields['last_name'].required=True
-        form.initial['date_of_birth']=profile.date_of_birth
-        data={
-            "profile":profile,
-            "settings":form
-        }
-        return render(request, 'Profile/settings.html',data)
+        form = UserProfileSettings()
+        form.initial['first_name'] = profile.user.first_name
+        form.fields['first_name'].required = True
+        form.initial['last_name'] = profile.user.last_name
+        form.fields['last_name'].required = True
+        form.initial['date_of_birth'] = profile.date_of_birth
+        data.update({"settings": form})
+
+
+
+    if request.method == 'POST' and request.POST['type'] == 'chpass':
+        form = UserChangePass(request.POST)
+        if form.is_valid():
+            user= authenticate(username=request.user.username, password=form.cleaned_data['oldpassword'])
+            if user:
+                user.set_password(form.cleaned_data['password2'])
+                user.save()
+
+                login(request, user)
+                messages.success(request, 'Данные пользователя именены успешно')
+                data.update({"chengePass":  UserChangePass()})
+            else:
+                form.add_error('oldpassword', "Неверный пароль")
+                data.update({"chengePass": form})
+        else:
+            data.update({"chengePass": form})
+    else:
+        form = UserChangePass()
+        data.update({"chengePass": form})
+
+
+    return render(request, 'Profile/settings.html', data)

@@ -1,13 +1,27 @@
 import os
+import mailsetting
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = open(os.path.join(BASE_DIR, 'secret_key'), 'r').read()
 
+EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_SSL = mailsetting.USE_SSL
+EMAIL_USE_TLS = mailsetting.USE_TLS
+EMAIL_PORT = mailsetting.PORT
+EMAIL_HOST = mailsetting.HOST
+EMAIL_HOST_USER = mailsetting.HOST_USER
+EMAIL_HOST_PASSWORD = mailsetting.HOST_PASSWORD
+
+
+SERVER_EMAIL = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+
 
 
 # Application definition
@@ -23,12 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     'django_crontab',
     'taggit',
-    'List',
-    'Main',
-    'Profile',
-    'Films',
-    'Serials',
+    'List.apps.ListConfig',
+    'Main.apps.MainConfig',
+    'Profile.apps.ProfileConfig',
+    'Films.apps.FilmsConfig',
+    'Serials.apps.SerialsConfig',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -88,6 +104,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+
+)
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/

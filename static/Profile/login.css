@@ -18,6 +18,7 @@ form{
     border-left-color: #303952;
     margin-bottom: 2%;
     font-size: 18px;
+    margin-top: 20px;
 }
 
 p{
@@ -66,7 +67,6 @@ button[type=submit]:hover{
 form>a{
     padding: 10px;
     text-align: center;
-    text-decoration: none;
     color: black;
     margin-top: 20px;
     background-color: rgb(241, 241, 241);

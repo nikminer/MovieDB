@@ -2,7 +2,7 @@
 {% load static %}
 
 
-<title>Авторизация</title>
+<title>Восстановление пароля</title>
 <link rel="stylesheet" href={% static 'Profile/login.css' %} type="text/css" />
 
 <body>
@@ -10,15 +10,16 @@
     <meta http-equiv="Refresh" content="0; URL={% url 'index' %}">
     {% else %}
     <form method="post">
-        <span class="bigspan">Авторизация</span>
+        <a href="{% url 'login' %}">Авторизация</a>
+        <a href="{% url 'register' %}">Регистрация</a>
+        <span class="bigspan">Восстановление пароля</span>
         {% if error %}
            <span class="errorlist">{{error}}</span>
         {% endif %}
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Войти</button>
-        <a href="{% url 'register' %}">Регистрация</a>
-        <a href="{% url 'password_reset' %}">Восстановление пароля</a>
+        <button type="submit">Восстановить</button>
+
     </form>
     {% endif %}
 </body>

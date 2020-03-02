@@ -109,12 +109,23 @@
                 </script>
             </div>
 
-            <div class="setinfo">
-                <span class="bigspan">Задний фон профиля</span>
+            <div class="setinfo userinfo">
+                <span class="bigspan">Информация о пользователе</span>
                 <form method=POST>
                 {% csrf_token %}
+                    <input type="hidden" name="type" value="userinfo">
                     {{settings}}
                     <input type="submit" value="Сохранить изменения">
+                </form>
+            </div>
+
+            <div class="setinfo chpass">
+                <span class="bigspan">Смена пароля</span>
+                <form method=POST>
+                    {% csrf_token %}
+                    <input type="hidden" name="type" value="chpass">
+                    {{chengePass}}
+                    <input type="submit" value="Изменить">
                 </form>
             </div>
     </div>

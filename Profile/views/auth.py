@@ -1,8 +1,10 @@
 from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate, login,logout
-from Profile.forms import LoginForm,UserRegistrationForm
+from Profile.forms import LoginForm,UserRegistrationForm,UserResetPass
 from Profile.models import Profile
+from django.contrib import messages
+
 
 def loginView(request):
     data={}
@@ -10,6 +12,7 @@ def loginView(request):
         form = LoginForm(request.POST)
         if form.is_valid():
             user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
+
             if user:
                 if user.is_active:
                     login(request, user)
@@ -27,6 +30,11 @@ def loginView(request):
 def logoutthenlogin(request):
     logout(request)
     return redirect("login")
+
+def resetpasswordDone(request):
+    messages.success(request, 'Пароль успешно изменён.')
+    return redirect('login')
+
 
 
 def register(request):

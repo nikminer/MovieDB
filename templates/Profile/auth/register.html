@@ -12,8 +12,10 @@
         <a href="{% url 'login' %}">Авторизация</a>
         <span class=bigspan>Регистрация</span>
         {% csrf_token %}
+
         {{ form.as_p }}
         <button type="submit">Отправить</button>
+        <a href="{% url 'password_reset' %}">Восстановление пароля</a>
     </form>
                 
 </body>

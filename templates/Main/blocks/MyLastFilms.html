@@ -1,3 +1,4 @@
+{% if films %}
 <div class="movies block">
     <div class="sectionspanandrefer">
         <span class="sectionspan">Ваши последние фильмы</span><a href="{% url 'listfilm' username %}" class="sectionspan">Мои фильмы</a>
@@ -11,3 +12,4 @@
          {% endfor %}
      </div>
 </div>
+{% endif %}
