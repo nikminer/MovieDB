@@ -4,14 +4,16 @@
 <link rel="stylesheet" href="{% static "List/styles/stars.css" %}" />
 <script src="{% static "List/scripts/getCookie.js" %}"></script>
 
+<link rel="stylesheet" href="{% static "List/styles/numeric.css" %}" />
+
 {% if type == "series" %}
     <link rel="stylesheet" href="{% static "List/styles/season.css" %}" />
-    <link rel="stylesheet" href="{% static "List/styles/numeric.css" %}" />
 
     <script src="{% static "List/scripts/search.js" %}"></script>
     {% if request.user == user %}
     <script src="{% static "List/scripts/dragNdrop.js" %}"></script>
     <script src="{% static "List/scripts/episodeCounter.js" %}"></script>
+    <script src="{% static "List/scripts/rewatchCounter.js" %}"></script>
     {% endif %}
 
     <title>Список сералов / {{user.profile.name}}</title>
@@ -49,6 +51,7 @@
     <script src="{% static "List/scripts/searchf.js" %}"></script>
     {% if request.user == user %}
     <script src="{% static "List/scripts/dragNdropF.js" %}"></script>
+    <script src="{% static "List/scripts/rewatchCounterF.js" %}"></script>
     {% endif %}
     <title>Список фильмов / {{user.profile.name}}</title>
 

@@ -13,6 +13,11 @@ urlpatterns = [
     path("details/<int:id>",views.film.film ,name="film"),
     path("details/<int:id>/similar",views.filmlist.FilmListSimilar,name="filmsimilar"),
     path("details/<int:id>/similar/<int:page>",views.filmlist.FilmListSimilar,name="filmsimilar_page"),
+
     path("set/status",views.film.setstatus),
     path("set/rating",views.film.setrating),
+
+    path('rewatch/inc', views.film.increwatched, name="increwtchf"),
+    path('rewatch/set', views.film.setrewatched, name="setrewtchf"),
+    path("rewatch/dec", views.film.decrewatched, name="decrewtchf"),
 ]

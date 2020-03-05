@@ -52,11 +52,12 @@
     text-align: center;
     cursor: pointer;
     transition: all 0.5s ease;
+    transform: rotate(180deg);
 }
 .chkbtn>input:checked + svg{
     fill: black;
     background-color: lightgrey;
-    transform: rotate(180deg);
+    transform: rotate(0deg);
 }
 .chkbtn>input:checked + .actionpanel{
     display: grid;

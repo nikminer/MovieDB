@@ -65,11 +65,12 @@
     text-align: center;
     cursor: pointer;
     transition: all 0.5s ease;
+    transform: rotate(180deg);
 }
 .chkbtn>input:checked + svg{
     fill: black;
     background-color: lightgrey;
-    transform: rotate(180deg);
+    transform: rotate(0deg);
 }
 .chkbtn>input:checked + .actionpanel{
     display: grid;
@@ -84,6 +85,7 @@
     display: none;
     flex-wrap: wrap;
     justify-content: space-between;
+    align-items: center;
     transition: height 0.5s ease;
 }
 .actionpanel>*{
@@ -92,11 +94,12 @@
 .actionpanel>div{
     display: flex;
     flex-direction: column;
-    align-items: stretch;
+    align-items: center;
     text-align: center;
 }
 .actionpanel>div>span{
     padding-bottom: 10px;
+    max-width: 80%;
 }
 
 .selectbox{

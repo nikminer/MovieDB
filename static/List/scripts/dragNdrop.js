@@ -68,14 +68,17 @@ function sendStatus(id,Group,DataType){
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
     xhr.send("listid="+encodeURIComponent(list.join(';'))+";status="+encodeURIComponent(Group.id))
     xhr.onreadystatechange=function(){
-        if(xhr.status==200 && xhr.readyState==4)
-            if (JSON.parse(xhr.response)['status']=="changestatus"){
-                moveitem(list,Group);
+        if(xhr.status==200 && xhr.readyState==4){
+            let response=JSON.parse(xhr.response);
+            if (response['status']=="changestatus"){
+                moveitem(list,Group,response['userepisode']);
             }
+        }
+
     }
 }
 
-function moveitem(list,Group){
+function moveitem(list,Group,userepisode){
     for (let i=0;i<list.length;i++){
         let DropItem=document.getElementById("season:"+list[i])
         let Parrentelm=DropItem.parentElement
@@ -87,6 +90,8 @@ function moveitem(list,Group){
             SerialDetails.className="serial"
             SerialDetails.id=serialid
             SerialDetails.appendChild(Parrentelm.children[0].cloneNode(true))
+            document.getElementById("userepisodeview_"+list[i]).innerText= userepisode
+            document.getElementById("numerinput_"+list[i]).value= userepisode
 
             SerialDetails.appendChild(DropItem)
 
@@ -104,6 +109,8 @@ function moveitem(list,Group){
             SerialDetails.appendChild(allitems)
 
             Group.appendChild(SerialDetails)
+
+
 
         }
         else{

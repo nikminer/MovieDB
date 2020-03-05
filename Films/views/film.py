@@ -91,3 +91,33 @@ def setstatus(request):
             return JsonResponse({'status':'false'})
     else:
         return JsonResponse({'status':'false'})
+
+@login_required
+def increwatched(request):
+    item = UserListF.objects.get(id=int(request.POST['listid']), user=request.user.id)
+    item.countreview += 1
+    item.save()
+    return JsonResponse({'status': 'inc', "countreview": item.countreview})
+
+@login_required
+def decrewatched(request):
+    item = UserListF.objects.get(id=int(request.POST['listid']), user=request.user.id)
+
+    if item.countreview - 1 >= 0:
+        item.countreview -= 1
+        item.save()
+        return JsonResponse({'status': 'inc', "countreview": item.countreview})
+
+    else:
+        return JsonResponse({'status': 'false', "countreview": item.countreview})
+
+@login_required
+def setrewatched(request):
+    item = UserListF.objects.get(id=int(request.POST['listid']), user=request.user.id)
+    ep = int(request.POST['count'])
+    if not ep < 0:
+        item.countreview = ep
+        item.save()
+        return JsonResponse({'status': 'inc', "countreview": item.countreview})
+    else:
+        return JsonResponse({'status': 'false', "countreview": item.countreview})

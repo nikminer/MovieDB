@@ -41,19 +41,45 @@
 
             <div>
                 <span>Эпизоды</span>
-                <div id="numchange">
+                <div class="numchange">
                     {% if request.user == user %}
                         <div class=numeric>
                             <span id="userepisodeview_{{UserItem.id}}">{{UserItem.userepisode}}</span>/<span>{{UserItem.season.episodecount}}</span>
                         </div>
                         <div class=numericinput>
-                            <span onclick="decrement({{UserItem.id}})">-</span>
-                            <input id=numerinput_{{UserItem.id}} type="number" min=0 max={{UserItem.season.episodecount}} onchange="setepisode({{UserItem.id}})" value="{{UserItem.userepisode}}">
-                            <span onclick="increment({{UserItem.id}})">+</span>
+                            <div></div>
+                            <div>
+                                <span onclick="decrement({{UserItem.id}})">-</span>
+                                <input id=numerinput_{{UserItem.id}} type="number" min=0 max={{UserItem.season.episodecount}} onchange="setepisode({{UserItem.id}})" value="{{UserItem.userepisode}}">
+                                <span onclick="increment({{UserItem.id}})">+</span>
+                            </div>
                         </div>
                     {% else %}
                         <div class=numericP>
                             <span id="userepisodeview_{{UserItem.id}}">{{UserItem.userepisode}}</span>/<span>{{UserItem.season.episodecount}}</span>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div>
+                <span>Повторные просмотры</span>
+                <div class="numchange">
+                    {% if request.user == user %}
+                        <div class=numeric>
+                            <span></span><span  id="userRewatch_{{UserItem.id}}">{{UserItem.countreview}}</span><span></span>
+                        </div>
+                        <div class=numericinput>
+                            <div></div>
+                            <div>
+                                <span onclick="decrementrewatch({{UserItem.id}})">-</span>
+                                <input id=numerinputRewatch_{{UserItem.id}} type="number" min=0 max=255 onchange="setrewatch({{UserItem.id}})" value="{{UserItem.countreview}}">
+                                <span onclick="incrementrewatch({{UserItem.id}})">+</span>
+                            </div>
+
+                        </div>
+                    {% else %}
+                        <div class=numericP>
+                            <span></span><span id="userRewatch_{{UserItem.id}}">{{UserItem.countreview}}</span><span></span>
                         </div>
                     {% endif %}
                 </div>

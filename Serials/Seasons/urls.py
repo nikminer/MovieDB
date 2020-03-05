@@ -1,10 +1,7 @@
 from django.urls import path
-from django.conf.urls import include
 
 import Serials.Seasons.views as views
 import List.views.setseason as listsrc
-from django.conf import settings
-from django.conf.urls.static import static
 
 
  
@@ -15,6 +12,10 @@ urlpatterns = [
     path('num/inc', views.numeric.incepisode, name="incepi"),
     path('num/set', views.numeric.setepisode, name="setepi"),
     path("num/dec", views.numeric.decepisode, name="decepi"),
+
+    path('rewatch/inc', views.numeric.increwatched, name="increwtch"),
+    path('rewatch/set', views.numeric.setrewatched, name="setrewtch"),
+    path("rewatch/dec", views.numeric.decrewatched, name="decrewtch"),
 
     path("set/rating",listsrc.setrating,name="setrating"),
     path("set/status",listsrc.setstatus,name="setstatus"),

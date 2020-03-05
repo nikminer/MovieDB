@@ -81,11 +81,13 @@
 
         {% if UserItem %}
         
-        <link rel="stylesheet" href={% static 'Serials/styles/numeric.css' %} type="text/css" />
+        <link rel="stylesheet" href={% static 'List/styles/numeric.css' %} type="text/css" />
         <script src="{% static "Serials/scripts/episodeCounter.js" %}"></script>
+            <script src="{% static "List/scripts/rewatchCounter.js" %}"></script>
         <div class='actionpanel'>
             {% include "Serials/blocks/selectBox.html" %}
-            <div id="numchange">
+            {% include "Serials/blocks/stars.html" %}
+            <div class="numchange">
                 <div class='numeric'>
                     <span>Эпизоды:</span>
                     <span id="userepisodeview_{{UserItem.id}}">{{UserItem.userepisode}}</span>
@@ -93,12 +95,33 @@
                     <span>{{season.episodecount}}</span>
                 </div>
                 <div class='numericinput'>
-                    <span onclick="decrement({{UserItem.id}})">-</span>
-                    <input id=numerinput_{{UserItem.id}} type="number" min=0 max={{UserItem.season.episodecount}} onchange="setepisode({{UserItem.id}})" value="{{UserItem.userepisode}}">
-                    <span onclick="increment({{UserItem.id}})">+</span>
+                    <div>
+                        <span>Эпизоды:</span>
+                    </div>
+                    <div>
+                        <span onclick="decrement({{UserItem.id}})">-</span>
+                        <input id=numerinput_{{UserItem.id}} type="number" min=0 max={{UserItem.season.episodecount}} onchange="setepisode({{UserItem.id}})" value="{{UserItem.userepisode}}">
+                        <span onclick="increment({{UserItem.id}})">+</span>
+                    </div>
                 </div>
             </div>
-            {% include "Serials/blocks/stars.html" %}
+
+             <div class="numchange">
+                 <div class=numeric>
+                     <span>Повторные просмотры:</span>
+                     <span id="userRewatch_{{UserItem.id}}">{{UserItem.countreview}}</span>
+                 </div>
+                 <div class=numericinput>
+                     <div>
+                          <span>Повторные просмотры:</span>
+                     </div>
+                     <div>
+                         <span onclick="decrementrewatch({{UserItem.id}})">-</span>
+                         <input id=numerinputRewatch_{{UserItem.id}} type="number" min=0 max=255 onchange="setrewatch({{UserItem.id}})" value="{{UserItem.countreview}}">
+                         <span onclick="incrementrewatch({{UserItem.id}})">+</span>
+                     </div>
+                 </div>
+            </div>
              {% comment '' %}
             <a href="{% url 'seasonch' season.id %}">Редактировать</a>
             {% endcomment %}

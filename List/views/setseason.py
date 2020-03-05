@@ -49,11 +49,21 @@ def setstatus(request):
             item=UserList.objects.get(id=int(itemid),user=request.user.id)
 
             if UserStat.get(data['status']) and item.userstatus!=UserStat.get(data['status']):
+                if item.userstatus == UserStat['rewatch'] and UserStat.get(data['status']) == UserStat['watched']:
+                    item.countreview+=1
+
+                if item.userstatus in (UserStat['planned'], UserStat['watch'], UserStat['rewatch']) and UserStat.get(data['status']) == UserStat['watched']:
+                    item.userepisode = item.season.episodecount
+
+                if item.userstatus == UserStat['watched'] and UserStat.get(data['status']) in (UserStat['planned'], UserStat['watch'], UserStat['rewatch']):
+                    item.userepisode=0;
+
                 item.userstatus=UserStat[data['status']]
                 item.save()
 
                 sendFeed(item,typeFeed['status'])
-                Datarequest={'status':'changestatus','userstatus':data['status']}
+                Datarequest={'status': 'changestatus', 'userstatus': data['status'], 'userepisode': item.userepisode}
+
 
         return JsonResponse(Datarequest)
 

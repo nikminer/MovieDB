@@ -42,7 +42,7 @@
                 <a href="https://www.kinopoisk.ru/film/{{Film.kinopoiskid}}">Страница на Кинопоиск</a>
             </div>
         </div>
-        
+
         <div class="userrate">
             <span class="bigspan">Пользовательская оценка</span>
             <div>
@@ -69,11 +69,30 @@
             {% friendListF user.profile Film %}
         {% endif %}
 
+        <link rel="stylesheet" href={% static 'List/styles/numeric.css' %} type="text/css" />
+        <script src="{% static "List/scripts/rewatchCounterF.js" %}"></script>
         {% if UserItem %}
         <div class='actionpanel'>
             {% include "Films/blocks/selectBox.html" %}
-            {% include "Films/blocks/stars.html" %}
             <a href="{% url 'delfilm' Film.id %}">Убрать из списка</a>
+            {% include "Films/blocks/stars.html" %}
+
+        <div class="numchange">
+                 <div class=numeric>
+                     <span>Повторные просмотры:</span>
+                     <span id="userRewatch_{{UserItem.id}}">{{UserItem.countreview}}</span>
+                 </div>
+                 <div class=numericinput>
+                     <div>
+                          <span>Повторные просмотры:</span>
+                     </div>
+                     <div>
+                         <span onclick="decrementrewatch({{UserItem.id}})">-</span>
+                         <input id=numerinputRewatch_{{UserItem.id}} type="number" min=0 max=255 onchange="setrewatch({{UserItem.id}})" value="{{UserItem.countreview}}">
+                         <span onclick="incrementrewatch({{UserItem.id}})">+</span>
+                     </div>
+                 </div>
+            </div>
             
         </div>
         {% else %}

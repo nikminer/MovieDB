@@ -25,12 +25,35 @@ function getCookie(cname) {
 
 function setstatus(elem,id){
     if (!elem.selected){
-        var xhr = new XMLHttpRequest();
+        let xhr = new XMLHttpRequest();
         xhr.open('POST','/serial/season/set/status',true);
         xhr.setRequestHeader("X-CSRFToken", getCookie("csrftoken"));
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.send("listid="+id+";status="+encodeURIComponent(elem.value));
-        selectName.innerText=elem.label;
+        xhr.onreadystatechange=function(){
+            if(xhr.status==200 && xhr.readyState==4){
+                let response=JSON.parse(xhr.response);
+                if (response['status']=="changestatus") {
+
+                    Array.prototype.filter.call(
+                        selectbox.getElementsByTagName('option'),
+                        function(item){
+                            return item.selected
+                        }
+                    )[0].selected=false;
+
+
+                    elem.selected = true;
+
+                    selectName.innerText = elem.label;
+
+                    episode = JSON.parse(xhr.response)['userepisode']
+                    document.getElementById("userepisodeview_" + id).innerText = episode
+                    document.getElementById("numerinput_" + id).value = episode
+                }
+            }
+        }
+
     }
     selectbox.open=false
 }
