@@ -1,0 +1,24 @@
+
+{% for movie,season in group.list.items %}
+    <div class="item">
+        <a class="itemname" href="{% url 'serial' movie.id %}" title="{{movie.name}}">{{movie.name}} ({{movie.year}})</a>
+        <div>
+        {% if request.user == user %}
+            <a class="delbtn" href="{% url 'delserial' movie.id %}" title="Удалить весь сериал"></a>
+        {% endif %}
+        </div>
+    </div>
+{% endfor %}
+
+<style>
+    .item{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 10px 20px;
+        border-left: 10px solid #3dc1d3;
+    }
+    .itemname{
+        color: black;
+    }
+</style>

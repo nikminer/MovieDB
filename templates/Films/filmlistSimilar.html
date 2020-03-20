@@ -1,5 +1,5 @@
 {% load static %}
-{% include "../base.html" %}
+{% include "../../base.html" %}
 
 <link rel="stylesheet" href="{% static "Films/styles/filmlist.css" %}" />
 <title>Фильмы похожие на {{ film.name }}</title>
@@ -16,7 +16,7 @@
     </p>
     <div class="films">
         <div class="filmList">
-        {% for film in FilmList %}
+        {% for film in List %}
             <a href="{% url 'film' film.id %}" class="film" title="{{film.name}} / {{film.originalname}} ({{film.year}})">
                 <div class="poster">
                     <img height="200px" src={{film.img.url}}>

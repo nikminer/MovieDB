@@ -4,17 +4,17 @@
 <link rel="stylesheet" href={% static 'Serials/styles/season.css' %} type="text/css" />
 
 
-<title>{{season.name}} {{season.serial.name}} / {{season.serial.originalname}} / Сериал</title>
+<title>{{season.name}} {{season.movie.name}} / {{season.movie.originalname}} / Сериал</title>
 
 <body>
         <div class="headBlock">
-            <a class="bckbtn" href="{% url 'serial' season.serial.id %}">
+            <a class="bckbtn" href="{% url 'serial' season.movie.id %}">
                 <b>◄</b><span>К сериалу</span>
             </a>
         </div>
 
         <span class=serialName>
-            <span>{{season.name}} {{season.serial.name}} / {{season.serial.originalname}}</span>
+            <span>{{season.name}} {{season.movie.name}} / {{season.movie.originalname}}</span>
         </span>
 
         <img class=poster src={{season.img.url}}>
@@ -32,20 +32,16 @@
                 </span>
                 <span>
                     Жанр:
-                    {% for i in season.serial.tags.all%}
+                    {% for i in season.movie.tags.all%}
                         <a class="genre" href="{% url 'seriallist' %}?genres={{i.slug}}">{{i.name}}</a>
                     {% endfor %}
                 </span>
                 <span>
-                    Дата выхода: 
-                    {% if season.date != "Нет данных" %}
-                    <span>{{season.date|date:"SHORT_DATE_FORMAT"}}</span>
-                    {% else %}
-                    <span>{{season.date}}</span>
-                    {% endif %}
+                    Дата выхода:
+                    <span>{{season.get_date|date:"SHORT_DATE_FORMAT"}}</span>
                 </span>
                 <span>
-                    Длительность эпизода: <span>{{season.serial.episodelength}} минут</span>
+                    Длительность эпизода: <span>{{season.movie.length}} минут</span>
                 </span>
                 <span>
                     Количество эпизодов: <span>{{season.episodecount}}</span>
@@ -74,11 +70,11 @@
             </div>
         </div>
 
-
+        {% comment %}
         {% if user.is_authenticated %}
             {% friendListS user.profile season %}
         {% endif %}
-
+        {% endcomment %}
         {% if UserItem %}
         
         <link rel="stylesheet" href={% static 'List/styles/numeric.css' %} type="text/css" />
@@ -128,7 +124,7 @@
         </div>
         {% else %}
         <div class="actionpanel">
-            <a href="{% url 'addserial' season.serial.id %}">Добавить сериал</a>
+            <a href="{% url 'addserial' season.movie.id %}">Добавить сериал</a>
         </div>
         {% endif %}
         <details class="discription" id="serialdiscription">
@@ -139,6 +135,7 @@
             AdaptiveOpenDetails(window,serialdiscription);
         </script>
 
+        {% comment %}
         {% Serieslist season %}
 
         <div class="comments">
@@ -147,5 +144,5 @@
             {% include 'Main/blocks/AddComment.html' %}
             {% commentslist season %}
         </div>
-
+        {% endcomment %}
 </body>

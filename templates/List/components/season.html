@@ -1,17 +1,3 @@
-
-<summary>
-    <div>
-        <span>
-            <a class="serialname" href="{% url 'serial' i.serial.id %}" title="{{i.serial.name}}">{{i.serial.name}} ({{i.serial.year}})</a> 
-        </span>
-        <div>
-        {% if request.user == user %}
-            <a class="delbtn" href="{% url 'delserial' i.serial.id %}" title="Удалить весь сериал"></a>
-        {% endif %}
-        </div>
-    </div>
-</summary>
-
 {% for UserItem in i.seasons %}
     <div class=season id="season:{{UserItem.id}}" ondragend="faststatus.style.opacity=0;faststatus.style.zIndex=-10;" draggable="true" ondragstart="drag(event)">
         <div class="status" style="background-color:{{UserItem.season.status.color}}">

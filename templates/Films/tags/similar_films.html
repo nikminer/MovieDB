@@ -1,0 +1,15 @@
+{% load static %}
+<link rel="stylesheet" href={% static 'Films/styles/similarfilms.css' %} type="text/css" />
+
+ <div class="similar">
+     <a href="{% url 'filmsimilar' film.id %}" class="bigspan">Похожие фильмы</a>
+    <div>
+        {% for i in similar %}
+         <a href="{% url 'film' i.id %}" class=similarfilm>
+             <img src={{ i.img.url }}>
+             <span style="font-weight: bold;">{{i.name}}</span>
+         </a>
+     {% endfor %}
+    </div>
+
+ </div>
