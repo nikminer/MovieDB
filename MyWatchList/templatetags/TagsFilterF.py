@@ -1,6 +1,6 @@
 from django import template
 
-from Main.models import Film
+from MyWatchList.models import Movie
 
 
 register = template.Library()
@@ -8,5 +8,5 @@ register = template.Library()
 
 def show_avalible_filtersF():
     return {
-        'tags':Film.tags.all().order_by('name')
+        'tags':Movie.tags.all().order_by('name')
     }

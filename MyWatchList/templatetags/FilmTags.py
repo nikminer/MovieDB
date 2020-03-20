@@ -18,7 +18,7 @@ def friendListF(profile, film):
 def SimilarFilms(movie):
     from django.db.models import Count
     tags_ids = movie.tags.values_list('id', flat=True)
-    similar = Movie.manager.get_films().filter(tags__in=tags_ids, series=movie.series) \
+    similar = Movie.manager.get_films().filter(tags__in=tags_ids) \
         .exclude(id=movie.id)
 
     similar = similar.annotate(same_tags=Count('tags')) \

@@ -43,12 +43,7 @@ input[type=search]{
     animation: fade-in 1s ease;
 }
 
-.groupspan{
-    font-size: 18px;
-    font-weight: bold;
-    border-left: #3dc1d3 10px solid;
-    padding-left: 5px;
-}
+
 
 .filters{
     grid-area: filters;
@@ -123,11 +118,6 @@ input[type=search]{
     flex-direction: column;
 }
 
-.group{
-    margin: 20px;
-    display: flex;
-    flex-direction: column;
-}
 
 #faststatus{
     position: fixed;
@@ -173,12 +163,6 @@ input[type=search]{
             "groups";
         grid-template-columns: auto;
         padding-bottom: 80px;
-    }
-
-    .groupspan {
-        font-size: 30px;
-        padding: 10px;
-        border-width: 15px;
     }
 
     .filters{
@@ -255,20 +239,9 @@ input[type=search]{
     color: black;
 }
 
-.delbtn{
-    display: block;
-    width: 20px;
-    height: 20px;
-    background: url('../images/cross_20px.png') no-repeat;
-    transition: all 0.5s ease;
-}
-.delbtn:hover{
-    background-position: 0 -20px;
-}
 
-.simplespan{
-    padding:  5px 10px;
-}
+
+
 
 .selectbox{
     width:100%;
@@ -315,9 +288,7 @@ input[type=search]{
         grid-template-columns: auto 80px 30px ;
     }
 
-    .delbtn{
-        display: none;
-    }
+
 
     .simplespan{
         padding:  10px 15px;
@@ -333,3 +304,12 @@ input[type=search]{
 
 
 }
+
+.delbtn{
+        display: block;
+        width: 20px;
+        height: 20px;
+        background: url('../images/cross_20px.png') no-repeat;
+        transition: all 0.5s ease;
+        padding: auto;
+    }

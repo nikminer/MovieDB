@@ -1,10 +1,10 @@
 {% if series %}
 <div class="serials block">
     <div class="sectionspanandrefer">
-        <span class="sectionspan">Ваши последние сериалы</span>
-        <a href="{% url 'listserial' username %}" class="sectionspan">Мои сериалы</a>
+        <span class="sectionspan bigheader">Ваши последние сериалы</span>
+        <a href="{% url 'listserial' username %}" class="sectionspan bigheader">Мои сериалы</a>
     </div>
-    <div class="movielist">
+    <div class="movielist fadeAni">
         {% for serial in series %}
         <a href="{% url 'serial' serial.id %}" title="{{serial.name}} ({{serial.year}})">
         <img src={{serial.img.url}}>

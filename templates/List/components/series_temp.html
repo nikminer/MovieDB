@@ -9,20 +9,10 @@
     {% endif %}
 
 
-                {% for groupname,group in groups.items %}
-                    <div class="group" id="{{groupname}}" ondrop="drop(event)" ondragover="allowDrop(event)">
-                        <span class="groupspan">{{group.name}}</span>
-                        {% if group.list %}
-                            {% for i in group.list %}
-                            <details class="serial" id="{{groupname}}_serial:{{i.serial.id}}">
-                                {% include "List/blocks/season.html" %}  
-                            </details>
-                            {% endfor %}
-                        {% else %}
-                            <span class="simplespan">Пусто</span>
-                        {% endif %}
-                    </div>
-                {% endfor %}
+
+
+
+
 {% endif %}
 
 {% if type == "films" %}

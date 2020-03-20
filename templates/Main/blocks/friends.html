@@ -1,5 +1,5 @@
 <div>
-    <span class="sectionspan">Друзья</span>
+    <span class="sectionspan bigheader">Друзья</span>
     <div>
         <a href="{% url 'friends' profile.user.username %}">Всего друзей: {{friends.friends}}</a>
         <a href="{% url 'friendreq' profile.user.username %}">Заявки в друзья: {{friends.requests}}</a>

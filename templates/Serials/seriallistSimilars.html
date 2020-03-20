@@ -2,34 +2,34 @@
 {% include "../base.html" %}
 
 <link rel="stylesheet" href="{% static "Serials/styles/seriallist.css" %}" />
-<title>Сериалы похожие на {{ serial.name }}</title>
+<title>Сериалы похожие на {{ series.name }}</title>
 
 
 <body>
     <div class="headBlock">
-        <a href={% url 'serial' serial.id %} class="bckbtn">
-            <b>◄</b><span>К сериалу {{ serial.name }}</span>
+        <a href={% url 'serial' series.id %} class="bckbtn">
+            <b>◄</b><span>К сериалу {{ series.name }}</span>
         </a>
     </div>
     <p class="pagedisc HeadName">
-       Сериалы похожие на {{ serial.name }}
+       Сериалы похожие на {{ series.name }}
     </p>
     <div class="serials">
         <div class="serialList" >
-            {% for serial in SerialList %}
-                <a href="{% url 'serial' serial.id %}" class="serial" title="{{serial.name}} / {{serial.originalname}} ({{serial.year}})">
+            {% for serialitem in SerialList %}
+                <a href="{% url 'serial' serialitem.id %}" class="serial" title="{{serialitem.name}} / {{serialitem.originalname}} ({{serialitem.year}})">
                     <div class="poster">
-                        <img height="200px" src={{serial.img.url}}>
+                        <img height="200px" src={{serialitem.img.url}}>
                     </div>
-                    <span >{{serial.name}} / {{serial.originalname}}</span>
+                    <span >{{serialitem.name}} / {{serialitem.originalname}}</span>
                     <div class=serialsmallinfo>
-                        <span>{{serial.year}}</span>
-                        {% if serial.InMyList %}<span style="background-color: #546de5;color: white;padding: 2px;">В списке</span>{% endif %}
+                        <span>{{serialitem.year}}</span>
+                        {% if serialitem.InMyList %}<span style="background-color: #546de5;color: white;padding: 2px;">В списке</span>{% endif %}
                     </div>
                 </a>
             {% endfor %}
         </div>
-        {% include "Serials/blocks/pagination.html" with page=SerialList serialid=serial.id urlname='filmlist_page' %}
+        {% include "Serials/blocks/pagination.html" with page=SerialList serialid=series.id urlname='Similarserial_page' %}
 
         {% load TagsFilter %}
         {% show_avalible_filters %}

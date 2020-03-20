@@ -1,6 +1,6 @@
 {% load static %}
-{% include "../../base.html" %}
-{% load WLFilmTags %}
+{% include "../base.html" %}
+{% load FilmTags %}
 
 <link rel="stylesheet" href={% static 'Films/styles/film.css' %} type="text/css" />
 
@@ -112,9 +112,7 @@
             AdaptiveOpenDetails(window,filmdiscription);
         </script>
 
-        {% if user.is_authenticated %}
-            {% SimilarFilms film %}
-        {% endif %}
+    {% SimilarFilms film %}
 
 
         <div class="comments">

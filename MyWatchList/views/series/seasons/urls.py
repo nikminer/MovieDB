@@ -1,13 +1,13 @@
 from django.urls import path
 
-import Serials.Seasons.views as views
+from .. import seasons as views
 import List.views.setseason as listsrc
 
 
  
 
 urlpatterns = [
-    path('<int:id>', views.season.season, name='season'),
+    path('<int:id>', views.season, name='season'),
 
     path('num/inc', views.numeric.incepisode, name="incepi"),
     path('num/set', views.numeric.setepisode, name="setepi"),

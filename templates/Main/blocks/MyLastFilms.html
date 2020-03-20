@@ -1,13 +1,14 @@
 {% if films %}
 <div class="movies block">
     <div class="sectionspanandrefer">
-        <span class="sectionspan">Ваши последние фильмы</span><a href="{% url 'listfilm' username %}" class="sectionspan">Мои фильмы</a>
+        <span class="sectionspan bigheader">Ваши последние фильмы</span>
+        <a href="{% url 'listfilm' username %}" class="sectionspan bigheader">Мои фильмы</a>
     </div>
-     <div class="movielist">
+     <div class="movielist fadeAni">
          {% for film in films %}
-         <a href="{% url 'film' film.id %}" title="{{film.name}} ({{film.year}})">
-             <img src={{film.img.url}}>
-             <span>{{film.name}} ({{film.year}})</span>
+         <a href="{% url 'film' film.movie.id %}" title="{{film.movie.name}} ({{film.movie.year}})">
+             <img src={{film.movie.img.url}}>
+             <span>{{film.movie.name}} ({{film.movie.year}})</span>
          </a>
          {% endfor %}
      </div>

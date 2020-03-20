@@ -104,7 +104,7 @@ class UserList(models.Model):
     @property
     def obj(self):
         return self.serial
-    @property
+
     def get_absolute_url(self):
         return reverse("serial", kwargs={"id": self.serial.id})
 

@@ -37,11 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     'django_crontab',
     'taggit',
+    'MyWatchList.apps.MywatchlistConfig',
     'List.apps.ListConfig',
     'Main.apps.MainConfig',
     'Profile.apps.ProfileConfig',
-    'Films.apps.FilmsConfig',
-    'Serials.apps.SerialsConfig',
 ]
 
 SITE_ID = 1

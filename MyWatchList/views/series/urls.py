@@ -1,18 +1,18 @@
 from django.urls import path
 from django.conf.urls import include
 
-import Serials.views as views
-from Serials.Seasons import urls as urlsSeasons
+from MyWatchList.views import series
+from MyWatchList.views.series.seasons import urls as urlsSeasons
 
 
 urlpatterns = [
-    path('', views.seriallist.SerialList, name='seriallist'),
-    path('<int:page>', views.seriallist.SerialList, name='seriallist_page'),
+    path('', series.seriallist.SeriesList, name='seriallist'),
+    path('<int:page>', series.seriallist.SeriesList, name='seriallist_page'),
 
-    path('details/<int:id>', views.serial.serial, name='serial'),
+    path('details/<int:id>', series.series, name='serial'),
 
-    path('details/<int:id>/similar', views.seriallist.SimilarSerials, name='Similarserial'),
-    path('details/<int:id>/similar/<int:page>', views.seriallist.SimilarSerials, name='Similarserial_page'),
+    path('details/<int:id>/similar', series.seriallist.SimilarSerials, name='Similarserial'),
+    path('details/<int:id>/similar/<int:page>', series.seriallist.SimilarSerials, name='Similarserial_page'),
 
     path('season/',include(urlsSeasons)),
 ]

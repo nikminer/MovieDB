@@ -3,13 +3,13 @@
 <div class="seasons">
     <span class="bigspan">Сезоны</span>
     <div class=seasonList>
-        {% for i in serial.seasonsl %}
+        {% for i in seasons %}
             <a href="{% url 'season' i.id %}" class=season >
                 <span style="background-color:{{i.status.color}}; color:#fff">{{i.status.name}}</span>
                 <img src={{ i.img.url }}>
                 <div class="seasonInfoBlock">
                     <span style="font-weight: bold;">
-                    {{i.serial.name}}
+                    {{i.movie.name}}
                     </span>
                     <span>
                         {{i.name}}

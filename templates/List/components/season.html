@@ -1,80 +1,51 @@
-{% for UserItem in i.seasons %}
-    <div class=season id="season:{{UserItem.id}}" ondragend="faststatus.style.opacity=0;faststatus.style.zIndex=-10;" draggable="true" ondragstart="drag(event)">
-        <div class="status" style="background-color:{{UserItem.season.status.color}}">
-            {{UserItem.season.status.name}}
-        </div>
+{% for wl in seasons %}
+    <div class=season id="season:{{wl.id}}" ondragend="faststatus.style.opacity=0;faststatus.style.zIndex=-10;" draggable="true" ondragstart="drag(event)">
         
-        <a href="{% url 'season' UserItem.season.id %}">{{UserItem.season.name}}</a>
+        <span class="status" style="background-color:{{wl.season.status.color}}">{{ wl.season.status.name }}</span>
+        
+        <a href="{% url 'season' wl.season.id %}">{{wl.season.name}} {% if wl.rewatch > 0 %}(<span id="userRewatch_{{wl.id}}">Повторных просмотров: {{wl.rewatch}}</span>){% endif %}</a>
+        
+        <div class="season_userepisode">
+            <span id="userepisodeview_{{wl.id}}">{{wl.userepisode}}</span>/<span>{{wl.season.episodecount}}</span>
+        </div>
+
         <label class="chkbtn" >
             <input style="display: none"
                    type="checkbox"
-                   onclick="document.getElementById('actionpanel:{{ UserItem.id }}').style.display=this.checked?'flex':'none'"
+                   onclick="{panel=document.getElementById('actionpanel:{{ wl.id }}'); panel.style.maxHeight=this.checked?panel.scrollHeight:null}"
             >
             <svg width="30px" height="26px">
-                <polyline points="5,18 15,8 25,18"></polyline>
+                <line y2="6" x2="26" y1="6" x1="4" stroke-width="3" />
+                <line y2="13" x2="26" y1="13" x1="4" stroke-width="3" />
+                <line y2="20" x2="26" y1="20" x1="4" stroke-width="3"/>
             </svg>
         </label>
-        <div class="actionpanel" id="actionpanel:{{ UserItem.id }}">
+        
+        <div class="actionpanel" id="actionpanel:{{ wl.id }}">
             <div>
                 <span>Статус</span>
                 {% include "List/blocks/selectbox.html" with  type="season" %}
             </div>
-
             <div>
-                <span>Оценка</span>
-                {% include "List/blocks/stars.html" %}
-            </div>
-
+                 <span>Оценка</span>
+                 {% include "List/blocks/stars.html" %}
+             </div>
             <div>
                 <span>Эпизоды</span>
-                <div class="numchange">
-                    {% if request.user == user %}
-                        <div class=numeric>
-                            <span id="userepisodeview_{{UserItem.id}}">{{UserItem.userepisode}}</span>/<span>{{UserItem.season.episodecount}}</span>
-                        </div>
-                        <div class=numericinput>
-                            <div></div>
-                            <div>
-                                <span onclick="decrement({{UserItem.id}})">-</span>
-                                <input id=numerinput_{{UserItem.id}} type="number" min=0 max={{UserItem.season.episodecount}} onchange="setepisode({{UserItem.id}})" value="{{UserItem.userepisode}}">
-                                <span onclick="increment({{UserItem.id}})">+</span>
-                            </div>
-                        </div>
-                    {% else %}
-                        <div class=numericP>
-                            <span id="userepisodeview_{{UserItem.id}}">{{UserItem.userepisode}}</span>/<span>{{UserItem.season.episodecount}}</span>
-                        </div>
-                    {% endif %}
+                <div class=numericinput>
+                    <span onclick="decrement({{wl.id}})">-</span>
+                    <input id=numerinput_{{wl.id}} type="number" min=0 max={{wl.season.episodecount}} onchange="setepisode({{wl.id}})" value="{{wl.userepisode}}">
+                    <span onclick="increment({{wl.id}})">+</span>
                 </div>
             </div>
             <div>
                 <span>Повторные просмотры</span>
-                <div class="numchange">
-                    {% if request.user == user %}
-                        <div class=numeric>
-                            <span></span><span  id="userRewatch_{{UserItem.id}}">{{UserItem.countreview}}</span><span></span>
-                        </div>
-                        <div class=numericinput>
-                            <div></div>
-                            <div>
-                                <span onclick="decrementrewatch({{UserItem.id}})">-</span>
-                                <input id=numerinputRewatch_{{UserItem.id}} type="number" min=0 max=255 onchange="setrewatch({{UserItem.id}})" value="{{UserItem.countreview}}">
-                                <span onclick="incrementrewatch({{UserItem.id}})">+</span>
-                            </div>
-
-                        </div>
-                    {% else %}
-                        <div class=numericP>
-                            <span></span><span id="userRewatch_{{UserItem.id}}">{{UserItem.countreview}}</span><span></span>
-                        </div>
-                    {% endif %}
+                <div class=numericinput>
+                    <span onclick="decrementrewatch({{wl.id}})">-</span>
+                    <input id=numerinputRewatch_{{wl.id}} type="number" min=0 max=255 onchange="setrewatch({{wl.id}})" value="{{wl.rewatch}}">
+                    <span onclick="incrementrewatch({{wl.id}})">+</span>
                 </div>
             </div>
-
         </div>
     </div>
-
 {% endfor %}
-    <div class="allseason" id="all:{{ groupname }}_serial:{{i.serial.id}}" ondragend="faststatus.style.opacity=0;faststatus.style.zIndex=-10;" draggable="true" ondragstart="drag(event)">
-        <a>Переместить все сезоны</a>
-    </div>

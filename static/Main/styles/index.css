@@ -18,7 +18,7 @@
 }
 .header>span{
     font-weight: bold;
-    font-size: 30px;
+    font-size: 2.19941348973607vw;
     color: white;
 }
 
@@ -117,7 +117,6 @@
     min-height: 200px;
     width: 100%;
     margin-top: 20px;
-     animation: fade-in 1s ease;
 }
 .movielist>a{
     width: 20%;
@@ -132,7 +131,6 @@
     width: 120px;
 }
 .movielist>a>span{
-    font-size: 18px;
     font-weight: bold;
     text-align: center;
     height: 40px;
@@ -203,7 +201,6 @@
 }
 .footer>div>span{
     color: white;
-    font-size: 16px;
     padding-top: 10px;
 }
 .footer>div>h3{
@@ -211,7 +208,6 @@
 }
 .footer>div>a{
     color: white;
-    font-size: 20px;
 }
 .links>div{
     display: flex;
@@ -225,7 +221,6 @@
 }
 .links>span{
     color: white;
-    font-size: 18px;
 }
 
 @media (max-device-width: 425px) {
@@ -236,16 +231,9 @@
         width: 55px;
         padding: 0px 10px;
     }
-    .header>span{
-        font-size: 35px;
-    }
 
     .block{
          padding: 15px;
-    }
-
-    .sectionspan{
-        font-size: 28px;
     }
 
     .profile{
@@ -263,7 +251,6 @@
     .profile>div>div>a {
         padding: 5px 5px;
         min-width: 250px;
-        font-size: 26px;
         text-align: center;
     }
     .username{
@@ -273,9 +260,7 @@
     .username>img{
         width: 50%;
     }
-    .username>.sectionspan{
-        font-size:250%;
-    }
+
     .movielist{
         min-height: 220px;
     }
@@ -292,7 +277,6 @@
 
     .blockinfo>div>p{
         width: 70%;
-        font-size: 25px;
         letter-spacing: 1px;
     }
 
@@ -300,22 +284,3 @@
         display: none;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

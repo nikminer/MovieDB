@@ -6,16 +6,18 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from Main import views
 
-from Serials import urls as urlsSerials
-from List import urls as urlsList
-from Films import urls as urlsFilms
+
+
 from Profile import urls as urlsProfile
+
+from MyWatchList.views.series import urls as urlsSeries
+from MyWatchList.views.film import urls as urlsFilms
+from MyWatchList.views.list import urls as urlsList
 
 from django.contrib.sitemaps.views import sitemap
 
 from Profile.sitemaps import ProfileSitemap
-from Films.sitemaps import FilmsSitemap
-from Serials.sitemaps import SerialsSitemap
+from MyWatchList.sitemaps import MoviesSitemap
 
 from django.conf.urls import handler404
 from Main.views import ErrorsHandler
@@ -24,8 +26,7 @@ handler404= ErrorsHandler.error_404
 
 sitemaps = {
     'profiles': ProfileSitemap,
-    'films':FilmsSitemap,
-    'seials':SerialsSitemap
+    'movies': MoviesSitemap
 }
 
 
@@ -40,9 +41,12 @@ urlpatterns = [
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     path('robots.txt', TemplateView.as_view(template_name="robots.txt", content_type='text/plain')),
 
+
+    path('serial/',include(urlsSeries),),
+    path('film/',include(urlsFilms)),
+
     path('list/',include(urlsList), name='list'),
-    path('serial/',include(urlsSerials), name='serial'),
-    path('film/',include(urlsFilms), name='film'),
+
     path('profile/',include(urlsProfile), name='profile'),
     path('admin/', admin.site.urls),
 

@@ -1,124 +1,31 @@
-.numchange{
-    display:grid;
-    grid-template-areas: "place";
-    margin: 0;
-}
-
-.numeric{
-    grid-area: place;
-    display:flex;
-    flex-direction:row;
-    justify-content:space-between;
-    align-items: center;
-    font-size: 14px;
-    letter-spacing: 2px;
-    opacity: 1;
-    transition: all 0.5s ease;
-}
-.numeric{
-    text-align: center;
-    display: flex;
-    justify-content: center;
-}
-.numeric>span{
-    max-width: 75%;
-}
-.numericP{
-    grid-area: place;
-    display:flex;
-    flex-direction:row;
-    justify-content:space-between;
-    align-items: center;
-    font-size: 14px;
-    letter-spacing: 2px;
-}
-
 .numericinput{
-    grid-area: place;
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
-    opacity: 0;
+    display: flex;
+    flex-direction: row;
     align-items: center;
-    font-size: 18px;
-    transition: all 0.5s ease;
-    z-index: 100;
-    background-color: white;
 }
-.numericinput>div>span{
+
+.numericinput>span{
     font-size: 22px;
     margin: 0 5px;
-}
-.numericinput>div:nth-child(1)>span{
-    font-size: 16px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     text-align: center;
+    cursor: pointer;
+    padding: 5px;
 }
-.numericinput>div>span:hover{
+.numericinput>span:hover{
     color: #e66767;
 }
-
-.numericinput>div>input{
+.numericinput>input{
     min-width: 40px;
     max-width: 100px;
     margin: 0 5px;
     text-align: center;
-    -moz-appearance: textfield;
+    -moz-appearance: none;
 }
-
-@media (max-device-width: 425px) {
-    .numchange{
-        display:grid;
-        grid-template-areas: "place";
-        margin: 0;
-    }
-
-    .numeric{
-        font-size: 26px;
-        opacity: 0;
-    }
-
-    .numericinput{
-        opacity: 1;
-        background-color: inherit;
-    }
-    .numericinput>div>span{
-        font-size: 42px
-    }
-
-    .numericinput>div>input{
-        min-width: 80px;
-        margin: 0 25px;
-        font-size: 26px;
-        border: 3px lightgrey solid;
-    }
-    .numericinput>div:nth-child(1)>span{
-        font-size: 26px;
-    }
-
-}
-
-
-
-
-
-.numericinput>div>input::-webkit-outer-spin-button,
-.numericinput>div>input::-webkit-inner-spin-button {
+.numericinput>input::-webkit-outer-spin-button, .numericinput>input::-webkit-inner-spin-button{
     -webkit-appearance: none;
     margin: 0;
-}
-.numchange:hover>.numeric{
-    opacity: 0;
-}
-.numchange:hover>.numericinput,.numericinput:focus-within{
-    opacity: 1;
-}
-.numchange:hover>.numericinput{
-    background-color: rgb(241, 241, 241);
-}
-.numericinput>div>span{
-    cursor: pointer;
 }

@@ -1,24 +1,20 @@
-
-{% for movie,season in group.list.items %}
-    <div class="item">
-        <a class="itemname" href="{% url 'serial' movie.id %}" title="{{movie.name}}">{{movie.name}} ({{movie.year}})</a>
-        <div>
-        {% if request.user == user %}
-            <a class="delbtn" href="{% url 'delserial' movie.id %}" title="Удалить весь сериал"></a>
-        {% endif %}
-        </div>
-    </div>
-{% endfor %}
-
-<style>
-    .item{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 10px 20px;
-        border-left: 10px solid #3dc1d3;
-    }
-    .itemname{
-        color: black;
-    }
-</style>
+<div class="group" id="{{groupname}}" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <span class="groupspan">{{group.name}}</span>
+    {% if group.list %}
+        {% for movie,seasons in group.list.items %}
+            <div class="item{% if series is False %}f{% endif %}" draggable="true">
+                <div class="itemheader">
+                    <a class="itemname" href="{% url 'serial' movie.id %}" title="{{movie.name}}">{{movie.name}} ({{movie.year}})</a>
+                    {% if request.user == user %}
+                        <a class="delbtn" href="{% url 'delserial' movie.id %}" title="Удалить {% if series is True %}весь сериал{% else %}фильм{% endif %}"></a>
+                    {% endif %}
+                </div>
+                {% if series is True %}
+                    {% include "List/components/season.html" %}
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% else %}
+        <span class="simplespan">Пусто</span>
+    {% endif %}
+</div>
