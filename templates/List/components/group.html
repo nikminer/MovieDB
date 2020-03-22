@@ -2,9 +2,13 @@
     <span class="groupspan">{{group.name}}</span>
     {% if group.list %}
         {% for movie,seasons in group.list.items %}
-            <div class="item{% if series is False %}f{% endif %}" draggable="true">
-                <div class="itemheader">
-                    <a class="itemname" href="{% url 'serial' movie.id %}" title="{{movie.name}}">{{movie.name}} ({{movie.year}})</a>
+            <div class="item" draggable="true">
+                <div class="itemheader{% if series is False %}f{% endif %}">
+                    <a class="itemname" href="{% url 'serial' movie.id %}" title="{{movie.name}}">{{movie.name}} ({{movie.year}}) {% if series is False and seasons.rewatch > 0 %}(<span id="userRewatch_{{seasons.id}}">Повторных просмотров: {{seasons.rewatch}}</span>){% endif %}</a>
+                    {% if series is False %}
+                        {% include "List/blocks/starsStatic.html" with wl=seasons %}
+                        {% include "List/blocks/actionpanel.html" with wl=seasons %}
+                    {% endif %}
                     {% if request.user == user %}
                         <a class="delbtn" href="{% url 'delserial' movie.id %}" title="Удалить {% if series is True %}весь сериал{% else %}фильм{% endif %}"></a>
                     {% endif %}

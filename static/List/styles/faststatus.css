@@ -1,0 +1,39 @@
+#faststatus{
+    position: fixed;
+    
+    right: 0;
+    top:0;
+    bottom: 0;
+
+    display: flex;
+    justify-content: space-around;
+    flex-flow: column nowrap;
+    
+
+    width: 100px;
+    opacity: 0;
+    z-index: -10;
+
+    background-color:rgba(241, 241, 241,0.8);
+}
+#faststatus>div{
+    border: gray dashed 2px;
+    margin: 2px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+}
+#faststatus>div>span{
+    display: block;
+    transform: rotate(90deg);
+
+    font-size: 2vh;
+
+}
+@media (max-device-width: 425px) {
+    #faststatus{
+        display: none;
+    }
+}

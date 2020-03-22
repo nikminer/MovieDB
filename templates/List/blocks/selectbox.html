@@ -13,11 +13,7 @@
                 Брошено
             {% endif %}
         </summary>
-        <option onclick="sendStatus('{{type}}:{{wl.id}}',document.getElementById(this.value),this.value)" value="planned" {% if wl.userstatus == 1 %} selected {% endif %}>В планах</option>
-        <option onclick="sendStatus('{{type}}:{{wl.id}}',document.getElementById(this.value),this.value)" value="watch" {% if wl.userstatus == 2 %} selected {% endif %}>Смотрю</option>
-        <option onclick="sendStatus('{{type}}:{{wl.id}}',document.getElementById(this.value),this.value)" value="rewatch" {% if wl.userstatus == 4 %} selected {% endif %}>Пересматриваю</option>
-        <option onclick="sendStatus('{{type}}:{{wl.id}}',document.getElementById(this.value),this.value)" value="watched" {% if wl.userstatus == 3 %} selected {% endif %}>Просмотрено</option>
-        <option onclick="sendStatus('{{type}}:{{wl.id}}',document.getElementById(this.value),this.value)" value="drop" {% if wl.userstatus == 5 %} selected {% endif %}>Брошено</option>
+        
     </details>
 {% else %}
     <div class="selectbox">

@@ -1,0 +1,61 @@
+.chkbtn{
+    grid-area: more;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: center;
+}
+.chkbtn>svg{
+    stroke: white;
+    background-color: grey;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+.chkbtn>svg:hover{
+    background-color: black;
+}
+.chkbtn>input:checked + svg{
+    stroke: black;
+    background-color: lightgrey;
+}
+.chkbtn>input:checked + svg:hover{
+    background-color: white;
+}
+svg>line{
+    transition: all 0.5s ease;
+}
+.chkbtn>input:checked + svg>line:first-child{
+   transform: translate(0,7px);
+}
+.chkbtn>input:checked + svg>line{
+   transform: translate(0,30px);
+}
+
+
+.actionpanel{
+    display: flex;
+    grid-area: actionpanel;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.5s ease;
+    padding: 0 20px;
+    overflow: hidden;
+    max-height: 0;
+}
+.actionpanel>*{
+    margin: 20px 0px;
+}
+.actionpanel>div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.actionpanel>div>span{
+    padding-bottom: 10px;
+}
+.selectbox{
+    width: 150px;
+}

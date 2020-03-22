@@ -8,44 +8,8 @@
         <div class="season_userepisode">
             <span id="userepisodeview_{{wl.id}}">{{wl.userepisode}}</span>/<span>{{wl.season.episodecount}}</span>
         </div>
-
-        <label class="chkbtn" >
-            <input style="display: none"
-                   type="checkbox"
-                   onclick="{panel=document.getElementById('actionpanel:{{ wl.id }}'); panel.style.maxHeight=this.checked?panel.scrollHeight:null}"
-            >
-            <svg width="30px" height="26px">
-                <line y2="6" x2="26" y1="6" x1="4" stroke-width="3" />
-                <line y2="13" x2="26" y1="13" x1="4" stroke-width="3" />
-                <line y2="20" x2="26" y1="20" x1="4" stroke-width="3"/>
-            </svg>
-        </label>
+        {% include "List/blocks/starsStatic.html" %}
         
-        <div class="actionpanel" id="actionpanel:{{ wl.id }}">
-            <div>
-                <span>Статус</span>
-                {% include "List/blocks/selectbox.html" with  type="season" %}
-            </div>
-            <div>
-                 <span>Оценка</span>
-                 {% include "List/blocks/stars.html" %}
-             </div>
-            <div>
-                <span>Эпизоды</span>
-                <div class=numericinput>
-                    <span onclick="decrement({{wl.id}})">-</span>
-                    <input id=numerinput_{{wl.id}} type="number" min=0 max={{wl.season.episodecount}} onchange="setepisode({{wl.id}})" value="{{wl.userepisode}}">
-                    <span onclick="increment({{wl.id}})">+</span>
-                </div>
-            </div>
-            <div>
-                <span>Повторные просмотры</span>
-                <div class=numericinput>
-                    <span onclick="decrementrewatch({{wl.id}})">-</span>
-                    <input id=numerinputRewatch_{{wl.id}} type="number" min=0 max=255 onchange="setrewatch({{wl.id}})" value="{{wl.rewatch}}">
-                    <span onclick="incrementrewatch({{wl.id}})">+</span>
-                </div>
-            </div>
-        </div>
+        {% include "List/blocks/actionpanel.html"%}
     </div>
 {% endfor %}

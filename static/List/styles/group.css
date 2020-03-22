@@ -15,28 +15,26 @@
     flex-direction: column;
     cursor:grab;
 }
-.itemf:nth-child(odd)>.itemheader{
-    border-bottom: 1px lightgrey solid;
-}
-.itemheader{
+
+.itemheader, .itemheaderf{
     display: grid;
-    grid-template-areas: " Name  del drag";
-    grid-template-columns:  auto 20px 90px;
     grid-column-gap: 20px;
     padding: 5px 20px;
     border-left: 10px solid #3dc1d3;
     transition: all 0.3s ease-in;
 }
-.itemheader:hover{
-    background-color: whitesmoke;
+
+.itemheader{
+    grid-template-areas: " Name del drag";
+    grid-template-columns:  auto 20px 90px;
 }
-.itemheader>*{
-    margin: auto 0px;
+
+.itemheaderf{
+    grid-template-areas: " Name star more del drag"
+    " actionpanel  actionpanel actionpanel actionpanel drag";
+    grid-template-columns: auto 100px 40px 20px 90px;
 }
-.itemname{
-    color: black;
-}
-.itemheader:after{
+.itemheader:after,.itemheaderf:after{
     content: 'Drag ↕';
     grid-area: drag;
     align-self: center;
@@ -46,6 +44,18 @@
     padding:5px 10px;
     color: white;
 }
+
+.itemheader:hover, .itemheaderf:hover{
+    background-color: whitesmoke;
+}
+.itemheader>*, .itemheaderf>*{
+    margin: auto 0px;
+}
+
+.itemname{
+    color: black;
+}
+
 
 .delbtn:hover{
     background-position: 0 -20px;

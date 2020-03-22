@@ -119,25 +119,7 @@ input[type=search]{
 }
 
 
-#faststatus{
-    position: fixed;
-    background-color:rgba(241, 241, 241,0.8);
-    right: 0;
-    bottom: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    width: 250px;
-    opacity: 0;
-    z-index: -10;
-}
-#faststatus>span{
-    padding: 15px;
-    text-align: center;
-    border: gray dashed 2px;
-    margin: 2px;
-    font-weight: bold;
-}
+
 
 @media (max-device-width: 425px) {
     .btn{
@@ -189,9 +171,6 @@ input[type=search]{
         padding-left: 15px;
     }
 
-    #faststatus{
-        display: none;
-    }
 }
 
 

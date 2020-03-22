@@ -5,11 +5,13 @@
     background: url('../images/star1_20px.png') no-repeat;
 }
 
-#ratings>img{
+#ratingsStatic>img{
     width: 10px;
 }
 
-#ratings {
+
+
+#ratings, #ratingsStatic {
     overflow: hidden;
     *zoom: 1;
     display:flex;
@@ -18,6 +20,10 @@
     align-items:center;
     grid-area: ratings;
     width:100px;
+}
+
+#ratingsStatic{
+    grid-area: star;
 }
 
 #ratings>input {
