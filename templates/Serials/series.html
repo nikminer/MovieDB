@@ -66,9 +66,9 @@
         </div>
 
         {% if UserItem %}
-        <a class=actionpanel href="{% url 'delserial' series.id %}">Убрать из списка</a>
+        <a class=actionpanel href="{% url 'dellist' series.id %}">Убрать из списка</a>
         {% else %}
-        <a class=actionpanel href="{% url 'addserial' series.id %}">Добавить в список</a>
+        <a class=actionpanel href="{% url 'addlist' series.id %}">Добавить в список</a>
         {% endif %}
         <details class="discription" id="serialdiscription">
             <summary class="bigspan">Описание</summary>

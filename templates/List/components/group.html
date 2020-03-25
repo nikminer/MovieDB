@@ -10,7 +10,7 @@
                         {% include "List/blocks/actionpanel.html" with wl=seasons %}
                     {% endif %}
                     {% if request.user == user %}
-                        <a class="delbtn" href="{% url 'delserial' movie.id %}" title="Удалить {% if series is True %}весь сериал{% else %}фильм{% endif %}"></a>
+                        <a class="delbtn" href="{% url 'dellist' movie.id %}" title="Удалить {% if series is True %}весь сериал{% else %}фильм{% endif %}"></a>
                     {% endif %}
                 </div>
                 {% if series is True %}

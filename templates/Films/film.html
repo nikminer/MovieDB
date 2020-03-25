@@ -75,7 +75,7 @@
         {% if UserItem %}
         <div class='actionpanel'>
             {% include "Films/blocks/selectBox.html" %}
-            <a href="{% url 'delfilm'  film.id %}">Убрать из списка</a>
+            <a href="{% url 'dellist'  film.id %}">Убрать из списка</a>
             {% include "Films/blocks/stars.html" %}
 
         <div class="numchange">
@@ -98,7 +98,7 @@
         </div>
         {% else %}
         <div class='actionpanel'>
-            <a href="{% url 'addfilm' film.id %}">Добавить в список</a>
+            <a href="{% url 'addlist' film.id %}">Добавить в список</a>
         </div>
         {% endif %}
        
