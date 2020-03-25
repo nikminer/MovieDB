@@ -5,4 +5,5 @@ db.sqlite3-journal
 secret_key
 .idea
 venv
+.vscode
 mailsetting.py

@@ -1,13 +1,11 @@
-from . import film,series
-
-from django.shortcuts import render,redirect
-
+from django.shortcuts import render,redirect, get_object_or_404
+from Main.views.decoratiors import ajax_required
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User 
 from django.db.models import Count
 from List.views.userstatus import UserStat
 
-from MyWatchList.models import WatchList,Movie,Season
+from MyWatchList.models import WatchList, Movie
 
 
 
@@ -17,7 +15,7 @@ def watchlist_series(request, username=None):
     if not username:
         user = request.user
     else:
-        user = User.objects.get(username=username)
+        user = get_object_or_404(User, username=username)
 
     list = filter(request, WatchList.objects.filter(movie__in=Movie.manager.get_series(), user=user))
 
@@ -45,7 +43,7 @@ def watchlist_films(request,username):
     if not username:
         user=request.user
     else:
-        user=User.objects.get(username=username)
+        user= get_object_or_404(User, username=username)
     
     list = filter(request,WatchList.objects.filter(movie__in=Movie.manager.get_films(), user=user))
     
@@ -64,6 +62,33 @@ def watchlist_films(request,username):
         "genrelist":genrelist(Movie.manager.get_filmsByUser(user)),
         "user":user
     })
+
+
+@login_required
+def addlist(request, movie_id):
+    movie = get_object_or_404(Movie, id=movie_id)
+
+    if movie.series:
+        for i in movie.get_seasons():
+            WatchList.objects.get_or_create(user=request.user, movie=movie, season=i)
+
+        return redirect('listserial', request.user.username)
+    else:
+        WatchList.objects.create(user=request.user, movie=movie)
+        return redirect('listfilm', request.user.username)
+
+@login_required
+def dellist(request, movie_id):
+    movie = get_object_or_404(Movie, id=movie_id)
+
+    for i in WatchList.objects.filter(user=request.user, movie=movie):
+        i.delete()
+
+    if movie.series:
+        return redirect('seriallist')
+    else:
+        return redirect('filmlist')
+
 
 
 
@@ -96,8 +121,7 @@ def genrelist(list):
     for item in list:
         for tag in item.tags.all():
             if genrelist.get(tag):
-                genrelist[tag]+=1
+                genrelist[tag] += 1
             else:
                 genrelist.update({tag: 1})
     return dict(sorted(genrelist.items()))
-    
