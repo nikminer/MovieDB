@@ -1,24 +1,12 @@
 from django.urls import path
 
 from .. import seasons as views
-import List.views.setseason as listsrc
 
 
  
 
 urlpatterns = [
     path('<int:id>', views.season, name='season'),
-
-    path('num/inc', views.numeric.incepisode, name="incepi"),
-    path('num/set', views.numeric.setepisode, name="setepi"),
-    path("num/dec", views.numeric.decepisode, name="decepi"),
-
-    path('rewatch/inc', views.numeric.increwatched, name="increwtch"),
-    path('rewatch/set', views.numeric.setrewatched, name="setrewtch"),
-    path("rewatch/dec", views.numeric.decrewatched, name="decrewtch"),
-
-    path("set/rating",listsrc.setrating,name="setrating"),
-    path("set/status",listsrc.setstatus,name="setstatus"),
 ]
 
 '''

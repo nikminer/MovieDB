@@ -78,8 +78,6 @@
         {% if UserItem %}
         
         <link rel="stylesheet" href={% static 'List/styles/numeric.css' %} type="text/css" />
-        <script src="{% static "Serials/scripts/episodeCounter.js" %}"></script>
-            <script src="{% static "List/scripts/rewatchCounter.js" %}"></script>
         <div class='actionpanel'>
             {% include "Serials/blocks/selectBox.html" %}
             {% include "Serials/blocks/stars.html" %}
@@ -95,9 +93,9 @@
              <div class="numchange">
                  <span>Повторные просмотры:</span>
                  <div class=numericinput>
-                     <span onclick="decrementrewatch({{UserItem.id}})">-</span>
-                     <input id=numerinputRewatch_{{UserItem.id}} type="number" min=0 max=255 onchange="setrewatch({{UserItem.id}})" value="{{UserItem.rewatch}}">
-                     <span onclick="incrementrewatch({{UserItem.id}})">+</span>
+                     <span onclick="setReWatch({{UserItem.id}},'dec')">-</span>
+                     <input id=numerinputRewatch_{{UserItem.id}} type="number" min=0 max=255 onchange="setReWatch({{UserItem.id}},'set')" value="{{UserItem.rewatch}}">
+                     <span onclick="setReWatch({{UserItem.id}},'inc')">+</span>
                  </div>
             </div>
              {% comment '' %}
