@@ -35,6 +35,7 @@
     background-color: #e15f41;
 }
 
+
 @media (max-device-width: 425px) {
     .step-links{
         font-size: 26px;

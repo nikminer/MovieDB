@@ -37,12 +37,12 @@ def series(request, id):
 
     data = {
         "series": series,
-        "seasons":seasons,
+        "seasons": seasons,
     }
-
-    try:
-        data.update({"UserItem": WatchList.objects.filter(movie=series, user=request.user)})
-    except WatchList.DoesNotExist:
-        pass
+    if not request.user.is_anonymous:
+        try:
+            data.update({"UserItem": WatchList.objects.filter(movie=series, user=request.user)})
+        except WatchList.DoesNotExist:
+            pass
 
     return render(request, "Serials/series.html", data)

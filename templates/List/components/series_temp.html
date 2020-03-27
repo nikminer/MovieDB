@@ -16,7 +16,6 @@
 {% endif %}
 
 {% if type == "films" %}
-    <link rel="stylesheet" href="{% static "List/styles/film.css" %}" />
 
     <script src="{% static "List/scripts/searchf.js" %}"></script>
     {% if request.user == user %}
@@ -25,97 +24,7 @@
     {% endif %}
        
 {% endif %}
-            <div class="filters">
-                <a title="{{user.profile.name}}" href="{% url 'profile' user.username %}" class="filter">
-                    <img src={{user.profile.photo.url}}>
-                </a>
-                <details id="listcategoryfilter">
-                    <summary class="groupspan">Категории</summary>
-                    <div class="filter">
-                       <label><input class="category" type="checkbox" value="planned"><span>В планах ({{groups.planned.list|length}})</span></label>
-                       <label><input class="category" type="checkbox" value="watch"><span>Смотрю ({{groups.watch.list|length}})</span></label>
-                       <label><input class="category" type="checkbox" value="rewatch"><span>Пересматриваю ({{groups.rewatch.list|length}})</span></label>
-                       <label><input class="category" type="checkbox" value="watched"><span>Просмотрено ({{groups.watched.list|length}})</span></label>
-                       <label><input class="category" type="checkbox" value="drop"><span>Брошено ({{groups.drop.list|length}})</span></label>
-                    </div>
-                    <button onclick="changeCategorys()">Применить</button>
-                </details>
 
-
-                <script>
-                    AdaptiveOpenDetails(window,listcategoryfilter)
-                    var categoryes=document.getElementsByClassName("category");
-                    var urlParams = new URLSearchParams(window.location.search);
-                    var param = urlParams.get('groups');
-                    if (param!=null) {
-                        var param=param.split(" ");
-                        for (var i=0;i<categoryes.length;i++){
-                            if (param.includes(categoryes[i].value))
-                                categoryes[i].checked=true
-                        }
-                    } 
-
-                    delete urlParams
-                    delete param
-                    delete categoryes
-                    
-                    function changeCategorys(){
-                        var categoryes=document.getElementsByClassName("category");
-                        var url=new URL(window.location['href'])
-                        var param="";
-                        for (var i=0;i<categoryes.length;i++){
-                            if (categoryes[i].checked)
-                                param+=categoryes[i].value+" "
-                        }
-                        param=param.trimEnd();
-                        url.searchParams.set('groups', param)
-                        window.location.href=url['href']
-                    }
-                </script>
-
-                {% if genrelist.items|length > 0 %}
-                    <details id="listgenrefilter">
-                        <summary class="groupspan">Жанры</summary>
-                        <div class="filter">
-                            {% for key,value in genrelist.items %}
-                                <label><input class="genre" type="checkbox" value="{{key.slug}}"><span>{{key.name}} ({{value}})</span></label>
-                            {% endfor %}
-                        </div>
-                        <button onclick="changeGenres()">Применить</button>
-                    </details>
-
-
-                <script>
-                    AdaptiveOpenDetails(window,listgenrefilter)
-                    var urlParams = new URLSearchParams(window.location.search);
-                    var genres=document.getElementsByClassName("genre");
-                    var param = urlParams.get('genres');
-                    if (param!=null){
-                        var param=param.split(" ");
-                        for (var i=0;i<genres.length;i++){
-                            if (param.includes(genres[i].value))
-                                genres[i].checked=true
-                        }
-                    } 
-                    delete urlParams
-                    delete param
-                    delete genres
-                    function changeGenres(){
-                        var genres=document.getElementsByClassName("genre");
-                        var url=new URL(window.location['href'])
-                        var param="";
-                        for (var i=0;i<genres.length;i++){
-                            if (genres[i].checked)
-                                param+=genres[i].value+" "
-                        }
-                        param=param.trimEnd();
-                        url.searchParams.set('genres', param)
-                        window.location.href=url['href']
-                    }
-                </script>
-                {% endif %}
-            </div>
-        </div>
     </body>
 
 

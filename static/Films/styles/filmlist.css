@@ -34,13 +34,13 @@ html{
     border-top: #e15f41 solid 2px;
     border-bottom: #e15f41 solid 2px;
 }
-.films{
+#films{
     display: grid;
     grid-template-areas: "filmlist filters";
     grid-template-columns: auto 200px;
     animation: fade-in 1s ease;
 }
-.filmList{
+#filmList{
     padding: 20px;
     display: flex;
     flex-direction: row;
@@ -196,7 +196,7 @@ html{
         font-size: 23px;
     }
 
-    .films{
+    #films{
         display: flex;
         flex-direction: column;
     }

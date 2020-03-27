@@ -17,14 +17,15 @@ def watchlist_series(request, username=None):
     else:
         user = get_object_or_404(User, username=username)
 
-    list = filter(request, WatchList.objects.filter(movie__in=Movie.manager.get_series(), user=user))
+    userlist = filter(request, WatchList.objects.filter(movie__in=Movie.manager.get_series(), user=user))
 
-    lists={}
+
+    lists = dict()
     for i in UserStat.items():
         lists.update({
             i[0]: {
                 "name": i[1]['name'],
-                "list": getSeasonslist(list, i[1]['id']),
+                "list": getSeasonslist(userlist, i[1]['id']),
             }
         })
 
@@ -45,14 +46,14 @@ def watchlist_films(request,username):
     else:
         user= get_object_or_404(User, username=username)
     
-    list = filter(request,WatchList.objects.filter(movie__in=Movie.manager.get_films(), user=user))
+    userlist = filter(request,WatchList.objects.filter(movie__in=Movie.manager.get_films(), user=user))
     
     lists={}
     for i in UserStat.items():
         lists.update({
             i[0]: {
                 "name": i[1]['name'],
-                "list": getFilmsList(list, i[1]['id']),
+                "list": getFilmsList(userlist, i[1]['id']),
             }
         })
 

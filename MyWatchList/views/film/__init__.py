@@ -33,10 +33,11 @@ def film(request, id):
         "film": film,
     }
 
-    try:
-        data.update({"UserItem": WatchList.objects.get(movie=film, user=request.user)})
-    except WatchList.DoesNotExist:
-        pass
+    if not request.user.is_anonymous:
+        try:
+            data.update({"UserItem": WatchList.objects.get(movie=film, user=request.user)})
+        except WatchList.DoesNotExist:
+            pass
 
     return render(request, "Films/film.html", data)
 

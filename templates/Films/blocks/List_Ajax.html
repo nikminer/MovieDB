@@ -1,0 +1,14 @@
+
+{% for film in items %}
+    <a href="{% url 'film' film.id %}" class="film" title="{{film.name}} / {{film.originalname}} ({{film.year}})">
+        <div class="poster">
+            <img src={{film.img.url}}>
+        </div>
+        <span>{{film.name}} / {{film.originalname}}</span>
+        <div class="filmsmallinfo">
+            <span>{{film.year}}</span>
+            {% if film.InMyList %}<span style="background-color: #e15f41;color: white;padding: 2px;">В списке</span>{% endif %}
+        </div>
+    </a>
+{% endfor %}
+{% include "Films/blocks/AjaxPagination.html" with page=items %}

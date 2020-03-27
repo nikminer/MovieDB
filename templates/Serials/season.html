@@ -50,7 +50,7 @@
         </div>
 
         <div class="userrate">
-            <span class="bigspan">Пользовательская оценка</span>
+            <span class="bigspan">Общая оценка</span>
             <div>
                 <span>{{season.rating}}</span>
                 <div id="stars"></div>
@@ -84,38 +84,20 @@
             {% include "Serials/blocks/selectBox.html" %}
             {% include "Serials/blocks/stars.html" %}
             <div class="numchange">
-                <div class='numeric'>
-                    <span>Эпизоды:</span>
-                    <span id="userepisodeview_{{UserItem.id}}">{{UserItem.userepisode}}</span>
-                    <span>/</span>
-                    <span>{{season.episodecount}}</span>
-                </div>
+                <span>Эпизоды:</span>
                 <div class='numericinput'>
-                    <div>
-                        <span>Эпизоды:</span>
-                    </div>
-                    <div>
-                        <span onclick="decrement({{UserItem.id}})">-</span>
-                        <input id=numerinput_{{UserItem.id}} type="number" min=0 max={{UserItem.season.episodecount}} onchange="setepisode({{UserItem.id}})" value="{{UserItem.userepisode}}">
-                        <span onclick="increment({{UserItem.id}})">+</span>
-                    </div>
+                    <span onclick="decrement({{UserItem.id}})">-</span>
+                    <input id=numerinput_{{UserItem.id}} type="number" min=0 max={{UserItem.season.episodecount}} onchange="setepisode({{UserItem.id}})" value="{{UserItem.userepisode}}">
+                    <span onclick="increment({{UserItem.id}})">+</span>
                 </div>
             </div>
 
              <div class="numchange">
-                 <div class=numeric>
-                     <span>Повторные просмотры:</span>
-                     <span id="userRewatch_{{UserItem.id}}">{{UserItem.rewatch}}</span>
-                 </div>
+                 <span>Повторные просмотры:</span>
                  <div class=numericinput>
-                     <div>
-                          <span>Повторные просмотры:</span>
-                     </div>
-                     <div>
-                         <span onclick="decrementrewatch({{UserItem.id}})">-</span>
-                         <input id=numerinputRewatch_{{UserItem.id}} type="number" min=0 max=255 onchange="setrewatch({{UserItem.id}})" value="{{UserItem.rewatch}}">
-                         <span onclick="incrementrewatch({{UserItem.id}})">+</span>
-                     </div>
+                     <span onclick="decrementrewatch({{UserItem.id}})">-</span>
+                     <input id=numerinputRewatch_{{UserItem.id}} type="number" min=0 max=255 onchange="setrewatch({{UserItem.id}})" value="{{UserItem.rewatch}}">
+                     <span onclick="incrementrewatch({{UserItem.id}})">+</span>
                  </div>
             </div>
              {% comment '' %}
@@ -127,16 +109,19 @@
             <a href="{% url 'addserial' season.movie.id %}">Добавить сериал</a>
         </div>
         {% endif %}
-        <details class="discription" id="serialdiscription">
-            <summary class="bigspan">Описание</summary>
-            <p>{{season.disctiption}}</p>
-        </details>
-        <script>
-            AdaptiveOpenDetails(window,serialdiscription);
-        </script>
+        <div class="blocks">
+            <details class="discription" id="serialdiscription">
+                <summary class="bigspan">Описание</summary>
+                <p>{{season.disctiption}}</p>
+            </details>
+            <script>
+                AdaptiveOpenDetails(window,serialdiscription);
+            </script>
 
 
-        {% serieslist season %}
+            {% serieslist season %}
+        </div>
+
 
         {% comment %}
         <div class="comments">

@@ -26,6 +26,8 @@
     </div>
 
     <div class="content">
+        {% include "List/components/filters.html" %}
+
         <div class="groups">
             {% for groupname,group in groups.items %}
                 {% include "List/components/group.html" %}

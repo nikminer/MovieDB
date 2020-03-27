@@ -27,9 +27,10 @@ def season(request,id):
         "season":season,
     }
 
-    try:
-        data.update({"UserItem":WatchList.objects.get(season=season,user=request.user.id)})
-    except WatchList.DoesNotExist:
-        pass
+    if not request.user.is_anonymous:
+        try:
+            data.update({"UserItem":WatchList.objects.get(season=season,user=request.user.id)})
+        except WatchList.DoesNotExist:
+            pass
 
     return render(request,"Serials/season.html",data)

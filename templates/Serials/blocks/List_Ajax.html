@@ -1,0 +1,15 @@
+{% for serial in items %}
+    <a href="{% url 'serial' serial.id %}" class="serial"
+       title="{{ serial.name }} / {{ serial.originalname }} ({{ serial.year }})">
+        <div class="poster">
+            <img src={{ serial.img.url }}>
+        </div>
+        <span>{{ serial.name }} / {{ serial.originalname }}</span>
+        <div class=serialsmallinfo>
+            <span>{{ serial.year }}</span>
+            {% if serial.InMyList %}
+                <span style="background-color: #546de5;color: white;padding: 2px;">В списке</span>{% endif %}
+        </div>
+    </a>
+{% endfor %}
+{% include "Serials/blocks/AjaxPagination.html" with page=items %}
