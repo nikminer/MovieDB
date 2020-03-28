@@ -1,4 +1,4 @@
-from . import numeric,change
+from . import change
 
 from django.shortcuts import render, get_object_or_404
 from MyWatchList.models import WatchList,Season,SeriesList

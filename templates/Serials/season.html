@@ -81,12 +81,14 @@
         <div class='actionpanel'>
             {% include "Serials/blocks/selectBox.html" %}
             {% include "Serials/blocks/stars.html" %}
+            <script src="{% static "List/scripts/ActionPanel.js" %}"></script>
+            <script src="{% static "List/scripts/getCookie.js" %}"></script>
             <div class="numchange">
                 <span>Эпизоды:</span>
                 <div class='numericinput'>
-                    <span onclick="decrement({{UserItem.id}})">-</span>
-                    <input id=numerinput_{{UserItem.id}} type="number" min=0 max={{UserItem.season.episodecount}} onchange="setepisode({{UserItem.id}})" value="{{UserItem.userepisode}}">
-                    <span onclick="increment({{UserItem.id}})">+</span>
+                    <span onclick="setEpisode({{UserItem.id}},'dec')">-</span>
+                    <input id='numerinput_{{UserItem.id}}' type="number" min='0' max='{{UserItem.season.episodecount}}' onchange="setEpisode({{UserItem.id}},'set')" value="{{UserItem.userepisode}}">
+                    <span onclick="setEpisode({{UserItem.id}},'inc')">+</span>
                 </div>
             </div>
 

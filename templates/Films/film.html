@@ -71,19 +71,20 @@
         {% endif %}
 
         <link rel="stylesheet" href={% static 'List/styles/numeric.css' %} type="text/css" />
-        <script src="{% static "List/scripts/rewatchCounterF.js" %}"></script>
+
         {% if UserItem %}
         <div class='actionpanel'>
             <a href="{% url 'dellist'  film.id %}">Убрать из списка</a>
             {% include "Films/blocks/selectBox.html" %}
             {% include "Films/blocks/stars.html" %}
-
+            <script src="{% static "List/scripts/ActionPanel.js" %}"></script>
+            <script src="{% static "List/scripts/getCookie.js" %}"></script>
             <div class="numchange">
                 <span>Повторные просмотры:</span>
                 <div class=numericinput>
-                    <span onclick="decrementrewatch({{UserItem.id}})">-</span>
-                    <input id=numerinputRewatch_{{UserItem.id}} type="number" min=0 max=255 onchange="setrewatch({{UserItem.id}})" value="{{UserItem.rewatch}}">
-                    <span onclick="incrementrewatch({{UserItem.id}})">+</span>
+                    <span onclick="setReWatch({{UserItem.id}},'dec')">-</span>
+                    <input id=numerinputRewatch_{{UserItem.id}} type="number" min=0 max=255 onchange="setReWatch({{UserItem.id}},'set')" value="{{UserItem.rewatch}}">
+                    <span onclick="setReWatch({{UserItem.id}},'inc')">+</span>
                 </div>
             </div>
         </div>

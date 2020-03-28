@@ -10,9 +10,8 @@ urlpatterns = [
 
 
     path("set/rating", list.watchlistitems.setrating),
-
-    path('rewatch', list.watchlistitems.rewatch),
-
+    path('set/rewatch', list.watchlistitems.rewatch),
+    path('set/episode', list.watchlistitems.setepisode),
 
     path("set/status", list.watchlistitems.setstatus),
 ]
