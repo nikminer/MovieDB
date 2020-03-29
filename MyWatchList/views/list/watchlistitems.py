@@ -124,10 +124,11 @@ def setepisode(request):
 @require_POST
 def setstatus(request):
     data = request.POST
-    item = WatchList.objects.get(id=int(data['listid']), user=request.user.id)
+    items = WatchList.objects.filter(id__in=data['listid'].split(';'), user=request.user.id)
     if UserStat.get(data['status']):
-        item.userstatus = UserStat.get(data['status'])['id']
-        item.save()
+        for item in items:
+            item.userstatus = UserStat.get(data['status'])['id']
+            item.save()
         #sendFeed(item, typeFeed['status'])
         return JsonResponse({'status': True, 'userstatus': data['status']})
     return JsonResponse({'status': False})

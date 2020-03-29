@@ -18,8 +18,7 @@ def watchlist_series(request, username=None):
     else:
         user = get_object_or_404(User, username=username)
 
-    userlist = filter(request, WatchList.objects.filter(movie__in=Movie.manager.get_series(), user=user))
-
+    userlist = filter(request, WatchList.objects.filter(movie__in=Movie.manager.get_series(), user=user).order_by('movie__name'))
 
     lists = dict()
     for i in UserStat.items():
