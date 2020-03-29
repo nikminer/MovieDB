@@ -6,22 +6,16 @@ from MyWatchList.models import WatchList,Season,SeriesList
 def season(request,id):
     season=get_object_or_404(Season,id=id)
 
-    '''
     if request.method == 'POST':
-        from Main.forms import CommentForm
+        from MyWatchList.forms import CommentForm
         comment_form = CommentForm(data=request.POST)
         if comment_form.is_valid():
             new_comment = comment_form.save(commit=False)
             new_comment.item = season
-            new_comment.user= request.user
+            new_comment.user = request.user
             new_comment.save()
-            from django.shortcuts import redirect
-            return redirect('season',season.id)
-    else:
-        from Main.forms import CommentForm
-        comment_form = CommentForm()
-    "commentform": comment_form,
-    '''
+            from django.http import HttpResponseRedirect
+            return HttpResponseRedirect(season.get_absolute_url())
 
     data={
         "season":season,

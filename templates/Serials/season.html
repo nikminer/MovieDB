@@ -123,12 +123,10 @@
         </div>
 
 
-        {% comment %}
         <div class="comments">
             <span class="bigspan">Комментарии</span>
             {% load comments %}
-            {% include 'Main/blocks/AddComment.html' %}
+            {% addcomments %}
             {% commentslist season %}
         </div>
-        {% endcomment %}
 </body>

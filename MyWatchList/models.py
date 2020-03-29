@@ -92,6 +92,8 @@ class Season(models.Model):
     def __str__(self):
         return str(self.name + " " + self.movie.name)
 
+    def get_absolute_url(self):
+        return reverse("season", kwargs={"id": self.id})
 
 class SeriesList(models.Model):
     season = models.ForeignKey(Season, related_name="serieslist", on_delete=models.CASCADE)
