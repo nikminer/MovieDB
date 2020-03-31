@@ -34,7 +34,7 @@ class Movie(models.Model):
     length = models.PositiveSmallIntegerField()
     year = models.PositiveSmallIntegerField()
     kinopoiskid = models.PositiveIntegerField()
-    disctiption = models.TextField(default="Нет данных")
+    disctiption = models.TextField(null=True)
     rating = models.FloatField(default=0, editable=False)
 
     tags = TaggableManager()

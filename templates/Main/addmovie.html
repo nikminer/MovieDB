@@ -3,17 +3,19 @@
 
 <title>Добавление в MovieNET</title>
 <link rel="stylesheet" href={% static 'Main/styles/addmovie.css' %} type="text/css" />
-<script src="{% static "Main/scripts/searchkino.js" %}"></script>
+<script async src="{% static "Main/scripts/searchkino.js" %}"></script>
 <body>
     <span class="HeadName">Добавление в MyWatchList</span>
     <div class="Search">
-        <input id="searchbox" onkeyup="searchInput()" type="text" placeholder="Поиск фильмов и сериалов в базах данных">
+        <input id="searchbox" type="text" placeholder="Введите название фильма">
+        <button onclick="search()">Поиск</button>
     </div>
     <p class="discript">
         Для сохранения целостности и актуальности базы данных данного сервиса, добавление фильмов и сериалов происходит после подтверждения существования фильма или сериала в базе данных Кинопоиска, т.е. прежде чем добавить сериал или фильм его нужно найти. Поэтому пожалуйста найдите его через поле поиска ниже, а после нажмите на сериал или фильм.
     </p>
-    <div id="result">
 
+    <div class="content" id="results">
     </div>
+
 </body>
 
