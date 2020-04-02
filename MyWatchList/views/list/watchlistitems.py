@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from MyWatchList.models import WatchList
 from django.db.models import Avg
 from django.views.decorators.http import require_POST
-from Main.views.decoratiors import ajax_required, listID_requeired
+from MyWatchList.views.decoratiors import ajax_required, listID_requeired
 from .userstatus import UserStat
 
 @listID_requeired

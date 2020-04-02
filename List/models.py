@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import Avg
-from Main.models import UserList,UserListF
+from Main.models import UserList, UserListF
 from Profile.models import Profile
 from datetime import datetime
 

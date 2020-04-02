@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from Main.views.decoratiors import ajax_required
+from MyWatchList.views.decoratiors import ajax_required
 from MyWatchList.models import Season, SeriesList, Movie
 from taggit.models import Tag
 from kinopoisk.movie import Movie as KPMovie

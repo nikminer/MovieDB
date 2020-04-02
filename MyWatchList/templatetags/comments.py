@@ -10,7 +10,7 @@ def commentslist(item):
         "comments": CommentModel.comments.get_comments(item).order_by('-id')
     }
 
-@register.inclusion_tag("Main/blocks/AddComment.html",takes_context=True)
+@register.inclusion_tag("Main/blocks/AddComment.html", takes_context=True)
 def addcomments(context):
 
     from MyWatchList.forms import CommentForm

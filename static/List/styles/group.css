@@ -8,6 +8,12 @@
     font-weight: bold;
     padding: 10px 10px ;
     background-color: whitesmoke;
+
+}
+.group>.groupspan{
+    position: sticky;
+    top: 150px;
+    z-index: 1;
 }
 
 .item{

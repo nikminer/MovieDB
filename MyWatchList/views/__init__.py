@@ -1,6 +1,6 @@
 from . import film,series,list
 
-from . import addmovie
+from . import addmovie, decoratiors, ErrorsHandler
 
 
 from django.shortcuts import render
@@ -16,12 +16,7 @@ def index(request):
     if request.user.is_authenticated:
         profile=request.user.profile
         myfriends=Friendlist.objects.filter(Q(accepter=profile) | Q(sender=profile))
-        data.update({
-            "friends":{
-                "friends":myfriends.filter(status=1).count(),
-                "requests":myfriends.filter(status=0).count()
-            }
-        })
+
 
         feed=[profile]
         for freind in myfriends.filter(status=1):

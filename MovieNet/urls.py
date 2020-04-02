@@ -17,8 +17,8 @@ from django.contrib.sitemaps.views import sitemap
 from Profile.sitemaps import ProfileSitemap
 from MyWatchList.sitemaps import MoviesSitemap
 
-from Main.views import ErrorsHandler
-handler404= ErrorsHandler.error_404
+
+handler404 = MWView.ErrorsHandler.error_404
 
 
 sitemaps = {

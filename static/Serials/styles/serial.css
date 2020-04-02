@@ -83,6 +83,7 @@ body{
     margin-bottom: 10px;
     border-bottom: #546de5 2px solid;
     padding-bottom: 10px;
+    background-color: white;
 }
 .poster{
     grid-area: poster;
