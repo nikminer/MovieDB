@@ -1,5 +1,4 @@
 from django import template
-from Main.models import UserList,UserListF,Film,Serial
 from Profile.models import Friendlist
 from django.db.models import Q
 from MyWatchList.models import WatchList, Movie
