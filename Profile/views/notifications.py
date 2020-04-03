@@ -9,7 +9,7 @@ from django.http import JsonResponse
 @login_required
 def notifications(request):
     data={
-        "notifications":Notifications.objects.filter(profile=request.user.profile).order_by("sended")
+        "notifications": Notifications.objects.filter(profile=request.user.profile).order_by("sended")
     }
 
     return render(request, 'Profile/notifications.html',data)
