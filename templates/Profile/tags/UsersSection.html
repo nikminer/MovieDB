@@ -1,0 +1,12 @@
+{% if items %}
+    <span class="bigspan">
+        <a href={% url urlname profile.user.username %}>{{ sectionname }} ({{ count }})</a>
+    </span>
+    <div>
+        {% for i in items %}
+            <a href="{{ i.get_absolute_url }}"
+               style="background-image:url('{{ i.photo.url }}');background-size:contain"
+               title="{{ i.name }}"></a>
+        {% endfor %}
+    </div>
+{% endif %}

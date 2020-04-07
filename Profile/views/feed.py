@@ -17,3 +17,4 @@ def create_feed(profile, verb, item=None):
         action.save()
         return True
     return False
+

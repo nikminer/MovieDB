@@ -1,8 +1,7 @@
-from . import friends,auth,settings,messages,notifications,feed
-
+from . import auth,settings,messages,notifications,feed,followers
 
 from django.shortcuts import render,get_object_or_404
-from Profile.models import Profile,Friendlist
+from Profile.models import Profile,Friendlist,Follower
 from Main.models import UserList,UserListF
 from django.db.models import Q
 
@@ -10,37 +9,17 @@ from List.views.feed import getFeed
 
 def profile(request,username):
     profile=get_object_or_404(Profile,user__username=username)
-    friendlist=[]
-    myfriends=Friendlist.objects.filter(Q(accepter=profile) | Q(sender=profile))
-    for i in myfriends.filter(status=1).order_by("-id")[0:10]:
-        if i.accepter==profile:
-            friendlist.append(i.sender)
-        else:
-            friendlist.append(i.accepter)
     
     data={
         "profile":profile,
         "serials":Movie(UserList,profile.user.id),
         "films":Movie(UserListF,profile.user.id),
-        "friends":{
-            "list":friendlist,
-            "count":len(myfriends.filter(status=1)),
-            "requestcount":myfriends.filter(accepter=profile,status=0).count()
-        },
         "feed":getFeed([profile]),
     }
 
     if profile.user != request.user and request.user.is_authenticated:
-        myprofile = Profile.objects.get(user=request.user)
-        myfriends = Friendlist.objects.filter(Q(Q(accepter=myprofile) & Q(sender=profile)) | Q(Q(sender=myprofile)& Q(accepter=profile))).filter(status=1)
-        if myfriends.count()==0:
-            data.update({
-                "ismyfriend":False
-            })
-        else:
-            data.update({
-                "ismyfriend":True
-            })
+        data.update({"ifollow": Follower.objects.filter(follow_from=request.user.profile, follow_to=profile).exists()})
+
     return render(request, 'Profile/profile.html',data)
 
 

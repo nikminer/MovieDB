@@ -6,6 +6,8 @@ from Main.models import Film, Serial
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
 
+from django.contrib.auth.models import User
+
 
 class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -36,17 +38,8 @@ class Profile(models.Model):
     def get_absolute_url(self):
         return "/profile/%s/" % self.user.username
 
-class Follower(models.Manager):
-    follow_from = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    follow_to = models.ForeignKey(Profile, on_delete=models.CASCADE)
 
-    created = models.DateTimeField(auto_now_add=True, db_index=True)
 
-    class Meta:
-        ordering = ('-created',)
-
-    def __str__(self):
-        return '{} follows to {}'.format(self.user_from, self.user_to)
 
 
 class FriendsManager(models.Manager):
@@ -100,6 +93,10 @@ class Messages(models.Model):
     objects = MessageManager()
 
 
+
+
+
+
 class Feed(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
 
@@ -114,3 +111,20 @@ class Feed(models.Model):
 
     class Meta:
         ordering = ('-created',)
+
+
+class Follower(models.Model):
+    follow_from = models.ForeignKey(Profile, related_name='rel_from_set', on_delete=models.CASCADE)
+    follow_to = models.ForeignKey(Profile, related_name='rel_to_set', on_delete=models.CASCADE)
+
+    created = models.DateTimeField(auto_now_add=True, db_index=True)
+
+    class Meta:
+        ordering = ('-created',)
+
+    def __str__(self):
+        return '{} follows to {}'.format(self.follow_from, self.follow_to)
+
+
+Profile.add_to_class('following',
+                     models.ManyToManyField('self', through=Follower, related_name='followers', symmetrical=False))

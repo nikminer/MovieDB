@@ -68,15 +68,15 @@
                         <span style="font-size:17px">Отправить сообщение</span>
                     </a>
                 -->
-                {% if ismyfriend%}
-                    <a href="{% url 'remfriend' profile.user.username %}">
+                {% if ifollow %}
+                    <a href="{% url 'follow' profile.user.username %}">
                         <img src={% static 'images/removefriend.png' %} >
-                        <span>Убрать из Друзей</span>
+                        <span>Отписаться</span>
                     </a>
                 {% else %}
-                    <a href="{% url 'addfriend' profile.user.username %}">
+                    <a href="{% url 'follow' profile.user.username %}">
                         <img src={% static 'images/addtofriend.png' %} >
-                        <span>Добавить в Друзья</span>
+                        <span>Подписаться</span>
                     </a>
                 {% endif %}
             {% endif %}
@@ -84,20 +84,9 @@
         </div>
         <div class="section1">
             <div class="friends">
-                <span class="bigspan">
-                    <a href={% url 'friends' profile.user.username %}>Друзья ({{friends.count}}{% if friends.requestcount > 0 %}+{{friends.requestcount}}{% endif %})</a>
-                </span>
-                <div>
-                {% if friends.count > 0 %}
-                    {% for i in friends.list %}
-                    <a href="{% url 'profile' i.user.username %}" style="background-image:url('{{i.photo.url}}');background-size:contain" title="{{i.user.first_name}} {{i.user.last_name}}"></a>
-                    {% endfor %}
-                {% else %}
-                    <span style="padding:5px">У вас пока нет друзей</span>
-                {% endif %}
-                    
-
-                </div>
+                {% load profileTags %}
+                {% Myfollowings profile %}
+                {% Myfollowers profile %}
             </div>
 
             <div class="serials">

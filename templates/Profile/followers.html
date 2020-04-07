@@ -1,0 +1,34 @@
+{% load static %}
+{% include "../base.html" %}
+
+<link rel="stylesheet" href={% static 'Profile/followers.css' %} type="text/css" />
+
+<title>Список подписчиков {{profile.user.first_name}} {{profile.user.last_name}}</title>
+
+<body>
+    <div class="headBlock">
+        <a href={% url 'profile'  profile.user.username %} class="bckbtn">
+            <b>◄</b><span>К профилю</span>
+        </a>
+
+
+        <a href={% url 'followings'  profile.user.username %} class="requestf">
+            <span>Подписки</span><b>{{followingcount}}</b>
+        </a>
+    </div>
+
+        <div class="followerslist">
+            <span>Подписчики {{profile.name}} ({{count}})</span>
+            <div>
+                {% for follower in followers  %}
+                    <div class="follower" style=" height: 160px;">
+                        <a title="{{follower.name}}" href="{% url 'profile' follower.user.username %}">
+                            <img width="120px" src="{{follower.photo.url}}" >
+                            <span>{{follower.name}}</span>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+</body>

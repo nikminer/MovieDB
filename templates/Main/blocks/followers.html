@@ -1,0 +1,7 @@
+<div>
+    <span class="sectionspan bigheader">Подписки</span>
+    <div>
+        <a href="{% url 'followings' profile.user.username %}">Мои подписки: {{followings}}</a>
+        <a href="{% url 'followers' profile.user.username %}">Мои подписчики: {{followers}}</a>
+    </div>
+</div>
