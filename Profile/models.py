@@ -112,6 +112,8 @@ class Feed(models.Model):
     class Meta:
         ordering = ('-created',)
 
+    def __str__(self):
+        return '{} {}'.format(self.profile, self.verb)
 
 class Follower(models.Model):
     follow_from = models.ForeignKey(Profile, related_name='rel_from_set', on_delete=models.CASCADE)

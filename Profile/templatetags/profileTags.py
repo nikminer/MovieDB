@@ -12,7 +12,7 @@ def Myfollowers(profile):
         'items': followers[:5],
         'count': followers.count(),
         'urlname': 'followers',
-        'sectionname': "Мои подписчики"
+        'sectionname': "Подписчики"
     }
 
 
@@ -24,5 +24,5 @@ def Myfollowings(profile):
         'items': following[:10],
         'count': following.count(),
         'urlname': 'followings',
-        'sectionname': "Мои подписки"
+        'sectionname': "Подписки"
     }

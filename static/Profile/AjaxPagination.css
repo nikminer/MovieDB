@@ -1,0 +1,25 @@
+.pagination{
+    text-align:center;
+    height:35px;
+    margin-top: 30px;
+    padding-bottom: 20px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.pagination>button{
+    background-color: #3dc1d3;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.5s ease-in;
+}
+.pagination>button:hover{
+    background-color: #37a3b5;
+}

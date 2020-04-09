@@ -1,20 +1,20 @@
 from . import auth,settings,messages,notifications,feed,followers
 
 from django.shortcuts import render,get_object_or_404
-from Profile.models import Profile,Friendlist,Follower
+from Profile.models import Profile,Follower
 from Main.models import UserList,UserListF
 from django.db.models import Q
 
-from List.views.feed import getFeed
+from Profile.views.feed import getFeed
 
 def profile(request,username):
     profile=get_object_or_404(Profile,user__username=username)
     
     data={
         "profile":profile,
-        "serials":Movie(UserList,profile.user.id),
-        "films":Movie(UserListF,profile.user.id),
-        "feed":getFeed([profile]),
+        "serials":Movie(UserList, profile.user.id),
+        "films":Movie(UserListF, profile.user.id),
+        "feed":getFeed(request, profile),
     }
 
     if profile.user != request.user and request.user.is_authenticated:

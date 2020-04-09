@@ -2,7 +2,8 @@
 {% include "../base.html" %}
 
 <link rel="stylesheet" href={% static 'Profile/profile.css' %} type="text/css" />
-
+<link rel="stylesheet" href={% static 'Profile/AjaxPagination.css' %} type="text/css" />
+<script src="{% static "Main/scripts/AjaxPagination.js" %}"></script>
 <title>Профиль {{profile.user.first_name}} {{profile.user.last_name}}</title>
 
 <body>
@@ -17,17 +18,16 @@
             <div class="bgimg">
             
                 <style>
-                    {% if profile.photobg %}
                     .bgimg{
-                        background-image: url({{profile.photobg.url}});
-                        background-size:cover
+                        {% if profile.photobg %}
+                            background-image: url({{profile.photobg.url}});
+                        {% else %}
+                            background-image: url(http://lorempixel.com/1280/720/abstract);
+                        {% endif %}
+                        background-size:contain;
+                        background-attachment: fixed;
+                        background-position: top;
                     }
-                    {% else %}
-                    .bgimg{
-                        background-image: url(http://lorempixel.com/1280/720/abstract);
-                        background-size:cover
-                    }
-                    {% endif %}
                 </style>
             </div>
             <img class="avatar" src="{{profile.photo.url}}">
@@ -133,21 +133,10 @@
         </div>
         {% if feed %}
             <div class="sectionFeed">
-                <a href={% url 'ProfileActivity' profile.user.username %} style="border-left-color: #3dc1d3;" class="bigspan">
+                <a href={% url 'ProfileActivity' profile.user.username %} style="border-left-color:#3dc1d3;" class="bigspan">
                     Активность
                 </a>
-                {% for feeditem in feed %}
-                <a href="{{feeditem.list.get_absolute_url}}" class="feeditem">
-                    <div class="feedaction">
-                        <img src="{{feeditem.list.obj.img.url}}">
-                        <div>
-                            <span>{{feeditem.list.obj.name}}</span>
-                            <span>{{feeditem.action}}</span>
-                            <span class="feedtimestamp">{{feeditem.created|timesince}} назад</span>
-                        </div>
-                    </div>
-                </a>
-                {% endfor %}
+                {% include "Profile/blocks/Profile_feed_ajax.html"  %}
             </div>
         {% endif %}
 </body>
