@@ -176,6 +176,9 @@ a{
     flex-direction: column;
     align-items: stretch;
 }
+.serials>a{
+    border-left-color:#546de5;
+}
 
 .serials>div{
     display: flex;
@@ -191,6 +194,9 @@ a{
     display: flex;
     flex-direction: column;
     align-items: stretch;
+}
+.films>a{
+    border-left-color: #e15f41;
 }
 .films>div{
     display: flex;

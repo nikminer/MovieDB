@@ -3,7 +3,12 @@
     <a {% if feeditem.item %} href="{{ feeditem.item.get_absolute_url }}" {% endif %} class="feeditem">
         <div class="feedaction">
             {% if feeditem.item %}
-                <img src="{{ feeditem.item.img.url }}">
+                <img src="
+                {% if feeditem.item.img.url != "/media/default.png" %}
+                    {{ feeditem.item.img.url }}
+                {% else %}
+                     {{ feeditem.item.movie.img.url }}
+                {% endif %}">
             {% endif %}
             <div>
                 {% if feeditem.item %}
@@ -15,4 +20,4 @@
         </div>
     </a>
 {% endfor %}
-{% include "Profile/blocks/AjaxPagination.html" with page=feed urlname="seriallist_page" %}
+{% include "Profile/blocks/AjaxPagination.html" with page=feed urlname="ProfileActivity_page" %}

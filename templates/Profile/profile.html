@@ -1,39 +1,39 @@
 {% load static %}
 {% include "../base.html" %}
 
-<link rel="stylesheet" href={% static 'Profile/profile.css' %} type="text/css" />
-<link rel="stylesheet" href={% static 'Profile/AjaxPagination.css' %} type="text/css" />
+<link rel="stylesheet" href={% static 'Profile/profile.css' %} type="text/css"/>
+<link rel="stylesheet" href={% static 'Profile/AjaxPagination.css' %} type="text/css"/>
 <script src="{% static "Main/scripts/AjaxPagination.js" %}"></script>
-<title>Профиль {{profile.user.first_name}} {{profile.user.last_name}}</title>
+<title>Профиль {{ profile.user.first_name }} {{ profile.user.last_name }}</title>
 
 <body>
-        <div class="headBlock">
-            <a href={% url 'index' %} class="bckbtn">
-                <b>◄</b><span>На главную</span>
-            </a>
-        </div>
+<div class="headBlock">
+    <a href={% url 'index' %} class="bckbtn">
+        <b>◄</b><span>На главную</span>
+    </a>
+</div>
 
 
-        <div class="profilehead">
-            <div class="bgimg">
-            
-                <style>
-                    .bgimg{
-                        {% if profile.photobg %}
-                            background-image: url({{profile.photobg.url}});
-                        {% else %}
-                            background-image: url(http://lorempixel.com/1280/720/abstract);
-                        {% endif %}
-                        background-size:contain;
-                        background-attachment: fixed;
-                        background-position: top;
-                    }
-                </style>
-            </div>
-            <img class="avatar" src="{{profile.photo.url}}">
-        </div>
-        <div class="profileinfo">
-            <div class="userSB">
+<div class="profilehead">
+    <div class="bgimg">
+
+        <style>
+            .bgimg {
+            {% if profile.photobg %}
+                background-image: url({{profile.photobg.url}});
+            {% else %}
+                background-image: url(https://loremflickr.com/440/360/abstract);
+            {% endif %}
+                background-size: contain;
+                background-attachment: fixed;
+                background-position: top;
+            }
+        </style>
+    </div>
+    <img class="avatar" src="{{ profile.photo.url }}">
+</div>
+<div class="profileinfo">
+    <div class="userSB">
                 <span style="grid-area:s;text-align: right;">
                     {% if profile.sex == "M" %}
                         Муж.
@@ -41,102 +41,64 @@
                         Жен.
                     {% endif %}
                     </span>
-                <span style="grid-area:b">{{profile.age}} лет.</span>
-            </div>
-            <div class="userfl">
-                <span style="grid-area:f;text-align: right;">{{profile.user.first_name}}</span>
-                <span style="grid-area:l">{{profile.user.last_name}}</span>
-            </div>
-           
-        </div>
-        <div class="section0">
-            {% if profile.user.username == request.user.username %}
-            <!--
+        <span style="grid-area:b">{{ profile.age }} лет.</span>
+    </div>
+    <div class="userfl">
+        <span style="grid-area:f;text-align: right;">{{ profile.user.first_name }}</span>
+        <span style="grid-area:l">{{ profile.user.last_name }}</span>
+    </div>
+
+</div>
+<div class="section0">
+    {% if profile.user.username == request.user.username %}
+        <!--
             <a href="{% url 'settings' %}">
                 <img width="30px" src={% static 'images/messages.png' %} >
                 <span>Мои сообщения</span>
             </a>-->
-            <a href="{% url 'settings' %}">
-                <img src={% static 'images/settings.png' %} >
-                <span>Настройки профиля</span>
-            </a>
-            {% endif %}
-            {% if profile.user.username != request.user.username %}
-                <!--
+        <a href="{% url 'settings' %}">
+            <img src={% static 'images/settings.png' %}>
+            <span>Настройки профиля</span>
+        </a>
+    {% endif %}
+    {% if profile.user.username != request.user.username %}
+        <!--
                     <a href="{% url 'dialog' profile.user.username %}">
                         <img width="30px" src={% static 'images/messages.png' %} >
                         <span style="font-size:17px">Отправить сообщение</span>
                     </a>
                 -->
-                {% if ifollow %}
-                    <a href="{% url 'follow' profile.user.username %}">
-                        <img src={% static 'images/removefriend.png' %} >
-                        <span>Отписаться</span>
-                    </a>
-                {% else %}
-                    <a href="{% url 'follow' profile.user.username %}">
-                        <img src={% static 'images/addtofriend.png' %} >
-                        <span>Подписаться</span>
-                    </a>
-                {% endif %}
-            {% endif %}
-            
-        </div>
-        <div class="section1">
-            <div class="friends">
-                {% load profileTags %}
-                {% Myfollowings profile %}
-                {% Myfollowers profile %}
-            </div>
-
-            <div class="serials">
-                <a href={% url 'listserial' profile.user.username %} style="border-left-color: #546de5;" class="bigspan">
-                    Сериалы 
-                </a>
-                <div>
-                    <div class="diagramm">
-                        <div style="width:{{serials.planned.width}}%;background-color:gray;" >
-                        </div>
-                        <div style="width:{{serials.watch.width}}%;background-color:#778beb;" >
-                        </div>
-                        <div style="width:{{serials.watched.width}}%;background-color:#546de5;" >
-                        </div>
-                    </div>
-                    <div class="legend">
-                        <a href="{% url 'listserial' profile.user.username %}">В планах ({{serials.planned.count}})</a>
-                        <a href="{% url 'listserial' profile.user.username %}" style="border-left-color: #778beb;">Смотрю ({{serials.watch.count}})</a>
-                        <a href="{% url 'listserial' profile.user.username %}" style="border-left-color: #546de5;">Просмотрено ({{serials.watched.count}})</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="films">
-                <a href={% url 'listfilm' profile.user.username %} style="border-left-color: #e15f41;" class="bigspan">
-                    Фильмы 
-                </a>
-                <div>
-                    <div class="diagramm">
-                        <div style="width:{{films.planned.width}}%;background-color:gray;" >
-                        </div>
-                        <div style="width:{{films.watch.width}}%;background-color:#e77f67;" >
-                        </div>
-                        <div style="width:{{films.watched.width}}%;background-color:#e15f41;" >
-                        </div>
-                    </div>
-                    <div class="legend">
-                        <a href="{% url 'listfilm' profile.user.username %}" >В планах ({{films.planned.count}})</a>
-                        <a href="{% url 'listfilm' profile.user.username %}" style="border-left-color: #e77f67;">Смотрю ({{films.watch.count}})</a>
-                        <a href="{% url 'listfilm' profile.user.username %}" style="border-left-color: #e15f41;">Просмотрено ({{films.watched.count}})</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {% if feed %}
-            <div class="sectionFeed">
-                <a href={% url 'ProfileActivity' profile.user.username %} style="border-left-color:#3dc1d3;" class="bigspan">
-                    Активность
-                </a>
-                {% include "Profile/blocks/Profile_feed_ajax.html"  %}
-            </div>
+        {% if ifollow %}
+            <a href="{% url 'follow' profile.user.username %}">
+                <img src={% static 'images/removefriend.png' %}>
+                <span>Отписаться</span>
+            </a>
+        {% else %}
+            <a href="{% url 'follow' profile.user.username %}">
+                <img src={% static 'images/addtofriend.png' %}>
+                <span>Подписаться</span>
+            </a>
         {% endif %}
+    {% endif %}
+
+</div>
+<div class="section1">
+    <div class="friends">
+        {% load profileTags %}
+        {% Myfollowings profile %}
+        {% Myfollowers profile %}
+    </div>
+
+    {% load ListStatic %}
+    {% SerialsStatic profile %}
+    {% FilmStatic profile %}
+</div>
+{% if feed %}
+    <div class="sectionFeed">
+        <a style="border-left-color:#3dc1d3;" class="bigspan">
+            Активность
+        </a>
+        {% include "Profile/blocks/Profile_feed_ajax.html" %}
+    </div>
+{% endif %}
 </body>

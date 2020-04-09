@@ -1,6 +1,6 @@
 from django.urls import path
 from Profile import views
-from List import views as listview
+
 
 from django.contrib.auth import views as Authviews
 
@@ -40,8 +40,9 @@ urlpatterns = [
     path('<str:username>/dialog', views.messages.Dialog, name="dialog"),
     path('<str:username>/sendmessage', views.messages.SendMessage, name="sendmessage"),
 
-    path('<str:username>/activity/', listview.feed.Useractivity, name='ProfileActivity'),
-    path('<str:username>/activity/<int:page>', listview.feed.Useractivity, name='ProfileActivity_page'),
+
+    path('<str:username>/activity/<int:page>', views.feed.Profileactivity, name='ProfileActivity_page'),
+    path('<str:username>/index/<int:page>', views.feed.Indexactivity, name='IndexActivity_page'),
 
     path('<str:username>/followers', views.followers.followers, name="followers"),
     path('<str:username>/followings', views.followers.following, name="followings"),

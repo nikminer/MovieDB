@@ -1,7 +1,6 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from Profile.models import Profile,Notifications
 from django.contrib.auth.decorators import login_required
-from Main.models import Film,Serial
 from django.db.models import Q
 from django.http import JsonResponse
 
@@ -26,7 +25,7 @@ def deletenotification(request):
     return JsonResponse({"resp":False})
 
 
-
+'''
 def addnotification(message,obj,profile):
     noti=Notifications.objects.create(profile=profile,message=message)
     if type(obj)is Serial:
@@ -41,3 +40,4 @@ def addnotification(message,obj,profile):
         print(type(obj))
         noti.delete()
     return False
+'''

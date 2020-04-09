@@ -2,7 +2,6 @@ from django.db import models
 from django.conf import settings
 from datetime import datetime
 from django.db.models import Q
-from Main.models import Film, Serial
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
 
@@ -107,6 +106,7 @@ class Feed(models.Model):
 
     created = models.DateTimeField(auto_now_add=True)
 
+    feed_type = models.CharField(max_length=20, null=True)
     verb = models.CharField(max_length=255, null=True)
 
     class Meta:

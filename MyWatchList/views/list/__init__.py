@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
-from List.views.userstatus import UserStat
+from MyWatchList.views.list.userstatus import UserStat
 
 from MyWatchList.models import WatchList, Movie
 

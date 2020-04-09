@@ -38,9 +38,8 @@ INSTALLED_APPS = [
     'django_crontab',
     'taggit',
     'MyWatchList.apps.MywatchlistConfig',
-    'List.apps.ListConfig',
-    'Main.apps.MainConfig',
     'Profile.apps.ProfileConfig',
+    'reset_migrations'
 ]
 
 SITE_ID = 1

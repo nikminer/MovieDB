@@ -1,0 +1,26 @@
+{% for feeditem in feed %}
+<div class="feeditem" {% if profile == feeditem.profile %}style="border-left-color:#c44569;"{% endif %} >
+    <a class="feeduser" href={{ feeditem.profile.get_absolute_url }} >
+        <img src="{{feeditem.profile.photo.url}}">
+        {{feeditem.profile.name}}
+    </a>
+    <a {% if feeditem.item %} href="{{ feeditem.item.get_absolute_url }}" {% endif %} class="feedaction">
+        {% if feeditem.item %}
+            <img src=" {% if feeditem.item.img.url != "/media/default.png" %}
+                {{ feeditem.item.img.url }}
+            {% else %}
+                 {{ feeditem.item.movie.img.url }}
+            {% endif %}">
+        {% endif %}
+        <div>
+            {% if feeditem.item %}
+                <span>{{ feeditem.item.movie.name }} {{ feeditem.item.name }}</span>
+            {% endif %}
+            <span>{{feeditem.verb}}</span>
+            <span class="feedtimestamp">{{feeditem.created|timesince }} назад</span>
+        </div>
+    </a>
+</div>
+{% endfor %}
+
+{% include "Profile/blocks/AjaxPagination.html" with page=feed urlname="IndexActivity_page" %}

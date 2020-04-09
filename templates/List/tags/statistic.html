@@ -1,0 +1,20 @@
+<div class="{{ mainclass }}">
+    <a href={% url urlname profile.user.username %} class="bigspan">{{ section }}</a>
+    <div>
+        <div class="diagramm">
+            <div style="width:{{ item.planned.width }}%;background-color:gray;">
+            </div>
+            <div style="width:{{ item.watch.width }}%;background-color:{{ lowcolor }};">
+            </div>
+            <div style="width:{{ item.watched.width }}%;background-color:{{ highcolor }};">
+            </div>
+        </div>
+        <div class="legend">
+            <a href="{% url urlname profile.user.username %}">В планах ({{ item.planned.count }})</a>
+            <a href="{% url urlname profile.user.username %}" style="border-left-color: {{ lowcolor }};">Смотрю / Пересматриваю
+                ({{ item.watch.count }})</a>
+            <a href="{% url urlname profile.user.username %}" style="border-left-color: {{ highcolor }};">Просмотрено
+                ({{ item.watched.count }})</a>
+        </div>
+    </div>
+</div>

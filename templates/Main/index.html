@@ -2,8 +2,7 @@
 {% load index_tags %}
 {% include "../base.html" %}
 <link rel="stylesheet" href={% static 'Main/styles/index.css' %} type="text/css" />
-
-
+<link rel="stylesheet" href={% static 'Main/styles/feed.css' %} type="text/css" />
 <title>My Watch List</title>
 
 <body>
@@ -54,8 +53,10 @@
                 <div class="sectionspanandrefer">
                     <span class="sectionspan bigheader">Активности</span>
                 </div>
-                
-                {% include './blocks/feed.html' %}
+                <link rel="stylesheet" href={% static 'Profile/AjaxPagination.css' %} type="text/css" />
+                <script src="{% static "Main/scripts/AjaxPagination.js" %}"></script>
+                {% load feedTags %}
+                {% FeedActivity %}
             </div>
         {% endif %}
 

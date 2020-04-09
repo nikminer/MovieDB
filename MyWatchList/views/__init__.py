@@ -14,11 +14,4 @@ def index(request):
         profile=request.user.profile
         myfriends=Friendlist.objects.filter(Q(accepter=profile) | Q(sender=profile))
 
-
-        feed=[profile]
-        for freind in myfriends.filter(status=1):
-            freindprofile=freind.getnotMyprofile(profile)
-            if freindprofile:
-                feed.append(freindprofile)
-
     return render(request, "Main/index.html")

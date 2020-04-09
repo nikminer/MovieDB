@@ -110,6 +110,7 @@ class WatchListManager(models.Manager):
     def get_films(self):
         return self.filter(movie__series=False)
 
+
 class WatchList(models.Model):
     user= models.ForeignKey(User, on_delete=models.CASCADE)
     movie= models.ForeignKey(Movie, on_delete=models.CASCADE)
@@ -126,12 +127,12 @@ class WatchList(models.Model):
 
     @property
     def get_status(self):
-        from List.views.userstatus import UserStatusDict
+        from MyWatchList.views.list.userstatus import UserStatusDict
         return UserStatusDict.get(self.userstatus)
 
     @property
     def get_statusTag(self):
-        from List.views.userstatus import UserTagsStatusDict
+        from MyWatchList.views.list.userstatus import UserTagsStatusDict
         return UserTagsStatusDict.get(self.userstatus)
 
 class CommentManager(models.Manager):

@@ -4,8 +4,8 @@
     padding: 10px;
     margin-left: 10px;
     border-left: 3px lightgray solid;
-    align-items: flex-start;
-    width: 90%;
+    align-items: center;
+    width: 95%;
     animation: fade-in 1s ease;
 }
 .feeduser{
@@ -15,6 +15,7 @@
     font-size: 24px;
     font-weight: bold;
     padding-right: 20px;
+    width: 100%;
 }
 .feeduser>img{
     margin-right: 20px;
@@ -27,7 +28,7 @@
     font-size: 18px;
     display: flex;
     flex-direction: row;
-    width: 70%;
+    width: 100%;
 }
 .feedaction:hover>div{
     color: black;

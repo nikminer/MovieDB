@@ -64,12 +64,12 @@
                 </script>
             </div>
         </div>
-
+        {% comment %}
         {% if user.is_authenticated %}
 
             {% friendListF user.profile film %}
         {% endif %}
-
+        {% endcomment %}
         <link rel="stylesheet" href={% static 'List/styles/numeric.css' %} type="text/css" />
 
         {% if UserItem %}

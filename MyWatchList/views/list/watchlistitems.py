@@ -6,6 +6,8 @@ from django.views.decorators.http import require_POST
 from MyWatchList.views.decoratiors import ajax_required, listID_requeired
 from .userstatus import UserStat
 
+from Profile.views.feed import create_item_feed
+
 @listID_requeired
 @ajax_required
 @login_required
@@ -23,7 +25,8 @@ def setrating(request):
         item.userrate = 10
     item.save()
 
-    #sendFeed(item, typeFeed['rating'])
+
+    create_item_feed(request.user.profile, "Оценил на {0} баллов".format(item.userrate), item.season if item.season else item.movie, "rating")
 
     if item.season:
         item.season.rating= round(
@@ -48,6 +51,10 @@ def rewatch(request):
         if item.rewatch + 1 <= 255:
             item.rewatch += 1
             item.save()
+
+            create_item_feed(request.user.profile, "Изменил повторные просмотры на {0}".format(item.rewatch),
+                             item.season if item.season else item.movie, "rewatch")
+
             return JsonResponse({'status': True, "rewatch": item.rewatch})
 
     elif data.get('status') == 'dec':
@@ -55,6 +62,10 @@ def rewatch(request):
         if item.rewatch - 1 >= 0:
             item.rewatch -= 1
             item.save()
+
+            create_item_feed(request.user.profile, "Изменил повторные просмотры на {0}".format(item.rewatch),
+                             item.season if item.season else item.movie, "rewatch")
+
             return JsonResponse({'status': True, "rewatch": item.rewatch})
 
     elif data.get('status') == 'set' and data.get('count'):
@@ -67,7 +78,12 @@ def rewatch(request):
             item.userepisode = 255
             item.userstatus = UserStat.get('planned')['id']
             item.save()
+
+            create_item_feed(request.user.profile, "Изменил повторные просмотры на {0}".format(item.rewatch),
+                             item.season if item.season else item.movie, "rewatch")
+
         return JsonResponse({'status': True, "rewatch": item.rewatch})
+
 
     return JsonResponse({'status': False})
 
@@ -129,6 +145,10 @@ def setstatus(request):
         for item in items:
             item.userstatus = UserStat.get(data['status'])['id']
             item.save()
-        #sendFeed(item, typeFeed['status'])
+            create_item_feed(request.user.profile, "Изменил статус на {0}".format(UserStat.get(data['status'])['name']),
+                             item.season if item.season else item.movie, "status")
+
+
+
         return JsonResponse({'status': True, 'userstatus': data['status']})
     return JsonResponse({'status': False})
