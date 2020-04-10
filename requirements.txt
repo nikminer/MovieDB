@@ -1,5 +1,4 @@
 django
-kinopoiskpy
 requests
 pillow
 django-background-tasks
@@ -7,3 +6,4 @@ django-precise-bbcode
 django-crontab
 social-auth-app-django
 django-taggit
+tmdbsimple

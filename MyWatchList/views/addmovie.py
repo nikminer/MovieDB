@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from MyWatchList.views.decoratiors import ajax_required
 from MyWatchList.models import Season, SeriesList, Movie
 from taggit.models import Tag
-from kinopoisk.movie import Movie as KPMovie
+
 from requests import get
 import datetime
 import re
