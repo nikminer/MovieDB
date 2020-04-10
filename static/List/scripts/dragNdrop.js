@@ -50,7 +50,6 @@ async function sendStatus(id,Groupid,DataType){
         return;
     }
 
-
     let request = await fetch("/list/set/status",{
         method: 'POST',
         headers:{

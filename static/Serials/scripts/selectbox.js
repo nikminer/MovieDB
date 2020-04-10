@@ -23,37 +23,34 @@ function getCookie(cname) {
     return "";
 }
 
-function setstatus(elem,id){
-    if (!elem.selected){
-        let xhr = new XMLHttpRequest();
-        xhr.open('POST','/serial/season/set/status',true);
-        xhr.setRequestHeader("X-CSRFToken", getCookie("csrftoken"));
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.send("listid="+id+";status="+encodeURIComponent(elem.value));
-        xhr.onreadystatechange=function(){
-            if(xhr.status==200 && xhr.readyState==4){
-                let response=JSON.parse(xhr.response);
-                if (response['status']=="changestatus") {
+async function setstatus(elem,id){
+    if (!elem.selected) {
+        let request = await fetch("/list/set/status", {
+            method: 'POST',
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                "X-CSRFToken": getCookie("csrftoken"),
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
 
-                    Array.prototype.filter.call(
-                        selectbox.getElementsByTagName('option'),
-                        function(item){
-                            return item.selected
-                        }
-                    )[0].selected=false;
+            body: "listid=" + encodeURIComponent(id) + ";status=" + encodeURIComponent(elem.value)
+        });
 
+        if (request.ok) {
+            let response = await request.json();
+            if (response.status) {
 
-                    elem.selected = true;
+                Array.prototype.filter.call(
+                    selectbox.getElementsByTagName('option'),
+                    function (item) {
+                        return item.selected
+                    }
+                )[0].selected = false;
 
-                    selectName.innerText = elem.label;
-
-                    episode = JSON.parse(xhr.response)['userepisode']
-                    document.getElementById("userepisodeview_" + id).innerText = episode
-                    document.getElementById("numerinput_" + id).value = episode
-                }
+                elem.selected = true;
+                selectName.innerText = elem.label;
             }
         }
-
     }
     selectbox.open=false
 }

@@ -100,13 +100,16 @@ def setepisode(request):
             item.userepisode += 1
             if item.userstatus == UserStat.get('planned')['id']:
                 item.userstatus = UserStat.get('watch')['id'];
-            #sendFeed(item, typeFeed['inc'])
             item.save()
+            create_item_feed(request.user.profile, "Посмотрел {0} эпизод".format(item.userepisode),
+                             item.season if item.season else item.movie, "episode")
         elif item.userepisode + 1 == item.season.episodecount:
             item.userepisode += 1
             item.userstatus = UserStat.get('watched')['id']
-            #sendFeed(item, typeFeed['status'])
             item.save()
+            create_item_feed(request.user.profile,
+                             "Закончил смотреть {}".format(item.season.name),
+                             item.season if item.season else item.movie, "status")
         return JsonResponse({'status': True, "userepisode": item.userepisode})
 
     elif data.get('status') == 'dec':
@@ -114,7 +117,6 @@ def setepisode(request):
         if item.userepisode - 1 >= 0:
             item.userepisode -= 1
             item.save()
-            # sendFeed(item, typeFeed['dec'])
         return JsonResponse({'status': True, "userepisode": item.userepisode})
 
 
@@ -147,8 +149,5 @@ def setstatus(request):
             item.save()
             create_item_feed(request.user.profile, "Изменил статус на {0}".format(UserStat.get(data['status'])['name']),
                              item.season if item.season else item.movie, "status")
-
-
-
         return JsonResponse({'status': True, 'userstatus': data['status']})
     return JsonResponse({'status': False})

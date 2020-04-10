@@ -14,12 +14,12 @@
     <div class="actionpanel" id="actionpanel:{{ wl.id }}">
         <div>
             <span>Статус</span>
-            <select class="selectbox">
-                <option onclick="sendStatus('{{type}}:{{wl.id}}',document.getElementById(this.value),this.value)" value="planned" {% if wl.userstatus == 1 %} selected {% endif %}>В планах</option>
-                <option onclick="sendStatus('{{type}}:{{wl.id}}',document.getElementById(this.value),this.value)" value="watch" {% if wl.userstatus == 2 %} selected {% endif %}>Смотрю</option>
-                <option onclick="sendStatus('{{type}}:{{wl.id}}',document.getElementById(this.value),this.value)" value="rewatch" {% if wl.userstatus == 4 %} selected {% endif %}>Пересматриваю</option>
-                <option onclick="sendStatus('{{type}}:{{wl.id}}',document.getElementById(this.value),this.value)" value="watched" {% if wl.userstatus == 3 %} selected {% endif %}>Просмотрено</option>
-                <option onclick="sendStatus('{{type}}:{{wl.id}}',document.getElementById(this.value),this.value)" value="drop" {% if wl.userstatus == 5 %} selected {% endif %}>Брошено</option>
+            <select class="selectbox" onchange="sendStatus('{{wl.id}}',this.value,'season')">
+                <option value="planned" {% if wl.userstatus == 1 %} selected {% endif %}>В планах</option>
+                <option value="watch" {% if wl.userstatus == 2 %} selected {% endif %}>Смотрю</option>
+                <option value="rewatch" {% if wl.userstatus == 4 %} selected {% endif %}>Пересматриваю</option>
+                <option value="watched" {% if wl.userstatus == 3 %} selected {% endif %}>Просмотрено</option>
+                <option value="drop" {% if wl.userstatus == 5 %} selected {% endif %}>Брошено</option>
             </select>
         </div>
         <div>

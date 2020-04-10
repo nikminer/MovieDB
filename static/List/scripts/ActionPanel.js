@@ -1,3 +1,6 @@
+
+
+
 async function setRating(obj, id){
      await fetch("/list/set/rating",{
         method: 'POST',
