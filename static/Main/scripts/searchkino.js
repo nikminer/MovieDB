@@ -17,7 +17,7 @@ function getCookie(cname) {
 async function search(){
     elem = document.getElementById("searchbox");
 
-    let request = await fetch("/add/kinopoisk/search/",{
+    let request = await fetch("/add/tmdb/search/",{
         method: 'POST',
         headers:{
             'X-Requested-With': 'XMLHttpRequest',

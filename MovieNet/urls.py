@@ -32,8 +32,9 @@ urlpatterns = [
     path('', MWView.index, name="index"),
 
     path('add/', MWView.addmovie.AddMoviePage, name='addmovie'),
-    path('add/kinopoisk/search/', MWView.addmovie.Search),
-    path('add/kinopoisk/<int:id>/', MWView.addmovie.AddMovie),
+    path('add/tmdb/search/', MWView.addmovie.Search),
+    path('add/tmdb/<int:id>/movie', MWView.addmovie.AddMovie),
+    path('add/tmdb/<int:id>/series', MWView.addmovie.AddSeries),
 
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     path('robots.txt', TemplateView.as_view(template_name="robots.txt", content_type='text/plain')),

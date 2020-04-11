@@ -3,7 +3,6 @@ import mailsetting
 import tmdbsimple as tmdb
 
 
-
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = open(os.path.join(BASE_DIR, 'secret_key'), 'r').read()

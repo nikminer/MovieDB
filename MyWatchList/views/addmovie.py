@@ -3,9 +3,9 @@ from django.contrib.auth.decorators import login_required
 from MyWatchList.views.decoratiors import ajax_required
 from MyWatchList.models import Season, SeriesList, Movie
 from taggit.models import Tag
-
+import tmdbsimple as tmdb
 from requests import get
-import datetime
+from datetime import datetime, timedelta
 import re
 
 
@@ -19,114 +19,181 @@ def AddMoviePage(request):
 def Search(request):
     serials = {}
     films = {}
-    for i in KPMovie.objects.search(request.POST['name']):
-        if (i.series):
-            serial = {"id": i.id, "name": i.title, "year": i.year,
-                      "poster": "https://st.kp.yandex.net/images/film_big/" + str(i.id) + ".jpg"}
-            if i.title_en:
-                serial.update({"originalname": i.title_en})
-            serials.update({i.id: serial})
+    search = tmdb.Search()
+    search.tv(query=request.POST['name'], language="ru-RU")
+    for i in search.results:
+        serial = {"id": i['id'], "name": i['name']}
+
+        if i['poster_path']:
+            serial.update({"poster": "http://image.tmdb.org/t/p/w154" +i['poster_path']})
         else:
-            film = {"id": i.id, "name": i.title, "year": i.year,
-                    "poster": "https://st.kp.yandex.net/images/film_big/" + str(i.id) + ".jpg"}
-            if i.title_en:
-                film.update({"originalname": i.title_en})
-            films.update({i.id: film})
+            serial.update({"poster": "/media/default.png" })
+
+        try:
+            serial.update({"year": datetime.strptime(i['first_air_date'], "%Y-%m-%d").year})
+        except ValueError:
+            serial.update({"year": i['first_air_date']})
+        except KeyError:
+            continue
+
+        serial.update({"originalname": i['original_name']})
+        serials.update({i['id']: serial})
+
+    search.movie(query=request.POST['name'], language="ru-RU")
+    for i in search.results:
+
+        film = {"id": i['id'], "name": i['title']}
+
+        try:
+            film.update({"year": datetime.strptime(i['release_date'], "%Y-%m-%d").year})
+        except ValueError:
+            film.update({"year": i['release_date']})
+        except KeyError:
+            continue
+
+        if i['poster_path']:
+            film.update({"poster": "http://image.tmdb.org/t/p/w154" +i['poster_path']})
+        else:
+            film.update({"poster": "/media/default.png" })
+
+        film.update({"originalname": i['original_title']})
+        films.update({i['id']: film})
+
 
     return render(request, "Main/blocks/addmovie_searchlist.html", {
         'series': serials,
         'films': films
     })
 
-
 @login_required
 def AddMovie(request, id):
-    if Movie.objects.filter(kinopoiskid=id).exists():
-        return redirect(Movie.objects.get(kinopoiskid=id).get_absolute_url())
+    if Movie.objects.filter(tmdbid=id).exists():
+        return redirect(Movie.objects.get(tmdbid=id).get_absolute_url())
+    movie = tmdb.Movies(id)
+    movie.info(language="ru-RU")
+    movie.releases()
 
-    movie = KPMovie(id=id)
-    movie.get_content('main_page')
-    movie.get_content("series")
+
+
     newmovie = Movie.objects.create(
-            name=movie.title,
-            kinopoiskid=movie.id,
-            year=movie.year,
-            length=movie.runtime,
-            disctiption=movie.plot
-        )
-    if not movie.title_en:
-        newmovie.originalname = movie.title
-    else:
-        newmovie.originalname = movie.title_en
+        name=movie.title,
+        originalname=movie.original_title,
+        disctiption=movie.overview,
+        
+        release_date=datetime.strptime(movie.release_date, "%Y-%m-%d"),
+        year=datetime.strptime(movie.release_date, "%Y-%m-%d").year,
+        tmdbid=movie.id,
+        imdbid=movie.imdb_id,
 
-    newmovie.name = re.sub(r"[(]сериал\s*[)]", "", newmovie.name, count=1)
+        length=movie.runtime,
 
-    if movie.series:
-        AddSeasons(movie, newmovie)
-
-    AddGenres(movie, newmovie)
-    AddPoster(newmovie)
-
-
+    )
+    
+    
+    for c in movie.countries:
+        if c['iso_3166_1'] == 'US':
+            newmovie.UScert=c['certification']
+        if c['iso_3166_1'] == 'RU':
+            newmovie.RUcert = c['certification']
+            newmovie.release_dateRU= datetime.strptime(c['release_date'], "%Y-%m-%d")
+    
+    for i in movie.genres:
+        newmovie.tags.add(i['name'])
+    
+    AddPoster(newmovie, movie.poster_path)
+    
+    
     return redirect(newmovie.get_absolute_url())
 
 
-def AddPoster(movie):
+@login_required
+def AddSeries(request, id):
+    if Movie.objects.filter(tmdbid=id).exists():
+        return redirect(Movie.objects.get(tmdbid=id).get_absolute_url())
+    movie = tmdb.TV(id)
+    movie.info(language="ru-RU")
+
+
+    newmovie = Movie.objects.create(
+        name=movie.name,
+        originalname=movie.original_name,
+        disctiption=movie.overview,
+
+        release_date=datetime.strptime(movie.first_air_date, "%Y-%m-%d"),
+        year=datetime.strptime(movie.first_air_date, "%Y-%m-%d").year,
+        tmdbid=movie.id,
+        series=True
+    )
+    if len(movie.episode_run_time) > 0:
+        newmovie.length=movie.episode_run_time[0]
+
+    for i in movie.genres:
+        newmovie.tags.add(i['name'])
+
+    AddPoster(newmovie, movie.poster_path)
+    AddSeasons(movie, newmovie)
+    return redirect(newmovie.get_absolute_url())
+
+
+
+def AddPoster(movie, path):
     from django.core.files.temp import NamedTemporaryFile
-    url = "https://st.kp.yandex.net/images/film_big/" + str(movie.kinopoiskid) + ".jpg"
-    img_temp = NamedTemporaryFile()
-    img_temp.write(get(url).content)
-    img_temp.flush()
-    movie.img.save(str(movie.id) + "." + url.split('.')[-1], img_temp)
-
-def AddGenres(movie, obj):
-    for i in Tag.objects.filter(name__in=movie.genres):
-        obj.tags.add(i)
+    if path :
+        url = "http://image.tmdb.org/t/p/original" + path
+        img_temp = NamedTemporaryFile()
+        img_temp.write(get(url).content)
+        img_temp.flush()
+        movie.img.save(str(movie.id) + "." + url.split('.')[-1], img_temp)
 
 
+def AddSeasons(movie, newmovie):
+    for i in movie.seasons:
+        if i['air_date']:
+            season = Season.objects.create(name=i['name'], episodecount=i['episode_count'],
+                                           movie=newmovie, position=i['season_number'],tmdbid=i['id'])
 
-def AddSeasons(movie, id):
-    for i in range(0, len(movie.seasons)):
-        season = Season.objects.create(name=str(i + 1) + " сезон", episodecount=len(movie.seasons[i].episodes),
-                                       serial_id=id)
-        if i == 0:
-            season.disctiption = movie.plot
+            if len(i['overview'])>0:
+                season.disctiption = i['overview']
 
-        cdate = datetime.date.today()
-        try:
-            if movie.seasons[i].episodes[-1].release_date > cdate:
+            AddPoster(season, i['poster_path'])
+
+
+
+
+
+            TVseason=tmdb.TV_Seasons(movie.id, i['season_number'])
+            TVseason.info(language="ru-RU")
+            AddEpisodes(TVseason,season.id)
+
+            try:
+                if datetime.strptime(TVseason.episodes[-1]['air_date'], "%Y-%m-%d") > datetime.today():
+                    season.status_id = 2
+                else:
+                    season.status_id = 3
+            except:
                 season.status_id = 2
-            else:
-                season.status_id = 3
-        except:
-            season.status_id = 2
 
-        try:
-            if movie.seasons[i].episodes[0].release_date > cdate:
+            try:
+                if datetime.strptime(i['air_date'], "%Y-%m-%d") > datetime.today():
+                    season.status_id = 1
+            except TypeError:
                 season.status_id = 1
-        except TypeError:
-            season.status_id = 1
-        season.save()
-
-        AddEpisodes(movie.seasons[i].episodes, season)
+            season.save()
 
 
-def AddEpisodes(episodes, season):
-    rdate = None
-    for i in range(0, len(episodes)):
-        if episodes[i].title:
-            SeriesList.objects.create(
-                name=str(episodes[i].title),
-                date=episodes[i].release_date,
-                season=season
+def AddEpisodes(season,id):
+
+
+    ldate = datetime.strptime(season.air_date, "%Y-%m-%d")
+    for i in season.episodes:
+        series = SeriesList.objects.create(
+                name=str(i['name']),
+                date=datetime.strptime(i['air_date'], "%Y-%m-%d") if i['air_date'] else ldate+timedelta(days=7),
+                season_id=id
             )
-            rdate = datetime.datetime.strptime(str(episodes[i].release_date), "%Y-%m-%d")
-        else:
-            if rdate:
-                rdate += datetime.timedelta(days=7)
-                SeriesList.objects.create(
-                    name=str(i + 1) + " серия",
-                    date=str(rdate.date()),
-                    season=season
-                )
 
+        ldate= datetime.strptime(i['air_date'], "%Y-%m-%d") if i['air_date'] else ldate+timedelta(days=7)
+
+        if len(i['overview'])>0:
+            series.disctiption=i['overview']
+        series.save()

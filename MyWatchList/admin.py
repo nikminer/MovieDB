@@ -3,7 +3,7 @@ from .models import Movie, CommentModel, Season, SeriesList
 
 
 class MovieAdmin(admin.ModelAdmin):
-    list_display = ('name', 'originalname', 'year', 'length', 'rating','series')
+    list_display = ('name', 'originalname', 'year', 'length', 'rating', 'release_date', 'series')
     list_filter = ('series','year', 'tags')
     search_fields = ('name', 'originalname', 'disctiption',)
 
