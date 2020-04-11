@@ -14,75 +14,20 @@ function getCookie(cname) {
     return "";
 }
 
-SearchTimer=null
+async function search(){
+    elem = document.getElementById("searchbox");
 
-function searchInput(){
-    if (SearchTimer == null)
-        SearchTimer = setTimeout(search, 100);
-    else{
-        clearTimeout(SearchTimer);
-        SearchTimer=null
-    }        
-}
+    let request = await fetch("/add/tmdb/search/",{
+        method: 'POST',
+        headers:{
+            'X-Requested-With': 'XMLHttpRequest',
+            "X-CSRFToken": getCookie("csrftoken"),
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: "name="+elem.value
+     });
 
-function search(){
-    elem=document.getElementById("searchbox")
-    if (elem.value.length>2){
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST','/add/kinopoisk/search/',true);
-        xhr.setRequestHeader("X-CSRFToken", getCookie("csrftoken"));
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.send("name="+elem.value);
-        xhr.onreadystatechange=function(){
-            if(xhr.status==200 && xhr.readyState==4){
-                result.innerHTML="";
-                resp=JSON.parse(xhr.response)
-                console.log(resp)
-                for (var i in resp['serials']['result']){
-                    var serial=document.createElement("a")
-                    var results=resp['serials']
+    if (request.ok)
+        results.innerHTML=await request.text();
 
-                    var lable=document.createElement("span")
-                    lable.innerHTML="Сериал"
-                    serial.appendChild(lable)
-                    var poster=document.createElement("img")
-                    poster.src=results['result'][i]['poster'];
-                    poster.className="poster"
-                    serial.appendChild(poster)
-
-                    var title=document.createElement("span")
-                    title.innerHTML=results['result'][i]['name']+"/"+results['result'][i]['originalname']+" ("+results['result'][i]['year']+")"
-                    title.className="postertitle"
-                    serial.appendChild(title)
-                    serial.href="kinopoisk/"+results['result'][i]['id']
-                    serial.title=results['result'][i]['name']+"/"+results['result'][i]['originalname']+" ("+results['result'][i]['year']+")"
-                    serial.className="Movie"
-                    result.appendChild(serial)
-                }
-
-                for (var i in resp['films']['result']){
-                    var serial=document.createElement("a")
-                    var results=resp['films']
-
-                    var lable=document.createElement("span")
-                    lable.innerHTML="Фильм"
-                    serial.appendChild(lable)
-                    var poster=document.createElement("img")
-                    poster.src=results['result'][i]['poster'];
-                    poster.className="poster"
-                    serial.appendChild(poster)
-
-                    var title=document.createElement("span")
-                    title.innerHTML=results['result'][i]['name']+"/"+results['result'][i]['originalname']+" ("+results['result'][i]['year']+")"
-                    title.className="postertitle"
-                    serial.appendChild(title)
-                    serial.href="kinopoisk/"+results['result'][i]['id']
-                    serial.title=results['result'][i]['name']+"/"+results['result'][i]['originalname']+" ("+results['result'][i]['year']+")"
-                    serial.className="Movie"
-                    result.appendChild(serial)
-                }     
-            }
-        }
-    }else
-        result.innerHTML="";
 }

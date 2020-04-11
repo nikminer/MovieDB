@@ -1,7 +1,7 @@
-window.onload = function() {
-    for (var i=1; i<selectbox.children.length;i++){
-        if (selectbox.children[i].selected){
-            selectName.innerText=selectbox.children[i].label;
+window.onload = function () {
+    for (var i = 1; i < selectbox.children.length; i++) {
+        if (selectbox.children[i].selected) {
+            selectName.innerText = selectbox.children[i].label;
             break;
         }
     }
@@ -11,7 +11,7 @@ function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
     var ca = decodedCookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
+    for (var i = 0; i < ca.length; i++) {
         var c = ca[i];
         while (c.charAt(0) == ' ') {
             c = c.substring(1);
@@ -23,14 +23,34 @@ function getCookie(cname) {
     return "";
 }
 
-function setstatus(elem,id){
-    if (!elem.selected){
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST','/film/set/status',true);
-        xhr.setRequestHeader("X-CSRFToken", getCookie("csrftoken"));
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.send("listid="+id+";status="+encodeURIComponent(elem.value));
-        selectName.innerText=elem.label;
+async function setstatus(elem, id) {
+    if (!elem.selected) {
+        let request = await fetch("/list/set/status", {
+            method: 'POST',
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                "X-CSRFToken": getCookie("csrftoken"),
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+
+            body: "listid=" + encodeURIComponent(id) + ";status=" + encodeURIComponent(elem.value)
+        });
+
+        if (request.ok) {
+            let response = await request.json();
+            if (response.status) {
+
+                Array.prototype.filter.call(
+                    selectbox.getElementsByTagName('option'),
+                    function (item) {
+                        return item.selected
+                    }
+                )[0].selected = false;
+
+                elem.selected = true;
+                selectName.innerText = elem.label;
+            }
+        }
     }
     selectbox.open=false
 }

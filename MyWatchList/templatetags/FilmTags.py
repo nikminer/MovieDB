@@ -1,5 +1,5 @@
 from django import template
-from Profile.models import Friendlist
+
 from MyWatchList.models import Movie, WatchList
 
 register = template.Library()

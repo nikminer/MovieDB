@@ -45,7 +45,7 @@
         </div>
 
         <div class="userrate">
-            <span class="bigspan">Пользовательская оценка</span>
+            <span class="bigspan">Общая оценка</span>
             <div>
                 <span>{{film.rating}}</span>
                 <div id="stars"></div>
@@ -64,61 +64,55 @@
                 </script>
             </div>
         </div>
-
+        {% comment %}
         {% if user.is_authenticated %}
 
             {% friendListF user.profile film %}
         {% endif %}
-
+        {% endcomment %}
         <link rel="stylesheet" href={% static 'List/styles/numeric.css' %} type="text/css" />
-        <script src="{% static "List/scripts/rewatchCounterF.js" %}"></script>
+
         {% if UserItem %}
         <div class='actionpanel'>
-            {% include "Films/blocks/selectBox.html" %}
             <a href="{% url 'dellist'  film.id %}">Убрать из списка</a>
+            {% include "Films/blocks/selectBox.html" %}
             {% include "Films/blocks/stars.html" %}
-
-        <div class="numchange">
-                 <div class=numeric>
-                     <span>Повторные просмотры:</span>
-                     <span id="userRewatch_{{UserItem.id}}">{{UserItem.rewatch}}</span>
-                 </div>
-                 <div class=numericinput>
-                     <div>
-                          <span>Повторные просмотры:</span>
-                     </div>
-                     <div>
-                         <span onclick="decrementrewatch({{UserItem.id}})">-</span>
-                         <input id=numerinputRewatch_{{UserItem.id}} type="number" min=0 max=255 onchange="setrewatch({{UserItem.id}})" value="{{UserItem.rewatch}}">
-                         <span onclick="incrementrewatch({{UserItem.id}})">+</span>
-                     </div>
-                 </div>
+            <script src="{% static "List/scripts/ActionPanel.js" %}"></script>
+            <script src="{% static "List/scripts/getCookie.js" %}"></script>
+            <div class="numchange">
+                <span>Повторные просмотры:</span>
+                <div class=numericinput>
+                    <span onclick="setReWatch({{UserItem.id}},'dec')">-</span>
+                    <input id=numerinputRewatch_{{UserItem.id}} type="number" min=0 max=255 onchange="setReWatch({{UserItem.id}},'set')" value="{{UserItem.rewatch}}">
+                    <span onclick="setReWatch({{UserItem.id}},'inc')">+</span>
+                </div>
             </div>
-            
         </div>
         {% else %}
         <div class='actionpanel'>
             <a href="{% url 'addlist' film.id %}">Добавить в список</a>
         </div>
         {% endif %}
-       
-        <details class=discription id="filmdiscription">
-            <summary class="bigspan">Описание</summary>
-            <p>
-                {{film.disctiption}}
-            </p>
-        </details>
-        <script>
-            AdaptiveOpenDetails(window,filmdiscription);
-        </script>
 
-    {% SimilarFilms film %}
+
+       <div class="blocks">
+           <details class=discription id="filmdiscription">
+                <summary class="bigspan">Описание</summary>
+                <p>
+                    {{film.disctiption}}
+                </p>
+            </details>
+           <script>
+               AdaptiveOpenDetails(window,filmdiscription);
+           </script>
+           {% SimilarFilms film %}
+       </div>
 
 
         <div class="comments">
             <span class="bigspan">Комментарии</span>
             {% load comments %}
-            {% include 'Main/blocks/AddComment.html' %}
+            {% addcomments %}
             {% commentslist film %}
         </div>
 

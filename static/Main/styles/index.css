@@ -1,3 +1,6 @@
+html{
+    background-color: #303952;
+}
 .index{
     display: flex;
     flex-direction: column;
@@ -25,9 +28,9 @@
 .block{
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     color: white;
     padding: 10px;
+    z-index: 1;
 }
 
 .sectionspanandrefer{
@@ -133,7 +136,7 @@
 .movielist>a>span{
     font-weight: bold;
     text-align: center;
-    height: 40px;
+    height: 38px;
     overflow: hidden;
 }
 
@@ -160,6 +163,7 @@
     align-items: center;
     color: white;
     padding: 10px;
+    z-index: 1;
 }
 .blockinfo>span{
     padding: 20px;
@@ -181,12 +185,17 @@
 }
 
 .footer{
+    position: sticky;
+    bottom: 0;
+    left: 160px;
+    right: 100px;
     background-color: #303952;
     display: flex;
     flex-direction: row;
     align-items: center;
     -webkit-flex-grow: 1;
     flex-grow: 1;
+    z-index: 0;
 }
 .footer>div{
     padding: 20px;

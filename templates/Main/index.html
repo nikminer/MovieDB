@@ -2,8 +2,7 @@
 {% load index_tags %}
 {% include "../base.html" %}
 <link rel="stylesheet" href={% static 'Main/styles/index.css' %} type="text/css" />
-
-
+<link rel="stylesheet" href={% static 'Main/styles/feed.css' %} type="text/css" />
 <title>My Watch List</title>
 
 <body>
@@ -30,16 +29,16 @@
         {% if user.is_authenticated %}
             <div class="profile">
                 <div>
-                    <a title="{{user.first_name}} {{user.last_name}}" class="username" href="{% url 'profile' user.username %}">
+                    <a title="{{user.profile.name}}" class="username" href="{% url 'profile' user.username %}">
                         <span class="sectionspan bigheader">
                             <span>
-                                {{user.first_name}} {{user.last_name}}
+                                {{user.profile.name}}
                             </span>
                         </span>
                         <img src="{{user.profile.photo.url}}">
                     </a>
                 </div>
-                {% friends user.profile %}
+                {% followers user.profile %}
             </div>
         {% endif %}
         {% if user.is_authenticated %}
@@ -54,8 +53,10 @@
                 <div class="sectionspanandrefer">
                     <span class="sectionspan bigheader">Активности</span>
                 </div>
-                
-                {% include './blocks/feed.html' %}
+                <link rel="stylesheet" href={% static 'Profile/AjaxPagination.css' %} type="text/css" />
+                <script src="{% static "Main/scripts/AjaxPagination.js" %}"></script>
+                {% load feedTags %}
+                {% FeedActivity %}
             </div>
         {% endif %}
 
@@ -65,13 +66,13 @@
                 <span style="text-align:center">Created by nikminer</span>
             </div>
             <div>
-                <h3>Данный сервис находится на стадии Альфа-теста, просьба сообщать о всех багах сюда:</h3>
+                <h3>Данный сервис находится на стадии Альфа-теста, просьба сообщать о всех багах на почту:</h3>
                 <a href="mailto:thenikminer@yandex.ru">thenikminer@yandex.ru</a>
             </div>
             <div class="links">
                 <span>Ссылки:</span>
                 <div>
-                    <a href="https://github.com/nikminer/SerialDB">
+                    <a href="https://github.com/fgl-foundation/MyWatchList">
                         <img src={% static "images/github.png" %}>
                     </a>
                 <div>

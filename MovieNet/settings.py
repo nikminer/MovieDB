@@ -1,9 +1,12 @@
 import os
 import mailsetting
+import tmdbsimple as tmdb
+
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = open(os.path.join(BASE_DIR, 'secret_key'), 'r').read()
+tmdb.API_KEY = open(os.path.join(BASE_DIR, 'tmdb_key'), 'r').read()
 
 EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_SSL = mailsetting.USE_SSL
@@ -38,9 +41,8 @@ INSTALLED_APPS = [
     'django_crontab',
     'taggit',
     'MyWatchList.apps.MywatchlistConfig',
-    'List.apps.ListConfig',
-    'Main.apps.MainConfig',
     'Profile.apps.ProfileConfig',
+    'reset_migrations'
 ]
 
 SITE_ID = 1
@@ -136,6 +138,6 @@ MEDIA_ROOT= os.path.join(BASE_DIR, "../media/")
 MEDIA_URL= '/media/'
 
 CRONJOBS = [
-    ('0 6 * * *', 'Main.cron.checkSeries','>> /srv/checkSeries.log'),
-    ('5 6 * * *', 'Main.cron.checkStatus','>> /srv/checkStatus.log'),
+    ('0 6 * * *', 'MyWatchList.cron.checkSeries','>> /srv/checkSeries.log'),
+    ('5 6 * * *', 'MyWatchList.cron.checkStatus','>> /srv/checkStatus.log'),
 ]

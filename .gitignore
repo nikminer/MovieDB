@@ -7,3 +7,4 @@ secret_key
 venv
 .vscode
 mailsetting.py
+tmdb_key

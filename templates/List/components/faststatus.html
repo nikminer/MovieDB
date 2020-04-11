@@ -2,9 +2,9 @@
 <link rel="stylesheet" href="{% static "List/styles/faststatus.css" %}" />
 
 <div id="faststatus">
-    <div ondrop="droptoPlan(event)" ondragover="allowDrop(event)"><span>В планах</span></div>
-    <div ondrop="droptoWatch(event)" ondragover="allowDrop(event)"><span>Смотрю</span></div>
-    <div ondrop="droptoRewatch(event)" ondragover="allowDrop(event)"><span>Пересматриваю</span></div>
-    <div ondrop="droptoWatched(event)" ondragover="allowDrop(event)"><span>Просмотрено</span></div>
-    <div ondrop="droptoDrop(event)" ondragover="allowDrop(event)"><span>Брошено</span></div>
+    <div ondrop="fastdrop(event, 'planned')" ondragover="allowDrop(event)"><span>В планах</span></div>
+    <div ondrop="fastdrop(event, 'watch')"  ondragover="allowDrop(event)"><span>Смотрю</span></div>
+    <div ondrop="fastdrop(event, 'rewatch')"  ondragover="allowDrop(event)"><span>Пересматриваю</span></div>
+    <div ondrop="fastdrop(event, 'watched')"  ondragover="allowDrop(event)"><span>Просмотрено</span></div>
+    <div ondrop="fastdrop(event, 'drop')"  ondragover="allowDrop(event)"><span>Брошено</span></div>
 </div>

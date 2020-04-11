@@ -45,7 +45,7 @@
         </div>
         
         <div class="userrate">
-            <span class="bigspan">Пользовательская оценка</span>
+            <span class="bigspan">Общая оценка</span>
             <div>
                 <span>{{series.rating}}</span>
                 <div id="stars"></div>
@@ -70,23 +70,26 @@
         {% else %}
         <a class=actionpanel href="{% url 'addlist' series.id %}">Добавить в список</a>
         {% endif %}
-        <details class="discription" id="serialdiscription">
-            <summary class="bigspan">Описание</summary>
-            <p>{{series.disctiption}}</p>
-        </details>
-        <script>
-            AdaptiveOpenDetails(window,serialdiscription);
-        </script>
+        <div class="blocks">
+            <details class="discription" id="serialdiscription">
+                <summary class="bigspan">Описание</summary>
+                <p>{{series.disctiption}}</p>
+            </details>
+            <script>
+                AdaptiveOpenDetails(window,serialdiscription);
+            </script>
 
-        {% include "Serials/blocks/seasons.html" %}
+            {% include "Serials/blocks/seasons.html" %}
 
-        {% SimilarSeries series %}
+            {% SimilarSeries series %}
+        </div>
+
 
         <div class="comments" name="commentsblock">
             <span class="bigspan">Комментарии</span>
             {% load comments %}
 
-            {% include 'Main/blocks/AddComment.html' %}
+            {% addcomments %}
 
             {% commentslist series %}
         </div>

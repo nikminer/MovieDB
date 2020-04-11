@@ -1,0 +1,23 @@
+{% for feeditem in feed %}
+
+    <a {% if feeditem.item %} href="{{ feeditem.item.get_absolute_url }}" {% endif %} class="feeditem">
+        <div class="feedaction">
+            {% if feeditem.item %}
+                <img src="
+                {% if feeditem.item.img.url != "/media/default.png" %}
+                    {{ feeditem.item.img.url }}
+                {% else %}
+                     {{ feeditem.item.movie.img.url }}
+                {% endif %}">
+            {% endif %}
+            <div>
+                {% if feeditem.item %}
+                    <span>{{ feeditem.item.movie.name }} {{ feeditem.item.name }}</span>
+                {% endif %}
+                <span>{{ feeditem.verb }}</span>
+                <span class="feedtimestamp">{{ feeditem.created|timesince }} назад</span>
+            </div>
+        </div>
+    </a>
+{% endfor %}
+{% include "Profile/blocks/AjaxPagination.html" with page=feed urlname="ProfileActivity_page" %}

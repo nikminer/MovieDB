@@ -23,8 +23,14 @@ html{
 .headBlock{
     display: flex;
     flex-direction: column;
-    margin: 20px;
+    padding: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background-color: white;
+    height: 110px;
 }
+
 .HeadName{
     font-size: 20px;
     padding:10px 0;
@@ -51,6 +57,28 @@ input[type=search]{
     flex-direction: column;
     padding: 5px;
     margin-top: 5px;
+}
+.filters>details{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin-top: 5px;
+    cursor: pointer;
+}
+.filters>details>button{
+    width: 100%;
+    margin-top: 5px;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.5s all ease;
+    padding: 5px;
+    font-size: 17px;
+    margin-bottom: 5px;
+}
+.filters>details>button:hover{
+    background-color: #3dc1d3;
+    color: #fff;
 }
 
 .filter{
@@ -89,28 +117,7 @@ input[type=search]{
     color: white;
 }
 
-.filters>details{
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    margin-top: 5px;
-    cursor: pointer;
-}
-.filters>details>button{
-    width: 100%;
-    margin-top: 5px;
-    background-color: white;
-    border: none;
-    cursor: pointer;
-    transition: 0.5s all ease;
-    padding: 5px;
-    font-size: 17px;
-    margin-bottom: 5px;
-}
-.filters>details>button:hover{
-    background-color: #3dc1d3;
-    color: #fff;
-}
+
 
 .groups{
     grid-area: groups;

@@ -14,12 +14,12 @@
     <div class="actionpanel" id="actionpanel:{{ wl.id }}">
         <div>
             <span>Статус</span>
-            <select class="selectbox">
-                <option onclick="sendStatus('{{type}}:{{wl.id}}',document.getElementById(this.value),this.value)" value="planned" {% if wl.userstatus == 1 %} selected {% endif %}>В планах</option>
-                <option onclick="sendStatus('{{type}}:{{wl.id}}',document.getElementById(this.value),this.value)" value="watch" {% if wl.userstatus == 2 %} selected {% endif %}>Смотрю</option>
-                <option onclick="sendStatus('{{type}}:{{wl.id}}',document.getElementById(this.value),this.value)" value="rewatch" {% if wl.userstatus == 4 %} selected {% endif %}>Пересматриваю</option>
-                <option onclick="sendStatus('{{type}}:{{wl.id}}',document.getElementById(this.value),this.value)" value="watched" {% if wl.userstatus == 3 %} selected {% endif %}>Просмотрено</option>
-                <option onclick="sendStatus('{{type}}:{{wl.id}}',document.getElementById(this.value),this.value)" value="drop" {% if wl.userstatus == 5 %} selected {% endif %}>Брошено</option>
+            <select class="selectbox" onchange="sendStatus('{{wl.id}}',this.value,'season')">
+                <option value="planned" {% if wl.userstatus == 1 %} selected {% endif %}>В планах</option>
+                <option value="watch" {% if wl.userstatus == 2 %} selected {% endif %}>Смотрю</option>
+                <option value="rewatch" {% if wl.userstatus == 4 %} selected {% endif %}>Пересматриваю</option>
+                <option value="watched" {% if wl.userstatus == 3 %} selected {% endif %}>Просмотрено</option>
+                <option value="drop" {% if wl.userstatus == 5 %} selected {% endif %}>Брошено</option>
             </select>
         </div>
         <div>
@@ -31,9 +31,9 @@
         <div>
             <span>Эпизоды</span>
             <div class=numericinput>
-                <span onclick="decrement({{wl.id}})">-</span>
-                <input id=numerinput_{{wl.id}} type="number" min=0 max={{wl.season.episodecount}} onchange="setepisode({{wl.id}})" value="{{wl.userepisode}}">
-                <span onclick="increment({{wl.id}})">+</span>
+                <span onclick="setEpisode({{wl.id}},'dec')">-</span>
+                <input id="numerinput_{{wl.id}}" type="number" min="0" max="{{wl.season.episodecount}}" onchange="setEpisode({{wl.id}},'set')" value="{{wl.userepisode}}">
+                <span onclick="setEpisode({{wl.id}},'inc')">+</span>
             </div>
         </div>
         {% endif %}
@@ -41,9 +41,9 @@
         <div>
             <span>Повторные просмотры</span>
             <div class=numericinput>
-                <span onclick="decrementrewatch({{wl.id}})">-</span>
-                <input id=numerinputRewatch_{{wl.id}} type="number" min=0 max=255 onchange="setrewatch({{wl.id}})" value="{{wl.rewatch}}">
-                <span onclick="incrementrewatch({{wl.id}})">+</span>
+                <span onclick="setReWatch({{wl.id}},'dec')">-</span>
+                <input id="numerinputRewatch_{{wl.id}}" type="number" min="0" max="255" onchange="setReWatch({{wl.id}},'set')" value="{{wl.rewatch}}">
+                <span onclick="setReWatch({{wl.id}},'inc')">+</span>
             </div>
         </div>
     </div>

@@ -1,0 +1,29 @@
+{% if series.values %}
+    <span class="bigheader"  style="border-bottom-color: #546de5;">Сериалы</span>
+    <div class="result">
+        {% for i in series.values %}
+            <a href="tmdb/{{ i.id }}/series" title="{{ i.name }} /{{ i.originalname }} ({{ i.year }})" class="Movie">
+                <img src="{{ i.poster }}" class="poster">
+                <span class="postertitle">{{ i.name }} /{{ i.originalname }} ({{ i.year }})</span>
+            </a>
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if films.values  %}
+    <span class="bigheader" style="border-bottom-color: #e15f41;">Фильмы</span>
+    <div class="result">
+        {% for i in films.values %}
+            <a href="tmdb/{{ i.id }}/movie" title="{{ i.name }} /{{ i.originalname }} ({{ i.year }})" class="Movie">
+                <img src="{{ i.poster }}" class="poster">
+                <span class="postertitle">{{ i.name }} /{{ i.originalname }} ({{ i.year }})</span>
+            </a>
+        {% empty %}
+            <span>Поиск не дал результатов</span>
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if not series.values  and not films.values  %}
+<span>Поиск не дал результатов</span>
+{% endif %}

@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.http import HttpResponse,HttpResponseRedirect,JsonResponse
-from Main.models import UserList,Season,Serial,StatusList,SeriesList
+
 from django.contrib.auth.decorators import login_required,permission_required
 
 

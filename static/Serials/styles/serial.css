@@ -9,9 +9,7 @@ body{
     "SerialName SerialName SerialName "
     "poster SerialInfo userrate"
     "poster SerialInfo ."
-    "actionpanel discription discription"
-    "actionpanel seasons seasons "
-    ". simeralserials simeralserials"
+    "actionpanel blocks blocks"
     "comments comments comments";
     grid-template-columns: 200px auto 250px;
     grid-row-gap: 10px;
@@ -27,7 +25,7 @@ body{
 }
 .bckbtn{
     font-weight: bold;
-    background-color: #1738db;
+    background-color: #546de5;
     color: white;
     display: flex;
     flex-direction:row;
@@ -49,7 +47,7 @@ body{
     padding: 5px 0;
 }
 .bckbtn:hover>span{
-    background-color: #1738db;
+    background-color: #546de5;
     color: white;
 }
 
@@ -85,6 +83,7 @@ body{
     margin-bottom: 10px;
     border-bottom: #546de5 2px solid;
     padding-bottom: 10px;
+    background-color: white;
 }
 .poster{
     grid-area: poster;
@@ -146,9 +145,19 @@ body{
     cursor: pointer;
     background-color: rgb(223, 219, 219);
 }
-
+.blocks{
+    grid-area: blocks;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+.blocks>*{
+    margin: 10px 0;
+}
+.blocks>*:first-child{
+    margin-top: 0;
+}
 .discription{
-    grid-area: discription;
     display: flex;
     flex-direction: column;
     color: black;
@@ -220,7 +229,7 @@ body{
 
     .bigspan{
         height: 40px;
-        border-left-color: #1738db;
+        border-left-color: #546de5;
     }
     .discription>p{
         font-size: 22px;

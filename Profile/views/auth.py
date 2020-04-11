@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login,logout
 from Profile.forms import LoginForm,UserRegistrationForm,UserResetPass
 from Profile.models import Profile
 from django.contrib import messages
-
+from .feed import create_feed
 
 def loginView(request):
     data={}
@@ -44,8 +44,8 @@ def register(request):
             new_user = user_form.save(commit=False)
             new_user.set_password(user_form.cleaned_data['password'])
             new_user.save()
-            Profile.objects.create(user=new_user,date_of_birth=user_form.cleaned_data['date_of_birth'],sex=user_form.cleaned_data['sex'])
-            
+            profile=Profile.objects.create(user=new_user,date_of_birth=user_form.cleaned_data['date_of_birth'],sex=user_form.cleaned_data['sex'])
+            create_feed(profile, 'Hello world!')
             login(request, new_user)
             return redirect('index')
     else:

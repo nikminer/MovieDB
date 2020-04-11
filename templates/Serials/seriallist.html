@@ -4,6 +4,8 @@
 <link rel="stylesheet" href="{% static "Serials/styles/seriallist.css" %}" />
 <title>Сериалы</title>
 
+<link href="{% static "Serials/styles/AjaxPagination.css" %}" rel="stylesheet">
+<script src="{% static "Main/scripts/AjaxPagination.js" %}"></script>
 
 <body>
     <div class="headBlock"> 
@@ -33,10 +35,8 @@
                     </div>
                 </a>
             {% endfor %}
+            {% include "Serials/blocks/AjaxPagination.html" with page=SerialList urlname="seriallist_page" %}
         </div>
-        {% include "Serials/blocks/pagination.html" with page=SerialList urlname='seriallist_page'%}
-
-
 
     </div>
 

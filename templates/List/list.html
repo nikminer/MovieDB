@@ -7,7 +7,11 @@
 <link rel="stylesheet" href="{% static "List/styles/numeric.css" %}" />
 <link rel="stylesheet" href="{% static "List/styles/actionpanel.css" %}" />
 
+<script src="{% static "List/scripts/ActionPanel.js" %}"></script>
 <script src="{% static "List/scripts/getCookie.js" %}"></script>
+<script src="{% static "List/scripts/search.js" %}"></script>
+
+<script src="{% static "List/scripts/dragNdrop.js" %}"></script>
 
 {% if series is True %}
     <link rel="stylesheet" href="{% static "List/styles/season.css" %}" />
@@ -26,6 +30,8 @@
     </div>
 
     <div class="content">
+        {% include "List/components/filters.html" %}
+
         <div class="groups">
             {% for groupname,group in groups.items %}
                 {% include "List/components/group.html" %}

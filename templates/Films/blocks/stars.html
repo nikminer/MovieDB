@@ -1,6 +1,5 @@
 {% load static %}
 <link rel="stylesheet" href="{% static "Films/styles/stars.css" %}" />
-<script src="{% static "List/scripts/setRatingF.js" %}"></script>
 
 <div id="ratings">
   <input id="star-9_{{UserItem.id}}" value=10 {% if UserItem.userrate == 10 %} checked {% endif %} type="radio" name="ratings_{{UserItem.id}}" onclick="setRating(this,{{UserItem.id}})"/>

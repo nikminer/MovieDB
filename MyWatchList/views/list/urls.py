@@ -7,4 +7,11 @@ urlpatterns = [
 
     path('add/<int:movie_id>', list.addlist, name='addlist'),
     path('del/<int:movie_id>', list.dellist, name='dellist'),
+
+
+    path("set/rating", list.watchlistitems.setrating),
+    path('set/rewatch', list.watchlistitems.rewatch),
+    path('set/episode', list.watchlistitems.setepisode),
+
+    path("set/status", list.watchlistitems.setstatus),
 ]

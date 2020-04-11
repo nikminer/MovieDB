@@ -1,0 +1,206 @@
+html{
+    background-color: #c44569;
+   }
+body{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.headBlock{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+.bckbtn{
+    font-weight: bold;
+    background-color: #c44569;
+    color: white;
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    padding: 2px;
+}
+.bckbtn>span{
+    background-color: rgb(241, 241, 241);
+    color: black;
+    width: 100%;
+    transition: all 0.5s ease;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 2px;
+}
+.bckbtn>*{
+    padding: 5px 0;
+}
+.bckbtn:hover>span{
+    background-color: #c44569;
+    color: white;
+}
+
+.requestf{
+    font-weight: bold;
+    background-color: #c44569;
+    color: white;
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    padding: 2px;
+}
+.requestf>b{
+    padding: 0 5px;
+    text-align: center;
+}
+.requestf>span{
+    word-break: break-all;
+    background-color: rgb(241, 241, 241);
+    color: black;
+    width: 100%;
+    transition: all 0.5s ease;
+    padding: 5px 10px;
+    margin-left: 2px;
+}
+.requestf:hover>span{
+    background-color: #c44569;
+    color: white;
+}
+
+.followerslist{
+    grid-area: followerslist;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-wrap: wrap;
+    padding: 15px;
+    animation: fade-in 1s ease;
+}
+.followerslist>span{
+    font-size: 18px;
+    font-weight: bold;
+    border-bottom: 1px black solid;
+    padding-bottom: 5px;
+}
+.followerslist>div{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-wrap: wrap;
+}
+
+.follower{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    height: 190px;
+    width: 150px;
+}
+.follower>a{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    transition: all 0.5s ease;
+    text-decoration: none;
+    color:black;
+    padding: 5px 0px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 190px;
+}
+.follower>a:hover{
+    background-color: lightgrey;
+}
+.follower>a>span{
+    width: 150px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 15px;
+}
+.follower>div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+}
+.follower>div>a{
+    color: black;
+
+    padding: 5px 6.5px;
+    transition: all 0.5s ease;
+}
+.follower>div>a:hover{
+    background-color: #c44569;
+    color: white;
+}
+
+@media (max-device-width: 425px) {
+    .bckbtn{
+        padding: 3px;
+    }
+    .bckbtn>span{
+        font-size: 26px;
+    }
+
+    .requestf{
+        padding: 3px;
+    }
+    .requestf>span{
+        font-size: 26px;
+    }
+    .requestf>b{
+        font-size: 26px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .followerslist{
+        padding: 20px;
+    }
+    .followerslist>span{
+        font-size: 28px;
+        border-bottom: 3px black solid;
+        padding-bottom: 10px;
+    }
+    .followerslist>div{
+        flex-direction: column;
+    }
+    .follower{
+        padding: 5px;
+        height: 160px;
+        width: 100%;
+    }
+    .follower>span{
+        font-size: 26px;
+    }
+    .follower>a{
+        flex-direction: row;
+        justify-content: space-evenly;
+        padding: 15px;
+        height: 190px;
+    }
+    .follower>a>span{
+        width: 75%;
+        text-align: center;
+        padding: 5px;
+        font-size: 28px;
+        font-weight: bold;
+    }
+}
+
+
+.bigspan{
+    border-left-color: #c44569;
+}

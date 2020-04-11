@@ -14,5 +14,5 @@ urlpatterns = [
     path('details/<int:id>/similar', series.seriallist.SimilarSerials, name='Similarserial'),
     path('details/<int:id>/similar/<int:page>', series.seriallist.SimilarSerials, name='Similarserial_page'),
 
-    path('season/',include(urlsSeasons)),
+    path('season/', include(urlsSeasons)),
 ]

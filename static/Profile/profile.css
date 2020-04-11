@@ -142,7 +142,7 @@ a{
     grid-template-areas:
     "serials friends"
     "films .";
-    grid-template-columns: auto 330px;
+    grid-template-columns: auto 340px;
     grid-template-rows: 170px 170px;
     animation: fade-in 1s ease;
 }
@@ -160,6 +160,7 @@ a{
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
+    margin-bottom: 10px;
 }
 .friends>div>a{
     padding: 6px;
@@ -174,6 +175,9 @@ a{
     display: flex;
     flex-direction: column;
     align-items: stretch;
+}
+.serials>a{
+    border-left-color:#546de5;
 }
 
 .serials>div{
@@ -190,6 +194,9 @@ a{
     display: flex;
     flex-direction: column;
     align-items: stretch;
+}
+.films>a{
+    border-left-color: #e15f41;
 }
 .films>div{
     display: flex;

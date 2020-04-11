@@ -50,7 +50,7 @@
         </div>
 
         <div class="userrate">
-            <span class="bigspan">Пользовательская оценка</span>
+            <span class="bigspan">Общая оценка</span>
             <div>
                 <span>{{season.rating}}</span>
                 <div id="stars"></div>
@@ -70,52 +70,34 @@
             </div>
         </div>
 
-
+        {% comment %}
         {% if user.is_authenticated %}
             {% friendListS user.profile season %}
         {% endif %}
-
+        {% endcomment %}
         {% if UserItem %}
         
         <link rel="stylesheet" href={% static 'List/styles/numeric.css' %} type="text/css" />
-        <script src="{% static "Serials/scripts/episodeCounter.js" %}"></script>
-            <script src="{% static "List/scripts/rewatchCounter.js" %}"></script>
         <div class='actionpanel'>
             {% include "Serials/blocks/selectBox.html" %}
             {% include "Serials/blocks/stars.html" %}
+            <script src="{% static "List/scripts/ActionPanel.js" %}"></script>
+            <script src="{% static "List/scripts/getCookie.js" %}"></script>
             <div class="numchange">
-                <div class='numeric'>
-                    <span>Эпизоды:</span>
-                    <span id="userepisodeview_{{UserItem.id}}">{{UserItem.userepisode}}</span>
-                    <span>/</span>
-                    <span>{{season.episodecount}}</span>
-                </div>
+                <span>Эпизоды:</span>
                 <div class='numericinput'>
-                    <div>
-                        <span>Эпизоды:</span>
-                    </div>
-                    <div>
-                        <span onclick="decrement({{UserItem.id}})">-</span>
-                        <input id=numerinput_{{UserItem.id}} type="number" min=0 max={{UserItem.season.episodecount}} onchange="setepisode({{UserItem.id}})" value="{{UserItem.userepisode}}">
-                        <span onclick="increment({{UserItem.id}})">+</span>
-                    </div>
+                    <span onclick="setEpisode({{UserItem.id}},'dec')">-</span>
+                    <input id='numerinput_{{UserItem.id}}' type="number" min='0' max='{{UserItem.season.episodecount}}' onchange="setEpisode({{UserItem.id}},'set')" value="{{UserItem.userepisode}}">
+                    <span onclick="setEpisode({{UserItem.id}},'inc')">+</span>
                 </div>
             </div>
 
              <div class="numchange">
-                 <div class=numeric>
-                     <span>Повторные просмотры:</span>
-                     <span id="userRewatch_{{UserItem.id}}">{{UserItem.rewatch}}</span>
-                 </div>
+                 <span>Повторные просмотры:</span>
                  <div class=numericinput>
-                     <div>
-                          <span>Повторные просмотры:</span>
-                     </div>
-                     <div>
-                         <span onclick="decrementrewatch({{UserItem.id}})">-</span>
-                         <input id=numerinputRewatch_{{UserItem.id}} type="number" min=0 max=255 onchange="setrewatch({{UserItem.id}})" value="{{UserItem.rewatch}}">
-                         <span onclick="incrementrewatch({{UserItem.id}})">+</span>
-                     </div>
+                     <span onclick="setReWatch({{UserItem.id}},'dec')">-</span>
+                     <input id=numerinputRewatch_{{UserItem.id}} type="number" min=0 max=255 onchange="setReWatch({{UserItem.id}},'set')" value="{{UserItem.rewatch}}">
+                     <span onclick="setReWatch({{UserItem.id}},'inc')">+</span>
                  </div>
             </div>
              {% comment '' %}
@@ -124,26 +106,27 @@
         </div>
         {% else %}
         <div class="actionpanel">
-            <a href="{% url 'addserial' season.movie.id %}">Добавить сериал</a>
+            <a href="{% url 'addlist' season.movie.id %}">Добавить в список</a>
         </div>
         {% endif %}
-        <details class="discription" id="serialdiscription">
-            <summary class="bigspan">Описание</summary>
-            <p>{{season.disctiption}}</p>
-        </details>
-        <script>
-            AdaptiveOpenDetails(window,serialdiscription);
-        </script>
+        <div class="blocks">
+            <details class="discription" id="serialdiscription">
+                <summary class="bigspan">Описание</summary>
+                <p>{{season.disctiption}}</p>
+            </details>
+            <script>
+                AdaptiveOpenDetails(window,serialdiscription);
+            </script>
 
 
-        {% serieslist season %}
+            {% serieslist season %}
+        </div>
 
-        {% comment %}
+
         <div class="comments">
             <span class="bigspan">Комментарии</span>
             {% load comments %}
-            {% include 'Main/blocks/AddComment.html' %}
+            {% addcomments %}
             {% commentslist season %}
         </div>
-        {% endcomment %}
 </body>

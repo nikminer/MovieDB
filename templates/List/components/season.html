@@ -1,6 +1,6 @@
 {% for wl in seasons %}
-    <div class=season id="season:{{wl.id}}" ondragend="faststatus.style.opacity=0;faststatus.style.zIndex=-10;" draggable="true" ondragstart="drag(event)">
-        
+    <div class=season id="{{wl.id}}" ondragend="faststatus.style.opacity=0;faststatus.style.zIndex=-10;" draggable="true" ondragstart="drag(event)">
+
         <span class="status" style="background-color:{{wl.season.status.color}}">{{ wl.season.status.name }}</span>
         
         <a href="{% url 'season' wl.season.id %}">{{wl.season.name}} {% if wl.rewatch > 0 %}(<span id="userRewatch_{{wl.id}}">Повторных просмотров: {{wl.rewatch}}</span>){% endif %}</a>

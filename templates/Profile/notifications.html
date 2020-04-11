@@ -17,9 +17,9 @@
         {% if notifications %}
             {% for notification in notifications %}
                 <div id={{notification.id}} class="notification">
-                    <img src={{notification.obj.img.url}}>
+                    <img src={{notification.item.img.url}}>
                     <div>
-                        <a href="{{notification.url}}">{{notification.obj.name}}</a>
+                        <a href="{{notification.item.get_absolute_url}}">{{notification.item.name}}</a>
                         <span class="sended">{{notification.sended}}</span>
                         <span>{{notification.message}}</span>
                     </div>

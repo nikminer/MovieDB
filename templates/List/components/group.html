@@ -2,7 +2,7 @@
     <span class="groupspan">{{group.name}}</span>
     {% if group.list %}
         {% for movie,seasons in group.list.items %}
-            <div class="item" draggable="true">
+            <div class="item" id="{% if series is True %}{{groupname}}:{{movie.id}}{% else %}{{seasons.id}}{% endif %}" draggable="true" ondragstart="drag(event)" ondragend="faststatus.style.opacity=0;faststatus.style.zIndex=-10;" >
                 <div class="itemheader{% if series is False %}f{% endif %}">
                     <a class="itemname" href="{% url 'serial' movie.id %}" title="{{movie.name}}">{{movie.name}} ({{movie.year}}) {% if series is False and seasons.rewatch > 0 %}(<span id="userRewatch_{{seasons.id}}">Повторных просмотров: {{seasons.rewatch}}</span>){% endif %}</a>
                     {% if series is False %}
