@@ -34,6 +34,10 @@ class Profile(models.Model):
     def countNoties(self):
         return Notifications.objects.filter(profile__user=self.user).count()
 
+    @property
+    def img(self):
+        return self.photo
+
     def get_absolute_url(self):
         return "/profile/%s/" % self.user.username
 

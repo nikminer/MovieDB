@@ -3,6 +3,7 @@ from Profile.models import Profile, Follower
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.contrib import messages
+from Profile.views.notifications import addnotification
 
 
 @login_required
@@ -44,5 +45,6 @@ def follow(request, username):
         except Follower.DoesNotExist:
             Follower.objects.create(follow_from=from_profile, follow_to=to_profile)
             messages.success(request, "Вы успешно подписались на {}!".format(to_profile.name))
+            addnotification("Новый подписчик!", to_profile, obja= from_profile)
 
     return redirect('profile', username)

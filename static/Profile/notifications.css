@@ -53,7 +53,7 @@ body{
 .notification{
     display: grid;
     grid-template-areas: "poster message del";
-    grid-template-columns: 80px auto 30px;
+    grid-template-columns: 100px auto 30px;
     padding: 5px;
 }
 .notification>div{
