@@ -23,7 +23,9 @@
     border-left: 10px #3dc1d3 solid;
     font-weight: bold;
 }
-
+h1{
+    margin: 0;
+}
 html{
     min-height:100%;
     scroll-behavior: smooth;

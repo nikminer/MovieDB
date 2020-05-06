@@ -1,2 +1,6 @@
 User-agent: *
 Disallow: /list/
+Disallow: /admin/
+
+Clean-param: ref /film/
+Clean-param: ref /serial/

@@ -7,3 +7,4 @@ django-crontab
 social-auth-app-django
 django-taggit
 tmdbsimple
+django-analytical
