@@ -84,7 +84,10 @@ body{
     border-bottom: #e15f41 2px solid;
     padding-bottom: 10px;
 }
-
+.FilmName>h1{
+    font-size: 25px;
+    margin-bottom: 0px;
+}
 .poster{
     grid-area: poster;
     width: 200px;

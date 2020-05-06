@@ -40,12 +40,16 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     'django_crontab',
     'taggit',
+    'analytical',
     'MyWatchList.apps.MywatchlistConfig',
     'Profile.apps.ProfileConfig',
     'reset_migrations'
 ]
 
 SITE_ID = 1
+
+YANDEX_METRICA_COUNTER_ID = 56055628
+YANDEX_METRICA_WEBVISOR	= True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -62,8 +66,7 @@ ROOT_URLCONF = 'MovieNet.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
-        ,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

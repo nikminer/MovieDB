@@ -3,7 +3,7 @@
 {% load FilmTags %}
 
 <link rel="stylesheet" href={% static 'Films/styles/film.css' %} type="text/css" />
-
+<meta name="description" content="{{film.disctiption}}" />
 <title>{{film.name}} / {{film.originalname}} / Фильм</title>
 
 <body>
@@ -14,15 +14,15 @@
     </div>
 
         <div class="FilmName">
-            <span>{{film.name}} / {{film.originalname}}</span>
+            <h1>{{film.name}} / {{film.originalname}}</h1>
         </div>
         
         <img class="poster" src={{film.img.url}}>
         
         <div class="Filminfo">
-            <span class="bigspan">
+            <h1 class="bigspan">
                 Информация
-            </span>
+            </h1>
             <div>
                 <span>
                     Тип: <span>Фильм</span>
@@ -34,18 +34,18 @@
                     {% endfor %}
                 </span>
                 <span>
-                    Дата выхода: <span>{{film.year}}</span>
+                    Дата выхода: <span>{{film.release_date}}</span>
                     
                 </span>
                 <span>
                     Длительность эпизода: <span>{{film.length}} минут</span>
                 </span>
-                <a href="https://www.kinopoisk.ru/film/{{film.kinopoiskid}}">Страница на Кинопоиск</a>
+                <a href="https://www.themoviedb.org/movie/{{film.tmdbid}}">Страница на TMDB</a>
             </div>
         </div>
 
         <div class="userrate">
-            <span class="bigspan">Общая оценка</span>
+            <h1 class="bigspan">Общая оценка</h1>
             <div>
                 <span>{{film.rating}}</span>
                 <div id="stars"></div>
@@ -110,7 +110,7 @@
 
 
         <div class="comments">
-            <span class="bigspan">Комментарии</span>
+            <h1 class="bigspan">Комментарии</h1>
             {% load comments %}
             {% addcomments %}
             {% commentslist film %}

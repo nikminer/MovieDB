@@ -1,7 +1,7 @@
 {% load static %}
 <link rel="stylesheet" href={% static 'Serials/styles/seasons.css' %} type="text/css" />
 <div class="seasons">
-    <span class="bigspan">Сезоны</span>
+    <h1 class="bigspan">Сезоны</h1>
     <div class=seasonList>
         {% for i in seasons %}
             <a href="{% url 'season' i.id %}" class=season >
