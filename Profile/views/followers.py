@@ -45,6 +45,6 @@ def follow(request, username):
         except Follower.DoesNotExist:
             Follower.objects.create(follow_from=from_profile, follow_to=to_profile)
             messages.success(request, "Вы успешно подписались на {}!".format(to_profile.name))
-            addnotification("Новый подписчик!", to_profile, obja= from_profile)
+            addnotification("Новый подписчик!", to_profile, obj= from_profile)
 
     return redirect('profile', username)

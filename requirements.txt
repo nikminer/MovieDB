@@ -8,3 +8,4 @@ social-auth-app-django
 django-taggit
 tmdbsimple
 django-analytical
+django-reset-migrations

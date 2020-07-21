@@ -21,10 +21,11 @@
             .bgimg {
             {% if profile.photobg %}
                 background-image: url({{profile.photobg.url}});
-            {% else %}
-                background-image: url(https://loremflickr.com/440/360/abstract);
-            {% endif %}
                 background-size: contain;
+            {% else %}
+                background-image: url(https://loremflickr.com/800/600/abstract);
+                background-size: cover;
+            {% endif %}
                 background-attachment: fixed;
                 background-position: top;
             }
