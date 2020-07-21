@@ -29,7 +29,7 @@ def SimilarSerials(request, id, page=1):
     similar_serials = Movie.manager.get_series().filter(tags__in=tags_ids) \
         .exclude(id=serial.id)
     Serials = similar_serials.annotate(same_tags=Count('tags')) \
-        .order_by('-same_tags')
+        .order_by("-rating",'-same_tags')
 
     data={
         "series": serial,

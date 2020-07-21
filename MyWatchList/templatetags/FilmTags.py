@@ -22,7 +22,7 @@ def SimilarFilms(movie):
         .exclude(id=movie.id)
 
     similar = similar.annotate(same_tags=Count('tags')) \
-        .order_by('-same_tags', '-rating')[:5]
+        .order_by('-rating','-same_tags')[:5]
 
     return {
         "similar": similar,

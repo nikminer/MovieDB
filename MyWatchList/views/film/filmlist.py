@@ -27,7 +27,7 @@ def FilmListSimilar(request, id, page=1):
     similar_films = Movie.manager.get_films().filter(tags__in=tags_ids) \
         .exclude(id=film.id)
     FilmList = similar_films.annotate(same_tags=Count('tags')) \
-                        .order_by('-same_tags', '-rating')
+                        .order_by("-rating",'-same_tags')
 
     if request.is_ajax():
         return render(request, "Films/blocks/List_Ajax.html", {
