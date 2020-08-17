@@ -1,0 +1,15 @@
+{% load static %}
+<link rel="stylesheet" href={% static 'Main/styles/comments.css' %} type="text/css" />
+
+{% if user.is_authenticated %}
+    <form action= {% url 'addReplyComment' item.id %} class="addreply" method="post">
+        {{ replyform.text }}
+        <div class="commentspoiler" title="Отметьте если ваш ответ сожержит спойлеры.">
+            <label for="id_spoiler">Спойлер:</label>
+            {{ replyform.spoiler }}
+        </div>
+        
+        {% csrf_token %}
+        <input type="submit" class="commentsubmit" value="Оставить ответ">
+    </form>
+{% endif %}

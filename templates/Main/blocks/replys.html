@@ -1,0 +1,17 @@
+{% load static %}
+
+
+{% for reply in replys %}
+    <div class="reply">
+    <img src="{{ reply.user.profile.photo.url }}">
+        <a class="profile" href="{{ reply.user.profile.get_absolute_url }}">{{ reply.user.profile.name }}</a>
+        {% if reply.spoiler %}
+            <span class="spoilerAlert">Spoiler alert! Чтобы увидеть комментарий кликните по серой зоне.</span>
+        {% endif %}
+        <p {% if comment.spoiler %}class="spoiler" onclick="this.classList.remove('spoiler')" {% endif %}>
+            {{ reply.text }}
+        </p>
+        <span class="time">{{ reply.created|timesince }} назад</span>
+        
+    </div>
+{% endfor %}

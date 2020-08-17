@@ -8,6 +8,7 @@ from .userstatus import UserStat
 
 from Profile.views.feed import create_item_feed
 
+
 @listID_requeired
 @ajax_required
 @login_required

@@ -6,10 +6,8 @@ from django.conf.urls.static import static
 from django.contrib import admin
 
 from Profile import urls as urlsProfile
+from MyWatchList import urls as urlsMW
 
-from MyWatchList.views.series import urls as urlsSeries
-from MyWatchList.views.film import urls as urlsFilms
-from MyWatchList.views.list import urls as urlsList
 from MyWatchList import views as MWView
 
 from django.contrib.sitemaps.views import sitemap
@@ -39,12 +37,7 @@ urlpatterns = [
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     path('robots.txt', TemplateView.as_view(template_name="robots.txt", content_type='text/plain')),
 
-
-    path('serial/',include(urlsSeries),),
-    path('film/',include(urlsFilms)),
-
-    path('list/',include(urlsList), name='list'),
-
+    path('',include(urlsMW)),
     path('profile/',include(urlsProfile), name='profile'),
     path('admin/', admin.site.urls),
 

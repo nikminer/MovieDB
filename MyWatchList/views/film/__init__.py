@@ -19,16 +19,7 @@ def film(request, id):
         except WatchList.DoesNotExist:
             pass
 
-    if request.method == 'POST':
-        from MyWatchList.forms import CommentForm
-        comment_form = CommentForm(data=request.POST)
-        if comment_form.is_valid():
-            new_comment = comment_form.save(commit=False)
-            new_comment.item = film
-            new_comment.user = request.user
-            new_comment.save()
-            from django.http import HttpResponseRedirect
-            return HttpResponseRedirect(film.get_absolute_url())
+    
 
     return render(request, "Films/film.html", data)
 

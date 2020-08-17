@@ -173,3 +173,25 @@ class CommentModel(models.Model):
 
     spoiler = models.BooleanField(default=False)
     active = models.BooleanField(default=True)
+
+    def get_absolute_url(self):
+        return self.item.get_absolute_url()
+
+    def __str__(self):
+        return " - ".join((self.item.name, self.user.profile.name))
+
+class ReplyModel(models.Model):
+    item = models.ForeignKey(CommentModel, on_delete=models.CASCADE)
+
+    comments = CommentManager()
+    objects = models.Manager()
+
+    user = models.ForeignKey(User, on_delete=models.SET_DEFAULT, default=0)
+
+    text = models.TextField()
+
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    spoiler = models.BooleanField(default=False)
+    active = models.BooleanField(default=True)

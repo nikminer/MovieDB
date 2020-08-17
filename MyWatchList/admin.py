@@ -1,19 +1,19 @@
 from django.contrib import admin
-from .models import Movie, CommentModel, Season, SeriesList
+from .models import Movie, CommentModel, Season, SeriesList, ReplyModel
 
 
+@admin.register(Movie)
 class MovieAdmin(admin.ModelAdmin):
     list_display = ('name', 'originalname', 'year', 'length', 'rating', 'release_date', 'series')
     list_filter = ('series','year', 'tags')
     search_fields = ('name', 'originalname', 'disctiption',)
 
 
-admin.site.register(Movie, MovieAdmin)
-
 
 class SeriesListInline(admin.TabularInline):
     model = SeriesList
-
+    
+@admin.register(Season)
 class SeasonAdmin(admin.ModelAdmin):
     list_display = ('name', 'movie', 'status', 'episodecount', 'rating',)
     list_filter = ('status', 'movie__tags', 'movie')
@@ -22,12 +22,14 @@ class SeasonAdmin(admin.ModelAdmin):
     inlines = [SeriesListInline]
 
 
-admin.site.register(Season, SeasonAdmin)
 
-
-
+@admin.register(CommentModel)
 class ActionAdmin(admin.ModelAdmin):
     list_display = ('user', 'text', 'item', 'created','spoiler','active')
     list_filter = ('created',)
 
-admin.site.register(CommentModel,ActionAdmin)
+@admin.register(ReplyModel)
+class ActionAdmin(admin.ModelAdmin):
+    list_display = ('user', 'text', 'item', 'created','spoiler','active')
+    list_filter = ('created',)
+

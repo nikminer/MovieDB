@@ -16,18 +16,6 @@ def series(request, id):
             season.InMyList = WatchList.objects.filter(user=request.user, season=season).exists()
 
 
-    if request.method == 'POST':
-        from MyWatchList.forms import CommentForm
-        comment_form = CommentForm(data=request.POST)
-        if comment_form.is_valid():
-            new_comment = comment_form.save(commit=False)
-            new_comment.item = series
-            new_comment.user = request.user
-            new_comment.save()
-            from django.http import HttpResponseRedirect
-            return HttpResponseRedirect(series.get_absolute_url())
-
-
     data = {
         "series": series,
         "seasons": seasons,

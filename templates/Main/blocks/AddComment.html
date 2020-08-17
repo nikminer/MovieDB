@@ -2,7 +2,7 @@
 <link rel="stylesheet" href={% static 'Main/styles/comments.css' %} type="text/css" />
 
 {% if user.is_authenticated %}
-    <form class="addcomment" method="post">
+    <form action={% url action item.id %} class="addcomment" method="post">
         {{ commentform.text }}
         <div class="commentspoiler" title="Отметьте если ваш коментарий сожержит спойлеры.">
             <label for="id_spoiler">Спойлер:</label>
@@ -12,7 +12,7 @@
         <input type="submit" class="commentsubmit" value="Оставить комментарий">
     </form>
 {% else %}
-    <div  class="addcomment">
+    <div class="addcomment">
         <span>Для того чтобы оставить комментарий <a href="{% url 'login' %}">войдите в свой аккаунт.</a></span>
     </div>
 {% endif %}
