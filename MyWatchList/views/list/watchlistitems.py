@@ -6,7 +6,7 @@ from django.views.decorators.http import require_POST
 from MyWatchList.views.decoratiors import ajax_required, listID_requeired
 from .userstatus import UserStat
 
-from Profile.views.feed import create_item_feed
+
 
 
 @listID_requeired
@@ -27,7 +27,7 @@ def setrating(request):
     item.save()
 
 
-    create_item_feed(request.user.profile, "Оценил на {0} баллов".format(item.userrate), item.season if item.season else item.movie, "rating")
+    createItemFeed(request.user.profile, "Оценил на {0} баллов".format(item.userrate), item.season if item.season else item.movie, "rating")
 
     if item.season:
         item.season.rating= round(
@@ -53,7 +53,7 @@ def rewatch(request):
             item.rewatch += 1
             item.save()
 
-            create_item_feed(request.user.profile, "Изменил повторные просмотры на {0}".format(item.rewatch),
+            createItemFeed(request.user.profile, "Изменил повторные просмотры на {0}".format(item.rewatch),
                              item.season if item.season else item.movie, "rewatch")
 
             return JsonResponse({'status': True, "rewatch": item.rewatch})
@@ -64,7 +64,7 @@ def rewatch(request):
             item.rewatch -= 1
             item.save()
 
-            create_item_feed(request.user.profile, "Изменил повторные просмотры на {0}".format(item.rewatch),
+            createItemFeed(request.user.profile, "Изменил повторные просмотры на {0}".format(item.rewatch),
                              item.season if item.season else item.movie, "rewatch")
 
             return JsonResponse({'status': True, "rewatch": item.rewatch})
@@ -80,7 +80,7 @@ def rewatch(request):
             item.userstatus = UserStat.get('planned')['id']
             item.save()
 
-            create_item_feed(request.user.profile, "Изменил повторные просмотры на {0}".format(item.rewatch),
+            createItemFeed(request.user.profile, "Изменил повторные просмотры на {0}".format(item.rewatch),
                              item.season if item.season else item.movie, "rewatch")
 
         return JsonResponse({'status': True, "rewatch": item.rewatch})
@@ -100,15 +100,15 @@ def setepisode(request):
         if item.userepisode + 1 < item.season.episodecount:
             item.userepisode += 1
             if item.userstatus == UserStat.get('planned')['id']:
-                item.userstatus = UserStat.get('watch')['id'];
+                item.userstatus = UserStat.get('watch')['id']
             item.save()
-            create_item_feed(request.user.profile, "Посмотрел {0} эпизод".format(item.userepisode),
+            createItemFeed(request.user.profile, "Посмотрел {0} эпизод".format(item.userepisode),
                              item.season if item.season else item.movie, "episode")
         elif item.userepisode + 1 == item.season.episodecount:
             item.userepisode += 1
             item.userstatus = UserStat.get('watched')['id']
             item.save()
-            create_item_feed(request.user.profile,
+            createItemFeed(request.user.profile,
                              "Закончил смотреть {}".format(item.season.name),
                              item.season if item.season else item.movie, "status")
         return JsonResponse({'status': True, "userepisode": item.userepisode})
@@ -148,7 +148,15 @@ def setstatus(request):
         for item in items:
             item.userstatus = UserStat.get(data['status'])['id']
             item.save()
-            create_item_feed(request.user.profile, "Изменил статус на {0}".format(UserStat.get(data['status'])['name']),
-                             item.season if item.season else item.movie, "status")
+            createItemFeed(request.user.profile,"Изменил статус на {0}".format(UserStat.get(data['status'])['name']),
+               item.season if item.season else item.movie, "status" )
         return JsonResponse({'status': True, 'userstatus': data['status']})
     return JsonResponse({'status': False})
+
+def createItemFeed(user, text, item, typeitem):
+    
+    try:
+        from Profile.views.feed import create_item_feed
+        create_item_feed(user, text,item, typeitem)
+    except ImportError:
+        pass
