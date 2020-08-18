@@ -48,7 +48,6 @@
         {% else %}
             {% include 'Main/infopage.html' %}
         {% endif %}
-
         {% if user.is_authenticated %}
             <div class="list block">
                 <div class="sectionspanandrefer">
@@ -60,7 +59,6 @@
                 {% FeedActivity %}
             </div>
         {% endif %}
-
         <div class="footer">
             <div style="width:100px">
                 <img src={% static "images/logo.png" %}>
