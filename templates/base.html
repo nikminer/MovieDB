@@ -1,12 +1,11 @@
-{% load static %}
-{% load yandex_metrica %}
-<link rel="stylesheet" href={% static 'base.css' %} type="text/css" />
-<link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
-
-{% yandex_metrica %}
-
-<link rel="yandex-tableau-widget" href="https://mywatchlist.ru/static/manifest.json" />
-
+<head>
+    {% load static %}
+    {% load yandex_metrica %}
+    <link rel="stylesheet" href={% static 'base.css' %} type="text/css" />
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    {% yandex_metrica %}
+    <link rel="yandex-tableau-widget" href="https://mywatchlist.ru/static/manifest.json" />
+</head>
 <nav>
     <div>
         <a href="{% url 'index' %}" class="navitem" style="background-color:#303952">
@@ -24,7 +23,6 @@
             <span>Фильмы</span>
         </a>
     </div>
-
     <div>
         {% if user.is_authenticated %}
         <a href="{% url 'noties' %}" class="navitem" style="background-color:#c44569">
@@ -33,7 +31,6 @@
             {% if request.user.profile.countNoties > 0 %}
                 <b class="counter">{{request.user.profile.countNoties}}</b>
             {% endif %}
-            
         </a>
         <a href="{% url 'profile' request.user.username %}" class="navitem" style="background-color:#c44569">
             <img src="{{request.user.profile.photo.url}}">
@@ -43,10 +40,7 @@
         {% endif %}
             <span>Мой профиль</span>
         </a>
-        
-        
     </div>
-    
     <div>
         {% if user.is_authenticated %}
         <a href="{% url 'listserial' request.user.username %}" class="navitem" style="background-color:#3dc1d3">
@@ -65,7 +59,6 @@
             <span>Мои Фильмы</span>
         </a>
     </div>
-
     <div>
         {% if user.is_authenticated %}
             <a href="{% url 'logout' %}" style="background-color:#303952" class="navitem">
@@ -80,8 +73,6 @@
         {% endif %}
     </div>
 </nav>
-
-    
 {% if messages  %}
     <div class="messages">
         {% for message in messages %}
@@ -92,13 +83,10 @@
         {% endfor %}
     </div>
 {% endif %}
-
-
 <a id="TopBtn" onclick="window.scrollTo(0,0)">
     <img src={% static "images/navbar/up.png" %}>
     <span>Вверх</span>
 </a>
-
 <script>
     document.onscroll=function() {
         if(window.pageYOffset>=200){
@@ -113,7 +101,5 @@
                 details.open=true;
             else
                 details.open=false;
-
     }
-
 </script>
