@@ -1,7 +1,7 @@
 {% load static %}
 {% include "../base.html" %}
 
-<title>Добавление в MovieNET</title>
+<title>Добавление в MyWatchList</title>
 <meta name="description" content="Для сохранения целостности и актуальности базы данных данного сервиса, добавление фильмов и сериалов происходит после подтверждения существования фильма или сериала в The Movie Database, т.е. прежде чем добавить сериал или фильм его нужно найти." />
 
 <link rel="stylesheet" href={% static 'Main/styles/addmovie.css' %} type="text/css" />
@@ -9,8 +9,8 @@
 <body>
     <h1 class="HeadName">Добавление в MyWatchList</h1>
     <div class="Search">
-        <input id="searchbox" type="text" placeholder="Введите название фильма">
-        <button onclick="search()">Поиск</button>
+        <input id="searchbox" onKeyUp="onchangeInputSearch()" type="text" placeholder="Введите название фильма или сериала">
+        <button disabled id="searchBtn" onclick="searchTMDB()">Поиск</button>
     </div>
     <p class="discript">
         Для сохранения целостности и актуальности базы данных данного сервиса, добавление фильмов и сериалов происходит после подтверждения существования фильма или сериала в The Movie Database, т.е. прежде чем добавить сериал или фильм его нужно найти. Поэтому пожалуйста найдите его через поле поиска ниже, а после нажмите на сериал или фильм.
