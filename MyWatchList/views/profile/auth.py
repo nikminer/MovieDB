@@ -1,8 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate, login,logout
-from Profile.forms import LoginForm,UserRegistrationForm,UserResetPass
-from Profile.models import Profile
+from MyWatchList.forms.Auth import LoginForm,UserRegistrationForm,UserResetPass
+from MyWatchList.models import Profile
 from django.contrib import messages
 from .feed import create_feed
 

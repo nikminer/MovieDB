@@ -1,0 +1,14 @@
+<div class="friends">
+    {% if following|length > 0 %}
+        <span class="bigspan">Ваши подписки</span>
+        <div>
+        {% for follow in following %}
+            <a href="{% url "listfilm" friend.user.username %}?groups={{ follow.get_statusTag }}" title="{{ follow.user.profile.name }}">
+                <img src="{{follow.user.profile.photo.url}}">
+                {{ follow.get_status }} - {{ follow.userrate }}/10
+            </a>
+        {% endfor %}
+
+        </div>
+    {% endif %}
+</div>

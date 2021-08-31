@@ -1,5 +1,5 @@
 from django.urls import path
-from Profile import views
+from MyWatchList.views import profile as views
 
 
 from django.contrib.auth import views as Authviews

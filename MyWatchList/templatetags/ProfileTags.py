@@ -1,5 +1,5 @@
 from django import template
-from ..models import Follower
+from MyWatchList.models import Follower
 
 
 register = template.Library()

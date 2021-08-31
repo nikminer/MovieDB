@@ -1,5 +1,5 @@
 {% load static %}
-{% load index_tags %}
+{% load IndexTags %}
 {% include "../base.html" %}
 <link rel="stylesheet" href={% static 'Main/styles/index.css' %} type="text/css" />
 <link rel="stylesheet" href={% static 'Main/styles/feed.css' %} type="text/css" />
@@ -55,7 +55,7 @@
                 </div>
                 <link rel="stylesheet" href={% static 'Profile/AjaxPagination.css' %} type="text/css" />
                 <script src="{% static "Main/scripts/AjaxPagination.js" %}"></script>
-                {% load feedTags %}
+                {% load FeedTags %}
                 {% FeedActivity %}
             </div>
         {% endif %}

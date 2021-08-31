@@ -1,7 +1,8 @@
 from . import change
 
 from django.shortcuts import render, get_object_or_404
-from MyWatchList.models import WatchList,Season,SeriesList
+from MyWatchList.models import WatchList
+from MyWatchList.models import Season,SeriesList
 
 def season(request,id):
     season=get_object_or_404(Season,id=id)

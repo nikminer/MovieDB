@@ -1,10 +1,10 @@
 from . import auth, settings, messages, notifications, feed, followers
 
 from django.shortcuts import render, get_object_or_404
-from Profile.models import Profile, Follower
+from MyWatchList.models import Profile, Follower
 from django.db.models import Q
 
-from Profile.views.feed import getFeed
+from MyWatchList.views.profile.feed import getFeed
 
 
 def profile(request, username):

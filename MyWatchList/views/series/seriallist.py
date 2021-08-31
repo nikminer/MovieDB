@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 
 from django.db.models import Count
-from MyWatchList.models import Movie, WatchList
-
+from MyWatchList.models import Movie
+from MyWatchList.models import WatchList
 from django.http import HttpResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 

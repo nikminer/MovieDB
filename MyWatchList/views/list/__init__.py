@@ -6,7 +6,8 @@ from django.contrib.auth.models import User
 
 from MyWatchList.views.list.userstatus import UserStat
 
-from MyWatchList.models import WatchList, Movie
+from MyWatchList.models import WatchList
+from MyWatchList.models import Movie
 
 
 

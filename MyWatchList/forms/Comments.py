@@ -1,5 +1,5 @@
 from django import forms
-from .models import CommentModel
+from MyWatchList.models import CommentModel
 
 class CommentForm(forms.ModelForm):
     text = forms.CharField(widget=forms.Textarea(attrs={"placeholder":"Ваш комментарий","class":"text"}), label="", )

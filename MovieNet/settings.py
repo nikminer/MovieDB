@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'taggit',
     'analytical',
     'MyWatchList.apps.MywatchlistConfig',
-    'Profile.apps.ProfileConfig',
     'reset_migrations'
 ]
 

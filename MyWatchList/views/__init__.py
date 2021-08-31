@@ -1,14 +1,12 @@
 from . import film,series,list
-
 from . import addmovie, decoratiors, ErrorsHandler
 
-from Profile.models import Profile
+from MyWatchList.models import Profile
 from MyWatchList.models import Movie
 from django.db.models import Q 
 from django.shortcuts import render
 
 def index(request):
-
     return render(request, "Main/index.html")
 
 def searchPage(request):

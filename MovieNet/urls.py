@@ -5,8 +5,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 
-from Profile import urls as urlsProfile
-
+from MyWatchList.views.profile import urls as urlsProfile
 from MyWatchList.views.series import urls as urlsSeries
 from MyWatchList.views.film import urls as urlsFilms
 from MyWatchList.views.list import urls as urlsList
@@ -14,8 +13,7 @@ from MyWatchList import views as MWView
 
 from django.contrib.sitemaps.views import sitemap
 
-from Profile.sitemaps import ProfileSitemap
-from MyWatchList.sitemaps import MoviesSitemap
+from MyWatchList.sitemaps import MoviesSitemap, ProfileSitemap
 
 
 handler404 = MWView.ErrorsHandler.error_404

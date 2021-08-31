@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect,get_object_or_404
-from Profile.models import Profile,Friendlist,Messages
+from MyWatchList.models import Profile,Messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.http import JsonResponse

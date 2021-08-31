@@ -70,11 +70,11 @@
             </div>
         </div>
 
-        {% comment %}
+        
         {% if user.is_authenticated %}
-            {% friendListS user.profile season %}
+            {% followingListS user.profile season %}
         {% endif %}
-        {% endcomment %}
+        
         {% if UserItem %}
         
         <link rel="stylesheet" href={% static 'List/styles/numeric.css' %} type="text/css" />
@@ -125,7 +125,7 @@
 
         <div class="comments">
             <span class="bigspan">Комментарии</span>
-            {% load comments %}
+            {% load Comments %}
             {% addcomments %}
             {% commentslist season %}
         </div>

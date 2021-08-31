@@ -64,12 +64,9 @@
                 </script>
             </div>
         </div>
-        {% comment %}
         {% if user.is_authenticated %}
-
-            {% friendListF user.profile film %}
+            {% followingListF user.profile film %}
         {% endif %}
-        {% endcomment %}
         <link rel="stylesheet" href={% static 'List/styles/numeric.css' %} type="text/css" />
 
         {% if UserItem %}
@@ -111,7 +108,7 @@
 
         <div class="comments">
             <h1 class="bigspan">Комментарии</h1>
-            {% load comments %}
+            {% load Comments %}
             {% addcomments %}
             {% commentslist film %}
         </div>
