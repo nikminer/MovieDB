@@ -1,4 +1,4 @@
-from . import auth, settings, messages, notifications, feed, followers
+from . import auth, settings, messages, notifications, feed, followers, userlist
 
 from django.shortcuts import render, get_object_or_404
 from MyWatchList.models import Profile, Follower

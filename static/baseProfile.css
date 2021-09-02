@@ -1,0 +1,59 @@
+html{
+    background-color: var(--profile-color--);
+    max-width: 100%;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.headBlock{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+.bckbtn{
+    font-weight: bold;
+    background-color: var(--profile-color--);
+    color: white;
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    padding: 2px;
+}
+.bckbtn>span{
+    background-color: rgb(241, 241, 241);
+    color: black;
+    width: 100%;
+    transition: all 0.5s ease;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 2px;
+}
+.bckbtn>*{
+    padding: 5px 0;
+}
+.bckbtn:hover>span{
+    background-color: var(--profile-color--);
+    color: white;
+}
+
+.bigspan{
+    border-left-color: var(--profile-color--);
+}
+
+
+@media (max-device-width: 425px) {
+    .bckbtn{
+        padding: 3px;
+    }
+    .bckbtn>span{
+        font-size: 26px;
+    }
+}

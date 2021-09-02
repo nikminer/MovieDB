@@ -1,50 +1,7 @@
-html{
-    background-color: #c44569;
-   }
-body{
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
-.headBlock{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 20px;
-}
-
-.bckbtn{
-    font-weight: bold;
-    background-color: #c44569;
-    color: white;
-    display: flex;
-    flex-direction:row;
-    align-items: center;
-    cursor: pointer;
-    text-decoration: none;
-    padding: 2px;
-}
-.bckbtn>span{
-    background-color: rgb(241, 241, 241);
-    color: black;
-    width: 100%;
-    transition: all 0.5s ease;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-left: 2px;
-}
-.bckbtn>*{
-    padding: 5px 0;
-}
-.bckbtn:hover>span{
-    background-color: #c44569;
-    color: white;
-}
 
 .requestf{
     font-weight: bold;
-    background-color: #c44569;
+    background-color: var(--profile-color--);
     color: white;
     display: flex;
     flex-direction:row;
@@ -67,7 +24,7 @@ body{
     margin-left: 2px;
 }
 .requestf:hover>span{
-    background-color: #c44569;
+    background-color: var(--profile-color--);
     color: white;
 }
 
@@ -142,18 +99,11 @@ body{
     transition: all 0.5s ease;
 }
 .follower>div>a:hover{
-    background-color: #c44569;
+    background-color: var(--profile-color--);
     color: white;
 }
 
 @media (max-device-width: 425px) {
-    .bckbtn{
-        padding: 3px;
-    }
-    .bckbtn>span{
-        font-size: 26px;
-    }
-
     .requestf{
         padding: 3px;
     }
@@ -201,6 +151,3 @@ body{
 }
 
 
-.bigspan{
-    border-left-color: #c44569;
-}

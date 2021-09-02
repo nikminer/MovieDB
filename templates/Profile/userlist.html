@@ -1,0 +1,17 @@
+{% load static %}
+{% include "../baseProfile.html" %}
+
+<link rel="stylesheet" href={% static 'Profile/userlist.css' %} type="text/css" />
+
+<body>
+    <div class="headBlock">
+        <a href={% url 'profile' profile.user.username %} class="bckbtn">
+            <b>◄</b><span>К профилю</span>
+        </a>
+    </div>
+    <div class="UserLists">
+        {% for list in userlists %}
+            <a>{{ list.name }}</a>
+        {% endfor %}
+    </div>
+</body

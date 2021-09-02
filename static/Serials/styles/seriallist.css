@@ -1,13 +1,4 @@
-html{
- background-color: #546de5;
-}
 
-.headBlock{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 20px;
-}
 .HeadName{
     font-size: 25px;
     font-weight: bold;
@@ -20,18 +11,18 @@ html{
     transition: all 0.5s ease;
     text-align: center;
     font-weight: bold;
-    background-color: #546de5;
+    background-color: var(--serial-color--);
 }
 .addserial:hover{
-    background-color: #1738db;
+    background-color: var(--serial-color--);
 }
 .pagedisc{
     margin: 20px;
     margin-bottom: 10px;
     padding-top: 15px;
     padding-bottom: 15px;
-    border-top: #546de5 solid 2px;
-    border-bottom: #546de5 solid 2px;
+    border-top: var(--serial-color--) solid 2px;
+    border-bottom: var(--serial-color--) solid 2px;
 }
 
 .serials{
@@ -88,38 +79,6 @@ html{
 }
 
 
-.bckbtn{
-    grid-area: bckbtn;
-    font-weight: bold;
-    background-color: #1738db;
-    color: white;
-    display: flex;
-    flex-direction:row;
-    align-items: center;
-    cursor: pointer;
-    text-decoration: none;
-    padding: 2px;
-}
-
-.bckbtn>span{
-    background-color: rgb(241, 241, 241);
-    color: black;
-    width: 100%;
-    transition: all 0.5s ease;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-left: 2px;
-}
-.bckbtn>*{
-    padding: 5px 0;
-}
-.bckbtn:hover>span{
-    background-color: #1738db;
-    color: white;
-}
-
-
-
 .filters{
     grid-area: filters;
     display: flex;
@@ -136,7 +95,7 @@ html{
 .groupspan{
     font-size: 18px;
     font-weight: bold;
-    border-left: #1738db 10px solid;
+    border-left: var(--serial-color--) 10px solid;
     padding-left: 5px;
 }
 
@@ -148,7 +107,7 @@ html{
     transition: all 0.5s ease;
 }
 .filter>label:hover{
-    background-color: #1738db;
+    background-color: var(--serial-color--);
     color: white;
 }
 .filter>label>span{
@@ -161,7 +120,7 @@ html{
     display: none;
 }
 .filter>label> input[type=checkbox]:checked+span  {
-    background-color: #1738db;
+    background-color: var(--serial-color--);
     color: white;
 }
 
@@ -177,7 +136,7 @@ html{
     width: 100%;
 }
 .filters>button:hover{
-    background-color: #1738db;
+    background-color: var(--serial-color--);
     color: #fff;
 }
 
@@ -212,15 +171,7 @@ html{
     .serialsmallinfo{
         font-size: 23px;
     }
-
-    .bckbtn{
-        margin-bottom: 20px;
-        padding: 3px;
-    }
-    .bckbtn>span{
-        font-size: 26px;
-    }
-
+    
     .groupspan {
         font-size: 24px;
         padding-left: 15px;
@@ -245,10 +196,3 @@ html{
         color: black;
     }
 }
-
-
-
-
-
-
-

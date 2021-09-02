@@ -1,0 +1,11 @@
+
+
+.UserLists {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+.UserLists>a{
+    height: 30px;
+    padding: 5px;
+}
