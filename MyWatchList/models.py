@@ -284,3 +284,16 @@ class WatchList(models.Model):
     def get_statusTag(self):
         from MyWatchList.views.list.userstatus import UserTagsStatusDict
         return UserTagsStatusDict.get(self.userstatus)
+
+class UserList(models.Model):
+    name = models.CharField(max_length=50)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return self.name
+
+class UserListRecord(models.Model):
+    header = models.ForeignKey(UserList, on_delete=models.CASCADE)
+    movie  = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    class Meta:
+        unique_together = ('header', 'movie')

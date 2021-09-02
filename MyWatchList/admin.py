@@ -2,6 +2,7 @@ from django.contrib import admin
 from MyWatchList.models import CommentModel
 from MyWatchList.models import Movie, Season, SeriesList
 from MyWatchList.models import Notifications, Feed, Profile
+from MyWatchList.models import UserList, UserListRecord
 
 
 @admin.register(Movie)
@@ -45,3 +46,15 @@ class ProfileAdmin(admin.ModelAdmin):
     list_display = ('name','user', 'sex','age','date_of_birth')
     list_filter = ('sex',)
     search_fields = ('name','user')
+
+
+class UserListRecordInline(admin.TabularInline):
+    model = UserListRecord
+
+@admin.register(UserList)
+class UserListAdmin(admin.ModelAdmin):
+    list_display = ('name', 'user',)
+    search_fields = ('name', 'user',)
+    raw_id_fields = ('user',)
+    inlines = [UserListRecordInline]
+
