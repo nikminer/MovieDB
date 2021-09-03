@@ -9,3 +9,4 @@ django-taggit
 tmdbsimple
 django-analytical
 django-reset-migrations
+python-dateutil

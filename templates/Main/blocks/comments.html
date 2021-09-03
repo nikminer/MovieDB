@@ -13,11 +13,12 @@
             {{ comment.text }}
         </p>
         <span class="time">{{ comment.created|timesince }} назад</span>
-
+        {% comment %}
         {% addreply comment %}
 
         <div class="replys">
             {% ReplyList comment %}
         </div>
+        {% endcomment %}
     </div>
 {% endfor %}

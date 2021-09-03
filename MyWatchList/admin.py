@@ -3,7 +3,7 @@ from MyWatchList.models import CommentModel
 from MyWatchList.models import Movie, Season, SeriesList
 from MyWatchList.models import Notifications, Feed, Profile
 from MyWatchList.models import UserList, UserListRecord
-from .models import Movie, CommentModel, Season, SeriesList, ReplyModel
+from .models import Movie, CommentModel, Season, SeriesList
 
 
 @admin.register(Movie)
