@@ -26,7 +26,7 @@ def ReplyList(item):
 @register.inclusion_tag("Main/blocks/AddComment.html", takes_context=True)
 def addcomments(context, item, action ="addCommentMovie"):
 
-    from MyWatchList.forms import CommentForm
+    from MyWatchList.forms.Comments import CommentForm
     comment_form = CommentForm()
     return {
         "user": context['user'],

@@ -14,7 +14,7 @@ function getCookie(cname) {
     return "";
 }
 
-async function search(){
+async function searchTMDB(){
     elem = document.getElementById("searchbox");
 
     let request = await fetch("/add/tmdb/search/",{
@@ -29,5 +29,19 @@ async function search(){
 
     if (request.ok)
         results.innerHTML=await request.text();
+}
 
+async function searchOnMWL(){
+    elem = document.getElementById("searchbox");
+
+    let request = await fetch("/search/"+elem.value,{
+        method: 'GET', 
+     });
+
+    if (request.ok)
+        results.innerHTML=await request.text();
+}
+
+function onchangeInputSearch(){
+    searchBtn.disabled = searchbox.value.length == 0
 }

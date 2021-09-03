@@ -6,7 +6,7 @@ body{
     display: grid;
     grid-template-areas:"headname" "discript" "Search"
     "content";
-    grid-template-rows: 45px 0.1fr 100px  1fr;
+    grid-template-rows: 45px auto 100px  1fr;
 }
 
 a{
@@ -54,6 +54,12 @@ a{
 }
 .Search>button:hover{
     background-color: lightgrey;
+}
+.Search>button:disabled,
+.Search>button[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
 }
 
 .content{
@@ -113,13 +119,36 @@ a{
     text-align: center;
 }
 
+.User{
+    width: 160px;
+    height:160px;
+    padding:5px;
+    margin: 5px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-evenly;
+    align-items: center;
+    transition: all 0.5s ease;
+    animation: fade-in 1s ease;
+}
+.User:hover{
+    background-color:lightgray;
+    cursor:pointer;
+}
+.User:hover>.postertitle{
+    text-decoration: black underline;
+}
+.avatar{
+    width: 120px;
+    height: 120px;
+}
 
 @media (max-device-width: 425px) {
     body{
         grid-template-rows: 70px 0.1fr 140px  1fr;
     }
 
-    .Search{
+    .Search{    
         margin-top:20px;
     }
     .Search>input{
@@ -151,6 +180,22 @@ a{
     }
     .Movie>span{
         font-size: 25px;
+    }
+
+    .User{
+        width: 220px;
+        height:220px;
+        padding:5px;
+        margin: 5px;
+    }
+    .User>span{
+        font-size: 25px;
+    }
+
+    .avatar{
+        width: 200px;
+        height: 200px;
+        margin: 10px 5px;
     }
 }
 

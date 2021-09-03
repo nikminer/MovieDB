@@ -1,0 +1,23 @@
+{% load static %}
+{% include "../base.html" %}
+
+<title>Поиск в MyWatchList</title>
+
+<link rel="stylesheet" href={% static 'Main/styles/addmovie.css' %} type="text/css" />
+<script async src="{% static "Main/scripts/searchkino.js" %}"></script>
+
+<body>
+    <h1 class="HeadName">Поиск в MyWatchList</h1>
+    <div class="Search">
+        <input id="searchbox" onKeyUp="onchangeInputSearch()" type="text" placeholder="Введите название фильма, сериала, пользователя">
+        <button disabled id="searchBtn" onclick="searchOnMWL()">Поиск</button>
+    </div>
+    <p class="discript">
+        Поиск Фильмов, Сериалов или Пользователей зарегистрированных на сайте. 
+        </br>Просто введите запрос и нажимите кнопку Поиск.
+    </p>
+    <div class="content" id="results">
+    </div>
+
+</body>
+

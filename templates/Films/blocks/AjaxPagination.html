@@ -1,5 +1,5 @@
 {% if page.has_next %}
     <div class="pagination">
-        <button onclick="getPages(this, '{% url urlname page.next_page_number %}')">Загрузуть больше</button>
+        <button onclick="getPages(this, '{% url urlname page.next_page_number %}?genres={{request.GET.genres}}')">Загрузуть больше</button>
     </div>
 {% endif %}

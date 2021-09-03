@@ -1,5 +1,5 @@
 from django import template
-from Profile.views.feed import getFeed
+from MyWatchList.views.profile.feed import getFeed
 
 
 register = template.Library()

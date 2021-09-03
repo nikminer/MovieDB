@@ -1,10 +1,10 @@
 {% load static %}
-{% include "../base.html" %}
+{% include "../baseProfile.html" %}
 
-<link rel="stylesheet" href={% static 'Profile/followers.css' %} type="text/css" />
-
-<title>Список подписчиков {{profile.user.first_name}} {{profile.user.last_name}}</title>
-
+<head>
+    <link rel="stylesheet" href={% static 'Profile/followers.css' %} type="text/css" />
+    <title>Список подписчиков {{profile.user.first_name}} {{profile.user.last_name}}</title>
+</head>
 <body>
     <div class="headBlock">
         <a href={% url 'profile'  profile.user.username %} class="bckbtn">
@@ -16,7 +16,6 @@
             <span>Подписки</span><b>{{followingcount}}</b>
         </a>
     </div>
-
         <div class="followerslist">
             <span>Подписчики {{profile.name}} ({{count}})</span>
             <div>

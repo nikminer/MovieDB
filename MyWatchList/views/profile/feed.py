@@ -2,7 +2,7 @@ import datetime
 from django.utils import timezone
 from django.contrib.contenttypes.models import ContentType
 from django.db.models import Q
-from ..models import Feed, Profile
+from MyWatchList.models import Feed, Profile
 from django.http import HttpResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, get_object_or_404

@@ -1,5 +1,5 @@
 {% load static %}
-{% include "../base.html" %}
+{% include "../baseSerials.html" %}
 
 <link rel="stylesheet" href="{% static "Serials/styles/seriallist.css" %}" />
 <title>Сериалы</title>
@@ -13,14 +13,12 @@
         <a href="{% url 'addmovie'%}" class="addserial">Добавить сериал</a>
     </div>
     <p class="pagedisc">
-        Список сериалов отсортированный по году выхода и по названию последнего сезона. Если вы вдруг не нашли ваш сериал, просто добавьте его, нажав на кнопку "Добавить сериал".
+        Список сериалов отсортированный по году выхода и по названию. Если вы вдруг не нашли ваш сериал, просто добавьте его, нажав на кнопку "Добавить сериал".
     </p>
 
     <div class="serials">
-
             {% load TagsFilter %}
             {% show_avalible_filters %}
-
 
         <div class="serialList" >
             {% for serial in SerialList %}

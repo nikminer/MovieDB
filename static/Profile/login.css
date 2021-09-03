@@ -1,5 +1,5 @@
 html{
-    background-color: #303952;
+    background-color: var(--main-color--);
 }
 
 form{
@@ -15,7 +15,7 @@ form{
 }
 
 .bigspan{
-    border-left-color: #303952;
+    border-left-color: var(--main-color--);
     margin-bottom: 2%;
     font-size: 18px;
     margin-top: 20px;
@@ -49,8 +49,8 @@ button[type=submit]{
     transition: all 0.5s ease;
 }
 button[type=submit]:hover{
-    border-left: 10px #303952 solid;
-    border-right: 10px #303952 solid;
+    border-left: 10px var(--main-color--) solid;
+    border-right: 10px var(--main-color--) solid;
     cursor: pointer;
     background-color: rgb(223, 219, 219);
 }
@@ -74,8 +74,8 @@ form>a{
     font-weight: bold;
 }
 form>a:hover{
-    border-left: 10px #303952 solid;
-    border-right: 10px #303952 solid;
+    border-left: 10px var(--main-color--) solid;
+    border-right: 10px var(--main-color--) solid;
     cursor: pointer;
     background-color: rgb(223, 219, 219);
 }
@@ -88,7 +88,7 @@ form>a:hover{
         width: 90%;
     }
     .bigspan{
-        border-left-color: #303952;
+        border-left-color: var(--main-color--);
         margin-bottom: 2%;
         font-size: 27px;
     }

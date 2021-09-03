@@ -1,9 +1,9 @@
 from django.shortcuts import render,redirect,get_object_or_404
-from Profile.models import Profile, Follower
+from MyWatchList.models import Profile, Follower
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.contrib import messages
-from Profile.views.notifications import addnotification
+from MyWatchList.views.profile.notifications import addnotification
 
 
 @login_required

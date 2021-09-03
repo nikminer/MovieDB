@@ -1,7 +1,8 @@
 from . import filmlist
 
 from django.shortcuts import render, get_object_or_404
-from MyWatchList.models import Movie,WatchList
+from MyWatchList.models import Movie
+from MyWatchList.models import WatchList
 
 def film(request, id):
     film = get_object_or_404(Movie, id=id)

@@ -1,15 +1,15 @@
 from django import template
-
-from MyWatchList.models import Movie, WatchList
+from MyWatchList.models import Movie
+from MyWatchList.models import WatchList
 
 register = template.Library()
 
-@register.inclusion_tag("Films/blocks/Friends.html")
-def friendListF(profile, film):
+@register.inclusion_tag("Films/blocks/Following.html")
+def followingListF(profile, movie):
     return {
-        'friends': WatchList.objects.filter(
-            user__in=Friendlist.friends.get_friends(profile),
-            movie=film
+        'following': WatchList.objects.filter(
+            user__profile__in=profile.following.all(),
+            movie=movie
         ).order_by('user__first_name')
     }
 

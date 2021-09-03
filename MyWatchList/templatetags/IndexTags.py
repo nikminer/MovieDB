@@ -1,10 +1,11 @@
 from django import template
-from MyWatchList.models import WatchList, Movie
+from MyWatchList.models import WatchList
+from MyWatchList.models import Movie
+
 register = template.Library()
 
 @register.inclusion_tag("Main/blocks/followers.html")
 def followers(profile):
-
     return {
         'followers':profile.followers.count(),
         'followings':profile.following.count(),

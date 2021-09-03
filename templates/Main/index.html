@@ -1,11 +1,10 @@
-<head>
-    {% load static %}
-    {% load index_tags %}
-    {% include "../base.html" %}
-    <link rel="stylesheet" href={% static 'Main/styles/index.css' %} type="text/css" />
-    <link rel="stylesheet" href={% static 'Main/styles/feed.css' %} type="text/css" />
-    <title>My Watch List - Список ваших любимых фильмов и сериалов</title>
-</head>
+{% load static %}
+{% load IndexTags %}
+{% include "../base.html" %}
+<link rel="stylesheet" href={% static 'Main/styles/index.css' %} type="text/css" />
+<link rel="stylesheet" href={% static 'Main/styles/feed.css' %} type="text/css" />
+<title>My Watch List - Список ваших любимых фильмов и сериалов</title>
+
 <body>
     <div class="index">
         <div class="block auth">
@@ -55,7 +54,7 @@
                 </div>
                 <link rel="stylesheet" href={% static 'Profile/AjaxPagination.css' %} type="text/css" />
                 <script src="{% static "Main/scripts/AjaxPagination.js" %}"></script>
-                {% load feedTags %}
+                {% load FeedTags %}
                 {% FeedActivity %}
             </div>
         {% endif %}

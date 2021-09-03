@@ -1,48 +1,3 @@
-html{
-    background-color: #c44569;
-    max-width: 100%;
-}
-
-.headBlock{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 20px;
-}
-
-.bckbtn{
-    font-weight: bold;
-    background-color: #c44569;
-    color: white;
-    display: flex;
-    flex-direction:row;
-    align-items: center;
-    cursor: pointer;
-    text-decoration: none;
-    padding: 2px;
-}
-.bckbtn>span{
-    background-color: rgb(241, 241, 241);
-    color: black;
-    width: 100%;
-    transition: all 0.5s ease;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-left: 2px;
-}
-.bckbtn>*{
-    padding: 5px 0;
-}
-.bckbtn:hover>span{
-    background-color: #c44569;
-    color: white;
-}
-body{
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
 .setting{
     display: grid;
     grid-template-areas: "setbg setbg"
@@ -64,7 +19,7 @@ body{
 }
 
 .errorlist{
-    background-color:#e66767 ;
+    background-color:var(--profile-color--) ;
     color: white;
     padding: 10px;
     margin: 5px 0;
@@ -96,8 +51,8 @@ body{
 }
 .setinfo input[type=submit]:hover{
     padding: 0;
-    border-left: 10px #c44569 solid;
-    border-right: 10px #c44569 solid;
+    border-left: 10px var(--profile-color--) solid;
+    border-right: 10px var(--profile-color--) solid;
     margin: 0 5px;
     cursor: pointer;
     background-color: rgb(223, 219, 219);
@@ -139,8 +94,8 @@ body{
 }
 #Avatarsend:hover{
     padding: 0;
-    border-left: 10px #c44569 solid;
-    border-right: 10px #c44569 solid;
+    border-left: 10px var(--profile-color--) solid;
+    border-right: 10px var(--profile-color--) solid;
     margin: 0 5px;
     cursor: pointer;
     background-color: rgb(223, 219, 219);
@@ -184,8 +139,8 @@ body{
 }
 #bgsend:hover,.bgsend:hover{
     padding: 0;
-    border-left: 10px #c44569 solid;
-    border-right: 10px #c44569 solid;
+    border-left: 10px var(--profile-color--) solid;
+    border-right: 10px var(--profile-color--) solid;
     margin: 0 5px;
     cursor: pointer;
     background-color: rgb(223, 219, 219);
@@ -195,19 +150,8 @@ body{
     margin: auto;
 }
 
-.bigspan{
-    border-left-color: #c44569;
-    margin: 10px 0;
-}
 
 @media (max-device-width: 425px) {
-    .bckbtn {
-        padding: 3px;
-    }
-    .bckbtn > span {
-        font-size: 26px;
-    }
-
     .setting{
         grid-template-areas:
         "setinfo"
@@ -274,7 +218,6 @@ body{
 
 
     .bigspan{
-        border-left-color: #c44569;
         border-left-width: 15px;
         margin: 10px 0;
         font-size: 28px;

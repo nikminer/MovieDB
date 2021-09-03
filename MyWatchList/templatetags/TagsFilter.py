@@ -1,6 +1,7 @@
 from django import template
 
 from MyWatchList.models import Movie
+from django.db.models import Max, Min
 
 
 register = template.Library()

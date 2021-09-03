@@ -1,52 +1,5 @@
-html{
-    background-color: #c44569;
-   }
-body{
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
 a{
     color: black;
-}
-
-.headBlock{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 20px;
-}
-
-.bckbtn{
-    font-weight: bold;
-    background-color: #c44569;
-    color: white;
-    display: flex;
-    flex-direction:row;
-    align-items: center;
-    cursor: pointer;
-    text-decoration: none;
-    padding: 2px;
-}
-.bckbtn>span{
-    background-color: rgb(241, 241, 241);
-    color: black;
-    width: 100%;
-    transition: all 0.5s ease;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-left: 2px;
-}
-.bckbtn>*{
-    padding: 5px 0;
-}
-.bckbtn:hover>span{
-    background-color: #c44569;
-    color: white;
-}
-
-.bigspan{
-    border-left-color: #c44569;
 }
 
 .profilehead{
@@ -54,6 +7,7 @@ a{
     grid-template-areas: "center";
     animation: fade-in 1s ease;
 }
+
 .bgimg{
     grid-area: center;
     width: 100%;
@@ -61,9 +15,10 @@ a{
     margin-top: 10px;
     margin-bottom: 10px;
     border: none;
-    border-top: #c44569 2px solid;
+    border-top: var(--profile-color--) 2px solid;
     border-bottom: 1px solid black;
 }
+
 .avatar{
     grid-area: center;
     width: 250px;
@@ -177,7 +132,7 @@ a{
     align-items: stretch;
 }
 .serials>a{
-    border-left-color:#546de5;
+    border-left-color:var(--serial-color--);
 }
 
 .serials>div{
@@ -196,7 +151,7 @@ a{
     align-items: stretch;
 }
 .films>a{
-    border-left-color: #e15f41;
+    border-left-color: var(--films-color--);
 }
 .films>div{
     display: flex;
@@ -276,16 +231,9 @@ a{
 
 
 @media (max-device-width: 425px) {
-    .bckbtn {
-        padding: 3px;
-    }
-    .bckbtn > span {
-        font-size: 26px;
-    }
-
     .bgimg{
         border: none;
-        border-top: #c44569 5px solid;
+        border-top: var(--profile-color--) 5px solid;
         border-bottom: 3px solid black;
         margin-bottom: 60px;
     }

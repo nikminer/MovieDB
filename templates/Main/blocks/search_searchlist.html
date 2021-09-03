@@ -1,0 +1,44 @@
+{% if series %}
+    <span class="bigheader"  style="border-bottom-color: #546de5;">Сериалы</span>
+    <div class="result">
+        {% for i in series %}
+            <a href="{% url 'serial' i.id %}" title="{{ i.name }} /{{ i.originalname }} ({{ i.year }})" class="Movie">
+                <img src="{{ i.img.url }}" class="poster">
+                <span class="postertitle">{{ i.name }} /{{ i.originalname }} ({{ i.year }})</span>
+            </a>
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if films  %}
+    <span class="bigheader" style="border-bottom-color: #e15f41;">Фильмы</span>
+    <div class="result">
+        {% for i in films %}
+            <a href="{% url 'film' i.id %}" title="{{ i.name }} /{{ i.originalname }} ({{ i.year }})" class="Movie">
+                <img src="{{ i.img.url }}" class="poster">
+                <span class="postertitle">{{ i.name }} /{{ i.originalname }} ({{ i.year }})</span>
+            </a>
+        {% empty %}
+            <span>Поиск не дал результатов</span>
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if users %}
+    <span class="bigheader" style="border-bottom-color: #c44569;">Пользователи</span>
+    <div class="result">
+        {% for i in users %}
+            <a href={{i.get_absolute_url}} title="{{ i.username }}" class="User">
+                <img src="{{ i.photo.url }}" class="avatar">
+                <span class="postertitle">{{ i.user.username }}</span>
+                <span class="postertitle">{{ i.user.first_name }} {{ i.user.last_name }}</span>
+            </a>
+        {% empty %}
+            <span>Поиск не дал результатов</span>
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if not series and not films and not users  %}
+<span>Поиск не дал результатов</span>
+{% endif %}

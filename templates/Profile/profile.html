@@ -1,5 +1,5 @@
 {% load static %}
-{% include "../base.html" %}
+{% include "../baseProfile.html" %}
 
 <link rel="stylesheet" href={% static 'Profile/profile.css' %} type="text/css"/>
 <link rel="stylesheet" href={% static 'Profile/AjaxPagination.css' %} type="text/css"/>
@@ -85,7 +85,7 @@
 </div>
 <div class="section1">
     <div class="friends">
-        {% load profileTags %}
+        {% load ProfileTags %}
         {% Myfollowings profile %}
         {% Myfollowers profile %}
     </div>

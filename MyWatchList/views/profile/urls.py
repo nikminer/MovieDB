@@ -1,5 +1,6 @@
+from MyWatchList.views.profile import userlist
 from django.urls import path
-from Profile import views
+from MyWatchList.views import profile as views
 
 
 from django.contrib.auth import views as Authviews
@@ -47,4 +48,5 @@ urlpatterns = [
     path('<str:username>/followers', views.followers.followers, name="followers"),
     path('<str:username>/followings', views.followers.following, name="followings"),
     path('<str:username>/follow', views.followers.follow, name="follow"),
+    path('<str:username>/userlist', views.userlist.userList),
 ]
