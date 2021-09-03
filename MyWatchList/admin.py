@@ -3,8 +3,8 @@ from MyWatchList.models import CommentModel
 from MyWatchList.models import Movie, Season, SeriesList
 from MyWatchList.models import Notifications, Feed, Profile
 from MyWatchList.models import UserList, UserListRecord
-from .models import Movie, CommentModel, Season, SeriesList
-
+from MyWatchList.models import CommentModel, ReplyModel
+from MyWatchList.models import Movie, Season, SeriesList
 
 @admin.register(Movie)
 class MovieAdmin(admin.ModelAdmin):
@@ -28,6 +28,10 @@ class CommentAdmin(admin.ModelAdmin):
     list_display = ('user', 'text', 'item', 'created','spoiler','active')
     list_filter = ('created',)
 
+@admin.register(ReplyModel)
+class ReplyAdmin(admin.ModelAdmin):
+    list_display = ('user', 'text', 'item', 'created','spoiler','active')
+    list_filter = ('created',)
 
 @admin.register(Notifications)
 class NotificationAdmin(admin.ModelAdmin):

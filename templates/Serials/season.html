@@ -125,8 +125,8 @@
 
         <div class="comments">
             <span class="bigspan">Комментарии</span>
-            {% load comments %}
-            {% addcomments season %}
+            {% load Comments %}
+            {% addcomments season 'addCommentSeason'  %}
             {% commentslist season %}
         </div>
 </body>

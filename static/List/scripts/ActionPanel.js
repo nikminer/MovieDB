@@ -9,7 +9,7 @@ async function setRating(obj, id){
             "X-CSRFToken": getCookie("csrftoken"),
             'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: "listid="+encodeURIComponent(id)+";rating="+ obj.value
+        body: "listid="+encodeURIComponent(id)+"&rating="+ obj.value
      });
 }
 
@@ -21,7 +21,7 @@ async function setReWatch(id, status){
             "X-CSRFToken": getCookie("csrftoken"),
             'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: "listid="+encodeURIComponent(id)+";status="+status+(status=='set'?';count='+document.getElementById('numerinputRewatch_'+id).value:'')
+        body: "listid="+encodeURIComponent(id)+"&status="+status+(status=='set'?'&count='+document.getElementById('numerinputRewatch_'+id).value:'')
      });
      if (request.ok){
          let response = await request.json();
@@ -41,7 +41,7 @@ async function setEpisode(id, status){
             "X-CSRFToken": getCookie("csrftoken"),
             'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: "listid="+encodeURIComponent(id)+";status="+status+(status=='set'?';count='+document.getElementById('numerinput_'+id).value:'')
+        body: "listid="+encodeURIComponent(id)+"&status="+status+(status=='set'?'&count='+document.getElementById('numerinput_'+id).value:'')
      });
      if (request.ok){
          let response = await request.json();

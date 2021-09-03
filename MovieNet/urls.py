@@ -24,8 +24,6 @@ sitemaps = {
     'movies': MoviesSitemap
 }
 
-
-
 urlpatterns = [
     path('', MWView.index, name="index"),
 
@@ -48,5 +46,9 @@ urlpatterns = [
     path('profile/',include(urlsProfile), name='profile'),
     path('admin/', admin.site.urls),
 
+
+    path('MWL/addCommentMovie/<int:id>', MWView.AddCommentMovie, name="addCommentMovie"),
+    path('MWL/addCommentSeason/<int:id>', MWView.AddCommentSeason, name="addCommentSeason"),
+    path('MWL/addReplyComment/<int:id>', MWView.AddReplyComment, name="addReplyComment")
 
    ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

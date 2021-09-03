@@ -13,11 +13,6 @@ from MyWatchList import views
 
 urlpatterns = [
 
-
-    path('MWL/addCommentMovie/<int:id>', views.AddCommentMovie ,name="addCommentMovie"),
-    path('MWL/addCommentSeason/<int:id>', views.AddCommentSeason ,name="addCommentSeason"),
-    path('MWL/addReplyComment/<int:id>', views.AddReplyComment ,name="addReplyComment"),
-    
     path('serial/',include(urlsSeries),),
     path('film/',include(urlsFilms)),
     path('list/',include(urlsList), name='list'),

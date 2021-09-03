@@ -13,7 +13,6 @@ from MyWatchList.views.profile.feed import create_item_feed
 @require_POST
 def setrating(request):
     data = request.POST
-
     item = WatchList.objects.get(id=int(data['listid']), user=request.user.id)
     rating = int(data['rating'])
     if rating >= 0 and rating <= 10:
@@ -23,7 +22,6 @@ def setrating(request):
     elif rating > 10:
         item.userrate = 10
     item.save()
-
 
     create_item_feed(request.user.profile, "Оценил на {0} баллов".format(item.userrate), item.season if item.season else item.movie, "rating")
 
@@ -150,11 +148,3 @@ def setstatus(request):
                              item.season if item.season else item.movie, "status")
         return JsonResponse({'status': True, 'userstatus': data['status']})
     return JsonResponse({'status': False})
-
-def createItemFeed(user, text, item, typeitem):
-
-    try:
-        from Profile.views.feed import create_item_feed
-        create_item_feed(user, text,item, typeitem)
-    except ImportError:
-        pass

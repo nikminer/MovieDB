@@ -1,5 +1,5 @@
 from django import template
-from MyWatchList.models import CommentModel
+from MyWatchList.models import CommentModel, ReplyModel
 
 
 register = template.Library()
@@ -21,9 +21,32 @@ def addcomments(context, item, action ="addCommentMovie"):
         "user": context['user'],
         "commentform": comment_form,
         "item": item,
-        "action":action
+        "action": action
+    }
+
+@register.inclusion_tag("Main/blocks/AddReply.html", takes_context=True)
+def addreply(context, item):
+
+    from MyWatchList.forms.Comments import ReplyForm
+    comment_form = ReplyForm()
+
+    return {
+        "user": context['user'],
+        "replyform": comment_form,
+        "item":item,
     }
 
 
 
+@register.inclusion_tag("Main/blocks/replys.html")
+def LastReply(item):
+    return {
+        "replys": ReplyModel.objects.filter(item=item).order_by('-id').last()
+    }
+
+@register.inclusion_tag("Main/blocks/replys.html")
+def ReplyList(item):
+    return {
+        "replys": ReplyModel.objects.filter(item=item).order_by('-id')
+    }
 

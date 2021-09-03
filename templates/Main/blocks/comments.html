@@ -1,5 +1,5 @@
 {% load static %}
-{% load comments %}
+{% load Comments %}
 <link rel="stylesheet" href={% static 'Main/styles/comments.css' %} type="text/css" />
 
 {% for comment in comments %}
@@ -13,12 +13,10 @@
             {{ comment.text }}
         </p>
         <span class="time">{{ comment.created|timesince }} назад</span>
-        {% comment %}
-        {% addreply comment %}
 
+        {% addreply comment %}
         <div class="replys">
             {% ReplyList comment %}
         </div>
-        {% endcomment %}
     </div>
 {% endfor %}

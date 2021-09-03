@@ -2,7 +2,7 @@
 <link rel="stylesheet" href={% static 'Main/styles/comments.css' %} type="text/css" />
 
 {% if user.is_authenticated %}
-    <form action={% comment %} {% url action item.id %}{% endcomment %} class="addcomment" method="post">
+    <form action={% url action item.id %} class="addcomment" method="post">
         {{ commentform.text }}
         <div class="commentspoiler" title="Отметьте если ваш коментарий сожержит спойлеры.">
             <label for="id_spoiler">Спойлер:</label>

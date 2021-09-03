@@ -39,6 +39,7 @@ def create_item_feed(profile, verb, item, itemType):
         return True
 
 
+
 def getFeed(request, profile, page=1, followers=False):
     if followers:
         feed = Feed.objects.filter(Q(profile__in=profile.following.all()) | Q(profile=profile))
