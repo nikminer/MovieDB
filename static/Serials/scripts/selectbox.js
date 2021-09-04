@@ -33,7 +33,7 @@ async function setstatus(elem,id){
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
 
-            body: "listid=" + encodeURIComponent(id) + ";status=" + encodeURIComponent(elem.value)
+            body: "listid=" + encodeURIComponent(id) + "&status=" + encodeURIComponent(elem.value)
         });
 
         if (request.ok) {

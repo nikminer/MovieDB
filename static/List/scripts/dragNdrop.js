@@ -58,7 +58,7 @@ async function sendStatus(id,Groupid,DataType){
             'Content-Type': 'application/x-www-form-urlencoded'
         },
 
-        body: "listid="+encodeURIComponent(list.join(';'))+";status="+ encodeURIComponent(Groupid)
+        body: "listid="+encodeURIComponent(list.join(';'))+"&status="+ encodeURIComponent(Groupid)
      });
      if (request.ok){
          let response = await request.json();
