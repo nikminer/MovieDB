@@ -7,7 +7,6 @@ register = template.Library()
 
 @register.inclusion_tag("Serials/blocks/Following.html")
 def followingListS(profile,season):
-    print (season)
     return {
         'following': WatchList.objects.filter(
             user__profile__in=profile.following.all(),
